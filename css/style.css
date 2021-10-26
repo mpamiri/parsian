@@ -1,0 +1,64 @@
+
+.b_green{
+background-color: chartreuse;
+}
+.green{
+    background-color: white;
+  }
+  .green:hover{
+  background-color: chartreuse;
+  transition: 500ms;
+  border-radius: 15px;
+  }
+  .green{
+    border-radius: 15px;
+  }
+  @media(min-width:0px) and (max-width:400px){
+    .media{
+      height: 200px;
+    }
+    .img{
+      height: 100px;
+      width: 150px;
+    }
+    .map{
+        width: 200px;
+        height: 200px;
+      }
+  }
+@media(min-width:400px) and (max-width:767px){
+    .media{
+      height: 300px;
+    }
+    .img{
+      height: 300px;
+    }
+    .map{
+        width: 600px;
+        height: 400px;
+      }
+  }
+@media(min-width:768px) and (max-width:991px){
+    .media{
+      height: 400px;
+    }
+    .img{
+      height: 400px;
+    }
+    .map{
+        width: 1000px;
+        height: 500px;
+      }
+  }
+@media(min-width:992px) and (max-width:2000px) {
+    .media{
+      height: 500px;
+    }
+    .img{
+      height: 500px;
+    }
+    .map{
+        width: 400px;
+        height: 300px;
+      }
+  }
