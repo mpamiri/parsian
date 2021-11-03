@@ -1,6 +1,7 @@
+{% load static from static %}
 <!DOCTYPE html>
 <html lang='fa' dir="rtl">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مرکز طب کار پارسیان</title>
@@ -8,19 +9,20 @@
     rel="stylesheet" 
     integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" 
     crossorigin="anonymous">
-    <link rel="stylesheet" href="css/occupational_medicine.css">
-    <link rel="stylesheet" href="awesome/fontawesome/css/all.css">
-    <link rel="stylesheet" href="awesome/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="{% static 'css/occupational_medicine.css' %}">
+    <link rel="stylesheet" href="{% static 'awesome/fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'awesome/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
     </script>
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <h5 class="navbar-brand" href="#"><img src="images/logo.jpg" ></h5>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <h5 class="navbar-brand" href="#"><img src="{% static 'images/logo.jpg' %}" ></h5>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -31,18 +33,18 @@
             <li class="nav-item ">
                 <a class="nav-link active green text-center" 
                 aria-current="page" 
-                href="home.html" 
+                href="../home/" 
                 tabindex="-1" aria-disabled="true">خانه</a>
             </li>
             <li class="nav-item" >
                 <a class="nav-link text-dark green text-center" 
-                href="services.html" tabindex="-1" aria-disabled="true">خدمات</a>
+                href="../services/" tabindex="-1" aria-disabled="true">خدمات</a>
             <li class="nav-item " >
                 <a class="nav-link text-dark green text-center"
-                href="occupational_medicine.html" tabindex="-1" aria-disabled="true">طب کار چیست</a>
+                href="../occupational_medicine/" tabindex="-1" aria-disabled="true">طب کار چیست</a>
             <li class="nav-item">
               <a class="nav-link text-dark green text-center" 
-              href="contact_us.html" tabindex="-1" aria-disabled="true">ارتباط با ما</a>
+              href="../contact_us/" tabindex="-1" aria-disabled="true">ارتباط با ما</a>
             </ul>
         </div>
     </nav>
@@ -60,13 +62,13 @@
                 </div>
                 <div class="carousel-inner" >
                   <div class="carousel-item active" >
-                    <img src="images/occupational_1.jpg" class="d-block w-100 media">
+                    <img src="{% static 'images/occupational_1.jpg' %}" class="d-block w-100 media">
                   </div>
                   <div class="carousel-item">
-                    <img src="images/occupational_2.jpg" class="d-block w-100 media" >
+                    <img src="{% static 'images/occupational_2.jpg' %}" class="d-block w-100 media" >
                   </div>
                   <div class="carousel-item">
-                    <img src="images/occupational_3.jpg" class="d-block w-100 media" >
+                    <img src="{% static 'images/occupational_3.jpg' %}" class="d-block w-100 media" >
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -94,7 +96,7 @@
               
             </p>
               <div class="row text-center mt-3">
-                <img class='mb-2 img'src="images/occupational_item_1.jpg">
+                <img class='mb-2 img'src="{% static 'images/occupational_item_1.jpg' %}">
               </div>
         </div>
       </section> 
@@ -122,7 +124,7 @@
                   </div>
               </div>
               <div class="row text-center mt-3">
-                <img class='mb-2 img'src="images/occupational_item_2.jpg">
+                <img class='mb-2 img'src="{% static 'images/occupational_item_2.jpg' %}">
               </div>
         </div>
       </section>
@@ -154,16 +156,16 @@
               <div class="container text-center mt-3">
                 <div class="row text center mb-2">
                   <div class="col-6 col-lg-3">
-                    <img src="images/occupational_item_3.jpg" style="height: 150px;width: 200px;">
+                    <img src="{% static 'images/occupational_item_3.jpg' %}" style="height: 150px;width: 200px;">
                   </div>
                   <div class="col-6 col-lg-3">
-                    <img src="images/occupational_item_4.jpg" style="height: 150px;width: 200px;">
+                    <img src="{% static 'images/occupational_item_4.jpg' %}" style="height: 150px;width: 200px;">
                   </div>
                   <div class="col-6 col-lg-3">
-                    <img src="images/occupational_item_5.png" style="height: 150px;width: 200px;">
+                    <img src="{% static 'images/occupational_item_5.png' %}" style="height: 150px;width: 200px;">
                   </div>
                   <div class="col-6 col-lg-3">
-                    <img src="images/occupational_item_6.jpg" style="height: 150px;width: 200px;">
+                    <img src="{% static 'images/occupational_item_6.jpg' %}" style="height: 150px;width: 200px;">
                   </div>
                 </div>
               </div>
@@ -192,7 +194,7 @@
                 مراقب سلامتی خود و خانواده خود باشید
               </div>
               <div class="col">
-                <img src="images/health_2.svg">
+                <img src="{% static 'images/health_2.svg' %}">
               </div>
             </div>
           </div>
