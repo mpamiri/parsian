@@ -3,7 +3,6 @@
     src: url("../fonts/.eot");
     /* IE9 Compat Modes */
     src: url("../fonts/iran.eot?#iefix") format("embedded-opentype"),
-      url("../fonts/iran.woff2") format("woff2"),
       url("../fonts/iran.woff") format("woff"),
       url("../fonts/iran.ttf") format("truetype");
     /* Safari, Android, iOS */
