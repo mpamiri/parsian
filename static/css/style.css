@@ -14,7 +14,7 @@ background-color: chartreuse;
   }
 @media(min-width:0px) and (max-width:400px){
     .media{
-      height: 200px;
+      height: 150px;
     }
     .img{
       height: 100px;
@@ -31,7 +31,7 @@ background-color: chartreuse;
 }
 @media(min-width:400px) and (max-width:767px){
     .media{
-      height: 300px;
+      height: 250px;
     }
     .img{
       height: 300px;
@@ -47,7 +47,7 @@ background-color: chartreuse;
 }
 @media(min-width:768px) and (max-width:991px){
     .media{
-      height: 400px;
+      height: 350px;
     }
     .img{
       height: 400px;
@@ -63,7 +63,7 @@ background-color: chartreuse;
 }
 @media(min-width:992px) and (max-width:2000px) {
     .media{
-      height: 500px;
+      height: 550px;
     }
     .img{
       height: 500px;
