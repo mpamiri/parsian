@@ -18,6 +18,6 @@ from django.urls import path,include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/',include('parsianapp.urls'))
+    path('',include('parsianapp.urls'))
 ]
 urlpatterns += staticfiles_urlpatterns()
