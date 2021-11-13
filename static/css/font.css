@@ -1,12 +1,11 @@
-
 @font-face {
     font-family: "iran";
-    src: url("{% static 'fonts/.eot' %}");
+    src: url("../fonts/.eot");
     /* IE9 Compat Modes */
-    src: url("{% static 'fonts/iran.eot?#iefix' %}") format("embedded-opentype"),
-      url("{% static 'fonts/iran.woff2' %}") format("woff2"),
-      url("{% static 'fonts/iran.woff' %}") format("woff"),
-      url("{% static 'fonts/iran.ttf' %}") format("truetype");
+    src: url("../fonts/iran.eot?#iefix") format("embedded-opentype"),
+      url("../fonts/iran.woff2") format("woff2"),
+      url("../fonts/iran.woff") format("woff"),
+      url("../fonts/iran.ttf") format("truetype");
     /* Safari, Android, iOS */
 }
   
