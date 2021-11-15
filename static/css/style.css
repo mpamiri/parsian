@@ -3,15 +3,15 @@ background-color: chartreuse;
 }
 .green{
     background-color: white;
+    border-radius: 15px;
+    padding: 0;
 }
 .green:hover{
   background-color: chartreuse;
   transition: 500ms;
   border-radius: 15px;
+  padding: 0;
 }
-.green{
-    border-radius: 15px;
-  }
 @media(min-width:0px) and (max-width:400px){
     .media{
       height: 150px;
@@ -92,7 +92,7 @@ nav ul{
   padding: 0;
 }
 nav ul li a{
-  font-size: 18px;
+  font-size: 25px;
 }
 nav{
   margin: 0;
