@@ -7,4 +7,4 @@ urlpatterns =[
     path('occupational_medicine/',views.occupational_medicine),
     path('services/',views.services),
 ]
-urlpatterns = urlpatterns + staticfiles_urlpatterns()
+urlpatterns += staticfiles_urlpatterns()
