@@ -8,3 +8,5 @@ def occupational_medicine(req):
     return render(req,'occupational_medicine.html')
 def services(req):
     return render(req,'services.html')
+def login(req):
+    return render(req,'login.html')
