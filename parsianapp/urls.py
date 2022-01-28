@@ -6,6 +6,7 @@ urlpatterns =[
     path('contact_us/',views.contact_us),
     path('occupational_medicine/',views.occupational_medicine),
     path('services/',views.services),
+    path('register/',views.register),
     path('login/',views.login)
 ]
 urlpatterns += staticfiles_urlpatterns()
