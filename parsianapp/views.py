@@ -21,7 +21,7 @@ def register(req):
             form.save()
             user=form.cleaned_data.get('username')
             messages.success(req, 'account made succcessfuly for ' + user)
-            return redirect('login')
+            return redirect('../login')
     context={'form':form}
     return render(req,'register.html',context)
 def login(req):
@@ -32,7 +32,7 @@ def login(req):
 
         if user is not None:
             login(req,user)
-            return redirect('../manage)
+            return redirect('../manage')
         else:
             messages.info(req, 'username or password is incorect')
     return render(req,'login.html')
@@ -43,4 +43,4 @@ def manage(req):
 
 def logout(req):
     logout(req)
-    return redirect('../home')
+    return redirect('../')
