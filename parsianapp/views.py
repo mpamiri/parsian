@@ -25,18 +25,21 @@ def register(req):
     context={'form':form}
     return render(req,'register.html',context)
 def login(req):
-    if req.method == 'POST':
-        username=req.POST.get('username')
-        password=req.POST.get('password')
-        user=authenticate(req,username=username,password=password)
+    if req.user.is_authenticated:
+        return redirect('manage.html')
+    else:
+        if req.method == 'POST':
+            username=req.POST.get('username')
+            password=req.POST.get('password')
+            user=authenticate(req,username=username,password=password)
 
-        if user is not None:
-            login(req)
-            return redirect('manage.html')
-        else:
-            messages.info(req, 'username or password is incorect')
-    return render(req,'login.html')
-
+            if user is not None:
+                login(req)
+                return redirect('manage.html')
+            else:
+                messages.info(req, 'username or password is incorect')
+        return render(req,'login.html')
+login_required(login_url='login')
 def manage(req):
     return render(req,'manage.html')
 
