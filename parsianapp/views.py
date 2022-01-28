@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import registration
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.decorators import login_required
 def home(req):
     return render(req,'home.html')
 def contact_us(req):
@@ -30,9 +31,16 @@ def login(req):
         user=authenticate(req,username=username,password=password)
 
         if user is not None:
-            login(req,user)
+            login(req)
             return redirect('manage.html')
+        else:
+            messages.info(req, 'username or password is incorect')
     return render(req,'login.html')
 
 def manage(req):
     return render(req,'manage.html')
+
+
+def logout(req):
+    logout(req)
+    return redirect('home')
