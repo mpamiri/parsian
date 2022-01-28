@@ -7,7 +7,7 @@ urlpatterns =[
     path('occupational_medicine/',views.occupational_medicine),
     path('services/',views.services),
     path('manage/',views.manage),
-    path('logout/',views.logout,name='logout'),
+    path('logout/',views.logoutuser,name='logout'),
     path('login/',views.login,name='login')
 ]
 urlpatterns += staticfiles_urlpatterns()

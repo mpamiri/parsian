@@ -3,8 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .forms import registration
 from django.contrib import messages
-from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth import logout,authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login as auth_login
 def home(req):
     return render(req,'home.html')
 def contact_us(req):
@@ -31,7 +32,7 @@ def login(req):
         user=authenticate(req,username=username,password=password)
 
         if user is not None:
-            login(req,user)
+            auth_login(req,user)
             return redirect('../manage')
         else:
             messages.info(req, 'username or password is incorect')
@@ -41,6 +42,6 @@ def manage(req):
     return render(req,'manage.html')
 
 
-def logout(req):
+def logoutuser(req):
     logout(req)
     return redirect('../')
