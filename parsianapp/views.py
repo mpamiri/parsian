@@ -43,7 +43,7 @@ def manage(req):
 
 
 @login_required(login_url='../login')
-def summary_of_results(req):
+def summary(req):
     return render(req,'summary_of_results.html')
 
 

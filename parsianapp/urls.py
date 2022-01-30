@@ -8,7 +8,7 @@ urlpatterns =[
     path('services/',views.services),
     path('manage/',views.manage),
     path('logout/',views.logoutuser,name='logout'),
-    path('summary_of_results/',views.summary_of_results,name='summary_of_results'),
+    path('manage/summary_of_results/',views.summary,name='summary_of_results'),
     path('login/',views.login,name='login')
 ]
 urlpatterns += staticfiles_urlpatterns()
