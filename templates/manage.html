@@ -39,11 +39,13 @@
 </header>
 {% endblock header %}
 {% block content %}
-<span>hello {{user.username}}</span>
-<span>
-    <a href={% url 'logout' %}>logout</a>
-</span>
 <body>
+    <div class='user text-center'>
+        <span>hello {{user.username}}</span>
+        <span>
+            <a href={% url 'logout' %}>logout</a>
+        </span>
+    </div>
     <section class="b-green">
       <div>
         <div class="container">

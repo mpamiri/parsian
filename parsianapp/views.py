@@ -37,12 +37,12 @@ def login(req):
         else:
             messages.info(req, 'username or password is incorect')
     return render(req,'login.html')
-@login_required(login_url='../login')
+@login_required(login_url='login')
 def manage(req):
     return render(req,'manage.html')
 
 
-@login_required(login_url='../login')
+@login_required(login_url='login')
 def summary(req):
     return render(req,'summary_of_results.html')
 
