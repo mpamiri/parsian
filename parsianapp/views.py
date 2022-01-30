@@ -42,6 +42,11 @@ def manage(req):
     return render(req,'manage.html')
 
 
+@login_required(login_url='../login')
+def summary_of_results(req):
+    return render(req,'summary_of_results.html')
+
+
 def logoutuser(req):
     logout(req)
     return redirect('../')
