@@ -296,13 +296,13 @@
     <div class='col'>
       <form>
         <lable for='problem'>مشکل مشاهده شده</lable>
-        <input type='problem' id='name'>
+        <input type='text' id='problem'>
       </form>
     </div>
     <div class='col'>
       <form>
         <lable for='advice'>توصیه ها</lable>
-        <input type='advice' id='name'>
+        <input type='text' id='advice'>
       </form>
     </div>
   </div>
@@ -354,6 +354,20 @@
         <option >انجام نشده</option>
       </select>
     </form>
+  </div>
+  <div class='row text-center mt-4'>
+    <div class='col'>
+      <form>
+        <lable for='reason'>علتباز بودن پرونده</lable>
+        <input type='text' id='reason'>
+      </form>
+    </div>
+    <div class='col'>
+      <form>
+        <lable for='j-code'>کد بیماری شغلی</lable>
+        <input type='number' id='j-code'>
+      </form>
+    </div>
   </div>
     </section> 
   {% endblock content %}
