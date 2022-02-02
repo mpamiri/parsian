@@ -156,7 +156,7 @@
           <input type='number' id='D3' class='box'>
         </div>
       </div> 
-      <div class='row twxt-center mt-4'>
+      <div class='row text-center mt-4'>
         <div class='col'>
           <form>
             <lable for='urine'>آزمایش ادرار</lable>
@@ -182,5 +182,86 @@
           </select>
         </form>
     </div>
+      <div class='row text-center mt-4'>
+        <div class='col'>
+          <form>
+            <lable for='breast'>عکس قفسه سینه</lable>
+            <select id='breast' class='choose'>
+              <option ></option>
+              <option >نرمال</option>
+              <option >غیر نرمال</option>
+              <option >ندارد</option>
+            </select>
+          </form>
+      </div>
+      <div class='col'>
+        <form>
+          <lable for='heart'>نوار قلب</lable>
+          <select id='heart' class='choose'>
+            <option ></option>
+            <option >نرمال</option>
+            <option >تغییرات غیر اختصاصی</option>
+            <option >نیاز به تکرار</option>
+            <option >غیر نرمال</option>
+            <option >ندارد</option>
+          </select>
+        </form>
+    </div>
+    <div class='row text-center mt-4'>
+      <div class='col'>
+        <lable for='r-eye'>مقدار بینایی چشم راست</lable>
+        <input type='number' id='r-eye' class='box'>
+      </div>
+      <div class='col'>
+        <lable for='l-eye'>مقدار بینایی چشم چپ</lable>
+        <input type='number' id='l-eye' class='box'>
+      </div>
+    </div>
+    <div class='row text-center mt-4'>
+      <div class='col'>
+        <lable for='r-eye-g'>مقدار بینایی چشم راست با عینک</lable>
+        <input type='number' id='r-eye-g' class='box'>
+      </div>
+      <div class='col'>
+        <lable for='l-eye-g'>مقدار بینایی چشم چپ با عینک</lable>
+        <input type='number' id='l-eye-g' class='box'>
+      </div>
+    </div>
+    <div class='row text-center mt-4'>
+      <div class='col'>
+        <form>
+          <lable for='color'>دید رنگ</lable>
+          <select id='color' class='choose'>
+            <option ></option>
+            <option >نرمال</option>
+            <option >غیر نرمال</option>
+            <option >تشخیص رنگ قرمز</option>
+            <option >ندارد</option>
+          </select>
+        </form>
+    </div>
+    <div class='col'>
+      <form>
+        <lable for='view'>دید میدان</lable>
+        <select id='view' class='choose'>
+          <option ></option>
+          <option >نرمال</option>
+          <option >غیر نرمال</option>
+          <option >ندارد</option>
+        </select>
+      </form>
+    </div>
+    <div class='col'>
+      <form>
+        <lable for='depth'>دید عمق</lable>
+        <select id='depth' class='choose'>
+          <option ></option>
+          <option >نرمال</option>
+          <option >غیر نرمال</option>
+          <option >ندارد</option>
+        </select>
+      </form>
+    </div>
+  </div>
     </section> 
   {% endblock content %}
