@@ -67,7 +67,4 @@ class Migration(migrations.Migration):
                 ('overweight', models.CharField(max_length=300)),
             ],
         ),
-        migrations.DeleteModel(
-            name='user',
-        ),
     ]
