@@ -44,6 +44,12 @@ def manage(req):
 
 @login_required(login_url='login')
 def summary(req):
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = NameForm()
     return render(req,'summary_of_results.html')
 
 
