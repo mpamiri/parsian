@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import summary_of_results
 
-# Register your models here.
+admin.site.register(summary_of_results)
