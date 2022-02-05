@@ -1,11 +1,13 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .forms import registration
+from .models import summary_of_results
+from .forms import registration , summary_of_results
 from django.contrib import messages
 from django.contrib.auth import logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login
+from django.views.decorators.http import require_POST
 def home(req):
     return render(req,'home.html')
 def contact_us(req):
@@ -44,13 +46,14 @@ def manage(req):
 
 @login_required(login_url='login')
 def summary(req):
-    if request.method == 'POST':
-        form = NameForm(request.POST)
-        if form.is_valid():
-            return HttpResponseRedirect('/thanks/')
-    else:
-        form = NameForm()
-    return render(req,'summary_of_results.html')
+    form=summary_of_results()
+    context={'form':form}
+    return render(req,'summary_of_results.html',context)
+    
+@require_POST
+def addsummary(req):
+    form=summary_of_results(req.POST)
+    return redirect(summary_of_results)
 
 
 def logoutuser(req):

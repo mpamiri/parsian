@@ -22,352 +22,277 @@
     </head>
 {% endblock head %}
 {% block content %}
-<section class="b-green">
-    <div>
-      <div class="container">
-        <div class="row text-center">
-          <div class="col">
-              خلاصه نتایج
+<form action='{% url 'add' %}' method='POST'>
+    <section class="b-green">
+        <div>
+          <div class="container">
+            <div class="row text-center">
+              <div class="col">
+                  خلاصه نتایج
+              </div>
+            </div>
           </div>
         </div>
+      </section> 
+      <svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 100" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(127, 255, 0, 1)" offset="0%"></stop><stop stop-color="rgba(127, 255, 0, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,30L80,38.3C160,47,320,63,480,60C640,57,800,33,960,25C1120,17,1280,23,1440,31.7C1600,40,1760,50,1920,51.7C2080,53,2240,47,2400,50C2560,53,2720,67,2880,61.7C3040,57,3200,33,3360,25C3520,17,3680,23,3840,30C4000,37,4160,43,4320,46.7C4480,50,4640,50,4800,55C4960,60,5120,70,5280,68.3C5440,67,5600,53,5760,53.3C5920,53,6080,67,6240,66.7C6400,67,6560,53,6720,55C6880,57,7040,73,7200,66.7C7360,60,7520,30,7680,28.3C7840,27,8000,53,8160,68.3C8320,83,8480,87,8640,88.3C8800,90,8960,90,9120,76.7C9280,63,9440,37,9600,25C9760,13,9920,17,10080,20C10240,23,10400,27,10560,25C10720,23,10880,17,11040,25C11200,33,11360,57,11440,68.3L11520,80L11520,100L11440,100C11360,100,11200,100,11040,100C10880,100,10720,100,10560,100C10400,100,10240,100,10080,100C9920,100,9760,100,9600,100C9440,100,9280,100,9120,100C8960,100,8800,100,8640,100C8480,100,8320,100,8160,100C8000,100,7840,100,7680,100C7520,100,7360,100,7200,100C7040,100,6880,100,6720,100C6560,100,6400,100,6240,100C6080,100,5920,100,5760,100C5600,100,5440,100,5280,100C5120,100,4960,100,4800,100C4640,100,4480,100,4320,100C4160,100,4000,100,3840,100C3680,100,3520,100,3360,100C3200,100,3040,100,2880,100C2720,100,2560,100,2400,100C2240,100,2080,100,1920,100C1760,100,1600,100,1440,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path></svg> 
+        <section class='container'>
+          <div class='row text-center mt-4'>
+            <div class='col'>
+              <form action='{% url 'add' %}' method='POST'>
+                {% csrf_token %}
+                <lable for='name'> نام و نام خانوادگی</lable>
+                    {{ form.name }}
+              </form>
+            </div>
+            <div class='col'>
+              <form>
+                <lable for='no'>شماره پرونده</lable>
+                {{ form.number }}
+              </form>
+            </div>
+          </div>
+          <div class='row text-center mt-4'>
+            <div class='col'>
+              <form>
+                <lable>جنسیت:</lable>
+                <lable for='man'>مرد</lable>
+                <input type='radio' id='man' name="fav_language" checked>
+                <lable for='woman'>زن</lable>
+                <input type='radio' id='woman' name="fav_language">
+              </form>
+            </div>
+            <div class='col'>
+              <form>
+                <lable for='no'>سال تولد</lable>
+                {{ form.age }}
+              </form>
+            </div>
+            <div class='col'>
+              <form>
+                <lable for='start'>شروع به کار</lable>
+                {{ form.start_month }}
+                <lable>/</lable>
+                {{ form.start_year }}
+              </form>
+            </div>
+          </div>
+          <div class='row text-center mt-4'>
+            <div class='col'>
+              <form>
+                <lable for='job'>عنوان شغلی</lable>
+                {{ form.job }}
+              </form>
+            </div>
+            <div class='col'>
+              <form>
+                <lable for='harm'>عوامل زیان آور</lable>
+                {{ form.harmful_factors }}
+              </form>
+            </div>
+            <div class='col'>
+              <form>
+                <label for="code">کد پزشک</label>
+                {{ form.code }}
+                </select>
+              </form>
+            </div>
+          </div>
+          <div class='row text-center mt-4'>
+            <div class='col'>
+              <lable for='length'>قد</lable>
+              {{ form.name }}
+            </div>
+            <div class='col'>
+              <lable for='weight'>وزن</lable>
+              {{ form.name }}
+            </div>
+          </div>
+          <div class='row text-center mt-4'>
+            <div class='col'>
+              <lable for='blood_1'>قند خون</lable>
+              {{ form.name }}
+            </div>
+            <div class='col'>
+              <lable for='blood_2'>فشار خون</lable>
+              {{ form.name }}
+            </div>
+            <div class='col'>
+              <lable for='cols'>کلسترول</lable>
+              {{ form.name }}
+            </div>
+            <div class='col'>
+              <lable for='tri'>تری گلیسیرید</lable>
+              {{ form.name }}
+            </div>
+            <div class='col'>
+              <lable for='blood_3'>سرب خون</lable>
+              {{ form.name }}
+            </div>
+            <div class='col'>
+              <lable for='cratin'>کراتینین</lable>
+              {{ form.name }}
+            </div>
+          </div>
+          <div class='row text-center mt-4'>
+            <div class='col'>
+              <lable for='ALT'>ALT</lable>
+              {{ form.name }}
+            </div>
+            <div class='col'>
+              <lable for='AST'>AST</lable>
+              {{ form.name }}
+            </div>
+            <div class='col'>
+              <lable for='PSA'>PSA</lable>
+              {{ form.name }}
+            </div>
+            <div class='col'>
+              <lable for='TSH'>TSH</lable>
+              {{ form.name }}
+            </div>
+            <div class='col'>
+              <lable for='D3'>ویتامین D3</lable>
+              {{ form.name }}
+            </div>
+          </div> 
+          <div class='row text-center mt-4'>
+            <div class='col'>
+              <form>
+                <lable for='urine'>آزمایش ادرار</lable>
+                {{ form.name }}
+              </form>
+          </div>
+          <div class='col'>
+            <form>
+              <lable for='breath'>تست تنفس</lable>
+              {{ form.name }}
+            </form>
+        </div>
+          <div class='row text-center mt-4'>
+            <div class='col'>
+              <form>
+                <lable for='breast'>عکس قفسه سینه</lable>
+                {{ form.name }}
+              </form>
+          </div>
+          <div class='col'>
+            <form>
+              <lable for='heart'>نوار قلب</lable>
+              {{ form.name }}
+            </form>
+        </div>
+        <div class='row text-center mt-4'>
+          <div class='col'>
+            <lable for='r-eye'>مقدار بینایی چشم راست</lable>
+            {{ form.name }}
+          </div>
+          <div class='col'>
+            <lable for='l-eye'>مقدار بینایی چشم چپ</lable>
+            {{ form.name }}
+          </div>
+        </div>
+        <div class='row text-center mt-4'>
+          <div class='col'>
+            <lable for='r-eye-g'>مقدار بینایی چشم راست با عینک</lable>
+            {{ form.name }}
+          </div>
+          <div class='col'>
+            <lable for='l-eye-g'>مقدار بینایی چشم چپ با عینک</lable>
+            {{ form.name }}
+          </div>
+        </div>
+        <div class='row text-center mt-4'>
+          <div class='col'>
+            <form>
+              <lable for='color'>دید رنگ</lable>
+              {{ form.name }}
+            </form>
+        </div>
+        <div class='col'>
+          <form>
+            <lable for='view'>دید میدان</lable>
+            {{ form.name }}
+          </form>
+        </div>
+        <div class='col'>
+          <form>
+            <lable for='depth'>دید عمق</lable>
+            {{ form.name }}
+          </form>
+        </div>
       </div>
-    </div>
-  </section> 
-  <svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 100" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(127, 255, 0, 1)" offset="0%"></stop><stop stop-color="rgba(127, 255, 0, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,30L80,38.3C160,47,320,63,480,60C640,57,800,33,960,25C1120,17,1280,23,1440,31.7C1600,40,1760,50,1920,51.7C2080,53,2240,47,2400,50C2560,53,2720,67,2880,61.7C3040,57,3200,33,3360,25C3520,17,3680,23,3840,30C4000,37,4160,43,4320,46.7C4480,50,4640,50,4800,55C4960,60,5120,70,5280,68.3C5440,67,5600,53,5760,53.3C5920,53,6080,67,6240,66.7C6400,67,6560,53,6720,55C6880,57,7040,73,7200,66.7C7360,60,7520,30,7680,28.3C7840,27,8000,53,8160,68.3C8320,83,8480,87,8640,88.3C8800,90,8960,90,9120,76.7C9280,63,9440,37,9600,25C9760,13,9920,17,10080,20C10240,23,10400,27,10560,25C10720,23,10880,17,11040,25C11200,33,11360,57,11440,68.3L11520,80L11520,100L11440,100C11360,100,11200,100,11040,100C10880,100,10720,100,10560,100C10400,100,10240,100,10080,100C9920,100,9760,100,9600,100C9440,100,9280,100,9120,100C8960,100,8800,100,8640,100C8480,100,8320,100,8160,100C8000,100,7840,100,7680,100C7520,100,7360,100,7200,100C7040,100,6880,100,6720,100C6560,100,6400,100,6240,100C6080,100,5920,100,5760,100C5600,100,5440,100,5280,100C5120,100,4960,100,4800,100C4640,100,4480,100,4320,100C4160,100,4000,100,3840,100C3680,100,3520,100,3360,100C3200,100,3040,100,2880,100C2720,100,2560,100,2400,100C2240,100,2080,100,1920,100C1760,100,1600,100,1440,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path></svg> 
-    <section class='container'>
       <div class='row text-center mt-4'>
         <div class='col'>
           <form>
-            <lable for='name'> نام و نام خانوادگی</lable>
-            <input type='text' id='name'>
-          </form>
-        </div>
-        <div class='col'>
-          <form>
-            <lable for='no'>شماره پرونده</lable>
-            <input type='number' id='no'>
-          </form>
-        </div>
-      </div>
-      <div class='row text-center mt-4'>
-        <div class='col'>
-          <form>
-            <lable>جنسیت:</lable>
-            <lable for='man'>مرد</lable>
-            <input type='radio' id='man' name="fav_language" checked>
-            <lable for='woman'>زن</lable>
-            <input type='radio' id='woman' name="fav_language">
-          </form>
-        </div>
-        <div class='col'>
-          <form>
-            <lable for='no'>سال تولد</lable>
-            <input type='number' id='no' class='box'>
-          </form>
-        </div>
-        <div class='col'>
-          <form>
-            <lable for='start'>شروع به کار</lable>
-            <input type='number' id='start' class='box'>
-            <lable>/</lable>
-            <input type='number' class='box'>
-          </form>
-        </div>
-      </div>
-      <div class='row text-center mt-4'>
-        <div class='col'>
-          <form>
-            <lable for='job'>عنوان شغلی</lable>
-            <input type='text' id='job' name="fav_language">
-          </form>
-        </div>
-        <div class='col'>
-          <form>
-            <lable for='harm'>عوامل زیان آور</lable>
-            <input type='text' id='harm'>
-          </form>
-        </div>
-        <div class='col'>
-          <form>
-            <label for="code">کد پزشک</label>
-            <select id="code" name="code">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </form>
-        </div>
-      </div>
-      <div class='row text-center mt-4'>
-        <div class='col'>
-          <lable for='length'>قد</lable>
-          <input type='number' id='lenght' class='box'>
-        </div>
-        <div class='col'>
-          <lable for='weight'>وزن</lable>
-          <input type='number' id='weight' class='box'>
-        </div>
-      </div>
-      <div class='row text-center mt-4'>
-        <div class='col'>
-          <lable for='blood_1'>قند خون</lable>
-          <input type='number' id='blood_1' class='box'>
-        </div>
-        <div class='col'>
-          <lable for='blood_2'>فشار خون</lable>
-          <input type='number' id='blood_2' class='box'>
-        </div>
-        <div class='col'>
-          <lable for='cols'>کلسترول</lable>
-          <input type='number' id='cols' class='box'>
-        </div>
-        <div class='col'>
-          <lable for='tri'>تری گلیسیرید</lable>
-          <input type='number' id='tri' class='box'>
-        </div>
-        <div class='col'>
-          <lable for='blood_3'>سرب خون</lable>
-          <input type='number' id='blood_3' class='box'>
-        </div>
-        <div class='col'>
-          <lable for='cratin'>کراتینین</lable>
-          <input type='number' id='cratin' class='box'>
-        </div>
-      </div>
-      <div class='row text-center mt-4'>
-        <div class='col'>
-          <lable for='ALT'>ALT</lable>
-          <input type='number' id='ALT' class='box'>
-        </div>
-        <div class='col'>
-          <lable for='AST'>AST</lable>
-          <input type='number' id='AST' class='box'>
-        </div>
-        <div class='col'>
-          <lable for='PSA'>PSA</lable>
-          <input type='number' id='PSA' class='box'>
-        </div>
-        <div class='col'>
-          <lable for='TSH'>TSH</lable>
-          <input type='number' id='TSH' class='box'>
-        </div>
-        <div class='col'>
-          <lable for='D3'>ویتامین D3</lable>
-          <input type='number' id='D3' class='box'>
-        </div>
-      </div> 
-      <div class='row text-center mt-4'>
-        <div class='col'>
-          <form>
-            <lable for='urine'>آزمایش ادرار</lable>
-            <select id='urine' class='choose'>
-              <option ></option>
-              <option >نرمال</option>
-              <option >غیر نرمال</option>
-              <option >ندارد</option>
-            </select>
+            <lable for='r-ear'>وضعیت شنوایی گوش راست</lable>
+            {{ form.name }}
           </form>
       </div>
       <div class='col'>
         <form>
-          <lable for='breath'>تست تنفس</lable>
-          <select id='breath' class='choose'>
-            <option ></option>
-            <option >نرمال</option>
-            <option >تحدیدی</option>
-            <option >انسدادی</option>
-            <option >نیاز به تکرار</option>
-            <option >نمای توامان تحدیدی وانسدادی</option>
-            <option >ندارد</option>
-          </select>
+          <lable for='l-ear'>وضعیت شنوایی گوش چپ</lable>
+          {{ form.name }}
         </form>
-    </div>
+      </div>
       <div class='row text-center mt-4'>
         <div class='col'>
           <form>
-            <lable for='breast'>عکس قفسه سینه</lable>
-            <select id='breast' class='choose'>
-              <option ></option>
-              <option >نرمال</option>
-              <option >غیر نرمال</option>
-              <option >ندارد</option>
-            </select>
+            <lable for='problem'>مشکل مشاهده شده</lable>
+            {{ form.name }}
+          </form>
+        </div>
+        <div class='col'>
+          <form>
+            <lable for='advice'>توصیه ها</lable>
+            {{ form.name }}
+          </form>
+        </div>
+      </div>
+      <div class='row text-center mt-4'>
+        <div class='col'>
+          <form>
+            <lable for='p-work'>ارتباط مشکل احتمالی با شغل</lable>
+            {{ form.name }}
           </form>
       </div>
       <div class='col'>
         <form>
-          <lable for='heart'>نوار قلب</lable>
-          <select id='heart' class='choose'>
-            <option ></option>
-            <option >نرمال</option>
-            <option >تغییرات غیر اختصاصی</option>
-            <option >نیاز به تکرار</option>
-            <option >غیر نرمال</option>
-            <option >ندارد</option>
-          </select>
+          <lable for='specialist'>ارجاع به متخصص</lable>
+          {{ form.name }}
         </form>
-    </div>
-    <div class='row text-center mt-4'>
-      <div class='col'>
-        <lable for='r-eye'>مقدار بینایی چشم راست</lable>
-        <input type='number' id='r-eye' class='box'>
       </div>
-      <div class='col'>
-        <lable for='l-eye'>مقدار بینایی چشم چپ</lable>
-        <input type='number' id='l-eye' class='box'>
+      <div class='row text-center mt-4'>
+        <div class='col'>
+          <form>
+            <lable for='final'>نظریه نهایی پزشک</lable>
+            {{ form.name }}
+          </form>
       </div>
-    </div>
-    <div class='row text-center mt-4'>
-      <div class='col'>
-        <lable for='r-eye-g'>مقدار بینایی چشم راست با عینک</lable>
-        <input type='number' id='r-eye-g' class='box'>
-      </div>
-      <div class='col'>
-        <lable for='l-eye-g'>مقدار بینایی چشم چپ با عینک</lable>
-        <input type='number' id='l-eye-g' class='box'>
-      </div>
-    </div>
-    <div class='row text-center mt-4'>
       <div class='col'>
         <form>
-          <lable for='color'>دید رنگ</lable>
-          <select id='color' class='choose'>
-            <option ></option>
-            <option >نرمال</option>
-            <option >غیر نرمال</option>
-            <option >تشخیص رنگ قرمز</option>
-            <option >ندارد</option>
-          </select>
+          <lable for='health'>اقدامات کارشناس بهداشت حرفه ای</lable>
+          {{ form.name }}
         </form>
-    </div>
-    <div class='col'>
-      <form>
-        <lable for='view'>دید میدان</lable>
-        <select id='view' class='choose'>
-          <option ></option>
-          <option >نرمال</option>
-          <option >غیر نرمال</option>
-          <option >ندارد</option>
-        </select>
-      </form>
-    </div>
-    <div class='col'>
-      <form>
-        <lable for='depth'>دید عمق</lable>
-        <select id='depth' class='choose'>
-          <option ></option>
-          <option >نرمال</option>
-          <option >غیر نرمال</option>
-          <option >ندارد</option>
-        </select>
-      </form>
-    </div>
-  </div>
-  <div class='row text-center mt-4'>
-    <div class='col'>
-      <form>
-        <lable for='r-ear'>وضعیت شنوایی گوش راست</lable>
-        <select id='r-ear' class='choose'>
-          <option ></option>
-          <option >نرمال</option>
-          <option >کاهش شنوایی هدایتی</option>
-          <option >کاهش شنوایی حسی عصبی</option>
-          <option >کاهش شنوایی حسی عصبی</option>
-          <option >توامان هدایتی و حسی عصبی</option>
-          <option >ندارد</option>        
-        </select>
-      </form>
-  </div>
-  <div class='col'>
-    <form>
-      <lable for='l-ear'>وضعیت شنوایی گوش چپ</lable>
-      <select id='l-ear' class='choose'>
-        <option ></option>
-        <option >نرمال</option>
-        <option >کاهش شنوایی هدایتی</option>
-        <option >کاهش شنوایی حسی عصبی</option>
-        <option >کاهش شنوایی حسی عصبی</option>
-        <option >توامان هدایتی و حسی عصبی</option>
-        <option >ندارد</option>
-      </select>
-    </form>
-  </div>
-  <div class='row text-center mt-4'>
-    <div class='col'>
-      <form>
-        <lable for='problem'>مشکل مشاهده شده</lable>
-        <input type='text' id='problem'>
-      </form>
-    </div>
-    <div class='col'>
-      <form>
-        <lable for='advice'>توصیه ها</lable>
-        <input type='text' id='advice'>
-      </form>
-    </div>
-  </div>
-  <div class='row text-center mt-4'>
-    <div class='col'>
-      <form>
-        <lable for='p-work'>ارتباط مشکل احتمالی با شغل</lable>
-        <select id='p-work' class='choose'>
-          <option ></option>
-          <option >دارد</option>
-          <option >ندارد</option>        
-        </select>
-      </form>
-  </div>
-  <div class='col'>
-    <form>
-      <lable for='specialist'>ارجاع به متخصص</lable>
-      <select id='specialist' class='choose'>
-        <option ></option>
-        <option >ندارد</option>
-        <option >قلب و عروق</option>
-        <option >داخلی</option>
-        <option >ریه</option>
-        <option >غدد</option>
-        <option >سایر</option>
-      </select>
-    </form>
-  </div>
-  <div class='row text-center mt-4'>
-    <div class='col'>
-      <form>
-        <lable for='final'>نظریه نهایی پزشک</lable>
-        <select id='final' class='choose'>
-          <option ></option>
-          <option >بلامانع</option>
-          <option >تغییر شغل</option>
-          <option >مشروط</option>
-          <option >کمیسیون</option>      
-        </select>
-      </form>
-  </div>
-  <div class='col'>
-    <form>
-      <lable for='health'>اقدامات کارشناس بهداشت حرفه ای</lable>
-      <select id='health' class='choose'>
-        <option ></option>
-        <option >درحال پیگیری</option>
-        <option >انجام شده</option>
-        <option >انجام نشده</option>
-      </select>
-    </form>
-  </div>
-  <div class='row text-center mt-4'>
-    <div class='col'>
-      <form>
-        <lable for='reason'>علتباز بودن پرونده</lable>
-        <input type='text' id='reason'>
-      </form>
-    </div>
-    <div class='col'>
-      <form>
-        <lable for='j-code'>کد بیماری شغلی</lable>
-        <input type='text' id='j-code'>
-      </form>
-    </div>
-  </div>
-    </section> 
+      </div>
+      <div class='row text-center mt-4'>
+        <div class='col'>
+          <form>
+            <lable for='reason'>علتباز بودن پرونده</lable>
+            {{ form.name }}
+          </form>
+        </div>
+        <div class='col'>
+          <form>
+            <lable for='j-code'>کد بیماری شغلی</lable>
+            {{ form.name }}
+          </form>
+        </div>
+      </div>
+      <div class='row text-center mt-4'>
+        <div class='col'>
+          <input type='submit'>
+        </div>
+      </div>
+        </section> 
+  </form>
   {% endblock content %}
