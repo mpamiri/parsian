@@ -14,6 +14,7 @@ class summary_of_results(forms.ModelForm):
         fields = '__all__'
         widgets={
         'code' : forms.Select(attrs={'class':'box'})
+        ,'gender' : forms.Select(attrs={'class':'box'})
         ,'number' : forms.NumberInput(attrs={'class':'box'})
         ,'start_month' : forms.NumberInput(attrs={'class':'box'})
         ,'start_year' : forms.NumberInput(attrs={'class':'box'})

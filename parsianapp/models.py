@@ -8,6 +8,8 @@ class summary_of_results(models.Model):
     start_year = models.IntegerField(default=0,null=True,blank=True)
     job = models.CharField(max_length=30,null=True,blank=True)
     job_code = models.IntegerField(default=0,null=True,blank=True)
+    gender_CHOICES=[('مرد','مرد'),('زن','زن')]
+    gender = models.CharField(default='مرد',choices=gender_CHOICES,null=True,blank=True,max_length=20)
     harmful_factors = models.CharField(max_length=100,null=True,blank=True)
     CODE_CHOICES=[(1,'1'),(2,'2'),(3,'3')]
     code = models.IntegerField(default=1,choices=CODE_CHOICES,null=True,blank=True)
