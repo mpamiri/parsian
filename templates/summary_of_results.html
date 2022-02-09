@@ -54,6 +54,12 @@
           <div class='row text-center mt-4'>
             <div class='col'>
               <form action='{% url 'add' %}' method='POST'>
+                <lable for='gender'>جنسیت</lable>
+                {{ form.gender }}
+              </form>
+            </div>
+            <div class='col'>
+              <form action='{% url 'add' %}' method='POST'>
                 <lable for='no'>سال تولد</lable>
                 {{ form.age }}
               </form>
