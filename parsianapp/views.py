@@ -53,7 +53,9 @@ def summary(req):
 @require_POST
 def addsummary(req):
     form=summary_of_results(req.POST)
-    return redirect(summary_of_results)
+    if form.is_valid():
+        new_summary=form.save()
+    return redirect('summary_of_results')
 
 
 def logoutuser(req):

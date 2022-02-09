@@ -7,6 +7,7 @@ class summary_of_results(models.Model):
     start_month = models.IntegerField(default=0,null=True,blank=True)
     start_year = models.IntegerField(default=0,null=True,blank=True)
     job = models.CharField(max_length=30,null=True,blank=True)
+    job_code = models.IntegerField(default=0,null=True,blank=True)
     harmful_factors = models.CharField(max_length=100,null=True,blank=True)
     CODE_CHOICES=[(1,'1'),(2,'2'),(3,'3')]
     code = models.IntegerField(default=1,choices=CODE_CHOICES,null=True,blank=True)
@@ -45,11 +46,14 @@ class summary_of_results(models.Model):
     depth_vision = models.CharField(choices=depth_CHOICES,max_length=300,default='',null=True,blank=True)
     breast_CHOICES=[('null',''),('نرمال','نرمال'),('غیر نرمال','غیر نرمال'),('ندارد','ندارد')]
     breast_photo = models.CharField(choices=breast_CHOICES,max_length=300,default='',null=True,blank=True)
-    blood_CHOICES=[('null',''),('نرمال','نرمال'),('تغییرات غیر اختصاصی','تغییرات غیر اختصاصی'),('نیاز به تکرار','نیاز به تکرار'),('غیر نرمال','غیر نرمال'),('ندارد','ندارد')]
-    blood_lead = models.CharField(choices=blood_CHOICES,max_length=300,default='',null=True,blank=True)
+    heart_CHOICES=[('null',''),('نرمال','نرمال'),('تغییرات غیر اختصاصی','تغییرات غیر اختصاصی'),('نیاز به تکرار','نیاز به تکرار'),('غیر نرمال','غیر نرمال'),('ندارد','ندارد')]
+    heart = models.CharField(choices=heart_CHOICES,max_length=300,default='',null=True,blank=True)
+    blood_lead = models.IntegerField(default=0,null=True,blank=True)
     blood_lead_status = models.CharField(max_length=300,null=True,blank=True)
+    chratinin = models.IntegerField(default=0,null=True,blank=True)
     PSA = models.IntegerField(default=0,null=True,blank=True)
     PSA_status = models.CharField(max_length=300,null=True,blank=True)
+    D3 = models.IntegerField(default=0,null=True,blank=True)
     TSH = models.IntegerField(default=0,null=True,blank=True)
     TSH_status = models.CharField(max_length=300,null=True,blank=True)
     problem = models.CharField(max_length=300,null=True,blank=True)

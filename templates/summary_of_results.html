@@ -45,7 +45,7 @@
               </form>
             </div>
             <div class='col'>
-              <form>
+              <form action='{% url 'add' %}' method='POST'>
                 <lable for='no'>شماره پرونده</lable>
                 {{ form.number }}
               </form>
@@ -53,22 +53,13 @@
           </div>
           <div class='row text-center mt-4'>
             <div class='col'>
-              <form>
-                <lable>جنسیت:</lable>
-                <lable for='man'>مرد</lable>
-                <input type='radio' id='man' name="fav_language" checked>
-                <lable for='woman'>زن</lable>
-                <input type='radio' id='woman' name="fav_language">
-              </form>
-            </div>
-            <div class='col'>
-              <form>
+              <form action='{% url 'add' %}' method='POST'>
                 <lable for='no'>سال تولد</lable>
                 {{ form.age }}
               </form>
             </div>
             <div class='col'>
-              <form>
+              <form action='{% url 'add' %}' method='POST'>
                 <lable for='start'>شروع به کار</lable>
                 {{ form.start_month }}
                 <lable>/</lable>
@@ -78,19 +69,19 @@
           </div>
           <div class='row text-center mt-4'>
             <div class='col'>
-              <form>
+              <form action='{% url 'add' %}' method='POST'>
                 <lable for='job'>عنوان شغلی</lable>
                 {{ form.job }}
               </form>
             </div>
             <div class='col'>
-              <form>
+              <form action='{% url 'add' %}' method='POST'>
                 <lable for='harm'>عوامل زیان آور</lable>
                 {{ form.harmful_factors }}
               </form>
             </div>
             <div class='col'>
-              <form>
+              <form action='{% url 'add' %}' method='POST'>
                 <label for="code">کد پزشک</label>
                 {{ form.code }}
                 </select>
@@ -99,123 +90,157 @@
           </div>
           <div class='row text-center mt-4'>
             <div class='col'>
-              <lable for='length'>قد</lable>
-              {{ form.length }}
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='length'>قد</lable>
+                {{ form.length }}
+              </form>
             </div>
             <div class='col'>
-              <lable for='weight'>وزن</lable>
-              {{ form.weight }}
-            </div>
-          </div>
-          <div class='row text-center mt-4'>
-            <div class='col'>
-              <lable for='blood_1'>قند خون</lable>
-              {{ form.blood_sugar }}
-            </div>
-            <div class='col'>
-              <lable for='blood_2'>فشار خون</lable>
-              {{ form.blood_pressure }}
-            </div>
-            <div class='col'>
-              <lable for='cols'>کلسترول</lable>
-              {{ form.cholesterol }}
-            </div>
-            <div class='col'>
-              <lable for='tri'>تری گلیسیرید</lable>
-              {{ form.triglyceride }}
-            </div>
-            <div class='col'>
-              <lable for='blood_3'>سرب خون</lable>
-              {{ form.blood_lead }}
-            </div>
-            <div class='col'>
-              <lable for='cratin'>کراتینین</lable>
-              {{ form.name }}
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='weight'>وزن</lable>
+                {{ form.weight }}
+              </form>
             </div>
           </div>
           <div class='row text-center mt-4'>
             <div class='col'>
-              <lable for='ALT'>ALT</lable>
-              {{ form.ALT }}
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='blood_1'>قند خون</lable>
+                {{ form.blood_sugar }}
+              </form>
             </div>
             <div class='col'>
-              <lable for='AST'>AST</lable>
-              {{ form.AST }}
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='blood_2'>فشار خون</lable>
+                {{ form.blood_pressure }}
+              </form>
             </div>
             <div class='col'>
-              <lable for='PSA'>PSA</lable>
-              {{ form.PSA }}
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='cols'>کلسترول</lable>
+                {{ form.cholesterol }}
+              </form>
             </div>
             <div class='col'>
-              <lable for='TSH'>TSH</lable>
-              {{ form.TSH }}
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='tri'>تری گلیسیرید</lable>
+                {{ form.triglyceride }}
+              </form>
             </div>
             <div class='col'>
-              <lable for='D3'>ویتامین D3</lable>
-              {{ form.name }}
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='blood_3'>سرب خون</lable>
+                {{ form.blood_lead }}
+              </form>
+            </div>
+            <div class='col'>
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='cratin'>کراتینین</lable>
+                {{ form.chratinin }}
+              </form>
+            </div>
+          </div>
+          <div class='row text-center mt-4'>
+            <div class='col'>
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='ALT'>ALT</lable>
+                {{ form.ALT }}
+              </form>
+            </div>
+            <div class='col'>
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='AST'>AST</lable>
+                {{ form.AST }}
+              </form>
+            </div>
+            <div class='col'>
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='PSA'>PSA</lable>
+                {{ form.PSA }}
+              </form>
+            </div>
+            <div class='col'>
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='TSH'>TSH</lable>
+                {{ form.TSH }}
+              </form>
+            </div>
+            <div class='col'>
+              <form action='{% url 'add' %}' method='POST'>
+                <lable for='D3'>ویتامین D3</lable>
+                {{ form.D3 }}
+              </form>
             </div>
           </div> 
           <div class='row text-center mt-4'>
             <div class='col'>
-              <form>
+              <form action='{% url 'add' %}' method='POST'>
                 <lable for='urine'>آزمایش ادرار</lable>
                 {{ form.urine }}
               </form>
           </div>
           <div class='col'>
-            <form>
+            <form action='{% url 'add' %}' method='POST'>
               <lable for='breath'>تست تنفس</lable>
               {{ form.breathing_test }}
             </form>
         </div>
           <div class='row text-center mt-4'>
             <div class='col'>
-              <form>
+              <form action='{% url 'add' %}' method='POST'>
                 <lable for='breast'>عکس قفسه سینه</lable>
                 {{ form.breast_photo }}
               </form>
           </div>
           <div class='col'>
-            <form>
+            <form action='{% url 'add' %}' method='POST'>
               <lable for='heart'>نوار قلب</lable>
-              {{ form.name }}
+              {{ form.heart }}
             </form>
         </div>
         <div class='row text-center mt-4'>
           <div class='col'>
-            <lable for='r-eye'>مقدار بینایی چشم راست</lable>
-            {{ form.right_eye_vision }}
+            <form action='{% url 'add' %}' method='POST'>
+              <lable for='r-eye'>مقدار بینایی چشم راست</lable>
+              {{ form.right_eye_vision }}
+            </form>
           </div>
           <div class='col'>
-            <lable for='l-eye'>مقدار بینایی چشم چپ</lable>
-            {{ form.left_eye_vision }}
-          </div>
-        </div>
-        <div class='row text-center mt-4'>
-          <div class='col'>
-            <lable for='r-eye-g'>مقدار بینایی چشم راست با عینک</lable>
-            {{ form.right_eye_vision_with_glasses }}
-          </div>
-          <div class='col'>
-            <lable for='l-eye-g'>مقدار بینایی چشم چپ با عینک</lable>
-            {{ form.left_eye_vision_with_glasses }}
+            <form action='{% url 'add' %}' method='POST'>
+              <lable for='l-eye'>مقدار بینایی چشم چپ</lable>
+              {{ form.left_eye_vision }}
+            </form>
           </div>
         </div>
         <div class='row text-center mt-4'>
           <div class='col'>
-            <form>
+            <form action='{% url 'add' %}' method='POST'>
+              <lable for='r-eye-g'>مقدار بینایی چشم راست با عینک</lable>
+              {{ form.right_eye_vision_with_glasses }}
+            </form>
+          </div>
+          <div class='col'>
+            <form action='{% url 'add' %}' method='POST'>
+              <lable for='l-eye-g'>مقدار بینایی چشم چپ با عینک</lable>
+              {{ form.left_eye_vision_with_glasses }}
+            </form>
+          </div>
+        </div>
+        <div class='row text-center mt-4'>
+          <div class='col'>
+            <form action='{% url 'add' %}' method='POST'>
               <lable for='color'>دید رنگ</lable>
               {{ form.color_vision }}
             </form>
         </div>
         <div class='col'>
-          <form>
+          <form action='{% url 'add' %}' method='POST'>
             <lable for='view'>دید میدان</lable>
             {{ form.field_of_veiw }}
           </form>
         </div>
         <div class='col'>
-          <form>
+          <form action='{% url 'add' %}' method='POST'>
             <lable for='depth'>دید عمق</lable>
             {{ form.depth_vision }}
           </form>
@@ -223,26 +248,26 @@
       </div>
       <div class='row text-center mt-4'>
         <div class='col'>
-          <form>
+          <form action='{% url 'add' %}' method='POST'>
             <lable for='r-ear'>وضعیت شنوایی گوش راست</lable>
             {{ form.right_ear_hearing }}
           </form>
       </div>
       <div class='col'>
-        <form>
+        <form action='{% url 'add' %}' method='POST'>
           <lable for='l-ear'>وضعیت شنوایی گوش چپ</lable>
           {{ form.left_ear_hearing }}
         </form>
       </div>
       <div class='row text-center mt-4'>
         <div class='col'>
-          <form>
+          <form action='{% url 'add' %}' method='POST'>
             <lable for='problem'>مشکل مشاهده شده</lable>
             {{ form.problem }}
           </form>
         </div>
         <div class='col'>
-          <form>
+          <form action='{% url 'add' %}' method='POST'>
             <lable for='advice'>توصیه ها</lable>
             {{ form.recommendations }}
           </form>
@@ -250,41 +275,41 @@
       </div>
       <div class='row text-center mt-4'>
         <div class='col'>
-          <form>
+          <form action='{% url 'add' %}' method='POST'>
             <lable for='p-work'>ارتباط مشکل احتمالی با شغل</lable>
             {{ form.problems_with_the_persons_job }}
           </form>
       </div>
       <div class='col'>
-        <form>
+        <form action='{% url 'add' %}' method='POST'>
           <lable for='specialist'>ارجاع به متخصص</lable>
           {{ form.refer_to_specialist }}
         </form>
       </div>
       <div class='row text-center mt-4'>
         <div class='col'>
-          <form>
+          <form action='{% url 'add' %}' method='POST'>
             <lable for='final'>نظریه نهایی پزشک</lable>
             {{ form.final_theory }}
           </form>
       </div>
       <div class='col'>
-        <form>
+        <form action='{% url 'add' %}' method='POST'>
           <lable for='health'>اقدامات کارشناس بهداشت حرفه ای</lable>
           {{ form.occupational_actions }}
         </form>
       </div>
       <div class='row text-center mt-4'>
         <div class='col'>
-          <form>
+          <form action='{% url 'add' %}' method='POST'>
             <lable for='reason'>علت باز بودن پرونده</lable>
             {{ form.reson_for_opening_the_case }}
           </form>
         </div>
         <div class='col'>
-          <form>
+          <form action='{% url 'add' %}' method='POST'>
             <lable for='j-code'>کد بیماری شغلی</lable>
-            {{ form.name }}
+            {{ form.job_code }}
           </form>
         </div>
       </div>
