@@ -46,7 +46,11 @@ def manage(req):
 
 @login_required(login_url='login')
 def summary(req):
-    form=summary_of_results()
+    code=addsummary(code)
+    initial_dict = {
+        "work_code" : code
+    }
+    form=summary_of_results(initial=initial_dict)
     context={'form':form}
     return render(req,'summary_of_results.html',context)
     
@@ -54,6 +58,7 @@ def summary(req):
 def addsummary(req):
     form=summary_of_results(req.POST)
     if form.is_valid():
+        code = form.cleaned_data['work_code']
         new_summary=form.save()
     return redirect('summary_of_results')
 

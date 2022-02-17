@@ -44,6 +44,7 @@ class summary_of_results(forms.ModelForm):
         ,'color_vision' : forms.Select(attrs={'class':'choose'})
         ,'field_of_veiw' : forms.Select(attrs={'class':'choose'})
         ,'depth_vision' : forms.Select(attrs={'class':'choose'})
+        ,'work_code' : forms.TextInput(attrs={'class':'code'})
         ,'right_ear_hearing' : forms.Select(attrs={'class':'choose'})
         ,'left_ear_hearing' : forms.Select(attrs={'class':'choose'})
         ,'problems_with_the_persons_job' : forms.Select(attrs={'class':'choose'})
