@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .models import summary_of_results
+from .models import summary_of_results as Summary
 from .forms import registration , summary_of_results
 from django.contrib import messages
 from django.contrib.auth import logout,authenticate
@@ -46,7 +46,10 @@ def manage(req):
 
 @login_required(login_url='login')
 def summary(req):
+    work=Summary.objects.latest()
+    code-work.work_code
     initial_dict = {
+        work_code:code
     }
     form=summary_of_results(initial=initial_dict)
     context={'form':form}
