@@ -46,10 +46,14 @@ def manage(req):
 
 @login_required(login_url='login')
 def summary(req):
-    work=Summary.objects.latest()
-    code-work.work_code
+    work=Summary.objects.last()
+    if work:
+        code=work.examinations_code_form
+    else:
+        code=''
     initial_dict = {
-        work_code:code
+        'examinations_code_form':code
+        
     }
     form=summary_of_results(initial=initial_dict)
     context={'form':form}

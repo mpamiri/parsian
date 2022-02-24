@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class summary_of_results(models.Model):
     name = models.CharField(max_length=20,null=True,blank=True)
     number = models.IntegerField(default=0,null=True,blank=True)
-    work_code = models.CharField(max_length=20,null=True,blank=True)
+    examinations_code_form = models.CharField(max_length=20,null=True,blank=True)
     start_month = models.IntegerField(default=0,null=True,blank=True)
     start_year = models.IntegerField(default=0,null=True,blank=True)
     job = models.CharField(max_length=30,null=True,blank=True)
@@ -14,7 +14,7 @@ class summary_of_results(models.Model):
     gender = models.CharField(default='مرد',choices=gender_CHOICES,null=True,blank=True,max_length=20)
     harmful_factors = models.CharField(max_length=100,null=True,blank=True)
     CODE_CHOICES=[(1,'1'),(2,'2'),(3,'3')]
-    code = models.IntegerField(default=1,choices=CODE_CHOICES,null=True,blank=True,validators=[MinValueValidator(20), MaxValueValidator(30)])
+    code = models.IntegerField(default=1,choices=CODE_CHOICES,null=True,blank=True)
     age = models.IntegerField(default=0,null=True,blank=True)
     length = models.IntegerField(default=0,null=True,blank=True)
     weight = models.IntegerField(default=0,null=True,blank=True)
