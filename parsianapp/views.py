@@ -111,3 +111,31 @@ def occupational_disease(req):
     code_list=submit_company.objects.order_by('id')
     context={'form':form,'code_list':code_list}
     return render(req,'occupational_diseases.html',context)
+
+@login_required(login_url='login')
+def disease_code(req):
+    return render(req, 'disease_code.html')
+
+@login_required(login_url='login')
+def open_docs(req):
+    return render(req, 'open_docs.html')
+
+@login_required(login_url='login')
+def summary_of_examinations(req):
+    return render(req, 'summary_of_examinations.html')
+
+@login_required(login_url='login')
+def problem(req):
+    return render(req, 'problem.html')
+
+@login_required(login_url='login')
+def specialist(req):
+    return render(req, 'specialist.html')
+
+@login_required(login_url='login')
+def graph(req):
+    return render(req, 'graph.html')
+
+@login_required(login_url='login')
+def solo_output(req):
+    return render(req, 'solo_output.html')
