@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .models import summary_of_results,submit_company
-from .forms import registration, summary_of_results_form,submit_company_form
+from .forms import registration, summary_of_results_form,submit_company_form,disease_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -105,6 +105,9 @@ def addcompany(req):
         new_company=form.save()
     return redirect('submit_company')
 
-
+@login_required(login_url='login')
 def occupational_disease(req):
-    return render(req,'occupational_diseases.html')
+    form=disease_form()
+    code_list=submit_company.objects.order_by('id')
+    context={'form':form,'code_list':code_list}
+    return render(req,'occupational_diseases.html',context)

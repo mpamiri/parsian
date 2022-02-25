@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import summary_of_results,submit_company
+from .models import summary_of_results,submit_company,disease
 from . import models
 class registration(UserCreationForm):
     class meta:
@@ -85,3 +85,9 @@ class submit_company_form(forms.ModelForm):
         ,'specialist' : forms.TextInput(attrs={'autocomplete': 'off'})
         ,'date' : forms.TextInput(attrs={'autocomplete': 'off'})
         ,'examinations_code' : forms.TextInput(attrs={'autocomplete': 'off'})}
+
+class disease_form(forms.ModelForm):
+    class Meta:
+        model=disease
+        fields='__all__'
+        widgets={'examinations_code' : forms.TextInput(attrs={'autocomplete': 'off'})}       

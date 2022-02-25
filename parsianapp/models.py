@@ -105,3 +105,6 @@ class submit_company(models.Model):
     specialist = models.CharField(max_length=20, null=True, blank=True)
     examinations_code=models.CharField(max_length=20, null=True, blank=True)
 
+
+class disease(models.Model):
+    examinations_code=models.CharField(max_length=20, null=True, blank=True)
