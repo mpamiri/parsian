@@ -114,7 +114,10 @@ def occupational_disease(req):
 
 @login_required(login_url='login')
 def disease_code(req):
-    return render(req, 'disease_code.html')
+    summary=summary_of_results.objects.all()
+    work=summary_of_results.objects.last()
+    context={'summary':summary}
+    return render(req, 'disease_code.html',context)
 
 @login_required(login_url='login')
 def open_docs(req):
