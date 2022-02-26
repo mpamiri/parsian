@@ -34,8 +34,9 @@
                 <th>کد بیماری شغلی</th>
             </tr>
             <tr>
+                {% load django_template_maths %}
                 <td>{{ summary.name }}</td>
-                <td>{{ summary.age }}</td>
+                <td>{{ 100|sub:summary.age }}</td>
                 <td>{{ summary.job }}</td>
                 <td>{{ summary.code }}</td>
             </tr>
