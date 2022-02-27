@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .models import summary_of_results,submit_company
+from .models import summary_of_results,submit_company,disease
 from .forms import registration, summary_of_results_form,submit_company_form,disease_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
@@ -112,11 +112,20 @@ def occupational_disease(req):
     context={'form':form,'code_list':code_list}
     return render(req,'occupational_diseases.html',context)
 
+@require_POST
+def adddisease(req):
+    form=disease_form(req.POST)
+    if form.is_valid():
+        new_disease=form.save()
+    return redirect('occupational_disease')
+
+
 @login_required(login_url='login')
 def disease_code(req):
-    summary=summary_of_results.objects.all()
-    work=summary_of_results.objects.last()
-    context={'summary':summary}
+    work=disease.objects.last()
+    summary=summary_of_results.objects.filter(examinations_code=work.examinations_code)
+    company=submit_company.objects.filter(examinations_code=work.examinations_code)
+    context={'summary':summary,'company':company}
     return render(req, 'disease_code.html',context)
 
 @login_required(login_url='login')

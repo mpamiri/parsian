@@ -15,6 +15,7 @@ urlpatterns =[
     path('manage/submit_company/',views.company,name='submit_company'),
     path('manage/occupational_disease/',views.occupational_disease,name='occupational_disease'),
     path('manage/occupational_disease/disease_code',views.disease_code,name='disease_code'),
+    path('manage/occupational_disease/disease_code/add',views.adddisease,name='adddisease'),
     path('manage/occupational_disease/open_docs',views.open_docs,name='open_docs'),
     path('manage/occupational_disease/summary_of_examinations',views.summary_of_examinations,name='summary_of_examinations'),
     path('manage/occupational_disease/problem',views.problem,name='problem'),  

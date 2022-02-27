@@ -33,7 +33,7 @@ class summary_of_results_form(forms.ModelForm):
         ,'PSA' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
         ,'TSH' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
         ,'D3' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'job_code' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
+        ,'job_code' : forms.TextInput(attrs={'autocomplete': 'off'})
         ,'right_eye_vision' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
         ,'right_eye_vision_with_glasses' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
         ,'left_eye_vision' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
