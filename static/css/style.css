@@ -12,6 +12,13 @@ background-color: chartreuse;
   border-radius: 15px;
   padding: 0;
 }
+.item{
+  padding: 0;
+}
+.headtable{
+  width: 920px;
+  margin-right: 200px;
+}
 @media(min-width:0px) and (max-width:400px){
     .media{
       height: 150px;

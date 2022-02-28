@@ -134,7 +134,11 @@ def open_docs(req):
 
 @login_required(login_url='login')
 def summary_of_examinations(req):
-    return render(req, 'summary_of_examinations.html')
+    work=disease.objects.last()
+    summary=summary_of_results.objects.filter(examinations_code=work.examinations_code)
+    company=submit_company.objects.filter(examinations_code=work.examinations_code)
+    context={'summary':summary,'company':company}
+    return render(req, 'summary_of_examinations.html',context)
 
 @login_required(login_url='login')
 def problem(req):
