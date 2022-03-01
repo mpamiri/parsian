@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .models import summary_of_results,submit_company,disease
+from .models import summary_of_results,submit_company,disease,examinations
 from .forms import registration, summary_of_results_form,submit_company_form,disease_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
@@ -134,10 +134,46 @@ def open_docs(req):
 
 @login_required(login_url='login')
 def summary_of_examinations(req):
+    model=examinations.objects.all()
     work=disease.objects.last()
     summary=summary_of_results.objects.filter(examinations_code=work.examinations_code)
     company=submit_company.objects.filter(examinations_code=work.examinations_code)
-    context={'summary':summary,'company':company}
+    if summary.left_ear_hearing == 'نرمال':
+        model.audio_normal='*'
+    else:
+        model.audio_not_normal='*'
+    if summary.breathing_test == 'نرمال':
+        model.espiro_normal='*'
+    else:
+        model.espiro_not_normal='*'
+    if summary.color_visivon == 'نرمال':
+        model.opto_normal='*'
+    else:
+        model.opto_not_normal='*'
+    if summary.urine == 'نرمال':
+        model.test_normal='*'
+    else:
+        model.test_not_normal='*'
+    if summary.breathing_test == 'نرمال':
+        model.espiro_normal='*'
+    else:
+        model.espiro_not_normal='*'
+    if Summary.breathing_test == 'نرمال':
+        model.espiro_normal='*'
+    if summary.breathing_test  == 'ندارد':
+        model.espiro_null='*'
+    if summary.breathing_test  == 'ندارد':
+        model.espiro_null='*'
+    else:
+        model.espiro_not_normal='*'
+    if summary.breathing_test == 'نرمال':
+        model.espiro_normal='*'
+    if summary.breathing_test  == 'ندارد':
+        model.espiro_null='*'
+    else:
+        model.espiro_not_normal='*'   
+    model.save() 
+    context={'summary':summary,'company':company,'model':model}
     return render(req, 'summary_of_examinations.html',context)
 
 @login_required(login_url='login')

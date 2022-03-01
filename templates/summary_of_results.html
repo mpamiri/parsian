@@ -58,7 +58,7 @@
                         <a onclick="myFunction()" class="dropbtn btn btn-success">مشاهده لیست</a>
                         <div id="myDropdown" class="dropdown-content">
                             {% for code in code_list %}
-                                <a href='#{{ code.examinations_code }}'> {{ code.examinations_code }} </a>
+                                <a class='option' style='cursor: default'> {{ code.examinations_code }} </a>
                             {% endfor %}
                         </div>
                     </div>
@@ -294,6 +294,23 @@
                     a[i].style.display = "none";
                 }
             }
+        }
+    </script>
+    <script>
+        function val() {
+          document.getElementById("myInput").value = document.getElementById("selectingPan").value;
+          }
+        function update(entry) {
+          document.getElementById("myInput").value = entry.innerText;
+        }
+        let optionss = document.getElementsByClassName("option");
+    </script>
+    </script>
+    <script>
+        document.getElementById("myInput").addEventListener("focus", function() {document.getElementsByClassName("container")[0].style.display = "block";})
+        document.getElementById("myInput").addEventListener("blur", function() {setTimeout(function(){document.getElementsByClassName("container")[0].style.display = "none";}, 500)})
+        for (let i = 0; i < optionss.length; i++) {
+        optionss[i].addEventListener("click", function() {update(optionss[i])}) ;
         }
     </script>
 {% endblock content %}

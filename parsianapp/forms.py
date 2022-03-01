@@ -90,4 +90,4 @@ class disease_form(forms.ModelForm):
     class Meta:
         model=disease
         fields='__all__'
-        widgets={'examinations_code' : forms.TextInput(attrs={'autocomplete': 'off'})}       
+        widgets={'examinations_code' : forms.TextInput(attrs={'id':'myInput','onkeyup':"filterFunction()",'autocomplete': 'off'})}       
