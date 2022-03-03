@@ -123,9 +123,9 @@ def adddisease(req):
 @login_required(login_url='login')
 def disease_code(req):
     work=disease.objects.last()
-    summary=summary_of_results.objects.filter(examinations_code=work.examinations_code)
+    Summary=summary_of_results.objects.filter(examinations_code=work.examinations_code)
     company=submit_company.objects.filter(examinations_code=work.examinations_code)
-    context={'summary':summary,'company':company}
+    context={'summary':Summary,'company':company}
     return render(req, 'disease_code.html',context)
 
 @login_required(login_url='login')
@@ -134,46 +134,82 @@ def open_docs(req):
 
 @login_required(login_url='login')
 def summary_of_examinations(req):
-    model=examinations.objects.all()
     work=disease.objects.last()
-    summary=summary_of_results.objects.filter(examinations_code=work.examinations_code)
-    company=submit_company.objects.filter(examinations_code=work.examinations_code)
-    if summary.left_ear_hearing == 'نرمال':
-        model.audio_normal='*'
+    if work:
+        code=work.examinations_code
     else:
-        model.audio_not_normal='*'
-    if summary.breathing_test == 'نرمال':
-        model.espiro_normal='*'
-    else:
-        model.espiro_not_normal='*'
-    if summary.color_visivon == 'نرمال':
-        model.opto_normal='*'
-    else:
-        model.opto_not_normal='*'
-    if summary.urine == 'نرمال':
-        model.test_normal='*'
-    else:
-        model.test_not_normal='*'
-    if summary.breathing_test == 'نرمال':
-        model.espiro_normal='*'
-    else:
-        model.espiro_not_normal='*'
-    if Summary.breathing_test == 'نرمال':
-        model.espiro_normal='*'
-    if summary.breathing_test  == 'ندارد':
-        model.espiro_null='*'
-    if summary.breathing_test  == 'ندارد':
-        model.espiro_null='*'
-    else:
-        model.espiro_not_normal='*'
-    if summary.breathing_test == 'نرمال':
-        model.espiro_normal='*'
-    if summary.breathing_test  == 'ندارد':
-        model.espiro_null='*'
-    else:
-        model.espiro_not_normal='*'   
-    model.save() 
-    context={'summary':summary,'company':company,'model':model}
+        code=''
+    models=examinations.objects.filter(examinations_code=code)
+    Summary=summary_of_results.objects.filter(examinations_code=code)
+    company=submit_company.objects.filter(examinations_code=code)
+    for model in models:
+        for summary in Summary:
+            if model.name != summary.name:
+                if summary.left_ear_hearing == 'normal':
+                    audio_normal='*'
+                if summary.breathing_test == 'normal':
+                    espiro_normal='*'
+                if summary.color_vision == 'normal':
+                    opto_normal='*'
+                if summary.urine == 'normal':
+                    test_normal='*'
+                if summary.refer_to_specialist == 'none':
+                    specialist_no_need='*'
+                if summary.final_theory == 'belamane':
+                    doctor_normal='*'
+                if summary.final_theory  == 'taghir_shekl':
+                    doctor_change='*'
+                if summary.final_theory  == 'mashrot':
+                    doctor_condition='*'
+                if summary.final_theory  == 'comision':
+                    doctor_comision='*'
+                if summary.occupational_actions == 'darhal_peygiri':
+                    specialist_invest='*'
+                if summary.occupational_actions  == 'done':
+                    specialist_done='*'
+                else:
+                    specialist_not_done='*' 
+                    specialist_invest=''
+                    specialist_done=''
+                    doctor_comision=''
+                    doctor_condition=''
+                    doctor_change=''
+                    doctor_normal=''
+                    specialist_need='*'
+                    specialist_no_need=''
+                    test_not_normal='*'
+                    test_normal=''
+                    opto_not_normal='*'
+                    opto_normal=''
+                    espiro_not_normal='*'
+                    espiro_normal=''
+                    audio_not_normal='*'
+                    audio_normal=''
+                modelcreate=examinations.objects.create(
+                audio_normal=audio_normal
+                ,audio_not_normal=audio_not_normal
+                ,espiro_normal=espiro_normal
+                ,espiro_not_normal=espiro_not_normal
+                ,opto_normal=opto_normal
+                ,opto_not_normal=opto_not_normal
+                ,test_normal=test_normal
+                ,test_not_normal=test_not_normal
+                ,examinations_code=code
+                ,specialist_need=specialist_need
+                ,specialist_no_need=specialist_no_need
+                ,doctor_normal=doctor_normal
+                ,doctor_change=doctor_change
+                ,doctor_condition=doctor_condition
+                ,doctor_comision=doctor_comision
+                ,specialist_invest=specialist_invest
+                ,specialist_done=specialist_done
+                ,specialist_not_done=specialist_not_done
+                ,name=summary.name
+                ,age=summary.age
+                ,job=summary.job
+                ,harmful=summary.harmful_factors)
+                modelcreate.save() 
+    context={'summary':Summary,'company':company,'models':models}
     return render(req, 'summary_of_examinations.html',context)
 
 @login_required(login_url='login')

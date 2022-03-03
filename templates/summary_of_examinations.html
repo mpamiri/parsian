@@ -25,6 +25,7 @@
     {% for company in company %}
     <div class='row text-center'>
         <div class='col'>
+            {% csrf_token %}
             {{ company.examinations_code }}
         </div>
     </div>
@@ -60,6 +61,7 @@
                 <th colspan='2'>اسپیرومتری</th>
                 <th colspan='2'>اپتومتری</th>
                 <th colspan='2'>ازمایشات</th>
+                <th colspan='1' rowspan='2'>کد بیماری شغلی</th>
                 <th colspan='2'>ارجاع به متخصص</th>
                 <th colspan='4'>نظر نهایی پزشک</th>
                 <th colspan='3'>اقدامات کارشناس</th>
@@ -73,23 +75,41 @@
                 <th>غیر نرمال</th>
                 <th>نرمال</th>
                 <th>غیر نرمال</th>
-                <th>نرمال</th>
-                <th>غیر نرمال</th>
+                <th>دارد</th>
                 <th>ندارد</th>
-                <th>نرمال</th>
-                <th>غیر نرمال</th>
-                <th>ندارد</th>
-                <th>نرمال</th>
-                <th>غیر نرمال</th>
-                <th>ندارد</th>
+                <th>بلامانع</th>
+                <th>تغییر شغل</th>
+                <th>مشروط</th>
+                <th>کمیسیون</th>
+                <th>درحال پیگیری</th>
+                <th>انجام شده</th>
+                <th>انجام نشده</th>
             </tr>
             <tr>
-                {% for summary in summary %}
+                {% for model in models %}
                 {% load django_template_maths %}
-                <td colspan='3'>{{ summary.name }}</td>
-                <td colspan='3'>{{ 100|sub:summary.age }}</td>
-                <td colspan='3'>{{ summary.job }}</td>
-                <td colspan='3'>{{ summary.harmful_factors }}</td>
+                <td colspan='3'>{{ model.name }}</td>
+                <td colspan='3'>{{ 100|sub:model.age }}</td>
+                <td colspan='3'>{{ model.job }}</td>
+                <td colspan='3'>{{ model.harmful_factors }}</td>
+                <td>{{ model.audio_normal}}</td>
+                <td>{{ model.audio_not_normal}}</td>
+                <td>{{ model.espiro_normal}}</td>
+                <td>{{ model.espiro_not_normal}}</td>
+                <td>{{ model.opto_normal}}</td>
+                <td>{{ model.opto_not_normal}}</td>
+                <td>{{ model.test_normal}}</td>
+                <td>{{ model.test_not_normal}}</td>
+                <td>{{ model.examinations_code}}</td>
+                <td>{{ model.specialist_need}}</td>
+                <td>{{ model.specialist_no_need}}</td>
+                <td>{{ model.doctor_normal}}</td>
+                <td>{{ model.doctor_change}}</td>
+                <td>{{ model.doctor_condition}}</td>
+                <td>{{ model.doctor_comision}}</td>
+                <td>{{ model.specialist_invest}}</td>
+                <td>{{ model.specialist_done}}</td>
+                <td>{{ model.specialist_not_done}}</td>
             </tr>
             {% endfor %}
         </table>

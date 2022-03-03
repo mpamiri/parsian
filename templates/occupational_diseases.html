@@ -27,6 +27,7 @@ xmlns="http://www.w3.org/2000/svg">
         <div class="col">
             <div class="dropdown">
                 <lable>کد معاینات</lable>
+                {% csrf_token %}
                 {{ form.examinations_code }}
                 <a onclick="myFunction()" class="dropbtn btn btn-success">مشاهده لیست</a>
                 <div id="myDropdown" class="dropdown-content">

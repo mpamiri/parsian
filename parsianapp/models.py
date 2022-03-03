@@ -34,7 +34,7 @@ class summary_of_results(models.Model):
     breathing_CHOICES = [('null', ''), ('normal', 'نرمال'), ('tahdidi', 'تحدیدی'), ('ensedadi', 'انسدادی'),
                          ('try', 'نیاز به تکرار'), ('namaie_toaman', 'نمای توامان تحدیدی وانسدادی'),
                          ('none', 'ندارد')]
-    breathing_test = models.CharField(choices=breathing_CHOICES, max_length=300, default='', null=True, blank=True)
+    breathing_test = models.CharField(choices=breathing_CHOICES, max_length=300, default='null', null=True, blank=True)
     left_ear_CHOICES = [('null', ''), ('normal', 'نرمال'), ('kahesh_shenavai_hedayati', 'کاهش شنوایی هدایتی'),
                         ('kahesh_shenavai_hesi_asabi', 'کاهش شنوایی حسی عصبی'),
                         ('kahesh_shenavai_nashi-az-seda', 'کاهش شنوایی ناشی از صدا'),
@@ -110,25 +110,26 @@ class disease(models.Model):
     examinations_code=models.CharField(max_length=20, null=True, blank=True)
 
 class examinations(models.Model):
+    name=models.CharField(max_length=20, null=True, blank=True)
+    age=models.CharField(max_length=20, null=True, blank=True)
+    job=models.CharField(max_length=20, null=True, blank=True)
+    harmful=models.CharField(max_length=20, null=True, blank=True)
     audio_normal=models.CharField(max_length=20, null=True, blank=True)
     audio_not_normal=models.CharField(max_length=20, null=True, blank=True)
-    audio_null=models.CharField(max_length=20, null=True, blank=True)
     espiro_normal=models.CharField(max_length=20, null=True, blank=True)
     espiro_not_normal=models.CharField(max_length=20, null=True, blank=True)
-    espiro_null=models.CharField(max_length=20, null=True, blank=True)
     opto_normal=models.CharField(max_length=20, null=True, blank=True)
     opto_not_normal=models.CharField(max_length=20, null=True, blank=True)
-    opto_null=models.CharField(max_length=20, null=True, blank=True)
     test_normal=models.CharField(max_length=20, null=True, blank=True)
     test_not_normal=models.CharField(max_length=20, null=True, blank=True)
-    test_null=models.CharField(max_length=20, null=True, blank=True)
-    specialist_normal=models.CharField(max_length=20, null=True, blank=True)
-    specialist_not_normal=models.CharField(max_length=20, null=True, blank=True)
-    specialist_null=models.CharField(max_length=20, null=True, blank=True)
+    examinations_code=models.CharField(max_length=20, null=True, blank=True)
+    specialist_need=models.CharField(max_length=20, null=True, blank=True)
+    specialist_no_need=models.CharField(max_length=20, null=True, blank=True)
     doctor_normal=models.CharField(max_length=20, null=True, blank=True)
-    doctor_not_normal=models.CharField(max_length=20, null=True, blank=True)
-    doctor_null=models.CharField(max_length=20, null=True, blank=True)
-    specialist_normal=models.CharField(max_length=20, null=True, blank=True)
-    specialist_not_normal=models.CharField(max_length=20, null=True, blank=True)
-    specialist_null=models.CharField(max_length=20, null=True, blank=True)
+    doctor_change=models.CharField(max_length=20, null=True, blank=True)
+    doctor_condition=models.CharField(max_length=20, null=True, blank=True)
+    doctor_comision=models.CharField(max_length=20, null=True, blank=True)
+    specialist_invest=models.CharField(max_length=20, null=True, blank=True)
+    specialist_done=models.CharField(max_length=20, null=True, blank=True)
+    specialist_not_done=models.CharField(max_length=20, null=True, blank=True)
 
