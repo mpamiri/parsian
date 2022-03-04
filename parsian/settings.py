@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'parsianapp',
+    'parsian',
     'django_template_maths',
-    'parsian'
 ]
 
 MIDDLEWARE = [

@@ -106,11 +106,11 @@ def addcompany(req):
     return redirect('submit_company')
 
 @login_required(login_url='login')
-def occupational_disease(req):
+def output_view(req):
     form=disease_form()
     code_list=submit_company.objects.order_by('id')
     context={'form':form,'code_list':code_list}
-    return render(req,'occupational_diseases.html',context)
+    return render(req,'output.html',context)
 
 @require_POST
 def adddisease(req):
@@ -159,3 +159,7 @@ def graph(req):
 @login_required(login_url='login')
 def solo_output(req):
     return render(req, 'solo_output.html')
+
+@login_required(login_url='login')
+def input_view(req):
+    return render(req, 'input.html')
