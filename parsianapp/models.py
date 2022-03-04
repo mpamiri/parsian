@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 class summary_of_results(models.Model):
-    name = models.CharField(max_length=20, null=True, blank=True)
+    name = models.CharField(max_length=20, null=True, blank=True,unique=True)
     number = models.IntegerField(default=0, null=True, blank=True)
     start_month = models.IntegerField(default=0, null=True, blank=True)
     start_year = models.IntegerField(default=0, null=True, blank=True)
@@ -109,27 +109,4 @@ class submit_company(models.Model):
 class disease(models.Model):
     examinations_code=models.CharField(max_length=20, null=True, blank=True)
 
-class examinations(models.Model):
-    name=models.CharField(max_length=20, null=True, blank=True,default='')
-    age=models.CharField(max_length=20, null=True, blank=True,default='')
-    job=models.CharField(max_length=20, null=True, blank=True,default='')
-    harmful=models.CharField(max_length=20, null=True, blank=True,default='')
-    audio_normal=models.CharField(max_length=20, null=True, blank=True,default='')
-    audio_not_normal=models.CharField(max_length=20, null=True, blank=True,default='')
-    espiro_normal=models.CharField(max_length=20, null=True, blank=True,default='')
-    espiro_not_normal=models.CharField(max_length=20, null=True, blank=True,default='')
-    opto_normal=models.CharField(max_length=20, null=True, blank=True,default='')
-    opto_not_normal=models.CharField(max_length=20, null=True, blank=True,default='')
-    test_normal=models.CharField(max_length=20, null=True, blank=True,default='')
-    test_not_normal=models.CharField(max_length=20, null=True, blank=True,default='')
-    examinations_code=models.CharField(max_length=20, null=True, blank=True,default='')
-    specialist_need=models.CharField(max_length=20, null=True, blank=True,default='')
-    specialist_no_need=models.CharField(max_length=20, null=True, blank=True,default='')
-    doctor_normal=models.CharField(max_length=20, null=True, blank=True,default='')
-    doctor_change=models.CharField(max_length=20, null=True, blank=True,default='')
-    doctor_condition=models.CharField(max_length=20, null=True, blank=True,default='')
-    doctor_comision=models.CharField(max_length=20, null=True, blank=True,default='')
-    specialist_invest=models.CharField(max_length=20, null=True, blank=True,default='')
-    specialist_done=models.CharField(max_length=20, null=True, blank=True,default='')
-    specialist_not_done=models.CharField(max_length=20, null=True, blank=True,default='')
 

@@ -6,6 +6,12 @@ background-color: chartreuse;
     border-radius: 15px;
     padding: 0;
 }
+table tr:nth-child(2){
+  counter-reset: rowNumber;
+}
+table tr {
+  counter-increment: rowNumber;
+}
 .green:hover{
   background-color: chartreuse;
   transition: 500ms;

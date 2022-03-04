@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .models import summary_of_results,submit_company,disease,examinations
+from .models import summary_of_results,submit_company,disease
 from .forms import registration, summary_of_results_form,submit_company_form,disease_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
@@ -139,103 +139,9 @@ def summary_of_examinations(req):
         code=work.examinations_code
     else:
         code=''
-    models=examinations.objects.filter(examinations_code=code)
-    models.delete()
     Summary=summary_of_results.objects.filter(examinations_code=code)
     company=submit_company.objects.filter(examinations_code=code)
-    for summary in Summary:
-        if summary.left_ear_hearing == 'normal' and summary.right_ear_hearing == 'normal':
-            audio_normal='*'
-            audio_not_normal=''
-        else:
-            audio_not_normal='*'
-            audio_normal=''
-        if summary.breathing_test == 'normal':
-            espiro_normal='*'
-            espiro_not_normal=''
-        else:
-            espiro_not_normal='*'
-            espiro_normal=''
-        if summary.color_vision == 'normal':
-            opto_normal='*'
-            opto_not_normal=''
-        else:
-            opto_not_normal='*'
-            opto_normal=''
-        if summary.urine == 'normal' :
-            test_normal='*'
-            test_not_normal=''
-        else:
-            test_not_normal='*'
-            test_normal=''
-        if summary.refer_to_specialist == 'none':
-            specialist_no_need='*'
-            specialist_need=''
-        else:
-            specialist_need='*'
-            specialist_no_need=''
-        if summary.final_theory == 'belamane':
-            doctor_normal='*'
-            doctor_change=''
-            doctor_condition=''
-            doctor_comision=''
-        if summary.final_theory  == 'taghir_shekl':
-            doctor_normal=''
-            doctor_change='*'
-            doctor_condition=''
-            doctor_comision=''
-        if summary.final_theory  == 'mashrot':
-            doctor_normal=''
-            doctor_change=''
-            doctor_condition='*'
-            doctor_comision=''
-        if summary.final_theory  == 'comision':
-            doctor_normal=''
-            doctor_change=''
-            doctor_condition=''
-            doctor_comision='*'
-        else:
-            doctor_comision=''
-            doctor_condition=''
-            doctor_change=''
-            doctor_normal=''
-        if summary.occupational_actions == 'darhal_peygiri':
-            specialist_not_done='' 
-            specialist_invest='*'
-            specialist_done=''
-        if summary.occupational_actions  == 'done':
-            specialist_not_done='' 
-            specialist_invest=''
-            specialist_done='*'
-        else:
-            specialist_not_done='*' 
-            specialist_invest=''
-            specialist_done=''
-        modelcreate=examinations.objects.create(
-        audio_normal=audio_normal
-        ,audio_not_normal=audio_not_normal
-        ,espiro_normal=espiro_normal
-        ,espiro_not_normal=espiro_not_normal
-        ,opto_normal=opto_normal
-        ,opto_not_normal=opto_not_normal
-        ,test_normal=test_normal
-        ,test_not_normal=test_not_normal
-        ,examinations_code=code
-        ,specialist_need=specialist_need
-        ,specialist_no_need=specialist_no_need
-        ,doctor_normal=doctor_normal
-        ,doctor_change=doctor_change
-        ,doctor_condition=doctor_condition
-        ,doctor_comision=doctor_comision
-        ,specialist_invest=specialist_invest
-        ,specialist_done=specialist_done
-        ,specialist_not_done=specialist_not_done
-        ,name=summary.name
-        ,age=summary.age
-        ,job=summary.job
-        ,harmful=summary.harmful_factors)
-        modelcreate.save() 
-    context={'summary':Summary,'company':company,'models':models}
+    context={'summary':Summary,'company':company}
     return render(req, 'summary_of_examinations.html',context)
 
 @login_required(login_url='login')
