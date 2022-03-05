@@ -6,6 +6,11 @@ background-color: chartreuse;
     border-radius: 15px;
     padding: 0;
 }
+.green-btn{
+  background-color: chartreuse;
+  border-radius: 15px;
+  padding-right: 30px;
+}
 table tr:nth-child(2){
   counter-reset: rowNumber;
 }
@@ -205,4 +210,15 @@ ul{
           }
           table, th, td {
             border: 1px solid black;
+          }
+          table tr:nth-child(2){
+            counter-reset: rowNumber;
+          }
+          table tr {
+            counter-increment: rowNumber;
+          }
+          table tr td:first-child::before {
+            content: counter(rowNumber);
+            min-width: 1em;
+            margin-right: 0.5em;
           }

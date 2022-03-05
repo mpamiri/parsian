@@ -61,7 +61,7 @@ def manage(req):
 
 
 @login_required(login_url='login')
-def summary(req):
+def submit_person(req):
     work=summary_of_results.objects.last()
     code_list=submit_company.objects.order_by('id')
     if work:
@@ -79,11 +79,11 @@ def summary(req):
 
 
 @require_POST
-def addsummary(req):
+def addperson(req):
     form = summary_of_results_form(req.POST)
     if form.is_valid():
         new_summary = form.save()
-    return redirect('summary_of_results')
+    return redirect('submit_person')
 
 
 def logoutuser(req):
@@ -106,7 +106,7 @@ def addcompany(req):
     return redirect('submit_company')
 
 @login_required(login_url='login')
-def output_view(req):
+def output(req):
     form=disease_form()
     code_list=submit_company.objects.order_by('id')
     context={'form':form,'code_list':code_list}
@@ -117,14 +117,18 @@ def adddisease(req):
     form=disease_form(req.POST)
     if form.is_valid():
         new_disease=form.save()
-    return redirect('occupational_disease')
+    return redirect('output')
 
 
 @login_required(login_url='login')
 def disease_code(req):
     work=disease.objects.last()
-    Summary=summary_of_results.objects.filter(examinations_code=work.examinations_code)
-    company=submit_company.objects.filter(examinations_code=work.examinations_code)
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    Summary=summary_of_results.objects.filter(examinations_code=code)
+    company=submit_company.objects.filter(examinations_code=code)
     context={'summary':Summary,'company':company}
     return render(req, 'disease_code.html',context)
 
@@ -161,5 +165,5 @@ def solo_output(req):
     return render(req, 'solo_output.html')
 
 @login_required(login_url='login')
-def input_view(req):
+def input(req):
     return render(req, 'input.html')

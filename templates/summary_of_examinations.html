@@ -89,6 +89,7 @@
     <div class='row text-center'>
         <table>   
             <tr>
+                <th colspan='3' rowspan='2'>ردیف</th>
                 <th colspan='3' rowspan='2'>نام</th>
                 <th colspan='3' rowspan='2'>سن</th>
                 <th colspan='3' rowspan='2'>شغل</th>
@@ -124,7 +125,7 @@
             {% for item in summary %}
             <tr>
                 {% load django_template_maths %}
-                <td colspan='3'>{{ item.order_id }}</td>
+                <td colspan='3'></td>
                 <td colspan='3'>{{ item.name }}</td>
                 <td colspan='3'>{{ 100|sub:item.age }}</td>
                 <td colspan='3'>{{ item.job }}</td>
@@ -205,6 +206,7 @@
                     <td>*</td>
                 {% endif %}
             </tr>
+            
             {% endfor %}
         </table>
     </div>
