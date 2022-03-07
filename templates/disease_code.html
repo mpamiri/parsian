@@ -53,17 +53,18 @@
     </div>
     {% endfor %}
     <div class='row text-center'>
-        <table>
-            
+        <table>        
             <tr>
+                <th>ردیف</th>
                 <th>نام</th>
                 <th>سن</th>
                 <th>شغل</th>
                 <th>کد بیماری شغلی</th>
             </tr>
             <tr>
-                {% for summary in summary %}
+                {% for summary in Summary %}
                 {% load django_template_maths %}
+                <td></td>
                 <td>{{ summary.name }}</td>
                 <td>{{ 100|sub:summary.age }}</td>
                 <td>{{ summary.job }}</td>

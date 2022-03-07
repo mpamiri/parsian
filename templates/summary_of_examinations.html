@@ -122,66 +122,66 @@
                 <th>انجام شده</th>
                 <th>انجام نشده</th>
             </tr>
-            {% for item in summary %}
+            {% for summary in Summary %}
             <tr>
                 {% load django_template_maths %}
                 <td colspan='3'></td>
-                <td colspan='3'>{{ item.name }}</td>
-                <td colspan='3'>{{ 100|sub:item.age }}</td>
-                <td colspan='3'>{{ item.job }}</td>
-                <td colspan='3'>{{ item.harmful_factors }}</td>
-                {% if item.left_ear_hearing == 'normal' and item.right_ear_hearing == 'normal' %}
+                <td colspan='3'>{{ summary.name }}</td>
+                <td colspan='3'>{{ 100|sub:summary.age }}</td>
+                <td colspan='3'>{{ summary.job }}</td>
+                <td colspan='3'>{{ summary.harmful_factors }}</td>
+                {% if summary.left_ear_hearing == 'normal' and summary.right_ear_hearing == 'normal' %}
                     <td>*</td>
                     <td></td>
                 {% else %}
                     <td></td>
                     <td>*</td>
                 {% endif %}
-                {% if item.breathing_test == 'normal' %}
+                {% if summary.breathing_test == 'normal' %}
                     <td>*</td>
                     <td></td>
                 {% else %}
                     <td></td>
                     <td>*</td>
                 {% endif %}
-                {% if item.color_vision == 'normal' %}
+                {% if summary.color_vision == 'normal' %}
                     <td>*</td>
                     <td></td>
                 {% else %}
                     <td></td>
                     <td>*</td>
                 {% endif %}
-                {% if item.urine == 'normal' %}
+                {% if summary.urine == 'normal' %}
                     <td>*</td>
                     <td></td>
                 {% else %}
                     <td></td>
                     <td>*</td>
                 {% endif %}
-                    <td>{{ item.code }}</td>
-                {% if item.refer_to_specialist == 'none' %}
+                    <td>{{ summary.code }}</td>
+                {% if summary.refer_to_specialist == 'none' %}
                     <td>*</td>
                     <td></td>
                 {% else %}
                     <td></td>
                     <td>*</td>
                 {% endif %}
-                {% if item.final_theory == 'belamane' %}
+                {% if summary.final_theory == 'belamane' %}
                     <td>*</td>
                     <td></td>
                     <td></td>
                     <td></td>
-                {% elif item.final_theory  == 'taghir_shekl' %}
+                {% elif summary.final_theory  == 'taghir_shekl' %}
                     <td></td>
                     <td>*</td>
                     <td></td>
                     <td></td>
-                {% elif item.final_theory  == 'mashrot' %}   
+                {% elif summary.final_theory  == 'mashrot' %}   
                     <td></td>
                     <td></td>
                     <td>*</td>
                     <td></td> 
-                {% elif item.final_theory  == 'comision' %}   
+                {% elif summary.final_theory  == 'comision' %}   
                     <td></td>
                     <td></td>
                     <td>*</td>
@@ -192,11 +192,11 @@
                     <td></td>
                     <td></td> 
                 {% endif %}
-                {% if item.occupational_actions == 'darhal_peygiri' %}
+                {% if summary.occupational_actions == 'darhal_peygiri' %}
                     <td>*</td>
                     <td></td>
                     <td></td>
-                {% elif item.occupational_actions  == 'done' %}
+                {% elif summary.occupational_actions  == 'done' %}
                     <td></td>
                     <td>*</td>
                     <td></td>

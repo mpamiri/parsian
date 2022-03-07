@@ -211,7 +211,7 @@ ul{
           table, th, td {
             border: 1px solid black;
           }
-          table tr:nth-child(2){
+          table {
             counter-reset: rowNumber;
           }
           table tr {
@@ -219,6 +219,4 @@ ul{
           }
           table tr td:first-child::before {
             content: counter(rowNumber);
-            min-width: 1em;
-            margin-right: 0.5em;
           }

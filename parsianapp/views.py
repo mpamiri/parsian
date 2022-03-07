@@ -12,23 +12,23 @@ from django.views import generic
 from . import forms, models
 
 
-def home(req):
+def home_view(req):
     return render(req, 'home.html')
 
 
-def contact_us(req):
+def contact_us_view(req):
     return render(req, 'contact_us.html')
 
 
-def occupational_medicine(req):
+def occupational_medicine_view(req):
     return render(req, 'occupational_medicine.html')
 
 
-def services(req):
+def services_view(req):
     return render(req, 'services.html')
 
 
-def register(req):
+def register_view(req):
     form = registration()
     if req.method == 'POST':
         form = registration(req.POST)
@@ -41,7 +41,7 @@ def register(req):
     return render(req, 'register.html', context)
 
 
-def login(req):
+def login_view(req):
     if req.method == 'POST':
         username = req.POST.get('username')
         password = req.POST.get('password')
@@ -56,12 +56,12 @@ def login(req):
 
 
 @login_required(login_url='login')
-def manage(req):
+def manage_view(req):
     return render(req, 'manage.html')
 
 
 @login_required(login_url='login')
-def submit_person(req):
+def submit_person_view(req):
     work=summary_of_results.objects.last()
     code_list=submit_company.objects.order_by('id')
     if work:
@@ -79,41 +79,41 @@ def submit_person(req):
 
 
 @require_POST
-def addperson(req):
+def addperson_view(req):
     form = summary_of_results_form(req.POST)
     if form.is_valid():
         new_summary = form.save()
     return redirect('submit_person')
 
 
-def logoutuser(req):
+def logoutuser_view(req):
     logout(req)
     return redirect('../')
 
 
 @login_required(login_url='login')
-def company(req):
+def company_view(req):
     form=submit_company_form()
     context={'form':form}
     return render(req, 'submit_company.html',context)
 
 
 @require_POST
-def addcompany(req):
+def addcompany_view(req):
     form=submit_company_form(req.POST)
     if form.is_valid():
         new_company=form.save()
     return redirect('submit_company')
 
 @login_required(login_url='login')
-def output(req):
+def output_view(req):
     form=disease_form()
     code_list=submit_company.objects.order_by('id')
     context={'form':form,'code_list':code_list}
     return render(req,'output.html',context)
 
 @require_POST
-def adddisease(req):
+def adddisease_view(req):
     form=disease_form(req.POST)
     if form.is_valid():
         new_disease=form.save()
@@ -121,7 +121,7 @@ def adddisease(req):
 
 
 @login_required(login_url='login')
-def disease_code(req):
+def disease_code_view(req):
     work=disease.objects.last()
     if work:
         code=work.examinations_code
@@ -129,15 +129,11 @@ def disease_code(req):
         code=''
     Summary=summary_of_results.objects.filter(examinations_code=code)
     company=submit_company.objects.filter(examinations_code=code)
-    context={'summary':Summary,'company':company}
+    context={'Summary':Summary,'company':company}
     return render(req, 'disease_code.html',context)
 
 @login_required(login_url='login')
-def open_docs(req):
-    return render(req, 'open_docs.html')
-
-@login_required(login_url='login')
-def summary_of_examinations(req):
+def open_docs_view(req):
     work=disease.objects.last()
     if work:
         code=work.examinations_code
@@ -145,25 +141,37 @@ def summary_of_examinations(req):
         code=''
     Summary=summary_of_results.objects.filter(examinations_code=code)
     company=submit_company.objects.filter(examinations_code=code)
-    context={'summary':Summary,'company':company}
+    context={'Summary':Summary,'company':company}
+    return render(req, 'open_docs.html',context)
+
+@login_required(login_url='login')
+def summary_of_examinations_view(req):
+    work=disease.objects.last()
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    Summary=summary_of_results.objects.filter(examinations_code=code)
+    company=submit_company.objects.filter(examinations_code=code)
+    context={'Summary':Summary,'company':company}
     return render(req, 'summary_of_examinations.html',context)
 
 @login_required(login_url='login')
-def problem(req):
+def problem_view(req):
     return render(req, 'problem.html')
 
 @login_required(login_url='login')
-def specialist(req):
+def specialist_view(req):
     return render(req, 'specialist.html')
 
 @login_required(login_url='login')
-def graph(req):
+def graph_view(req):
     return render(req, 'graph.html')
 
 @login_required(login_url='login')
-def solo_output(req):
+def solo_output_view(req):
     return render(req, 'solo_output.html')
 
 @login_required(login_url='login')
-def input(req):
+def input_view(req):
     return render(req, 'input.html')
