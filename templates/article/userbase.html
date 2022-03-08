@@ -12,6 +12,7 @@
         crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'js/style.js' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/summary_of_results.css' %}">
         <link rel="stylesheet" href="{% static 'css/home.css' %}">
         <link rel="stylesheet" href="{% static 'awesome/fontawesome/css/all.css' %}">
         <link rel="stylesheet" href="{% static 'awesome/fontawesome/css/all.min.css' %}">
@@ -36,7 +37,7 @@
                 <a class="nav-link active green text-center" 
                 aria-current="page" 
                 href="../" 
-                tabindex="-1" aria-disabled="true"><b>خانه</b></a>
+                tabindex="-1" aria-disabled="true"><b>خانه</b></a></li>
             </li>
             <li class="nav-item" >
                 <a class="nav-link text-dark green text-center" 
@@ -50,6 +51,12 @@
             <li class="nav-item">
                 <a class="nav-link text-dark green text-center" 
                 href="{% url 'login' %}" tabindex="-1" aria-disabled="true"><b>ورود</b></a></li>
+            <li class="nav-item">
+                <a class="nav-link text-dark green text-center" 
+                href="{% url 'input' %}" tabindex="-1" aria-disabled="true"><b>ورودی</b></a></li>
+            <li class="nav-item">
+                <a class="nav-link text-dark green text-center" 
+                href="{% url 'output' %}" tabindex="-1" aria-disabled="true"><b>خروجی</b></a></li>
             </ul>
         </div>
     </nav>

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import summary_of_results,submit_company,disease
 from . import models
+from django.core.validators import MaxValueValidator, MinValueValidator 
 class registration(UserCreationForm):
     class meta:
         model=User
@@ -16,28 +17,28 @@ class summary_of_results_form(forms.ModelForm):
         widgets={
         'code' : forms.Select(attrs={'class':'box','autocomplete': 'off'})
         ,'gender' : forms.Select(attrs={'class':'box','autocomplete': 'off'})
-        ,'number' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'start_month' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'start_year' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'age' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'length' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'weight' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'blood_sugar' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
+        ,'number' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"0"})
+        ,'start_month' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"1",'max':"12"})
+        ,'start_year' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"1300",'max':"1400"})
+        ,'age' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"1300",'max':"1400"})
+        ,'length' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"100",'max':"300"})
+        ,'weight' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"20",'max':"200"})
+        ,'blood_sugar' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"100",'max':"126"})
         ,'blood_pressure' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
         ,'cholesterol' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
         ,'triglyceride' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
         ,'blood_lead' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'chratinin' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'ALT' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'AST' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'PSA' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'TSH' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'D3' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
+        ,'chratinin' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"0",'max':"5"})
+        ,'ALT' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"0",'max':"20"})
+        ,'AST' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"0",'max':"20"})
+        ,'PSA' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"0",'max':"20"})
+        ,'TSH' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"0",'max':"5"})
+        ,'D3' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"0",'max':"5"})
         ,'job_code' : forms.TextInput(attrs={'autocomplete': 'off'})
-        ,'right_eye_vision' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'right_eye_vision_with_glasses' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'left_eye_vision' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
-        ,'left_eye_vision_with_glasses' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
+        ,'right_eye_vision' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"1",'max':"10"})
+        ,'right_eye_vision_with_glasses' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"1",'max':"10"})
+        ,'left_eye_vision' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"1",'max':"10"})
+        ,'left_eye_vision_with_glasses' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"1",'max':"10"})
         ,'urine' : forms.Select(attrs={'class':'choose','autocomplete': 'off'})
         ,'breathing_test' : forms.Select(attrs={'class':'choose','autocomplete': 'off'})
         ,'breast_photo' : forms.Select(attrs={'class':'choose','autocomplete': 'off'})
