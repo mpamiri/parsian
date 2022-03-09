@@ -1,13 +1,13 @@
 from django.db import models
 from django import forms
 from django.conf import settings
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class summary_of_results(models.Model):
     name = models.CharField(max_length=20, null=True, blank=True,unique=True)
-    number = models.IntegerField(default=0, null=True, blank=True)
-    start_month = models.IntegerField(default=1, null=True, blank=True)
-    start_year = models.IntegerField(default=1300, null=True, blank=True)
+    number = models.IntegerField(default=0, null=True, blank=True,validators=[MinValueValidator(0)])
+    start_month = models.IntegerField(default=1, null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(12)])
+    start_year = models.IntegerField(default=1300, null=True, blank=True,validators=[MinValueValidator(1300),MaxValueValidator(1400)])
     job = models.CharField(max_length=30, null=True, blank=True)
     examinations_code=models.CharField(max_length=20, null=True, blank=True)
     job_code = models.CharField( null=True, blank=True,max_length=30)
@@ -16,18 +16,18 @@ class summary_of_results(models.Model):
     harmful_factors = models.CharField(max_length=100, null=True, blank=True)
     CODE_CHOICES = [(1, '1'), (2, '2'), (3, '3')]
     code = models.IntegerField(default=1, choices=CODE_CHOICES, null=True, blank=True)
-    age = models.IntegerField(default=1300, null=True, blank=True)
-    length = models.IntegerField(default=100, null=True, blank=True)
-    weight = models.IntegerField(default=20, null=True, blank=True)
+    age = models.IntegerField(default=1300, null=True, blank=True,validators=[MinValueValidator(1300),MaxValueValidator(1400)])
+    length = models.IntegerField(default=100, null=True, blank=True,validators=[MinValueValidator(100),MaxValueValidator(300)])
+    weight = models.IntegerField(default=20, null=True, blank=True,validators=[MinValueValidator(20),MaxValueValidator(200)])
     body_mass = models.CharField(max_length=300, null=True, blank=True)
     body_mass_status = models.CharField(max_length=300, null=True, blank=True)
-    blood_sugar = models.IntegerField(default=100, null=True, blank=True)
+    blood_sugar = models.IntegerField(default=50, null=True, blank=True,validators=[MinValueValidator(50),MaxValueValidator(100)])
     blood_sugar_status = models.CharField(max_length=300, null=True, blank=True)
-    blood_pressure = models.IntegerField(default=0, null=True, blank=True)
+    blood_pressure = models.IntegerField(default=5, null=True, blank=True,validators=[MinValueValidator(5),MaxValueValidator(20)])
     blood_pressure_status = models.CharField(max_length=300, null=True, blank=True)
-    cholesterol = models.IntegerField(default=0, null=True, blank=True)
+    cholesterol = models.IntegerField(default=50, null=True, blank=True,validators=[MinValueValidator(50),MaxValueValidator(1000)])
     cholesterol_status = models.CharField(max_length=300, null=True, blank=True)
-    triglyceride = models.IntegerField(default=0, null=True, blank=True)
+    triglyceride = models.IntegerField(default=20, null=True, blank=True,validators=[MinValueValidator(20),MaxValueValidator(2000)])
     triglyceride_status = models.CharField(max_length=300, null=True, blank=True)
     URINE_CHOICES = [('null', ''), ('normal', 'نرمال'), ('not_normal', 'غیر نرمال'), ('none', 'ندارد')]
     urine = models.CharField(choices=URINE_CHOICES, max_length=300, default='', null=True, blank=True)
@@ -45,12 +45,12 @@ class summary_of_results(models.Model):
                         ('kahesh_shenavai_nashi-az-seda', 'کاهش شنوایی ناشی از صدا'),
                         ('toaman_hedayati_va_hesi-asabi', 'توامان هدایتی و حسی عصبی'), ('none', 'ندارد')]
     right_ear_hearing = models.CharField(choices=right_ear_CHOICES, max_length=300, default='', null=True, blank=True)
-    left_eye_vision = models.IntegerField(default=0, null=True, blank=True)
+    left_eye_vision = models.IntegerField(default=1, null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(12)])
     left_eye_vision_status = models.CharField(max_length=300, null=True, blank=True)
-    left_eye_vision_with_glasses = models.IntegerField(default=0, null=True, blank=True)
-    right_eye_vision = models.IntegerField(default=0, null=True, blank=True)
+    left_eye_vision_with_glasses = models.IntegerField(default=1, null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(12)])
+    right_eye_vision = models.IntegerField(default=1, null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(12)])
     right_eye_vision_status = models.CharField(max_length=300, null=True, blank=True)
-    right_eye_vision_with_glasses = models.IntegerField(default=0, null=True, blank=True)
+    right_eye_vision_with_glasses = models.IntegerField(default=1, null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(12)])
     color_CHOICES = [('null', ''), ('normal', 'نرمال'), ('not_normal', 'غیر نرمال'), ('tashkhis_rang_ghermez', 'تشخیص رنگ قرمز'),
                      ('none', 'ندارد')]
     color_vision = models.CharField(choices=color_CHOICES, max_length=300, default='', null=True, blank=True)
@@ -63,13 +63,13 @@ class summary_of_results(models.Model):
     heart_CHOICES = [('null', ''), ('normal', 'نرمال'), ('taghirat_gheir_ekhtesasi', 'تغییرات غیر اختصاصی'),
                      ('try', 'نیاز به تکرار'), ('not_normal', 'غیر نرمال'), ('none', 'ندارد')]
     heart = models.CharField(choices=heart_CHOICES, max_length=300, default='', null=True, blank=True)
-    blood_lead = models.IntegerField(default=0, null=True, blank=True)
+    blood_lead = models.IntegerField(default=0, null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(50)])
     blood_lead_status = models.CharField(max_length=300, null=True, blank=True)
-    chratinin = models.IntegerField(default=0, null=True, blank=True)
-    PSA = models.IntegerField(default=0, null=True, blank=True)
+    chratinin = models.IntegerField(default=0, null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(5)])
+    PSA = models.IntegerField(default=0, null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(20)])
     PSA_status = models.CharField(max_length=300, null=True, blank=True)
-    D3 = models.IntegerField(default=0, null=True, blank=True)
-    TSH = models.IntegerField(default=0, null=True, blank=True)
+    D3 = models.IntegerField(default=0, null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(5)])
+    TSH = models.IntegerField(default=0, null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(5)])
     TSH_status = models.CharField(max_length=300, null=True, blank=True)
     problem = models.CharField(max_length=300, null=True, blank=True)
     problem_CHOICES = [('null', ''), ('darad', 'دارد'), ('none', 'ندارد')]
@@ -87,9 +87,9 @@ class summary_of_results(models.Model):
     occupational_actions = models.CharField(choices=occupational_CHOICES, max_length=300, default='', null=True,
                                             blank=True)
     occupational_disease_code = models.CharField(max_length=300, null=True, blank=True)
-    AST = models.IntegerField(default=0, null=True, blank=True)
+    AST = models.IntegerField(default=0, null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(20)])
     AST_status = models.CharField(max_length=300, null=True, blank=True)
-    ALT = models.IntegerField(default=0, null=True, blank=True)
+    ALT = models.IntegerField(default=0, null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(20)])
     ALT_status = models.CharField(max_length=300, null=True, blank=True)
     age_two = models.IntegerField(default=0, null=True, blank=True)
     duration_of_employment = models.CharField(max_length=300, null=True, blank=True)
