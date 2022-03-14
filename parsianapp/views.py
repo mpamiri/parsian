@@ -72,6 +72,7 @@ def submit_person_view(req):
         'examinations_code':code
         
     }
+    messages.error(req,'خارج از بازه تعریف شده')
     form=summary_of_results_form(initial=initial_dict)
     context={'form':form,
     'code_list':code_list}
@@ -129,7 +130,7 @@ def disease_code_view(req):
         code=''
     Summary=summary_of_results.objects.filter(examinations_code=code)
     company=submit_company.objects.filter(examinations_code=code)
-    context={'Summary':Summary,'company':company}
+    context={'Summary':Summary,'Company':company}
     return render(req, 'disease_code.html',context)
 
 @login_required(login_url='login')
@@ -141,7 +142,7 @@ def open_docs_view(req):
         code=''
     Summary=summary_of_results.objects.filter(examinations_code=code)
     company=submit_company.objects.filter(examinations_code=code)
-    context={'Summary':Summary,'company':company}
+    context={'Summary':Summary,'Company':company}
     return render(req, 'open_docs.html',context)
 
 @login_required(login_url='login')
@@ -153,7 +154,7 @@ def summary_of_examinations_view(req):
         code=''
     Summary=summary_of_results.objects.filter(examinations_code=code)
     company=submit_company.objects.filter(examinations_code=code)
-    context={'Summary':Summary,'company':company}
+    context={'Summary':Summary,'Company':company}
     return render(req, 'summary_of_examinations.html',context)
 
 @login_required(login_url='login')
@@ -170,7 +171,15 @@ def graph_view(req):
 
 @login_required(login_url='login')
 def solo_output_view(req):
-    return render(req, 'solo_output.html')
+    work=disease.objects.last()
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    Summary=summary_of_results.objects.filter(examinations_code=code)
+    company=submit_company.objects.filter(examinations_code=code)
+    context={'Summary':Summary,'Company':company}
+    return render(req, 'solo_output.html',context)
 
 @login_required(login_url='login')
 def input_view(req):

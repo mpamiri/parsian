@@ -21,7 +21,7 @@ class summary_of_results(models.Model):
     weight = models.IntegerField(default=20, null=True, blank=True,validators=[MinValueValidator(20),MaxValueValidator(200)])
     body_mass = models.CharField(max_length=300, null=True, blank=True)
     body_mass_status = models.CharField(max_length=300, null=True, blank=True)
-    blood_sugar = models.IntegerField(default=50, null=True, blank=True,validators=[MinValueValidator(50),MaxValueValidator(100)])
+    blood_sugar = models.IntegerField(default=50, null=True, blank=True,validators=[MinValueValidator(50),MaxValueValidator(500)])
     blood_sugar_status = models.CharField(max_length=300, null=True, blank=True)
     blood_pressure = models.IntegerField(default=5, null=True, blank=True,validators=[MinValueValidator(5),MaxValueValidator(20)])
     blood_pressure_status = models.CharField(max_length=300, null=True, blank=True)

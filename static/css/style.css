@@ -11,12 +11,6 @@ background-color: chartreuse;
   border-radius: 15px;
   padding-right: 30px;
 }
-table tr:nth-child(2){
-  counter-reset: rowNumber;
-}
-table tr {
-  counter-increment: rowNumber;
-}
 .green:hover{
   background-color: chartreuse;
   transition: 500ms;
@@ -210,13 +204,4 @@ ul{
           }
           table, th, td {
             border: 1px solid black;
-          }
-          table {
-            counter-reset: rowNumber;
-          }
-          table tr {
-            counter-increment: rowNumber;
-          }
-          table tr td:first-child::before {
-            content: counter(rowNumber);
           }
