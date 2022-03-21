@@ -25,29 +25,33 @@ xmlns="http://www.w3.org/2000/svg">
     <div class='row text-center mt-4'>
         <div class='col'>
             <form action='{% url 'addorder' %}' method='POST'>
-            {% csrf_token %}
-            <lable for='no'>شماره پرونده</lable>
-            {{ form.order_number }}
-            <input type="submit" value="ثبت">
+                {% csrf_token %}
+                <lable for='no'>شماره پرونده</lable>
+                {{ form.order_number }}
+                <input type="submit" value="ثبت">
             </form>
         </div>
     </div>
-    {% for company in Company %}
-    {% for summary in solo_page %}
-    <div class='row text-center mt-5'>
-        <div class='col'>
-            <lable>تاریخ انجام معاینات:</lable>
-            {{ company.date }}
+</section>
+<section id='print'>
+{% for company in Company %}
+{% for summary in solo_page %}
+    <div class='container'>
+        <div class='row text-center mt-5'>
+            <div class='col'>
+                <lable>تاریخ انجام معاینات:</lable>
+                {{ company.date }}
+            </div>
         </div>
-    </div>
-    <div class='row text-center'>
-        <div class='col'>
-            <lable>کارخانه/کارگاه/شرکت:</lable>
-            {{ company.company }}            
-        </div>
-        <div class='col'>
-            <lable>نام</lable>
-            {{ summary.name }}            
+        <div class='row text-center'>
+            <div class='col'>
+                <lable>کارخانه/کارگاه/شرکت:</lable>
+                {{ company.company }}            
+            </div>
+            <div class='col'>
+                <lable>نام</lable>
+                {{ summary.name }}            
+            </div>
         </div>
         <div class='row text-center'>
             <table>
@@ -260,7 +264,16 @@ xmlns="http://www.w3.org/2000/svg">
     <hr size="5px" width="100%" color="black" class='mt-5'>
     {% endfor %}
     {% endfor %}
-    <div id="container" dir='ltr'>
+</section>
+<section>
+    <div class='container mt-5'>
+        <div class='row text-center'>
+            <div class='col'>
+                <input type="button" value="print" onclick="printDiv()">
+            </div>
+        </div>
+    </div>
+    <div id="container" dir='ltr' class='mt-5'>
         <div id="pagination">
             {% if solo_page.has_previous %}
             <a class='blocks' href='?page=1' style='text-decoration: none;color: black;'>اول</a>
@@ -276,4 +289,13 @@ xmlns="http://www.w3.org/2000/svg">
         </div>
     </div>
 </section>
+<script>
+    function printDiv() {
+        const printContents = document.getElementById('print').innerHTML;
+        const originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
 {% endblock content %}
