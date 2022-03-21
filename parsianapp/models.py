@@ -109,4 +109,9 @@ class submit_company(models.Model):
 class disease(models.Model):
     examinations_code=models.CharField(max_length=20, null=True, blank=True)
 
+class order(models.Model):
+    order_CHOICES = [(1, '1'), (10, '10'), (20, '20'), (30, '30'), (40, '40'), (50, '50')]
+    order_number = models.IntegerField(default=1, choices=order_CHOICES, null=True, blank=True)
+
+
 

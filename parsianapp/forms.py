@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import summary_of_results,submit_company,disease
+from .models import summary_of_results,submit_company,disease,order
 from . import models
 from django.core.validators import MaxValueValidator, MinValueValidator 
 class registration(UserCreationForm):
@@ -91,4 +91,10 @@ class disease_form(forms.ModelForm):
     class Meta:
         model=disease
         fields='__all__'
-        widgets={'examinations_code' : forms.TextInput(attrs={'id':'myInput','onkeyup':"filterFunction()",'autocomplete': 'off'})}       
+        widgets={'examinations_code' : forms.TextInput(attrs={'id':'myInput','onkeyup':"filterFunction()",'autocomplete': 'off'})}   
+
+class order_form(forms.ModelForm):   
+    class Meta:
+        model = order
+        fields = '__all__'
+        widgets={'order_number' : forms.Select(attrs={'class':'choose','autocomplete': 'off'})}
