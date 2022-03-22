@@ -233,3 +233,15 @@ border: 1px solid black;
 #pagination a.active{
   background-color: #4CAF50;
 }
+.first{
+  width: 30%;
+}
+.second{
+  width: 30%;
+}
+.third{
+  width: 40%;
+}
+.mytable {
+  font-size: 12px;
+}

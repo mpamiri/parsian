@@ -36,7 +36,7 @@ xmlns="http://www.w3.org/2000/svg">
 <section id='print'>
 {% for company in Company %}
 {% for summary in solo_page %}
-    <div class='container'>
+    <div class='container' style='font-size: 15px;'>
         <div class='row text-center mt-5'>
             <div class='col'>
                 <lable>تاریخ انجام معاینات:</lable>
@@ -49,214 +49,214 @@ xmlns="http://www.w3.org/2000/svg">
                 {{ company.company }}            
             </div>
             <div class='col'>
-                <lable>نام</lable>
+                <lable>نام:</lable>
                 {{ summary.name }}            
             </div>
         </div>
         <div class='row text-center'>
-            <table>
+            <table class='mytable'>
                 <tr>
-                    <th>ویژگی</th>
-                    <th>مقدار</th>
-                    <th>وضعیت</th>
+                    <th class='first'>ویژگی</th>
+                    <th class='second'>مقدار</th>
+                    <th class='third'>وضعیت</th>
                 </tr>
                 <tr>
-                    <td>سن</td>
-                    <td>{{ summary.age }}</td>
-                    <td>---</td>
+                    <td class='first'>سن</td>
+                    <td class='second'>{{ summary.age }}</td>
+                    <td class='third'>---</td>
                 </tr>
                 <tr>
-                    <td>قد</td>
-                    <td>{{ summary.length }}</td>
-                    <td>---</td>
+                    <td class='first'>قد</td>
+                    <td class='second'>{{ summary.length }}</td>
+                    <td class='third'>---</td>
                 </tr>
                 <tr>
-                    <td>توده بدنی</td>
-                    <td>{{ summary.body_mass }}</td>
+                    <td class='first'>توده بدنی</td>
+                    <td class='second'>{{ summary.body_mass }}</td>
                     {% if summary.body_mass < 20 %}
-                    <td>کمبود وزن</td>
+                    <td class='third'>کمبود وزن</td>
                     {% elif summary.body_mass < 26 %}
-                    <td>ایده آل</td>
+                    <td class='third'>ایده آل</td>
                     {% elif summary.body_mass < 31 %}
-                    <td>اضافه وزن</td>
+                    <td class='third'>اضافه وزن</td>
                     {% elif summary.body_mass < 41 %}
-                    <td>چاقی</td>
+                    <td class='third'>چاقی</td>
                     {% elif summary.body_mass > 40 %}
-                    <td>چاقی شدید</td>
+                    <td class='third'>چاقی شدید</td>
                     {% else %}
-                    <td>ندارد</td>
+                    <td class='third'>ندارد</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>قند خون</td>
-                    <td>{{ summary.blood_sugar }}</td>
+                    <td class='first'>قند خون</td>
+                    <td class='second'>{{ summary.blood_sugar }}</td>
                     {% if summary.blood_sugar < 100 %}
-                    <td>نرمال</td>
+                    <td class='third'>نرمال</td>
                     {% elif summary.blood_sugar < 126 %}
-                    <td>در محدوده احتیاط</td>
+                    <td class='third'>در محدوده احتیاط</td>
                     {% else %}
-                    <td>ندارد/غیر نرمال</td>
+                    <td class='third'>ندارد/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>فشار خون</td>
-                    <td>{{ summary.blood_pressure }}</td>
+                    <td class='first'>فشار خون</td>
+                    <td class='second'>{{ summary.blood_pressure }}</td>
                     {% if summary.blood_pressure < 9 %}
-                    <td>پایین</td>
+                    <td class='third'>پایین</td>
                     {% elif summary.blood_pressure >= 9 and summary.blood_pressure <= 14 %}
-                    <td>نرمال</td>
+                    <td class='third'>نرمال</td>
                     {% elif summary.blood_pressure > 9 %}
-                    <td>بالا</td>
+                    <td class='third'>بالا</td>
                     {% else %}
-                    <td>ندارد/غیر نرمال</td>
+                    <td class='third'>ندارد/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>کلسترول</td>
-                    <td>{{ summary.cholesterol }}</td>
+                    <td class='first'>کلسترول</td>
+                    <td class='second'>{{ summary.cholesterol }}</td>
                     {% if summary.cholesterol < 200 %}
-                    <td>نرمال</td>
+                    <td class='third'>نرمال</td>
                     {% else %}
-                    <td>ندارد/غیر نرمال</td>
+                    <td class='third'>ندارد/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>تری گلیسیرید</td>
-                    <td>{{ summary.triglyceride }}</td>
+                    <td class='first'>تری گلیسیرید</td>
+                    <td class='second'>{{ summary.triglyceride }}</td>
                     {% if summary.triglyceride < 200 %}
-                    <td>نرمال</td>
+                    <td class='third'>نرمال</td>
                     {% else %}
-                    <td>ندارد/غیر نرمال</td>
+                    <td class='third'>ندارد/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>ادرار</td>
-                    <td>{{ summary.urine }}</td>
-                    <td>---</td>
+                    <td class='first'>ادرار</td>
+                    <td class='second'>{{ summary.urine }}</td>
+                    <td class='third'>---</td>
                 </tr>
                 <tr>
-                    <td>تست تنفس</td>
-                    <td>{{ summary.breathing_test }}</td>
-                    <td>---</td>
+                    <td class='first'>تست تنفس</td>
+                    <td class='second'>{{ summary.breathing_test }}</td>
+                    <td class='third'>---</td>
                 </tr>
                 <tr>
-                    <td>شنوایی گوش چپ</td>
-                    <td>{{ summary.left_ear_hearing }}</td>
-                    <td>---</td>
+                    <td class='first'>شنوایی گوش چپ</td>
+                    <td class='second'>{{ summary.left_ear_hearing }}</td>
+                    <td class='third'>---</td>
                 </tr>
                 <tr>
-                    <td>شنوایی گوش راست</td>
-                    <td>{{ summary.right_ear_hearing }}</td>
-                    <td>---</td>
+                    <td class='first'>شنوایی گوش راست</td>
+                    <td class='second'>{{ summary.right_ear_hearing }}</td>
+                    <td class='third'>---</td>
                 </tr>
                 <tr>
-                    <td>بینایی چشم چپ</td>
-                    <td>{{ summary.left_eye_vision }}</td>
+                    <td class='first'>بینایی چشم چپ</td>
+                    <td class='second'>{{ summary.left_eye_vision }}</td>
                     {% if summary.left_eye_vision < 1 %}
-                    <td>غیر نرمال</td>
+                    <td class='third'>غیر نرمال</td>
                     {% else %}
-                    <td>ندارد/نرمال</td>
+                    <td class='third'>ندارد/نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>بینایی چشم چپ با عینک</td>
-                    <td>---</td>
-                    <td>{{ summary.left_eye_vision_with_glasses }}</td>
+                    <td class='first'>بینایی چشم چپ با عینک</td>
+                    <td class='second'>---</td>
+                    <td class='third'>{{ summary.left_eye_vision_with_glasses }}</td>
                 </tr>
                 <tr>
-                    <td>بینایی چشم راست</td>
-                    <td>{{ summary.right_eye_vision }}</td>
+                    <td class='first'>بینایی چشم راست</td>
+                    <td class='second'>{{ summary.right_eye_vision }}</td>
                     {% if summary.right_eye_vision < 1 %}
-                    <td>غیر نرمال</td>
+                    <td class='third'>غیر نرمال</td>
                     {% else %}
-                    <td>ندارد/نرمال</td>
+                    <td class='third'>ندارد/نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>بینایی چشم راست با عینک</td>
-                    <td>---</td>
-                    <td>{{ summary.right_eye_vision_with_glasses }}</td>
+                    <td class='first'>بینایی چشم راست با عینک</td>
+                    <td class='second'>---</td>
+                    <td class='third'>{{ summary.right_eye_vision_with_glasses }}</td>
                 </tr>
                 <tr>
-                    <td>عکس سینه</td>
-                    <td>{{ summary.breast_photo }}</td>
-                    <td>---</td>
+                    <td class='first'>عکس سینه</td>
+                    <td class='second'>{{ summary.breast_photo }}</td>
+                    <td class='third'>---</td>
                 </tr>
                 <tr>
-                    <td>سرب خون</td>
-                    <td>{{ summary.blood_lead }}</td>
+                    <td class='first'>سرب خون</td>
+                    <td class='second'>{{ summary.blood_lead }}</td>
                     {% if summary.blood_lead < 20 %}
-                    <td>نرمال</td>
+                    <td class='third'>نرمال</td>
                     {% elif summary.blood_lead < 30 %}
-                    <td>در محدوده احتیاط</td>
+                    <td class='third'>در محدوده احتیاط</td>
                     {% else %}
-                    <td>ندارد/غیر نرمال</td>
+                    <td class='third'>ندارد/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>PSA</td>
-                    <td>{{ summary.PSA }}</td>
+                    <td class='first'>PSA</td>
+                    <td class='second'>{{ summary.PSA }}</td>
                     {% if summary.PSA < 4 %}
-                    <td>نرمال</td>
+                    <td class='third'>نرمال</td>
                     {% else %}
-                    <td>ندارد/غیر نرمال</td>
+                    <td class='third'>ندارد/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>TSH</td>
-                    <td>{{ summary.TSH }}</td>
+                    <td class='first'>TSH</td>
+                    <td class='second'>{{ summary.TSH }}</td>
                     {% if summary.TSH < 5 and summary.TSH > 0.4 %}
-                    <td>نرمال</td>
+                    <td class='third'>نرمال</td>
                     {% else %}
-                    <td>ندارد/غیر نرمال</td>
+                    <td class='third'>ندارد/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>chratinin</td>
-                    <td>{{ summary.chratinin }}</td>
+                    <td class='first'>chratinin</td>
+                    <td class='second'>{{ summary.chratinin }}</td>
                     {% if summary.chratinin < 1.5 %}
-                    <td>نرمال</td>
+                    <td class='third'>نرمال</td>
                     {% else %}
-                    <td>ندارد/غیر نرمال</td>
+                    <td class='third'>ندارد/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>D3</td>
-                    <td>{{ summary.D3 }}</td>
+                    <td class='first'>D3</td>
+                    <td class='second'>{{ summary.D3 }}</td>
                     {% if summary.D3 < 10 %}
-                    <td>کمبود</td>
+                    <td class='third'>کمبود</td>
                     {% elif summary.D3 < 30 %}
-                    <td>عدم کفایت</td>
+                    <td class='third'>عدم کفایت</td>
                     {% elif summary.D3 < 101 %}
-                    <td>مسمومیت/کافی</td>
+                    <td class='third'>مسمومیت/کافی</td>
                     {% else %}
-                    <td>ندارد</td>
+                    <td class='third'>ندارد</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>بینایی چشم راست با عینک</td>
-                    <td>---</td>
-                    <td>{{ summary.heart }}</td>
+                    <td class='first'>بینایی چشم راست با عینک</td>
+                    <td class='second'>---</td>
+                    <td class='third'>{{ summary.heart }}</td>
                 </tr>
                 <tr>
-                    <td>سن</td>
-                    <td>{{ summary.age }}</td>
-                    <td>---</td>
+                    <td class='first'>سن</td>
+                    <td class='second'>{{ summary.age }}</td>
+                    <td class='third'>---</td>
                 </tr>
                 <tr>
-                    <td>سن</td>
-                    <td>{{ summary.age }}</td>
-                    <td>---</td>
+                    <td class='first'>سن</td>
+                    <td class='second'>{{ summary.age }}</td>
+                    <td class='third'>---</td>
                 </tr>
                 <tr>
-                    <td>سن</td>
-                    <td>{{ summary.age }}</td>
-                    <td>---</td>
+                    <td class='first'>سن</td>
+                    <td class='second'>{{ summary.age }}</td>
+                    <td class='third'>---</td>
                 </tr>
                 <tr>
-                    <td>سن</td>
-                    <td>{{ summary.age }}</td>
-                    <td>---</td>
+                    <td class='first'>سن</td>
+                    <td class='second'>{{ summary.age }}</td>
+                    <td class='third'>---</td>
                 </tr>
             </table>
         </div>
