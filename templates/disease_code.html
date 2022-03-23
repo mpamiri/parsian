@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <style>
-    table {
+    table tr:nth-child(2){
         counter-reset: rowNumber;
       }
       table tr {
@@ -10,6 +10,8 @@
       }
       table tr td:first-child::before {
         content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
       }
 </style>
 <section class="b-green">

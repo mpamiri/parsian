@@ -160,7 +160,15 @@ def summary_of_examinations_view(request):
 
 @login_required(login_url='login')
 def problem_view(request):
-    return render(request, 'problem.html')
+    work=disease.objects.last()
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    Summary=summary_of_results.objects.filter(examinations_code=code)
+    company=submit_company.objects.filter(examinations_code=code)
+    context={'Summary':Summary,'Company':company}
+    return render(request, 'problem.html',context)
 
 @login_required(login_url='login')
 def specialist_view(request):
