@@ -176,7 +176,82 @@ def specialist_view(request):
 
 @login_required(login_url='login')
 def graph_view(request):
-    return render(request, 'graph.html')
+    count=0
+    a_tri,b_tri,c_tri=0,0,0
+    data_tri=[]
+    a_chl,b_chl,c_chl=0,0,0
+    data_chl=[]
+    a_sug,b_sug,c_sug=0,0,0
+    data_sug=[]
+    a_pre,b_pre,c_pre=0,0,0
+    data_pre=[]
+    a_ry,b_ry,c_ry=0,0,0
+    data_ry=[]
+    a_ly,b_ly,c_ly=0,0,0
+    data_ly=[]
+    a_esp,b_esp,c_esp=0,0,0
+    data_esp=[]
+    a_rg,b_rg,c_rg=0,0,0
+    data_rg=[]
+    a_lg,b_lg,c_lg=0,0,0
+    data_lg=[]
+    a_u,b_u,c_u=0,0,0
+    data_u=[]
+    a_p,b_p,c_p=0,0,0
+    data_p=[]
+    a_s,b_s,c_s=0,0,0
+    data_s=[]
+    a_psa,b_psa,c_psa=0,0,0
+    data_psa=[]
+    a_n,b_n,c_n=0,0,0
+    data_n=[]
+    a_d,b_d,c_d=0,0,0
+    data_d=[]
+    work=disease.objects.last()
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    Summary=summary_of_results.objects.filter(examinations_code=code)
+    company=submit_company.objects.filter(examinations_code=code)
+    for summary in Summary:
+        count+=1
+        if summary.triglyceride < 200:
+            a_tri += 1
+        elif summary.triglyceride >= 200:
+            b_tri += 1
+        else:
+            c_tri += 1    
+    data_tri.append(a_tri)
+    data_tri.append(b_tri)
+    data_tri.append(c_tri)
+    for summary in Summary:
+        if summary.cholesterol < 200:
+            a_chl += 1
+        elif summary.cholesterol >= 200:
+            b_chl += 1
+        else:
+            c_chl += 1    
+    data_chl.append(a_chl)
+    data_chl.append(b_chl)
+    data_chl.append(c_chl)
+    data=[data_tri,
+    data_chl,
+    data_sug,
+    data_pre,
+    data_ry,
+    data_ly,
+    data_esp,
+    data_rg,
+    data_lg,
+    data_u,
+    data_p,
+    data_s,
+    data_psa,
+    data_n,
+    data_d]
+    context={'Summary':Summary,'Company':company,'data':data,'count':count}
+    return render(request, 'graph.html',context)
 
 @login_required(login_url='login')
 def solo_output_view(request):
