@@ -126,6 +126,590 @@ xmlns="http://www.w3.org/2000/svg">
             <canvas id="myChart1"></canvas>
         </div>
     </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>وضعیت قند خون</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.2.0 }}</td>
+                    <td>{{ data.2.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>در محدوده احتیاط</td>
+                    <td>{{ data.2.1 }}</td>
+                    <td>{{ data.2.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>غیر نرمال</td>
+                    <td>{{ data.2.2 }}</td>
+                    <td>{{ data.2.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.2.3 }}</td>
+                    <td>{{ data.2.3|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>وضعیت فشار خون</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.3.0 }}</td>
+                    <td>{{ data.3.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>بالا</td>
+                    <td>{{ data.3.1 }}</td>
+                    <td>{{ data.3.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>پایین</td>
+                    <td>{{ data.3.2 }}</td>
+                    <td>{{ data.3.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.3.3 }}</td>
+                    <td>{{ data.3.3|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart3"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>وضعیت بینایی چشم چپ</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.5.0 }}</td>
+                    <td>{{ data.5.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>غیر نرمال</td>
+                    <td>{{ data.5.1 }}</td>
+                    <td>{{ data.5.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.5.2 }}</td>
+                    <td>{{ data.5.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart4"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>وضعیت بینایی چشم چپ</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.5.0 }}</td>
+                    <td>{{ data.5.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>غیر نرمال</td>
+                    <td>{{ data.5.1 }}</td>
+                    <td>{{ data.5.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.5.2 }}</td>
+                    <td>{{ data.5.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart5"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>اسپیرومتری</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.6.0 }}</td>
+                    <td>{{ data.6.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>تحدیدی</td>
+                    <td>{{ data.6.1 }}</td>
+                    <td>{{ data.6.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>انسدادی</td>
+                    <td>{{ data.6.2 }}</td>
+                    <td>{{ data.6.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نیاز به تکرار</td>
+                    <td>{{ data.6.3 }}</td>
+                    <td>{{ data.6.3|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نمای توأمان تحدیدی وانسدادی</td>
+                    <td>{{ data.6.4 }}</td>
+                    <td>{{ data.6.4|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.6.5 }}</td>
+                    <td>{{ data.6.5|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart6"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>ادیومتری گوش راست</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.7.0 }}</td>
+                    <td>{{ data.7.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>تحدیدی</td>
+                    <td>{{ data.7.1 }}</td>
+                    <td>{{ data.7.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>انسدادی</td>
+                    <td>{{ data.7.2 }}</td>
+                    <td>{{ data.7.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نیاز به تکرار</td>
+                    <td>{{ data.7.3 }}</td>
+                    <td>{{ data.7.3|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نمای توأمان تحدیدی وانسدادی</td>
+                    <td>{{ data.7.4 }}</td>
+                    <td>{{ data.7.4|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.7.5 }}</td>
+                    <td>{{ data.7.5|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart7"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>ادیومتری گوش چپ</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.8.0 }}</td>
+                    <td>{{ data.8.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>تحدیدی</td>
+                    <td>{{ data.8.1 }}</td>
+                    <td>{{ data.8.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>انسدادی</td>
+                    <td>{{ data.8.2 }}</td>
+                    <td>{{ data.8.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نیاز به تکرار</td>
+                    <td>{{ data.8.3 }}</td>
+                    <td>{{ data.8.3|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نمای توأمان تحدیدی وانسدادی</td>
+                    <td>{{ data.8.4 }}</td>
+                    <td>{{ data.8.4|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.8.5 }}</td>
+                    <td>{{ data.8.5|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart8"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>وضعیت ادرار</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.9.0 }}</td>
+                    <td>{{ data.9.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>غیر نرمال</td>
+                    <td>{{ data.9.1 }}</td>
+                    <td>{{ data.9.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.9.2 }}</td>
+                    <td>{{ data.9.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart9"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>وضعیت پرونده</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>بلامانع</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.10.0 }}</td>
+                    <td>{{ data.10.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>مشروط</td>
+                    <td>{{ data.10.1 }}</td>
+                    <td>{{ data.10.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>تغییر شغل</td>
+                    <td>{{ data.10.2 }}</td>
+                    <td>{{ data.10.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کمیسیون</td>
+                    <td>{{ data.10.3 }}</td>
+                    <td>{{ data.10.3|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نظر نهایی انجام نشده</td>
+                    <td>{{ data.10.4 }}</td>
+                    <td>{{ data.10.4|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart10"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>وضعیت سرب خون</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.11.0 }}</td>
+                    <td>{{ data.11.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>در محدوده احتیاط</td>
+                    <td>{{ data.11.1 }}</td>
+                    <td>{{ data.11.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>غیر نرمال</td>
+                    <td>{{ data.11.2 }}</td>
+                    <td>{{ data.11.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.11.3 }}</td>
+                    <td>{{ data.11.3|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart11"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>وضعیت psa</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.12.0 }}</td>
+                    <td>{{ data.12.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>غیر نرمال</td>
+                    <td>{{ data.12.1 }}</td>
+                    <td>{{ data.12.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.12.2 }}</td>
+                    <td>{{ data.12.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart12"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>وضعیت پرونده</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نرمال</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.13.0 }}</td>
+                    <td>{{ data.13.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>وضعیت غیر اختصاصی</td>
+                    <td>{{ data.13.1 }}</td>
+                    <td>{{ data.13.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>نیاز به تکرار</td>
+                    <td>{{ data.13.2 }}</td>
+                    <td>{{ data.13.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>غیر نرمال</td>
+                    <td>{{ data.13.3 }}</td>
+                    <td>{{ data.13.3|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.13.4 }}</td>
+                    <td>{{ data.13.4|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart13"></canvas>
+        </div>
+    </div>
+    <div class='row text-center mt-5'>
+        <div class='col d-flex align-items-center'>
+            <table style='width : 500px'>
+                <tr>
+                    <th colspan='3'>وضعیت D3</th>
+                </tr>
+                <tr>
+                    <th style='width : 100px'></th>
+                    <th>تعداد</th>
+                    <th>درصد</th>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کمبود</td>
+                    {% load django_template_maths %}
+                    <td>{{ data.14.0 }}</td>
+                    <td>{{ data.14.0|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>عدم کفایت</td>
+                    <td>{{ data.14.1 }}</td>
+                    <td>{{ data.14.1|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کافی</td>
+                    <td>{{ data.14.2 }}</td>
+                    <td>{{ data.14.2|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>مسمومیت</td>
+                    <td>{{ data.14.3 }}</td>
+                    <td>{{ data.14.3|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>ندارد</td>
+                    <td>{{ data.14.4 }}</td>
+                    <td>{{ data.14.4|mul:100|flr:count }}</td>
+                </tr>
+                <tr>
+                    <td style='width : 100px'>کل</td>
+                    <td>{{ count }}</td>
+                    <td>100</td>
+                </tr>
+            </table>
+        </div>
+        <div class='col'>
+            <canvas id="myChart14"></canvas>
+        </div>
+    </div>
 </section>
 <script>
 const ctx = document.getElementById('myChart');
@@ -149,13 +733,6 @@ const myChart = new Chart(ctx, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx1 = document.getElementById('myChart1');
 const myChart1 = new Chart(ctx1, {
@@ -178,13 +755,6 @@ const myChart1 = new Chart(ctx1, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 
 const ctx2 = document.getElementById('myChart2').getContext('2d');
@@ -208,13 +778,6 @@ const myChart2 = new Chart(ctx2, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx3 = document.getElementById('myChart3').getContext('2d');
 const myChart3 = new Chart(ctx3, {
@@ -237,13 +800,6 @@ const myChart3 = new Chart(ctx3, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx4 = document.getElementById('myChart4').getContext('2d');
 const myChart4 = new Chart(ctx4, {
@@ -266,13 +822,6 @@ const myChart4 = new Chart(ctx4, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx5 = document.getElementById('myChart5').getContext('2d');
 const myChart5 = new Chart(ctx5, {
@@ -295,13 +844,6 @@ const myChart5 = new Chart(ctx5, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx6 = document.getElementById('myChart6').getContext('2d');
 const myChart6 = new Chart(ctx6, {
@@ -324,13 +866,6 @@ const myChart6 = new Chart(ctx6, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx7 = document.getElementById('myChart7').getContext('2d');
 const myChart7 = new Chart(ctx7, {
@@ -353,13 +888,6 @@ const myChart7 = new Chart(ctx7, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx8 = document.getElementById('myChart8').getContext('2d');
 const myChart8 = new Chart(ctx8, {
@@ -382,13 +910,6 @@ const myChart8 = new Chart(ctx8, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx9 = document.getElementById('myChart9').getContext('2d');
 const myChart9 = new Chart(ctx9, {
@@ -411,13 +932,6 @@ const myChart9 = new Chart(ctx9, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx10 = document.getElementById('myChart10').getContext('2d');
 const myChart10 = new Chart(ctx10, {
@@ -440,13 +954,6 @@ const myChart10 = new Chart(ctx10, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx11 = document.getElementById('myChart11').getContext('2d');
 const myChart11 = new Chart(ctx11, {
@@ -469,13 +976,6 @@ const myChart11 = new Chart(ctx11, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx12 = document.getElementById('myChart12').getContext('2d');
 const myChart12 = new Chart(ctx12, {
@@ -498,13 +998,6 @@ const myChart12 = new Chart(ctx12, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx13 = document.getElementById('myChart13').getContext('2d');
 const myChart13 = new Chart(ctx13, {
@@ -527,13 +1020,6 @@ const myChart13 = new Chart(ctx13, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 const ctx14 = document.getElementById('myChart14').getContext('2d');
 const myChart14 = new Chart(ctx14, {
@@ -556,13 +1042,6 @@ const myChart14 = new Chart(ctx14, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
 </script>
 {% endblock content %}

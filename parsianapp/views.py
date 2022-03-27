@@ -181,31 +181,31 @@ def graph_view(request):
     data_tri=[]
     a_chl,b_chl,c_chl=0,0,0
     data_chl=[]
-    a_sug,b_sug,c_sug=0,0,0
+    a_sug,b_sug,c_sug,d_sug=0,0,0,0
     data_sug=[]
-    a_pre,b_pre,c_pre=0,0,0
+    a_pre,b_pre,c_pre,d_pre=0,0,0,0
     data_pre=[]
     a_ry,b_ry,c_ry=0,0,0
     data_ry=[]
     a_ly,b_ly,c_ly=0,0,0
     data_ly=[]
-    a_esp,b_esp,c_esp=0,0,0
+    a_esp,b_esp,c_esp,d_esp,e_esp,f_esp=0,0,0,0,0,0
     data_esp=[]
-    a_rg,b_rg,c_rg=0,0,0
+    a_rg,b_rg,c_rg,d_rg,e_rg,f_rg=0,0,0,0,0,0
     data_rg=[]
-    a_lg,b_lg,c_lg=0,0,0
+    a_lg,b_lg,c_lg,d_lg,e_lg,f_lg=0,0,0,0,0,0
     data_lg=[]
     a_u,b_u,c_u=0,0,0
     data_u=[]
-    a_p,b_p,c_p=0,0,0
+    a_p,b_p,c_p,d_p,e_p=0,0,0,0,0
     data_p=[]
-    a_s,b_s,c_s=0,0,0
+    a_s,b_s,c_s,d_s=0,0,0,0
     data_s=[]
     a_psa,b_psa,c_psa=0,0,0
     data_psa=[]
-    a_n,b_n,c_n=0,0,0
+    a_n,b_n,c_n,d_n,e_n=0,0,0,0,0
     data_n=[]
-    a_d,b_d,c_d=0,0,0
+    a_d,b_d,c_d,d_d,e_d=0,0,0,0,0
     data_d=[]
     work=disease.objects.last()
     if work:
@@ -225,6 +225,8 @@ def graph_view(request):
     data_tri.append(a_tri)
     data_tri.append(b_tri)
     data_tri.append(c_tri)
+
+
     for summary in Summary:
         if summary.cholesterol < 200:
             a_chl += 1
@@ -235,6 +237,220 @@ def graph_view(request):
     data_chl.append(a_chl)
     data_chl.append(b_chl)
     data_chl.append(c_chl)
+
+
+    for summary in Summary:
+        if summary.blood_sugar < 100:
+            a_sug += 1
+        elif summary.blood_sugar < 126:
+            b_sug += 1
+        elif summary.blood_sugar >=126:
+            c_sug += 1
+        else:
+            d_sug += 1    
+    data_sug.append(a_sug)
+    data_sug.append(b_sug)
+    data_sug.append(c_sug)
+    data_sug.append(d_sug)
+
+    for summary in Summary:
+        if summary.blood_pressure < 9:
+            c_pre += 1
+        elif summary.blood_pressure >= 9 and summary.blood_pressure <= 14:
+            a_pre += 1
+        elif summary.blood_pressure > 14:
+            b_pre += 1
+        else:
+            d_pre += 1
+    data_pre.append(a_pre)
+    data_pre.append(b_pre)
+    data_pre.append(c_pre)
+    data_pre.append(d_pre)  
+
+
+
+    for summary in Summary:
+        if summary.right_eye_vision < 1:
+            b_ry += 1
+        elif summary.right_eye_vision >= 1:
+            a_ry += 1
+        else:
+            c_ry += 1    
+    data_ry.append(a_ry)
+    data_ry.append(b_ry)
+    data_ry.append(c_ry)
+
+
+    for summary in Summary:
+        if summary.left_eye_vision < 1:
+            b_ly += 1
+        elif summary.left_eye_vision >= 1:
+            a_ly += 1
+        else:
+            c_ly += 1    
+    data_ly.append(a_ly)
+    data_ly.append(b_ly)
+    data_ly.append(c_ly)
+
+
+    for summary in Summary:
+        if summary.breathing_test == 'normal':
+            a_esp += 1
+        elif summary.breathing_test == 'tahdidi':
+            b_esp += 1
+        elif summary.breathing_test == 'ensedadi':
+            c_esp += 1
+        elif summary.breathing_test == 'try':
+            d_esp += 1
+        elif summary.breathing_test == 'namaie_toaman':
+            e_esp += 1
+        elif summary.breathing_test == 'none' or summary.breathing_test == 'null':
+            f_esp += 1
+    data_esp.append(a_esp)
+    data_esp.append(b_esp)
+    data_esp.append(c_esp)
+    data_esp.append(d_esp) 
+    data_esp.append(e_esp)
+    data_esp.append(f_esp) 
+
+    for summary in Summary:
+        if summary.right_ear_hearing == 'normal':
+            a_rg += 1
+        elif summary.right_ear_hearing == 'kahesh_shenavai_hedayati':
+            b_rg += 1
+        elif summary.right_ear_hearing == 'kahesh_shenavai_hesi_asabi':
+            c_rg += 1
+        elif summary.right_ear_hearing == 'kahesh_shenavai_nashi_az_seda':
+            d_rg += 1
+        elif summary.right_ear_hearing == 'toaman_hedayati_va_hesi_asabi':
+            e_rg += 1
+        elif summary.right_ear_hearing == 'none' or summary.right_ear_hearing == 'null':
+            f_rg += 1
+    data_rg.append(a_rg)
+    data_rg.append(b_rg)
+    data_rg.append(c_rg)
+    data_rg.append(d_rg) 
+    data_rg.append(e_rg)
+    data_rg.append(f_rg) 
+
+
+
+    for summary in Summary:
+        if summary.left_ear_hearing == 'normal':
+            a_lg += 1
+        elif summary.left_ear_hearing == 'kahesh_shenavai_hedayati':
+            b_lg += 1
+        elif summary.left_ear_hearing == 'kahesh_shenavai_hesi_asabi':
+            c_lg += 1
+        elif summary.left_ear_hearing == 'kahesh_shenavai_nashi_az_seda':
+            d_lg += 1
+        elif summary.left_ear_hearing == 'toaman_hedayati_va_hesi_asabi':
+            e_lg += 1
+        elif summary.left_ear_hearing == 'none' or summary.left_ear_hearing == 'null':
+            f_lg += 1
+    data_lg.append(a_lg)
+    data_lg.append(b_lg)
+    data_lg.append(c_lg)
+    data_lg.append(d_lg) 
+    data_lg.append(e_lg)
+    data_lg.append(f_lg)
+
+
+    for summary in Summary:
+        if summary.urine == 'normal':
+            a_u += 1
+        elif summary.urine == 'not_normal':
+            b_u += 1
+        elif summary.urine == 'none' or summary.urine == 'null':
+            c_u += 1  
+    data_u.append(a_u)
+    data_u.append(b_u)
+    data_u.append(c_u) 
+
+
+
+    for summary in Summary:
+        if summary.final_theory == 'belamane':
+            a_p += 1
+        elif summary.final_theory == 'taghir_shekl':
+            b_p += 1
+        elif summary.final_theory == 'mashrot':
+            c_p += 1
+        elif summary.final_theory == 'comision':
+            d_p += 1
+        elif  summary.final_theory == 'null':
+            e_p += 1
+    data_p.append(a_p)
+    data_p.append(b_p)
+    data_p.append(c_p)
+    data_p.append(d_p)
+    data_p.append(e_p)
+
+    for summary in Summary:
+        if summary.blood_lead < 20:
+            a_s += 1
+        elif summary.blood_lead < 30:
+            b_s += 1
+        elif summary.blood_lead >=30:
+            c_s += 1
+        else:
+            d_s += 1    
+    data_s.append(a_s)
+    data_s.append(b_s)
+    data_s.append(c_s)
+    data_s.append(d_s)
+
+
+
+    for summary in Summary:
+        if summary.PSA < 4:
+            a_psa += 1
+        elif summary.PSA >= 4:
+            b_psa += 1
+        else:
+            c_psa += 1    
+    data_psa.append(a_psa)
+    data_psa.append(b_psa)
+    data_psa.append(c_psa)
+
+
+    for summary in Summary:
+        if summary.heart == 'normal':
+            a_n += 1
+        elif summary.heart == 'taghirat_gheir_ekhtesasi':
+            b_n += 1
+        elif summary.heart == 'try':
+            c_n += 1
+        elif summary.heart == 'not_normal':
+            d_n += 1
+        elif  summary.heart == 'null' or summary.heart == 'none'  :
+            e_n += 1
+    data_n.append(a_n)
+    data_n.append(b_n)
+    data_n.append(c_n)
+    data_n.append(d_n)
+    data_n.append(e_n)
+
+
+    for summary in Summary:
+        if summary.D3 < 10:
+            a_d += 1
+        elif summary.D3 < 30:
+            b_d += 1
+        elif summary.D3 < 101:
+            c_d += 1
+        elif summary.D3 >= 101:
+            d_d += 1
+        else: 
+            e_d += 1
+    data_d.append(a_d)
+    data_d.append(b_d)
+    data_d.append(c_d)
+    data_d.append(d_d)
+    data_d.append(e_d)
+
+
+
     data=[data_tri,
     data_chl,
     data_sug,
