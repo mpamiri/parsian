@@ -245,3 +245,11 @@ border: 1px solid black;
 .mytable {
   font-size: 12px;
 }
+.parstable{
+  width : 1100px;
+  margin-right : 30px;
+  font-size: 20px;
+}
+.rfsize{
+  font-size: 15px;
+}

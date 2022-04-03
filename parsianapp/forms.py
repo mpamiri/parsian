@@ -23,7 +23,7 @@ class summary_of_results_form(forms.ModelForm):
         ,'age' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"1300",'max':"1400"})
         ,'length' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"100",'max':"300"})
         ,'weight' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"20",'max':"200"})
-        ,'blood_sugar' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"50",'max':"100"})
+        ,'blood_sugar' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"50",'max':"500"})
         ,'blood_pressure' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"5",'max':"20"})
         ,'cholesterol' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"50",'max':"1000"})
         ,'triglyceride' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"20",'max':"2000"})
