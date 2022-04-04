@@ -24,6 +24,7 @@ urlpatterns =[
     path('manage/output/graph',views.graph_view,name='graph'),  
     path('manage/output/solo_output',views.solo_output_view,name='solo_output'),  
     path('manage/submit_company/add_company',views.addcompany_view,name='addcompany'),
+    path('manage/output/examinations',views.examinations_view,name='examinations'),
     path('manage/output/solo_output/add_order',views.addorder_view,name='addorder')    
 ]
 urlpatterns += staticfiles_urlpatterns()

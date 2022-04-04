@@ -505,3 +505,8 @@ def addorder_view(request):
     if form.is_valid():
         new_order=form.save()
     return redirect('solo_output')    
+
+
+@login_required(login_url='login')
+def examinations_view(request):
+    return render(request, 'examinations.html')

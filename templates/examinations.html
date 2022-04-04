@@ -1,0 +1,1538 @@
+{% extends 'article/userbase.html' %}
+{% load static %}
+{% block content %}
+<style>
+    
+</style>
+<section class="b-green">
+    <div>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    معاینات
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 100" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
+            <stop stop-color="rgba(127, 255, 0, 1)" offset="0%"></stop>
+            <stop stop-color="rgba(127, 255, 0, 1)" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)"
+          d="M0,30L80,38.3C160,47,320,63,480,60C640,57,800,33,960,25C1120,17,1280,23,1440,31.7C1600,40,1760,50,1920,51.7C2080,53,2240,47,2400,50C2560,53,2720,67,2880,61.7C3040,57,3200,33,3360,25C3520,17,3680,23,3840,30C4000,37,4160,43,4320,46.7C4480,50,4640,50,4800,55C4960,60,5120,70,5280,68.3C5440,67,5600,53,5760,53.3C5920,53,6080,67,6240,66.7C6400,67,6560,53,6720,55C6880,57,7040,73,7200,66.7C7360,60,7520,30,7680,28.3C7840,27,8000,53,8160,68.3C8320,83,8480,87,8640,88.3C8800,90,8960,90,9120,76.7C9280,63,9440,37,9600,25C9760,13,9920,17,10080,20C10240,23,10400,27,10560,25C10720,23,10880,17,11040,25C11200,33,11360,57,11440,68.3L11520,80L11520,100L11440,100C11360,100,11200,100,11040,100C10880,100,10720,100,10560,100C10400,100,10240,100,10080,100C9920,100,9760,100,9600,100C9440,100,9280,100,9120,100C8960,100,8800,100,8640,100C8480,100,8320,100,8160,100C8000,100,7840,100,7680,100C7520,100,7360,100,7200,100C7040,100,6880,100,6720,100C6560,100,6400,100,6240,100C6080,100,5920,100,5760,100C5600,100,5440,100,5280,100C5120,100,4960,100,4800,100C4640,100,4480,100,4320,100C4160,100,4000,100,3840,100C3680,100,3520,100,3360,100C3200,100,3040,100,2880,100C2720,100,2560,100,2400,100C2240,100,2080,100,1920,100C1760,100,1600,100,1440,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
+</svg>
+<section class='container'>
+    <form>
+        <div class='row text-center mb-4'>
+            <div class='col'>
+                به نام خدا
+            </div>
+        </div>
+        <div class='row text-center'>
+            <table>
+                <tr>
+                    <td rowspan='4' width=30%><img src="{% static 'images/examination2.png' %}" style="height: 80px;width: 150px;">
+                    </td>
+                    <td width=17%>نوع معاینات</td>
+                    <td>شغل</td>
+                    <td rowspan='4' width=17%>محل الصاق عکس</td>
+                </tr>
+                <tr>
+                    <td width=17%>تاریخ</td>
+                    <td>شغل</td>
+                </tr>
+                <tr>
+                    <td width=17%>شماره پرونده</td>
+                    <td>شغل</td>
+                </tr>
+                <tr>
+                    <td width=17%>شماره استخدامی شاغل</td>
+                    <td>شغل</td>
+                </tr>
+            </table>
+        </div>
+        <div class='row mt-4 b-green'>
+            <div class='col'>
+                1-مشخصات فردی شاغل
+            </div>
+        </div>
+        <div class='row mt-4 text-center'>
+            <div class='col'>
+                <lable>نام و نام خانوادگی:</lable>
+            </div>
+            <div class='col'>
+                <lable>نام پدر:</lable>
+            </div>
+            <div class='col'>
+                <lable>جنسیت:</lable>
+            </div>
+            <div class='col'>
+                <lable>وضعیت تاهل:</lable>
+            </div>
+            <div class='col'>
+                <lable>تعداد فرزندان:</lable>
+            </div>
+        </div>
+        <div class='row text-center mt-4'>
+            <div class='col'>
+                <lable>سال تولد:</lable>
+            </div>
+            <div class='col'>
+                <lable>کد ملی:</lable>
+            </div>
+            <div class='col'>
+                <lable>وضعیت نظام وظیفه:</lable>
+            </div>
+            <div class='col'>
+                <lable>رسته خدمت:</lable>
+            </div>
+            <div class='col'>
+                <lable>معافیت پزشکی</lable>
+            </div>
+        </div>
+        <div class='row text-center mt-4'>
+            <div class='col'>
+                <lable>علت معافیت پزشکی:</lable>
+            </div>
+            <div class='col'>
+                <lable>نام واحد کاری:</lable>
+            </div>
+            <div class='col'>
+                <lable>نام کارفرما:</lable>
+            </div>
+        </div>
+        <div class='row mt-4'>
+            <div class='col'>
+                <lable>ادرس و تلفن محل کار:</lable>
+            </div>
+        </div>
+        <div class='row mt-4 b-green'>
+            <div class='col'>
+                2-سوابق شغلی
+            </div>
+        </div>
+        <div class='row text-center'>
+            <table>
+                <tr>
+                    <td rowspan='4'>مشاغل فعلی</td>
+                    <td rowspan='2'>عنوان/سمت</td>
+                    <td rowspan='2'>وظیفه محوله</td>
+                    <td colspan='2'>تاریخ اشتغال</td>
+                    <td rowspan='2'>علت تغییر شغل</td>
+                </tr>
+                <tr>
+                    <td>از</td>
+                    <td>تا</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan='2'>مشاغل قبلی</td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class='row b-green'>
+            <div class='col'>
+                3-ارزیابی عوامل زیان آور شغلی:
+            </div>
+        </div>
+        <div class='row'>
+            <table>
+                <tr class='text-center'>
+                    <th width=10%></th>
+                    <th>فیزیکی</th>
+                    <th>شیمیایی</th>
+                    <th>بیولوژیک</th>
+                    <th>ارگونومی</th>
+                    <th>روانی</th>
+                </tr>
+                <tr>
+                    <th width=10%>مشاغل فعلی</th>
+                    <th>
+                        <input type="checkbox" id="vehicle1" >
+                        <label for="vehicle1"> سر و صدا</label><br>
+                        <input type="checkbox" id="vehicle2">
+                        <label for="vehicle2"> ارتعاش</label><br>
+                        <input type="checkbox" id="vehicle3">
+                        <label for="vehicle3"> اشعه غیر یونیزان</label><br><br>
+                    </th>
+                    <th>
+                        <input type="checkbox" id="vehicle1" >
+                        <label for="vehicle1"> سر و صدا</label><br>
+                        <input type="checkbox" id="vehicle2">
+                        <label for="vehicle2"> ارتعاش</label><br>
+                        <input type="checkbox" id="vehicle3">
+                        <label for="vehicle3"> اشعه غیر یونیزان</label><br><br>
+                    </th>
+                    <th>
+                        <input type="checkbox" id="vehicle1" >
+                        <label for="vehicle1"> سر و صدا</label><br>
+                        <input type="checkbox" id="vehicle2">
+                        <label for="vehicle2"> ارتعاش</label><br>
+                        <input type="checkbox" id="vehicle3">
+                        <label for="vehicle3"> اشعه غیر یونیزان</label><br><br>
+                    </th>
+                    <th>
+                        <input type="checkbox" id="vehicle1" >
+                        <label for="vehicle1"> سر و صدا</label><br>
+                        <input type="checkbox" id="vehicle2">
+                        <label for="vehicle2"> ارتعاش</label><br>
+                        <input type="checkbox" id="vehicle3">
+                        <label for="vehicle3"> اشعه غیر یونیزان</label><br><br>
+                    </th>
+                    <th>
+                        <input type="checkbox" id="vehicle1" >
+                        <label for="vehicle1"> سر و صدا</label><br>
+                        <input type="checkbox" id="vehicle2">
+                        <label for="vehicle2"> ارتعاش</label><br>
+                        <input type="checkbox" id="vehicle3">
+                        <label for="vehicle3"> اشعه غیر یونیزان</label><br><br>
+                    </th>
+                </tr>
+                <tr>
+                    <th width=10% >مشاغل قبلی</th>
+                    <th>
+                        <input type="checkbox" id="vehicle1" >
+                        <label for="vehicle1"> سر و صدا</label><br>
+                        <input type="checkbox" id="vehicle2">
+                        <label for="vehicle2"> ارتعاش</label><br>
+                        <input type="checkbox" id="vehicle3">
+                        <label for="vehicle3"> اشعه غیر یونیزان</label><br><br>
+                    </th>
+                    <th>
+                        <input type="checkbox" id="vehicle1" >
+                        <label for="vehicle1"> سر و صدا</label><br>
+                        <input type="checkbox" id="vehicle2">
+                        <label for="vehicle2"> ارتعاش</label><br>
+                        <input type="checkbox" id="vehicle3">
+                        <label for="vehicle3"> اشعه غیر یونیزان</label><br><br>
+                    </th>
+                    <th>
+                        <input type="checkbox" id="vehicle1" >
+                        <label for="vehicle1"> سر و صدا</label><br>
+                        <input type="checkbox" id="vehicle2">
+                        <label for="vehicle2"> ارتعاش</label><br>
+                        <input type="checkbox" id="vehicle3">
+                        <label for="vehicle3"> اشعه غیر یونیزان</label><br><br>
+                    </th>
+                    <th>
+                        <input type="checkbox" id="vehicle1" >
+                        <label for="vehicle1"> سر و صدا</label><br>
+                        <input type="checkbox" id="vehicle2">
+                        <label for="vehicle2"> ارتعاش</label><br>
+                        <input type="checkbox" id="vehicle3">
+                        <label for="vehicle3"> اشعه غیر یونیزان</label><br><br>
+                    </th>
+                    <th>
+                        <input type="checkbox" id="vehicle1" >
+                        <label for="vehicle1"> سر و صدا</label><br>
+                        <input type="checkbox" id="vehicle2">
+                        <label for="vehicle2"> ارتعاش</label><br>
+                        <input type="checkbox" id="vehicle3">
+                        <label for="vehicle3"> اشعه غیر یونیزان</label><br><br>
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan='6'>توضیحات لازم در خصوص موارد ثبت شده در جدول و ثبت نتایج اندازه گیری ها:</td>
+                </tr>
+                <tr>
+                    <td colspan='6'>کارشناسی بهداشت حرفه ای در خصوص شرایط محیط کار:</td>
+                </tr>
+                <tr>
+                    <td colspan='6'>
+                        <div class='row'>
+                            <div class='col'>
+                                نام و نام خانوادگی کارشناس بهداشت حرفه ای:
+                            </div>
+                            <div class='col'>
+                                تاریخ:
+                            </div>
+                            <div class='col'>
+                                مهر و امضا:
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div> 
+        <div class='row text-center mt-5'>
+            <div class='col'>
+                نام و نام خانوادگی:
+            </div>
+        </div>
+        <div class='row b-green'>
+            <div class='col'>
+                4-سابقه شخصی,خانوادگی و پزشکی:(بر اساس پاسخ شاغل تکمیل شود)
+            </div>
+        </div>
+        <div class='row'>
+            <table>
+                <tr class='text-center'>
+                    <th width=7%>ردیف</th>
+                    <th width=45%>سوال</th>
+                    <th width=7%>بلی</th>
+                    <th width=7%>خیر</th>
+                    <th>توضیحات</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>آیا سابقه بیماری دارید؟ذکر نمایید.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>در صورت ابتلا به بیماری آیا علایم شما در محیط کار تغییر می کند؟</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>در صورت ابتلا به بیماری آیا همکاران شما علایم مشابه در محل کار دارند؟</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>در صورت ابتلا به بیماری آیا علایم شما در زمان تعطیلات و مرخصی ها تغییر می کند؟</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>آیا به غذا,دارو یا ماده خاصی حساسیت دارید؟</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>آیا سابقه بستری در بیمارستان دارید؟به چه دلیل؟</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>آیا سابقه عمل جراحی دارید؟ذکر نمایید</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>آیا سابقه سرطان یا بیماری مزمن در فامیل دارید؟ذکر نمایید</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>آیا دارو خاصی مصرف می کنید؟ذکر کنید.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>آیا اکنون سیگار می کشید؟</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <div class='row'>
+                            <div class='col'>
+                                تعداد نخ روزانه:
+                            </div>
+                            <div class='col'>
+                                مدت استعمال:
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>آیا سابقه قبلی مصرف سیگار دارید؟</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <div class='row'>
+                            <div class='col'>
+                                تعداد نخ روزانه:
+                            </div>
+                            <div class='col'>
+                                مدت استعمال:
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>آیا در اوقات فراغت به ورزش یا سرگرمی خاصی مشغول هستید؟ذکر کنید.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>آیا تا کنون به حادثه شغلی دچار شده اید؟</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <div class='row'>
+                            <div class='col'>
+                                نوع آسیب:
+                            </div>
+                            <div class='col'>
+                                علت:
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>آیا سابقه غیبت از کار به دلیل بیماری بیش از 3 روز دارید؟</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>آیا منزل شما در مجاورت مرکز صنعتی قرار دارد؟</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>آیا سابقه معرفی به کمیسیون پزشکی را دارید؟</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class='row text-center'>
+            <div class='col'>
+                امضا و اثر انگشت شاغل مبنی بر تایید اظهارات فوق:
+            </div>
+        </div>
+        <div class='row b-green mt-5'>
+            <div class='col'>
+                5-معاینات:
+            </div>
+        </div>
+        <div class='row text-center'>
+            <div class='col'>
+                تاریخ:
+            </div>
+            <div class='col'>
+                وزن(kg):
+            </div>
+            <div class='col'>
+                فشار خون(mmHg):
+            </div>
+        </div>
+        <div class='row text-center'>
+            <div class='col'>
+                
+            </div>
+            <div class='col'>
+                قد(Cm):
+            </div>
+            <div class='col'>
+                تعداد نبض(در دقیقه):
+            </div>
+        </div>
+        <div class='row text-center mt-1'>
+            <table class='thetable'>
+                <tr>
+                    <th>بررسی ارگان ها</th>
+                    <th colspan='2'>در صورت وجود هریک ازین موارد زیردر محل مربوط علامت زده و خصوصیات.شدت و مدت زمان نشانه یا علامت در بخش توضیحات درج شود</th>
+                </tr>
+                <tr>
+                    <td rowspan='3'>عمومی</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>کاهش وزن</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>کاهش اشتها</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>خستگی مزمن</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>اختلال در خواب</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تعریق بیش از حد</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>عدم تحمل گرما و سرما</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تب</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>وضعیت ظاهری(toxic/ill)</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>مخاطات رنگ پریده</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>چشم</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>کاهش حد بینایی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تاری دید</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>خستگی چشم</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>دوبینی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>سوزش چشم</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>ترس از نور</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>اشک ریزش</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>رفلکس غیر طبیعی مردمک</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>قرمزی چشم</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>اسکلرای ایکتریک</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>نیستاگموس</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>پوست,مو و ناخن</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>خارش پوست</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ریزش مو</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>قرمزی پوست</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تغییر رنگ پوست</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>زخم مزمن</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>پوسته ریزی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تغییر رنگ ناخن</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>ماکول</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>پاپول</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ندول</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>وزیکول</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>زخم</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>کهیر</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>کلابینگ</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ریزش منطقه ای مو</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ریزش جنرال مو</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>تغییرات پیگمانی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>گوش,حلق,بینی و دهان</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>کاهش شنوایی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>وزوز گوش</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>سرگیجه واقعی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>درد گوش</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ترشح گوش</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>گرفتگی صدا</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>گلودرد</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>آبریزش بینی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>اختلال بویایی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>خارش و سوزش بینی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>خونریزی بینی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>خشکی دهان</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>احساس مزه فلزی در دهان</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>التهاب پرده تمپان</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>پارگی پرده تمپان</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>افزایش غیر طبیعی سرومن</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ترشح پشت حلق</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>اگزودای حلق</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>قرمزی حلق</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>پولیپ بینی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تندرنس سینوس ها</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>lead line</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بوی بد دهان</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>التهاب لثه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>پرفوراسیون/زخم سپتوم</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>سر و گردن</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>درد گردن</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>توده گردنی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>بزرگی تیروئید</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>لنفادنوپاتی گردنی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>ریه</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>سرفه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>خلط</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تنگی نفس کوشش</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>خس خس سینه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>وضعیت ظاهری غیر طبیعی قفسه سینه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>خشونت صدا</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ویزینگ</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>کراکل</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تاکی پنه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>کاهش صداهای ریوی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>قلب و عروق</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>درد قفسه سینه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تپش قلب</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تنگی نفس ناگهانی شبانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تنگی نفس دروضعیت خوابیده</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>سیانوز</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>سابقه سنکوپ</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>S1S2غیر طبیعی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>صدای اضافه قلب</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>آریتمی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>واریس اندام تحتانی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>واریس اندام فوقانی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ادم اندام</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>شکم و لگن</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>بی اشتهایی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تهوع</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>استفراغ</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>درد شکم</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>سوزش سر دل</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>اسهال</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>یبوست</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>مدفوع قیری</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>خون روشن در مدفوع</lable>
+                                <input type='checkbox'></input>
+                            </div>               
+                            <div class='col'>
+                                <lable>اختلال در بلع</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>تندرنس شکمی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ریباند تندرنس</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>هپاتومگالی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>اسپلنومگالی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>آسیت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>توده شکمی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>دیستانسیون شکمی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>کلیه و مجاری ادراری,تناسلی</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>سوزش درار</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تکرر ادرار</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ادرار خونی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>درد پهلو</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>احساس سنگینی یا توده در بیضه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>تندرستیCVA</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>واریکوسل</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>اسکلتی و عضلانی</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>خشکی مفصل</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>کمردرد</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>درد زانو</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>درد شانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>درد سایر مفاصل</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>محدودیت حرکتی مفصل</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>کاهش قدرت عضلانی در اندام فوقانی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>کاهش قدرت عضلانی در اندام تحتانی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>اسکولیوز</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>امپوتاسیون</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تست SLR مثبت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تست Reverse-SLR</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>سیستم عصبی</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>سردرد</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>گیجی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>لرزش</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>اختلال حافظه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>سابقه صرع/تشنج</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>گز گز و مور مور انگشتان دست</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>رفلکس زانوی غیر طبیعی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>رفلکس آشیل غیرطبیعی</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تست رومبرگ مختل</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>ترمور</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>اختلال حسی اندام ها</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تست تینل مثبت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>تست فالن مثبت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+                <tr>
+                    <td rowspan='3'>اعصاب و روان</td>
+                    <td> Symptom</td>
+                    <td> 
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>عصبانیت بیش از حد</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>پرخاشگری</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>اضطراب</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>خلق پایین</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>کاهش انگیزه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون علامت</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sign</td>
+                    <td>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                <lable>هذیان</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>توهم</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>اختلال اوریانتاسیون</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>غیره.....</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                            <div class='col'>
+                                <lable>بدون نشانه</lable>
+                                <input type='checkbox'></input>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td><input type='text' class='remove' style='width:930px'></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</section>
+{% endblock content %}
