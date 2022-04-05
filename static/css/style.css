@@ -263,3 +263,6 @@ border: 1px solid black;
 .remove:focus{
   outline: none;
 }
+.hwidth{
+  width: 100%;
+}
