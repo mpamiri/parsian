@@ -77,7 +77,7 @@ def submit_person_view(request):
     form=summary_of_results_form(initial=initial_dict)
     context={'form':form,
     'code_list':code_list}
-    return render(request,'summary_of_results.html',context)
+    return render(request,'examinations.html',context)
 
 
 @require_POST
@@ -509,4 +509,6 @@ def addorder_view(request):
 
 @login_required(login_url='login')
 def examinations_view(request):
-    return render(request, 'examinations.html')
+    form=summary_of_results_form()
+    context={'form' : form}
+    return render(request, 'examinations.html',context)
