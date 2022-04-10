@@ -25,6 +25,7 @@
         <form action='{% url 'addsummary' %}' method='POST'>
             <div class='row text-center mt-4'>
                 <div class='col'>
+                    {% load crispy_forms_tags %}
                     {% csrf_token %}
                     <lable for='name'> نام و نام خانوادگی</lable>
                     {{ form.name }}
@@ -48,7 +49,6 @@
                     {{ form.number }}
                 </div>
                 <div class='col'>
-                    <lable for='gender'>جنسیت</lable>
                     {{ form.gender }}
                 </div>
                 <div class='col'>

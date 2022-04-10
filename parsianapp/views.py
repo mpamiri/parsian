@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .models import summary_of_results,submit_company,disease,order
-from .forms import registration, summary_of_results_form,submit_company_form,disease_form,order_form
+from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model
+from .forms import registration, summary_of_results_form,submit_company_form,disease_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -63,8 +63,8 @@ def manage_view(request):
 
 @login_required(login_url='login')
 def submit_person_view(request):
-    work=summary_of_results.objects.last()
-    code_list=submit_company.objects.order_by('id')
+    work=Summary_Of_Results_Model.objects.last()
+    code_list=Submit_Company_Model.objects.order_by('id')
     if work:
         code=work.examinations_code
     else:
@@ -73,7 +73,7 @@ def submit_person_view(request):
         'examinations_code':code
         
     }
-    messages.error(request,'خارج از بازه تعریف شده')
+
     form=summary_of_results_form(initial=initial_dict)
     context={'form':form,
     'code_list':code_list}
@@ -110,63 +110,65 @@ def addcompany_view(request):
 @login_required(login_url='login')
 def output_view(request):
     form=disease_form()
-    code_list=submit_company.objects.order_by('id')
+    code_list=Submit_Company_Model.objects.order_by('id')
     context={'form':form,'code_list':code_list}
     return render(request,'output.html',context)
 
 @require_POST
 def adddisease_view(request):
+    model=Disease_Model.objects.get(pk=1)
     form=disease_form(request.POST)
     if form.is_valid():
-        new_disease=form.save()
+        model.examinations_code=form.cleaned_data['examinations_code']
+        model.save()
     return redirect('output')
 
 
 @login_required(login_url='login')
 def disease_code_view(request):
-    work=disease.objects.last()
+    work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
     else:
         code=''
-    Summary=summary_of_results.objects.filter(examinations_code=code)
-    company=submit_company.objects.filter(examinations_code=code)
+    Summary=Summary_Of_Results_Model.objects.filter(examinations_code=code)
+    company=Submit_Company_Model.objects.filter(examinations_code=code)
     context={'Summary':Summary,'Company':company}
     return render(request, 'disease_code.html',context)
 
 @login_required(login_url='login')
 def open_docs_view(request):
-    work=disease.objects.last()
+    work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
     else:
         code=''
-    Summary=summary_of_results.objects.filter(examinations_code=code)
-    company=submit_company.objects.filter(examinations_code=code)
+    Summary=Summary_Of_Results_Model.objects.filter(examinations_code=code)
+    company=Submit_Company_Model.objects.filter(examinations_code=code)
     context={'Summary':Summary,'Company':company}
     return render(request, 'open_docs.html',context)
 
 @login_required(login_url='login')
 def summary_of_examinations_view(request):
-    work=disease.objects.last()
+    work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
     else:
         code=''
-    Summary=summary_of_results.objects.filter(examinations_code=code)
-    company=submit_company.objects.filter(examinations_code=code)
+    Summary=Summary_Of_Results_Model.objects.filter(examinations_code=code)
+    company=Submit_Company_Model.objects.filter(examinations_code=code)
     context={'Summary':Summary,'Company':company}
     return render(request, 'summary_of_examinations.html',context)
 
 @login_required(login_url='login')
 def problem_view(request):
-    work=disease.objects.last()
+    work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
     else:
         code=''
-    Summary=summary_of_results.objects.filter(examinations_code=code)
-    company=submit_company.objects.filter(examinations_code=code)
+    Summary=Summary_Of_Results_Model.objects.filter(examinations_code=code)
+    company=Submit_Company_Model.objects.filter(examinations_code=code)
     context={'Summary':Summary,'Company':company}
     return render(request, 'problem.html',context)
 
@@ -207,13 +209,13 @@ def graph_view(request):
     data_n=[]
     a_d,b_d,c_d,d_d,e_d=0,0,0,0,0
     data_d=[]
-    work=disease.objects.last()
+    work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
     else:
         code=''
-    Summary=summary_of_results.objects.filter(examinations_code=code)
-    company=submit_company.objects.filter(examinations_code=code)
+    Summary=Summary_Of_Results_Model.objects.filter(examinations_code=code)
+    company=Submit_Company_Model.objects.filter(examinations_code=code)
     for summary in Summary:
         count+=1
         if summary.triglyceride < 200:
@@ -471,8 +473,8 @@ def graph_view(request):
 
 @login_required(login_url='login')
 def solo_output_view(request):
-    work=disease.objects.last()
-    model=order.objects.last()
+    work=Disease_Model.objects.last()
+    model=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
     else:
@@ -481,17 +483,17 @@ def solo_output_view(request):
         number=model.order_number
     else:
         number='1'
-    Summary=summary_of_results.objects.filter(examinations_code=code)
-    p = Paginator(summary_of_results.objects.filter(examinations_code=code),number)
+    Summary=Summary_Of_Results_Model.objects.filter(examinations_code=code)
+    p = Paginator(Summary_Of_Results_Model.objects.filter(examinations_code=code),number)
     page=request.GET.get('page')
     solo_page=p.get_page(page)
-    company=submit_company.objects.filter(examinations_code=code)
+    company=Submit_Company_Model.objects.filter(examinations_code=code)
     nums='a' * solo_page.paginator.num_pages
     initial_dict = {
         'order_number':number
         
     }
-    form=order_form(initial=initial_dict)
+    form=disease_form(initial=initial_dict)
     context={'Summary':Summary,'Company':company,'solo_page':solo_page,'nums':nums,'form':form}
     return render(request, 'solo_output.html',context)
 
@@ -501,9 +503,11 @@ def input_view(request):
 
 @require_POST
 def addorder_view(request):
-    form=order_form(request.POST)
+    model=Disease_Model.objects.get(pk=1)
+    form=disease_form(request.POST)
     if form.is_valid():
-        new_order=form.save()
+        model.order_number=form.cleaned_data['order_number']
+        model.save()
     return redirect('solo_output')    
 
 

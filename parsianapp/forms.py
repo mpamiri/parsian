@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import summary_of_results,submit_company,disease,order
+from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model
 from . import models
 from django.core.validators import MaxValueValidator, MinValueValidator 
 class registration(UserCreationForm):
@@ -12,11 +12,11 @@ class registration(UserCreationForm):
 
 class summary_of_results_form(forms.ModelForm):
     class Meta:
-        model = summary_of_results
+        model = Summary_Of_Results_Model
         fields = '__all__'
         widgets={
         'code' : forms.Select(attrs={'class':'box','autocomplete': 'off'})
-        ,'gender' : forms.Select(attrs={'class':'box','autocomplete': 'off'})
+        ,'gender' : forms.RadioSelect(attrs={'class':'box form-check-inline','autocomplete': 'off'})
         ,'number' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"0"})
         ,'start_month' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"1",'max':"12"})
         ,'start_year' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off','min':"1300",'max':"1400"})
@@ -78,10 +78,10 @@ class summary_of_results_form(forms.ModelForm):
 
 class submit_company_form(forms.ModelForm):
     class Meta:
-        model = submit_company
+        model = Submit_Company_Model
         fields = '__all__'
         widgets={
-        'company' : forms.TextInput(attrs={'autocomplete': 'off'})
+        'company' : forms.TextInput(attrs={'autocomplete': 'off' , })
         ,'doctor' : forms.TextInput(attrs={'autocomplete': 'off'})
         ,'specialist' : forms.TextInput(attrs={'autocomplete': 'off'})
         ,'date' : forms.TextInput(attrs={'autocomplete': 'off'})
@@ -89,12 +89,8 @@ class submit_company_form(forms.ModelForm):
 
 class disease_form(forms.ModelForm):
     class Meta:
-        model=disease
+        model=Disease_Model
         fields='__all__'
-        widgets={'examinations_code' : forms.TextInput(attrs={'id':'myInput','onkeyup':"filterFunction()",'autocomplete': 'off'})}   
+        widgets={'examinations_code' : forms.TextInput(attrs={'id':'myInput','onkeyup':"filterFunction()",'autocomplete': 'off'})
+        ,'order_number' : forms.Select(attrs={'class':'choose','autocomplete': 'off'})}   
 
-class order_form(forms.ModelForm):   
-    class Meta:
-        model = order
-        fields = '__all__'
-        widgets={'order_number' : forms.Select(attrs={'class':'choose','autocomplete': 'off'})}
