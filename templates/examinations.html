@@ -27,7 +27,7 @@
           d="M0,30L80,38.3C160,47,320,63,480,60C640,57,800,33,960,25C1120,17,1280,23,1440,31.7C1600,40,1760,50,1920,51.7C2080,53,2240,47,2400,50C2560,53,2720,67,2880,61.7C3040,57,3200,33,3360,25C3520,17,3680,23,3840,30C4000,37,4160,43,4320,46.7C4480,50,4640,50,4800,55C4960,60,5120,70,5280,68.3C5440,67,5600,53,5760,53.3C5920,53,6080,67,6240,66.7C6400,67,6560,53,6720,55C6880,57,7040,73,7200,66.7C7360,60,7520,30,7680,28.3C7840,27,8000,53,8160,68.3C8320,83,8480,87,8640,88.3C8800,90,8960,90,9120,76.7C9280,63,9440,37,9600,25C9760,13,9920,17,10080,20C10240,23,10400,27,10560,25C10720,23,10880,17,11040,25C11200,33,11360,57,11440,68.3L11520,80L11520,100L11440,100C11360,100,11200,100,11040,100C10880,100,10720,100,10560,100C10400,100,10240,100,10080,100C9920,100,9760,100,9600,100C9440,100,9280,100,9120,100C8960,100,8800,100,8640,100C8480,100,8320,100,8160,100C8000,100,7840,100,7680,100C7520,100,7360,100,7200,100C7040,100,6880,100,6720,100C6560,100,6400,100,6240,100C6080,100,5920,100,5760,100C5600,100,5440,100,5280,100C5120,100,4960,100,4800,100C4640,100,4480,100,4320,100C4160,100,4000,100,3840,100C3680,100,3520,100,3360,100C3200,100,3040,100,2880,100C2720,100,2560,100,2400,100C2240,100,2080,100,1920,100C1760,100,1600,100,1440,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
 </svg>
 <section class='container'>
-    <form>
+    <form action='{% url 'addexaminations' %}' method='POST'>
         <div class='row text-center mb-4'>
             <div class='col'>
                 به نام خدا
@@ -39,20 +39,21 @@
                     <td rowspan='4' width=30%><img src="{% static 'images/examination2.png' %}" style="height: 80px;width: 150px;">
                     </td>
                     <td width=17%>نوع معاینات</td>
-                    <td><input type='text'></td>
+                    {% csrf_token %}
+                    <td>{{ personal_species.examinations_type }}</td>
                     <td rowspan='4' width=17%>محل الصاق عکس</td>
                 </tr>
                 <tr>
                     <td width=17%>تاریخ</td>
-                    <td><input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13</td>
+                    <td>{{ personal_species.date_year }}/{{ personal_species.date_month }}/{{ personal_species.date_day }}13</td>
                 </tr>
                 <tr>
                     <td width=17%>شماره پرونده</td>
-                    <td><input type='number'></td>
+                    <td>{{ personal_species.profil_number }}</td>
                 </tr>
                 <tr>
                     <td width=17%>شماره استخدامی شاغل</td>
-                    <td><input type='text'></td>
+                    <td>{{ personal_species.employment_number }}</td>
                 </tr>
             </table>
         </div>
@@ -64,51 +65,67 @@
         <div class='row mt-4 text-center'>
             <div class='col'>
                 <lable>نام و نام خانوادگی:</lable>
+                {{ personal_species.name }}
             </div>
             <div class='col'>
                 <lable>نام پدر:</lable>
+                {{ personal_species.fathers_name }}
             </div>
             <div class='col'>
                 <lable>جنسیت:</lable>
-            </div>
-            <div class='col'>
-                <lable>وضعیت تاهل:</lable>
-            </div>
-            <div class='col'>
-                <lable>تعداد فرزندان:</lable>
+                {{ personal_species.gender }}
             </div>
         </div>
         <div class='row text-center mt-4'>
             <div class='col'>
+                <lable>وضعیت تاهل:</lable>
+                {{ personal_species.marriage_status }}
+            </div>
+            <div class='col'>
+                <lable>تعداد فرزندان:</lable>
+                {{ personal_species.children }}
+            </div>
+            <div class='col'>
                 <lable>سال تولد:</lable>
+                {{ personal_species.age }}
             </div>
             <div class='col'>
                 <lable>کد ملی:</lable>
+                {{ personal_species.personal_code }}
             </div>
+        </div>
+        <div class='row text-center mt-4'>
             <div class='col'>
                 <lable>وضعیت نظام وظیفه:</lable>
+                {{ personal_species.military_status }}
             </div>
             <div class='col'>
                 <lable>رسته خدمت:</lable>
+                {{ personal_species.raste }}
             </div>
             <div class='col'>
                 <lable>معافیت پزشکی</lable>
+                {{ personal_species.medical_exemption }}
             </div>
         </div>
         <div class='row text-center mt-4'>
             <div class='col'>
                 <lable>علت معافیت پزشکی:</lable>
+                {{ personal_species.medical_exemption_reason }}
             </div>
             <div class='col'>
                 <lable>نام واحد کاری:</lable>
+                {{ personal_species.job_name }}
             </div>
             <div class='col'>
                 <lable>نام کارفرما:</lable>
+                {{ personal_species.employer_name }}
             </div>
         </div>
         <div class='row mt-4'>
             <div class='col'>
                 <lable>آدرس و تلفن محل کار:</lable>
+                {{ personal_species.address }}
             </div>
         </div>
         <div class='row mt-4 b-green'>
@@ -130,32 +147,33 @@
                     <td>تا</td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ job_history.current_job }}</td>
+                    <td>{{ job_history.current_job_duty }}</td>
+                    <td>{{ job_history.current_job_from }}</td>
+                    <td>{{ job_history.current_job_to }}</td>
+                    <td>{{ job_history.current_job_reason }}</td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ job_history.second_current_job }}</td>
+                    <td>{{ job_history.second_current_job_duty }}</td>
+                    <td>{{ job_history.second_current_job_from }}</td>
+                    <td>{{ job_history.second_current_job_to }}</td>
+                    <td>{{ job_history.second_current_job_reason }}</td>
                 </tr>
                 <tr>
                     <td rowspan='2'>مشاغل قبلی</td>
-                    <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ job_history.previous_job }}</td>
+                    <td>{{ job_history.previous_job_duty }}</td>
+                    <td>{{ job_history.previous_job_from }}</td>
+                    <td>{{ job_history.previous_job_to }}</td>
+                    <td>{{ job_history.previous_job_reason }}</td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ job_history.second_previous_job }}</td>
+                    <td>{{ job_history.second_previous_job_duty }}</td>
+                    <td>{{ job_history.second_previous_job_from }}</td>
+                    <td>{{ job_history.second_previous_job_to }}</td>
+                    <td>{{ job_history.second_previous_job_reason }}</td>
                 </tr>
             </table>
         </div>
@@ -178,111 +196,111 @@
                     <td width=10%>مشاغل فعلی</td>
                     <td>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_ph_noise }}
                             <lable>سر و صدا</lable>                           
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_ph_erteash }}
                             <lable>ارتعاش</lable>                           
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_ph_not_unizan }}
                             <lable>اشعه غیر یونیزان</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_ph_unizan }}
                             <lable>اشعه یونیزان</lable>          
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_ph_stress }}
                             <lable>استرس حرارتی</lable>                         
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_ph_other }}
                             <lable>سایر</lable>                      
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_sh_dust }}
                             <lable>گرد و غبار</lable>                      
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_sh_metals }}
                             <lable>دمه فلزات</lable>                       
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_sh_halal }}
                             <lable>حلال</lable>                        
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_sh_afat }}
                             <lable>آفت کشها</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_sh_asidvbaz }}
                             <lable>اسید و بازها</lable>              
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_sh_gaz }}
                             <lable>گاز ها</lable>                        
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_bio_gazesh }}
                             <lable>گزش</lable>                         
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_bio_bactery }}
                             <lable>باکتری</lable>                         
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_bio_virus }}
                             <lable>ویروس</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_bio_angal }}
                             <lable>انگل</lable>                           
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_bio_other }}
                             <lable>سایر</lable>                           
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_er_standvsit }}
                             <lable>ایستادن یا نشستن طولانی مدت</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_er_loop }}
                             <lable>کار تکراری</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_er_hamlvnaghl }}
                             <lable>حمل و نقل بار سنگین</lable>                           
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_er_vaziat_namonaseb }}
                             <lable>وضعیت نامناسب بدن</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_er_other }}
                             <lable>سایر</lable>                           
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_rav_order }}
                             <lable>نوبت کاری</lable>                           
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_rav_stressor }}
                             <lable>استرسور های شغلی</lable>       
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.current_rav_other }}
                             <lable>سایر</lable>
                         </div>
                     </td>
@@ -291,129 +309,131 @@
                     <td width=10% >مشاغل قبلی</td>
                     <td>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_ph_noise }}
                             <lable>سر و صدا</lable>                           
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_ph_erteash }}
                             <lable>ارتعاش</lable>                           
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_ph_not_unizan }}
                             <lable>اشعه غیر یونیزان</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_ph_unizan }}
                             <lable>اشعه یونیزان</lable>          
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_ph_stress }}
                             <lable>استرس حرارتی</lable>                         
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_ph_other }}
                             <lable>سایر</lable>                      
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_sh_dust }}
                             <lable>گرد و غبار</lable>                      
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_sh_metals }}
                             <lable>دمه فلزات</lable>                       
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_sh_halal }}
                             <lable>حلال</lable>                        
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_sh_afat }}
                             <lable>آفت کشها</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_sh_asidvbaz }}
                             <lable>اسید و بازها</lable>              
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_sh_gaz }}
                             <lable>گاز ها</lable>                        
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_bio_gazesh }}
                             <lable>گزش</lable>                         
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_bio_bactery }}
                             <lable>باکتری</lable>                         
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_bio_virus }}
                             <lable>ویروس</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_bio_angal }}
                             <lable>انگل</lable>                           
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_bio_other }}
                             <lable>سایر</lable>                           
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_er_standvsit }}
                             <lable>ایستادن یا نشستن طولانی مدت</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_er_loop }}
                             <lable>کار تکراری</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_er_hamlvnaghl }}
                             <lable>حمل و نقل بار سنگین</lable>                           
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_er_vaziat_namonaseb }}
                             <lable>وضعیت نامناسب بدن</lable>                            
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_er_other }}
                             <lable>سایر</lable>                           
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_rav_order }}
                             <lable>نوبت کاری</lable>                           
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_rav_stressor }}
                             <lable>استرسور های شغلی</lable>       
                         </div>
                         <div>
-                            <input type='checkbox'>
+                            {{ assessment.previous_rav_other }}
                             <lable>سایر</lable>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan='6'>توضیحات لازم در خصوص موارد ثبت شده در جدول و ثبت نتایج اندازه گیری ها:</td>
+                    <td colspan='6'>توضیحات لازم در خصوص موارد ثبت شده در جدول و ثبت نتایج اندازه گیری ها:{{ assessment.required_description }}</td>
                 </tr>
                 <tr>
-                    <td colspan='6'>کارشناسی بهداشت حرفه ای در خصوص شرایط محیط کار:</td>
+                    <td colspan='6'>کارشناسی بهداشت حرفه ای در خصوص شرایط محیط کار:{{ assessment.kar_shenas }}</td>
                 </tr>
                 <tr>
                     <td colspan='6'>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                نام و نام خانوادگی کارشناس بهداشت حرفه ای:{{ assessment.kar_shenas_name }}
+                            </div>
+                        </div>
                         <div class='row'>
                             <div class='col'>
-                                نام و نام خانوادگی کارشناس بهداشت حرفه ای:
-                            </div>
-                            <div class='col'>
-                                تاریخ:
+                                تاریخ:{{ assessment.date_year }}/{{ assessment.date_month }}/{{ assessment.date_day }}13
                             </div>
                             <div class='col'>
                                 مهر و امضا:
@@ -425,7 +445,7 @@
         </div> 
         <div class='row text-center mt-5'>
             <div class='col'>
-                نام و نام خانوادگی:
+                نام و نام خانوادگی:{{ personal_history.name }}
             </div>
         </div>
         <div class='row b-green'>
@@ -445,78 +465,78 @@
                 <tr>
                     <td>1</td>
                     <td>آیا سابقه بیماری دارید؟ذکر نمایید.</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.first_y }}</td>
+                    <td>{{ personal_history.first_n }}</td>
+                    <td>{{ personal_history.first_des }}</td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>در صورت ابتلا به بیماری آیا علایم شما در محیط کار تغییر می کند؟</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.second_y }}</td>
+                    <td>{{ personal_history.second_n }}</td>
+                    <td>{{ personal_history.second_des }}</td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>در صورت ابتلا به بیماری آیا همکاران شما علایم مشابه در محل کار دارند؟</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.third_y }}</td>
+                    <td>{{ personal_history.third_n }}</td>
+                    <td>{{ personal_history.third_des }}</td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>در صورت ابتلا به بیماری آیا علایم شما در زمان تعطیلات و مرخصی ها تغییر می کند؟</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.fourth_y }}</td>
+                    <td>{{ personal_history.fourth_n }}</td>
+                    <td>{{ personal_history.fourth_des }}</td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td>آیا به غذا,دارو یا ماده خاصی حساسیت دارید؟</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.fifth_y }}</td>
+                    <td>{{ personal_history.fifth_n }}</td>
+                    <td>{{ personal_history.fifth_des }}</td>
                 </tr>
                 <tr>
                     <td>6</td>
                     <td>آیا سابقه بستری در بیمارستان دارید؟به چه دلیل؟</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.sixth_y }}</td>
+                    <td>{{ personal_history.sixth_n }}</td>
+                    <td>{{ personal_history.sixth_des }}</td>
                 </tr>
                 <tr>
                     <td>7</td>
                     <td>آیا سابقه عمل جراحی دارید؟ذکر نمایید</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.seventh_y }}</td>
+                    <td>{{ personal_history.seventh_n }}</td>
+                    <td>{{ personal_history.seventh_des }}</td>
                 </tr>
                 <tr>
                     <td>8</td>
                     <td>آیا سابقه سرطان یا بیماری مزمن در فامیل دارید؟ذکر نمایید</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.eighth_y }}/td>
+                    <td>{{ personal_history.eighth_n }}</td>
+                    <td>{{ personal_history.eighth_des }}</td>
                 </tr>
                 <tr>
                     <td>9</td>
                     <td>آیا دارو خاصی مصرف می کنید؟ذکر کنید.</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.ninth_y }}</td>
+                    <td>{{ personal_history.ninth_n }}</td>
+                    <td>{{ personal_history.ninth_des }}</td>
                 </tr>
                 <tr>
                     <td>10</td>
                     <td>آیا اکنون سیگار می کشید؟</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.tenth_y }}</td>
+                    <td>{{ personal_history.tenth_n }}</td>
                     <td>
                         <div class='row'>
                             <div class='col'>
-                                تعداد نخ روزانه:
+                                تعداد نخ روزانه:{{ personal_history.tenth_des_number }}
                             </div>
                             <div class='col'>
-                                مدت استعمال:
+                                مدت استعمال:{{ personal_history.tenth_des_duration }}
                             </div>
                         </div>
                     </td>
@@ -524,15 +544,15 @@
                 <tr>
                     <td>11</td>
                     <td>آیا سابقه قبلی مصرف سیگار دارید؟</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.eleventh_y }}</td>
+                    <td>{{ personal_history.eleventh_n }}</td>
                     <td>
                         <div class='row'>
                             <div class='col'>
-                                تعداد نخ روزانه:
+                                تعداد نخ روزانه:{{ personal_history.eleventh_des_number }}
                             </div>
                             <div class='col'>
-                                مدت استعمال:
+                                مدت استعمال:{{ personal_history.eleventh_des_duration }}
                             </div>
                         </div>
                     </td>
@@ -540,22 +560,22 @@
                 <tr>
                     <td>12</td>
                     <td>آیا در اوقات فراغت به ورزش یا سرگرمی خاصی مشغول هستید؟ذکر کنید.</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.twelfth_y }}</td>
+                    <td>{{ personal_history.twelfth_n }}</td>
+                    <td>{{ personal_history.twelfth_des }}</td>
                 </tr>
                 <tr>
                     <td>13</td>
                     <td>آیا تا کنون به حادثه شغلی دچار شده اید؟</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.thirteenth_y }}</td>
+                    <td>{{ personal_history.thirteenth_n }}</td>
                     <td>
                         <div class='row'>
                             <div class='col'>
-                                نوع آسیب:
+                                نوع آسیب:{{ personal_history.thirteenth_des_type }}
                             </div>
                             <div class='col'>
-                                علت:
+                                علت:{{ personal_history.thirteenth_des_reason }}
                             </div>
                         </div>
                     </td>
@@ -563,23 +583,23 @@
                 <tr>
                     <td>14</td>
                     <td>آیا سابقه غیبت از کار به دلیل بیماری بیش از 3 روز دارید؟</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.fourteenth_y }}</td>
+                    <td>{{ personal_history.fourteenth_n }}</td>
+                    <td>{{ personal_history.fourteenth_des }}</td>
                 </tr>
                 <tr>
                     <td>15</td>
                     <td>آیا منزل شما در مجاورت مرکز صنعتی قرار دارد؟</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.fifteenth_y }}</td>
+                    <td>{{ personal_history.fifteenth_n }}</td>
+                    <td>{{ personal_history.fifteenth_des }}</td>
                 </tr>
                 <tr>
                     <td>16</td>
                     <td>آیا سابقه معرفی به کمیسیون پزشکی را دارید؟</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ personal_history.sixteenth_y }}</td>
+                    <td>{{ personal_history.sixteenth_n }}</td>
+                    <td>{{ personal_history.sixteenth_des }}</td>
                 </tr>
             </table>
         </div>
@@ -595,13 +615,13 @@
         </div>
         <div class='row text-center'>
             <div class='col'>
-                تاریخ:
+                تاریخ:{{ examinations.date_year }}/{{ examinations.date_month }}/{{ examinations.date_day }}13
             </div>
             <div class='col'>
-                وزن(kg):
+                وزن(kg):{{ examinations.weight }}
             </div>
             <div class='col'>
-                فشار خون(mmHg):
+                فشار خون(mmHg):{{ examinations.blood_pressure }}
             </div>
         </div>
         <div class='row text-center'>
@@ -609,10 +629,10 @@
                 
             </div>
             <div class='col'>
-                قد(Cm):
+                قد(Cm):{{ examinations.length }}
             </div>
             <div class='col'>
-                تعداد نبض(در دقیقه):
+                تعداد نبض(در دقیقه):{{ examinations.pulse }}
             </div>
         </div>
         <div class='row text-center mt-1'>
@@ -628,41 +648,41 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کاهش وزن</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sym_kahesh_vazn }}
                             </div>
                             <div class='col'>
                                 <lable>کاهش اشتها</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sym_kahesh_eshteha }}
                             </div>
                             <div class='col'>
                                 <lable>خستگی مزمن</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sym_khastegi }}
                             </div>
                             <div class='col'>
                                 <lable>اختلال در خواب</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sym_ekhtelal_dar_khab }}
                             </div>
                             <div class='col'>
                                 <lable>تعریق بیش از حد</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sym_tarigh }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>عدم تحمل گرما و سرما</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sym_adam_tahamol }}
                             </div>
                             <div class='col'>
                                 <lable>تب</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sym_tab }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -673,26 +693,26 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>وضعیت ظاهری(toxic/ill)</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sign_zaheri }}
                             </div>
                             <div class='col'>
                                 <lable>مخاطات رنگ پریده</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sign_rang_paride }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.local_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth'></td>
+                    <td>{{ examinations.local_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>چشم</td>
@@ -701,41 +721,41 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کاهش حد بینایی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sym_kahesh_binayi }}
                             </div>
                             <div class='col'>
                                 <lable>تاری دید</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sym_tari_did }}
                             </div>
                             <div class='col'>
                                 <lable>خستگی چشم</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sym_khastegi }}
                             </div>
                             <div class='col'>
                                 <lable>دوبینی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sym_dobini }}
                             </div>
                             <div class='col'>
                                 <lable>سوزش چشم</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sym_sozesh }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>ترس از نور</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sym_tars_az_nor }}
                             </div>
                             <div class='col'>
                                 <lable>اشک ریزش</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sym_ashk }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -746,36 +766,36 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>رفلکس غیر طبیعی مردمک</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sign_reflex }}
                             </div>
                             <div class='col'>
                                 <lable>قرمزی چشم</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sign_red }}
                             </div>
                             <div class='col'>
                                 <lable>اسکلرای ایکتریک</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sign_sklrai }}
                             </div>
                             <div class='col'>
                                 <lable>نیستاگموس</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sign_nistagemos }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eye_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth'></td>
+                    <td>{{ examinations.eye_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>پوست,مو و ناخن</td>
@@ -784,41 +804,41 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>خارش پوست</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sym_kharesh_post }}
                             </div>
                             <div class='col'>
                                 <lable>ریزش مو</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sym_rizesh_mo }}
                             </div>
                             <div class='col'>
                                 <lable>قرمزی پوست</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sym_red }}
                             </div>
                             <div class='col'>
                                 <lable>تغییر رنگ پوست</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sym_taghir_post }}
                             </div>
                             <div class='col'>
                                 <lable>زخم مزمن</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sym_zakhm }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>پوسته ریزی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sym_poste_rizi }}
                             </div>
                             <div class='col'>
                                 <lable>تغییر رنگ ناخن</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sym_taghir_nakhon }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -829,62 +849,62 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>ماکول</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_makol }}
                             </div>
                             <div class='col'>
                                 <lable>پاپول</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_papol }}
                             </div>
                             <div class='col'>
                                 <lable>ندول</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_nadol }}
                             </div>
                             <div class='col'>
                                 <lable>وزیکول</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_vezikol }}
                             </div>
                             <div class='col'>
                                 <lable>زخم</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_zakhm }}
                             </div>
                             <div class='col'>
                                 <lable>کهیر</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_kahir }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کلابینگ</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_klabing }}
                             </div>
                             <div class='col'>
                                 <lable>ریزش منطقه ای مو</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_rizesh_mantaghe }}
                             </div>
                             <div class='col'>
                                 <lable>ریزش جنرال مو</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_rizesh_general }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>تغییرات پیگمانی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_taghirat_peygmani }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.skin_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth'></td>
+                    <td>{{ examinations.skin_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>گوش,حلق,بینی و دهان</td>
@@ -893,69 +913,69 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کاهش شنوایی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_kahesh_shenavaii }}
                             </div>
                             <div class='col'>
                                 <lable>وزوز گوش</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_vez_vez_gosh }}
                             </div>
                             <div class='col'>
                                 <lable>سرگیجه واقعی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_sargije }}
                             </div>
                             <div class='col'>
                                 <lable>درد گوش</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_dard_gosh }}
                             </div>
                             <div class='col'>
                                 <lable>ترشح گوش</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_tarashoh_gosh }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>گرفتگی صدا</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_gereftegi_seda }}
                             </div>
                             <div class='col'>
                                 <lable>گلودرد</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_galodard }}
                             </div>
                             <div class='col'>
                                 <lable>آبریزش بینی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_abrrizesh_bini }}
                             </div>
                             <div class='col'>
                                 <lable>اختلال بویایی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_ekhtelal_boyayi }}
                             </div>
                             <div class='col'>
                                 <lable>خارش و سوزش بینی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_khareshvsozesh }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>خونریزی بینی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_khonrizi }}
                             </div>
                             <div class='col'>
                                 <lable>خشکی دهان</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_khoshki }}
                             </div>
                             <div class='col'>
                                 <lable>احساس مزه فلزی در دهان</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_ehsas }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -966,72 +986,72 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>التهاب پرده تمپان</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_eltehab_parde }}
                             </div>
                             <div class='col'>
                                 <lable>پارگی پرده تمپان</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_paregi }}
                             </div>
                             <div class='col'>
                                 <lable>افزایش غیر طبیعی سرومن</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_afzayesh }}
                             </div>
                             <div class='col'>
                                 <lable>ترشح پشت حلق</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_tarashoh }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>اگزودای حلق</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_egzodai }}
                             </div>
                             <div class='col'>
                                 <lable>قرمزی حلق</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_red }}
                             </div>
                             <div class='col'>
                                 <lable>پولیپ بینی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_polip }}
                             </div>
                             <div class='col'>
                                 <lable>تندرنس سینوس ها</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_tndrs }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>lead line</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_lead }}
                             </div>
                             <div class='col'>
                                 <lable>بوی بد دهان</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_bad_smell }}
                             </div>
                             <div class='col'>
                                 <lable>التهاب لثه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_eltehab_lase }}
                             </div>
                             <div class='col'>
                                 <lable>پرفوراسیون/زخم سپتوم</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_zakhm }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.gosh_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth' ></td>
+                    <td>{{ examinations.gosh_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>سر و گردن</td>
@@ -1040,19 +1060,19 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>درد گردن</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.sar_sym_dard_gardan }}
                             </div>
                             <div class='col'>
                                 <lable>توده گردنی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.sar_sym_tode_gardani }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.sar_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.sar_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -1063,26 +1083,26 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>بزرگی تیروئید</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.sar_sign_bozorgi_tiroid }}
                             </div>
                             <div class='col'>
                                 <lable>لنفادنوپاتی گردنی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.sar_sign_gardani }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.sar_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.sar_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth'></td>
+                    <td>{{ examinations.sar_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>ریه</td>
@@ -1091,29 +1111,29 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>سرفه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sym_sorfe }}
                             </div>
                             <div class='col'>
                                 <lable>خلط</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sym_khelt }}
                             </div>
                             <div class='col'>
                                 <lable>تنگی نفس کوشش</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sym_tangi }}
                             </div>
                             <div class='col'>
                                 <lable>خس خس سینه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sym_sine }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -1124,44 +1144,44 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>وضعیت ظاهری غیر طبیعی قفسه سینه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sign_zaheri }}
                             </div>
                             <div class='col'>
                                 <lable>خشونت صدا</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sign_khoshonat }}
                             </div>
                             <div class='col'>
                                 <lable>ویزینگ</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sign_vizing }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کراکل</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sign_cracel }}
                             </div>
                             <div class='col'>
                                 <lable>تاکی پنه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sign_taki_pene }}
                             </div>
                             <div class='col'>
                                 <lable>کاهش صداهای ریوی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sign_kahesh_sedaha }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.rie_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth'></td>
+                    <td>{{ examinations.rie_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>قلب و عروق</td>
@@ -1170,37 +1190,37 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>درد قفسه سینه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sym_dard }}
                             </div>
                             <div class='col'>
                                 <lable>تپش قلب</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sym_tapesh }}
                             </div>
                             <div class='col'>
                                 <lable>تنگی نفس ناگهانی شبانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sym_tangi_shabane }}
                             </div>
                             <div class='col'>
                                 <lable>تنگی نفس دروضعیت خوابیده</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sym_tangi_khabide }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>سیانوز</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sym_sianoz }}
                             </div>
                             <div class='col'>
                                 <lable>سابقه سنکوپ</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sym_senkop }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -1211,44 +1231,44 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>S1S2غیر طبیعی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sign_s }}
                             </div>
                             <div class='col'>
                                 <lable>صدای اضافه قلب</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sign_seda_ezafe }}
                             </div>
                             <div class='col'>
                                 <lable>آریتمی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sign_aritmi }}
                             </div>
                             <div class='col'>
                                 <lable>واریس اندام تحتانی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sign_varis_tahtani }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>واریس اندام فوقانی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sign_varis_foghani }}
                             </div>
                             <div class='col'>
                                 <lable>ادم اندام</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sign_andam }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ghalb_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth'></td>
+                    <td>{{ examinations.ghalb_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>شکم و لگن</td>
@@ -1257,55 +1277,55 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>بی اشتهایی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_bi_eshteha }}
                             </div>
                             <div class='col'>
                                 <lable>تهوع</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_tahavo }}
                             </div>
                             <div class='col'>
                                 <lable>استفراغ</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_estefragh }}
                             </div>
                             <div class='col'>
                                 <lable>درد شکم</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_dard_shekam }}
                             </div>
                             <div class='col'>
                                 <lable>سوزش سر دل</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_soozesh }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>اسهال</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_eshal }}
                             </div>
                             <div class='col'>
                                 <lable>یبوست</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_yobosat }}
                             </div>
                             <div class='col'>
                                 <lable>مدفوع قیری</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_ghiri }}
                             </div>
                             <div class='col'>
                                 <lable>خون روشن در مدفوع</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_roshan }}
                             </div>               
                             <div class='col'>
                                 <lable>اختلال در بلع</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_ekhtelal }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -1316,48 +1336,48 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>تندرنس شکمی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sign_shekami }}
                             </div>
                             <div class='col'>
                                 <lable>ریباند تندرنس</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sign_rebond }}
                             </div>
                             <div class='col'>
                                 <lable>هپاتومگالی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sign_hepatomegaly }}
                             </div>
                             <div class='col'>
                                 <lable>اسپلنومگالی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sign_espelnomegali }}
                             </div>
                             <div class='col'>
                                 <lable>آسیت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sign_asib }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>توده شکمی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sign_tode_shekami }}
                             </div>
                             <div class='col'>
                                 <lable>دیستانسیون شکمی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sign_distansion }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.shekam_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth'></td>
+                    <td>{{ examinations.shekam_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>کلیه و مجاری ادراری,تناسلی</td>
@@ -1366,33 +1386,33 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>سوزش درار</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sym_soozesh }}
                             </div>
                             <div class='col'>
                                 <lable>تکرر ادرار</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sym_tekrar }}
                             </div>
                             <div class='col'>
                                 <lable>ادرار خونی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sym_khoni }}
                             </div>
                             <div class='col'>
                                 <lable>درد پهلو</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sym_pahlo }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>احساس سنگینی یا توده در بیضه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sym_sangini }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -1403,26 +1423,26 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>تندرستیCVA</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sign_cva }}
                             </div>
                             <div class='col'>
                                 <lable>واریکوسل</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sign_varikosel }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.colie_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth' ></td>
+                    <td>{{ examinations.colie_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>اسکلتی و عضلانی</td>
@@ -1431,33 +1451,33 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>خشکی مفصل</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sym_mafsal }}
                             </div>
                             <div class='col'>
                                 <lable>کمردرد</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sym_kamar_dard }}
                             </div>
                             <div class='col'>
                                 <lable>درد زانو</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sym_zano }}
                             </div>
                             <div class='col'>
                                 <lable>درد شانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sym_shane }}
                             </div>
                             <div class='col'>
                                 <lable>درد سایر مفاصل</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sym_other_mafasel }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -1468,50 +1488,50 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>محدودیت حرکتی مفصل</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sign_mahdodiat }}
                             </div>
                             <div class='col'>
                                 <lable>کاهش قدرت عضلانی در اندام فوقانی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sign_kahesh_foghani }}
                             </div>
                             <div class='col'>
                                 <lable>کاهش قدرت عضلانی در اندام تحتانی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sign_kahesh_tahtani }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>اسکولیوز</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sign_eskolioz }}
                             </div>
                             <div class='col'>
                                 <lable>امپوتاسیون</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sign_empotasion }}
                             </div>
                             <div class='col'>
                                 <lable>تست SLR مثبت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sign_slr }}
                             </div>
                             <div class='col'>
                                 <lable>تست Reverse-SLR</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sign_r_slr }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.eskelety_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth'></td>
+                    <td>{{ examinations.eskelety_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>سیستم عصبی</td>
@@ -1520,37 +1540,37 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>سردرد</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sym_sar_dard }}
                             </div>
                             <div class='col'>
                                 <lable>گیجی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sym_giji }}
                             </div>
                             <div class='col'>
                                 <lable>لرزش</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sym_larzesh }}
                             </div>
                             <div class='col'>
                                 <lable>اختلال حافظه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sym_ekhtelal }}
                             </div>
                             <div class='col'>
                                 <lable>سابقه صرع/تشنج</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sym_tashanoj }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>گز گز و مور مور انگشتان دست</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sym_gez_gez }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -1561,48 +1581,48 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>رفلکس زانوی غیر طبیعی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sign_tabi_e }}
                             </div>
                             <div class='col'>
                                 <lable>رفلکس آشیل غیرطبیعی</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sign_gheir_tabi_e }}
                             </div>
                             <div class='col'>
                                 <lable>تست رومبرگ مختل</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sign_mokhtal }}
                             </div>
                             <div class='col'>
                                 <lable>ترمور</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sign_trmor }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>اختلال حسی اندام ها</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sign_hesi }}
                             </div>
                             <div class='col'>
                                 <lable>تست تینل مثبت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sign_tinel }}
                             </div>
                             <div class='col'>
                                 <lable>تست فالن مثبت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sign_falen }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.asabi_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth' ></td>
+                    <td>{{ examinations.asabi_des }}</td>
                 </tr>
                 <tr>
                     <td rowspan='3'>اعصاب و روان</td>
@@ -1611,33 +1631,33 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>عصبانیت بیش از حد</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sym_asabaniat }}
                             </div>
                             <div class='col'>
                                 <lable>پرخاشگری</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sym_parkhashgari }}
                             </div>
                             <div class='col'>
                                 <lable>اضطراب</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sym_ezterab }}
                             </div>
                             <div class='col'>
                                 <lable>خلق پایین</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sym_kholgh }}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کاهش انگیزه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sym_angize }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sym_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -1648,34 +1668,34 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>هذیان</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sign_hazyan }}
                             </div>
                             <div class='col'>
                                 <lable>توهم</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sign_tavahom }}
                             </div>
                             <div class='col'>
                                 <lable>اختلال اوریانتاسیون</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sign_oriantasion }}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sign_other }}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                <input type='checkbox'></input>
+                                {{ examinations.ravan_sign_without_sign }}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td><input type='text' class='remove hwidth'></td>
+                    <td>{{ examinations.ravan_des }}</td>
                 </tr>
                 <tr>
                     <td>سایر موارد:</td>
-                    <td colspan=2><input type='text' class='remove' style='width:1020px'></td>
+                    <td colspan=2>{{ examinations.date_year }}</td>
                 </tr>
             </table>
         </div>
@@ -1810,7 +1830,7 @@
                     <th><input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13</th>
                 </tr>
                 <tr>
-                    <td rowspan=4><textarea rows = "5" cols = "20" style="resize:none"></textarea></td>
+                    <td rowspan=4><textarea rows = "4" cols = "20" style="resize:none"></textarea></td>
                     <td rowspan=2><input type='text' style='width:45px'></td>
                     <td rowspan=2><input type='text' style='width:45px'></td>
                     <td><input type='text' style='width:45px' ></td>
@@ -1991,6 +2011,11 @@
                     <td class='text-center'>توصیه های پزشکی:<textarea  rows = "6" cols = "136" style="resize:none"></textarea></td>
                 </tr>
             </table>
+        </div>
+        <div class='row text-center mt-4'>
+            <div class='col'>
+                <input type="submit" value="ذخیره و ثبت جدید">
+            </div>
         </div>
     </form>
 </section>

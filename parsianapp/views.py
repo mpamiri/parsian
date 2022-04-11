@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model
-from .forms import registration, summary_of_results_form,submit_company_form,disease_form
+from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model
+from .forms import registration, summary_of_results_form,submit_company_form,disease_form,personal_species_form,job_history_form,assessment_form,personal_history_form,examinations_form,experiments_form,para_clinic_form,consulting_form,final_theory_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -513,6 +513,45 @@ def addorder_view(request):
 
 @login_required(login_url='login')
 def examinations_view(request):
-    form=summary_of_results_form()
-    context={'form' : form}
+    personal_species=personal_species_form()
+    job_history=job_history_form()
+    assessment=assessment_form()
+    personal_history=personal_history_form()
+    examinations=examinations_form()
+    experiments=experiments_form()
+    para_clinic=para_clinic_form()
+    consulting=consulting_form()
+    final_theory=final_theory_form()
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
     return render(request, 'examinations.html',context)
+
+@require_POST
+def addexaminations_view(request):
+    personal_species=personal_species_form(request.POST)
+    job_history=job_history_form(request.POST)
+    assessment=assessment_form(request.POST)
+    personal_history=personal_history_form(request.POST)
+    examinations=examinations_form(request.POST)
+    experiments=experiments_form(request.POST)
+    para_clinic=para_clinic_form(request.POST)
+    consulting=consulting_form(request.POST)
+    final_theory=final_theory_form(request.POST)
+    if personal_species.is_valid():
+        personal_species.save()
+    if job_history.is_valid():
+        job_history.save()
+    if assessment.is_valid():
+        assessment.save()
+    if personal_history.is_valid():
+        personal_history.save()
+    if examinations.is_valid():
+        examinations.save()
+    if experiments.is_valid():
+        experiments.save()
+    if para_clinic.is_valid():
+        para_clinic.save()
+    if consulting.is_valid():
+        consulting.save()
+    if final_theory.is_valid():
+        final_theory.save()
+    return redirect('examinations')

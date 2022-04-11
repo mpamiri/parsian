@@ -1,6 +1,12 @@
 .box{
 width: 65px;
 }
+.s_box{
+width : 50px;
+}
 .choose{
 width: 250px;
+}
+.text{
+    width : 200px
 }

@@ -17,6 +17,7 @@ urlpatterns =[
     path('manage/output/',views.output_view,name='output'),
     path('manage/output/disease_code',views.disease_code_view,name='disease_code'),
     path('manage/output/disease_code/add',views.adddisease_view,name='adddisease'),
+    path('manage/input/examinations/add',views.addexaminations_view,name='addexaminations'),
     path('manage/output/open_docs',views.open_docs_view,name='open_docs'),
     path('manage/output/summary_of_examinations',views.summary_of_examinations_view,name='summary_of_examinations'),
     path('manage/output/problem',views.problem_view,name='problem'),  
@@ -24,7 +25,7 @@ urlpatterns =[
     path('manage/output/graph',views.graph_view,name='graph'),  
     path('manage/output/solo_output',views.solo_output_view,name='solo_output'),  
     path('manage/submit_company/add_company',views.addcompany_view,name='addcompany'),
-    path('manage/output/examinations',views.examinations_view,name='examinations'),
+    path('manage/input/examinations',views.examinations_view,name='examinations'),
     path('manage/output/solo_output/add_order',views.addorder_view,name='addorder')    
 ]
 urlpatterns += staticfiles_urlpatterns()

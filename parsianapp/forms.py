@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model
+from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model
 from . import models
 from django.core.validators import MaxValueValidator, MinValueValidator 
 class registration(UserCreationForm):
@@ -92,5 +92,98 @@ class disease_form(forms.ModelForm):
         model=Disease_Model
         fields='__all__'
         widgets={'examinations_code' : forms.TextInput(attrs={'id':'myInput','onkeyup':"filterFunction()",'autocomplete': 'off'})
-        ,'order_number' : forms.Select(attrs={'class':'choose','autocomplete': 'off'})}   
+        ,'order_number' : forms.Select(attrs={'class':'choose','autocomplete': 'off'})}  
+
+class personal_species_form(forms.ModelForm):
+    class Meta:
+        model=Personal_Species_Model
+        fields='__all__' 
+        widgets={
+        'date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'examinations_type' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'profil_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'employment_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'fathers_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'gender' : forms.Select(attrs={'class':'s_box','autocomplete': 'off'}),
+        'marriage_status' : forms.Select(attrs={'class':'box','autocomplete': 'off'}),
+        'children' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'age' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'}),
+        'personal_code' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'military_status' : forms.Select(attrs={'class':'text','autocomplete': 'off'}),
+        'raste' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'medical_exemption_reason' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'job_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'employer_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'address' : forms.TextInput(attrs={'style':'width : 800px','autocomplete': 'off'}),
+        'date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
+        }
+
+class job_history_form(forms.ModelForm):
+    class Meta:
+        model=Job_History_Model
+        fields='__all__' 
+        widgets={
+        'current_job' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'current_job_duty' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'current_job_from' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'current_job_to' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'current_job_reason' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'second_current_job' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'second_current_job_duty' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'second_current_job_from' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'second_current_job_to' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'second_current_job_reason' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'previous_job' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'previous_job_duty' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'previous_job_from' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'previous_job_to' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'previous_job_reason' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'second_previous_job' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'second_previous_job_duty' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'second_previous_job_from' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'second_previous_job_to' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'second_previous_job_reason' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'})
+        }
+
+class assessment_form(forms.ModelForm):
+    class Meta:
+        model=Assessment_Model
+        fields='__all__' 
+        widgets={
+        'date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
+        }
+        
+class personal_history_form(forms.ModelForm):
+    class Meta:
+        model=Personal_History_Model
+        fields='__all__' 
+
+class examinations_form(forms.ModelForm):
+    class Meta:
+        model=Examinations_Model
+        fields='__all__' 
+
+class experiments_form(forms.ModelForm):
+    class Meta:
+        model=Experiments_Model
+        fields='__all__' 
+
+class para_clinic_form(forms.ModelForm):
+    class Meta:
+        model=Para_Clinic_Model
+        fields='__all__' 
+
+class consulting_form(forms.ModelForm):
+    class Meta:
+        model=Consulting_Model
+        fields='__all__' 
+
+class final_theory_form(forms.ModelForm):
+    class Meta:
+        model=Final_Theory_Model
+        fields='__all__' 
 
