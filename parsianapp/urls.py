@@ -21,6 +21,7 @@ urlpatterns =[
     path('manage/output/open_docs',views.open_docs_view,name='open_docs'),
     path('manage/output/summary_of_examinations',views.summary_of_examinations_view,name='summary_of_examinations'),
     path('manage/output/problem',views.problem_view,name='problem'),  
+    path('manage/output/examinations_output',views.examinations_output_view,name='examinations_output'),  
     path('manage/output/specialist',views.specialist_view,name='specialist'),
     path('manage/output/graph',views.graph_view,name='graph'),  
     path('manage/output/solo_output',views.solo_output_view,name='solo_output'),  

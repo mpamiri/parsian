@@ -514,7 +514,7 @@
                 <tr>
                     <td>8</td>
                     <td>آیا سابقه سرطان یا بیماری مزمن در فامیل دارید؟ذکر نمایید</td>
-                    <td>{{ personal_history.eighth_y }}/td>
+                    <td>{{ personal_history.eighth_y }}</td>
                     <td>{{ personal_history.eighth_n }}</td>
                     <td>{{ personal_history.eighth_des }}</td>
                 </tr>
@@ -1695,7 +1695,7 @@
                 </tr>
                 <tr>
                     <td>سایر موارد:</td>
-                    <td colspan=2>{{ examinations.date_year }}</td>
+                    <td colspan=2>{{ examinations.other }}</td>
                 </tr>
             </table>
         </div>
@@ -1706,27 +1706,27 @@
         </div>
         <div class='row mt-2'>
             <div class='col'>
-                تاریخ:<input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13
+                تاریخ:{{ experiments.date_year }}/{{ experiments.date_month }}/{{ experiments.date_day }}13
             </div>
         </div> 
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                CBC:WBC<input type='number' style='width:45px'> RBC<input type='number' style='width:45px'>Hb<input type='number' style='width:45px'>HTC<input type='number' style='width:45px'>Plt<input type='number' style='width:45px'>
+                CBC:WBC{{ experiments.cbc_wbc }}RBC{{ experiments.cbc_rbc }}Hb{{ experiments.cbc_hb }}HTC{{ experiments.cbc_htc }}Plt{{ experiments.cbc_plt }}
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                U/A:Prot<input type='number' style='width:45px'> Glu<input type='number' style='width:45px'>RBC<input type='number' style='width:45px'>WBC<input type='number' style='width:45px'>Bact<input type='number' style='width:45px'>
+                U/A:Prot{{ experiments.ua_prot }} Glu{{ experiments.ua_glu }}RBC{{ experiments.ua_rbc }}WBC{{ experiments.ua_wbc }}Bact{{ experiments.ua_bact }}
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                FBS<input type='number' style='width:45px'> Total Chol<input type='number' style='width:45px'>LDL<input type='number' style='width:45px'>HDL<input type='number' style='width:45px'>TG<input type='number' style='width:45px'>
+                FBS{{ experiments.fbs }} Total Chol{{ experiments.chol }}LDL{{ experiments.ldl }}HDL{{ experiments.hdl }}TG{{ experiments.tg }}
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                BUN<input type='number' style='width:45px'> Cr<input type='number' style='width:45px'>ALT<input type='number' style='width:45px'>AST<input type='number' style='width:45px'>ALK.Ph<input type='number' style='width:45px'>HBS AG<input type='number' style='width:45px'>S/E & OB<input type='number' style='width:45px'>PPD<input type='number' style='width:45px'>
+                BUN{{ experiments.bun }} Cr{{ experiments.cr }}ALT{{ experiments.alt }}AST{{ experiments.ast }}ALK.Ph{{ experiments.alk }}HBS AG{{ experiments.hbs }}S/E & OB{{ experiments.se }}PPD{{ experiments.ppd }}
             </div>
         </div>
         <div class='row mt-4'>
@@ -1736,17 +1736,20 @@
         </div> 
         <div class='row mt-3'>
             <div class='col'>
-                1-نوع:<input type='text'> نتیجه:<input type='text'>تاریخ:<input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13
+                1-نوع:{{ experiments.first_type }} نتیجه:{{ experiments.first_result }}تاریخ:{{ experiments.first_date_year }}/
+                {{ experiments.first_date_month }}/{{ experiments.first_date_day }}13
             </div>
         </div>
         <div class='row mt-3'>
             <div class='col'>
-                2-نوع:<input type='text'> نتیجه:<input type='text'>تاریخ:<input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13
+                2-نوع:{{ experiments.second_type }} نتیجه:{{ experiments.second_result }}تاریخ:{{ experiments.second_date_year }}/
+                {{ experiments.second_date_month }}/{{ experiments.second_date_day }}13
             </div>
         </div>
         <div class='row mt-3'>
             <div class='col'>
-                3-نوع:<input type='text'> نتیجه:<input type='text'>تاریخ:<input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13
+                3-نوع:{{ experiments.third_type }} نتیجه:{{ experiments.third_result }}تاریخ:{{ experiments.third_date_year }}/
+                {{ experiments.third_date_month }}/{{ experiments.third_date_day }}13
             </div>
         </div>
         <div class='row b-green mt-5'>
@@ -1788,25 +1791,25 @@
                     <th>بدون اصلاح</th>
                 </tr>
                 <tr>
-                    <td rowspan=3><input class='remove' type='number' style='width:45px'>13</td>
-                    <td>10/<input class='remove' type='number' style='width:45px'></td>
-                    <td>10/<input class='remove' type='number' style='width:45px'></td>
-                    <td>10/<input class='remove' type='number' style='width:45px'></td>
-                    <td>10/<input class='remove' type='number' style='width:45px'></td>
-                    <td><input class='remove' type='number' style='width:45px'></td>
-                    <td><input class='remove' type='number' style='width:45px'></td>
-                    <td><input class='remove' type='number' style='width:45px'></td>
-                    <td><input class='remove' type='number' style='width:45px'></td>
-                    <td><input class='remove' type='number' style='width:45px'></td>
-                    <td><input class='remove' type='number' style='width:45px'></td>
-                    <td><input class='remove' type='number' style='width:45px'></td>
-                    <td><input class='remove' type='number' style='width:45px'></td>
+                    <td rowspan=3>{{ para_clinic.opto_date_year }}13</td>
+                    <td>10/{{ para_clinic.opto_hedat_r_ba }}</td>
+                    <td>10/{{ para_clinic.opto_hedat_r_bi }}</td>
+                    <td>10/{{ para_clinic.opto_hedat_l_ba }}</td>
+                    <td>10/{{ para_clinic.opto_hedat_l_bi }}</td>
+                    <td>{{ para_clinic.opto_rangi_hedat_r_ba }}</td>
+                    <td>{{ para_clinic.opto_rangi_hedat_r_bi }}</td>
+                    <td>{{ para_clinic.opto_rangi_hedat_l_ba }}</td>
+                    <td>{{ para_clinic.opto_rangi_hedat_l_bi }}</td>
+                    <td>{{ para_clinic.opto_meidan_hedat_r_ba }}</td>
+                    <td>{{ para_clinic.opto_meidan_hedat_r_bi }}</td>
+                    <td>{{ para_clinic.opto_meidan_hedat_l_ba }}</td>
+                    <td>{{ para_clinic.opto_meidan_hedat_l_bi }}</td>
                 </tr>
                 <tr>
                     <td colspan=12>دید عمق</td>
                 </tr>
                 <tr>
-                    <td colspan=12>ثانیه آرک<input type='number' style='width:45px'></td>
+                    <td colspan=12>ثانیه آرک{{ para_clinic.opto_omgh }}</td>
                 </tr>
             </table>
         </div>
@@ -1817,8 +1820,6 @@
             <table>
                 <tr>
                     <th width=17%>تفسیر</th>
-                    <th>SDS</th>
-                    <th>SRT</th>
                     <th>8000</th>
                     <th>6000</th>
                     <th>4000</th>
@@ -1827,53 +1828,45 @@
                     <th>1000</th>
                     <th>500</th>
                     <th>فرکانس</th>
-                    <th><input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13</th>
+                    <th>{{ para_clinic.audio_date_year }}/{{ para_clinic.audio_date_month }}/{{ para_clinic.audio_date_day }}13</th>
                 </tr>
                 <tr>
-                    <td rowspan=4><textarea rows = "4" cols = "20" style="resize:none"></textarea></td>
-                    <td rowspan=2><input type='text' style='width:45px'></td>
-                    <td rowspan=2><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px' ></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
+                    <td rowspan=4>{{ para_clinic.oudio_tafsir }}</td>
+                    <td>{{ para_clinic.audio_r_eight_ac }}</td>
+                    <td>{{ para_clinic.audio_r_six_ac }}</td>
+                    <td>{{ para_clinic.audio_r_four_ac }}</td>
+                    <td>{{ para_clinic.audio_r_two_ac }}</td>
+                    <td>{{ para_clinic.audio_r_one_ac }}</td>
+                    <td>{{ para_clinic.audio_r_five_ac }}</td>
                     <td>AC</td>
                     <td rowspan=2>گوش راست</td>
                 </tr>
                 <tr>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
+                    <td>{{ para_clinic.audio_r_eight_bc }}</td>
+                    <td>{{ para_clinic.audio_r_six_bc }}</td>
+                    <td>{{ para_clinic.audio_r_four_bc }}</td>
+                    <td>{{ para_clinic.audio_r_two_bc }}</td>
+                    <td>{{ para_clinic.audio_r_one_ac }}</td>
+                    <td>{{ para_clinic.audio_r_five_bc }}</td>
                     <td>BC</td>
                 </tr>
                 <tr>
-                    <td rowspan=2><input type='text' style='width:45px'></td>
-                    <td rowspan=2><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px' ></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
+                    <td>{{ para_clinic.audio_l_eight_ac }}</td>
+                    <td>{{ para_clinic.audio_l_six_ac }}</td>
+                    <td>{{ para_clinic.audio_l_four_ac }}</td>
+                    <td>{{ para_clinic.audio_l_two_ac }}</td>
+                    <td>{{ para_clinic.audio_l_one_ac }}</td>
+                    <td>{{ para_clinic.audio_l_five_ac }}</td>
                     <td>AC</td>
-                    <td rowspan=2>گوش چپ</td>
+                    <td rowspan=2>گوش راست</td>
                 </tr>
                 <tr>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
-                    <td><input type='text' style='width:45px'></td>
+                    <td>{{ para_clinic.audio_l_eight_bc }}</td>
+                    <td>{{ para_clinic.audio_l_six_bc }}</td>
+                    <td>{{ para_clinic.audio_l_four_bc }}</td>
+                    <td>{{ para_clinic.audio_l_two_bc }}</td>
+                    <td>{{ para_clinic.audio_l_one_ac }}</td>
+                    <td>{{ para_clinic.audio_l_five_bc }}</td>
                     <td>BC</td>
                 </tr>
             </table>
@@ -1884,7 +1877,7 @@
         <div class='row mt-3'>
             <table class='text-center'>
                <tr>
-                   <td colspan=3>تاریخ انجام:<input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13</td>
+                   <td colspan=3>تاریخ انجام:{{ para_clinic.espiro_date_year }}/{{ para_clinic.espiro_date_month }}/{{ para_clinic.espiro_date_day }}13</td>
                </tr>
                <tr>
                    <td>FEV1/FVC%</td>
@@ -1892,9 +1885,9 @@
                    <td>FEV1(درصد/مقدار)</td>
                </tr>
                <tr>
-                    <td><input type='text' class='hwidth'></td>
-                    <td><input type='text' class='hwidth'></td>
-                    <td><input type='text' class='hwidth'></td>
+                    <td>{{ para_clinic.espiro_fevvfvc }}</td>
+                    <td>{{ para_clinic.espiro_fev }}</td>
+                    <td>{{ para_clinic.espiro_fvc }}</td>
                 </tr>
                 <tr>
                     <td>VEXT(Back Extrapolated Volume)</td>
@@ -1902,13 +1895,13 @@
                     <td>FEF 25-75%</td>
                 </tr>
                 <tr>
-                     <td><input type='text' class='hwidth'></td>
-                     <td><input type='text' class='hwidth'></td>
-                     <td><input type='text' class='hwidth'></td>
+                     <td>{{ para_clinic.espiro_vext }}</td>
+                     <td>{{ para_clinic.espiro_pef }}</td>
+                     <td>{{ para_clinic.espiro_fef }}</td>
                  </tr>
                  <tr>
                      <td colspan=3><p>تفسیر:</p>
-                        <textarea rows = "6" cols = "136" style="resize:none"></textarea>
+                        {{ para_clinic.espiro_tafsir }}
                      </td>
                  </tr>
             </table>
@@ -1919,16 +1912,16 @@
         <div class='row mt-3'>
             <table>
                 <tr>
-                    <td><p>یافته های CXR(P-A)</p>تاریخ انجام:<input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13</td>
-                    <td width=75%><input type='text' class='hwidth remove'></td>
+                    <td><p>یافته های CXR(P-A)</p>تاریخ انجام:{{ para_clinic.other_cxr_year }}/{{ para_clinic.other_cxr_month }}/{{ para_clinic.other_cxr_day }}13</td>
+                    <td width=75%>{{ para_clinic.other_cxr }}</td>
                 </tr>
                 <tr>
-                    <td><p>یافته های ECG</p>تاریخ انجام:<input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13</td>
-                    <td width=75%><input type='text' class='hwidth remove'></td>
+                    <td><p>یافته های ECG</p>تاریخ انجام:{{ para_clinic.other_ecg_year }}/{{ para_clinic.other_ecg_month }}/{{ para_clinic.other_ecg_day }}13</td>
+                    <td width=75%>{{ para_clinic.other_ecg }}</td>
                 </tr>
                 <tr class='text-center'>
                     <td colspan=3><p>نتیجه رادیوگرافی,سونوگرافی,سی تی اسکن و سایر موارد:</p>
-                       <textarea  rows = "6" cols = "136" style="resize:none"></textarea>
+                        {{ para_clinic.other_result }}
                     </td>
                 </tr>
             </table>
@@ -1948,30 +1941,30 @@
                 <tr>
                     <td>
                         <div class='mt-1'>
-                            تاریخ :<input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13
+                            تاریخ :{{ consulting.first_year }}/{{ consulting.first_month }}/{{ consulting.first_day }}13
                         </div>
                         <div class='mt-1'>
-                            علت ارجاع:<input type='text'>
+                            علت ارجاع:{{ consulting.first_reason }}
                         </div>
                         <div class='mt-1'>
-                            نوع تخصص:<input type='text'>
+                            نوع تخصص:{{ consulting.first_type }}
                         </div>
                     </td>
-                    <td width=70%><input type='text' class='hwidth remove'></td>
+                    <td width=70%>{{ consulting.first_result }}</td>
                 </tr>
                 <tr>
                     <td>
                         <div class='mt-1'>
-                            تاریخ :<input type='number' style='width:45px'>/<input type='number' style='width:45px'>/<input type='number' style='width:45px'>13
+                            تاریخ :{{ consulting.second_year }}/{{ consulting.second_month }}/{{ consulting.second_day }}13
                         </div>
                         <div class='mt-1'>
-                            علت ارجاع:<input type='text'>
+                            علت ارجاع:{{ consulting.second_reason }}
                         </div>
                         <div class='mt-1'>
-                            نوع تخصص:<input type='text'>
+                            نوع تخصص:{{ consulting.second_type }}
                         </div>
                     </td>
-                    <td width=70%><input type='text' class='hwidth remove'></td>
+                    <td width=70%>{{ consulting.second_result }}</td>
                 </tr>
             </table>
         </div>
@@ -1983,32 +1976,32 @@
         <div class='row'>
             <table>
                 <tr>
-                    <td><input type='checkbox'>الف-بلامانع  </td>
+                    <td>الف-بلامانع{{ final_theory.belamane }}</td>
                 </tr>
                 <tr>
                     <td>
                         <div>
-                            <input type='checkbox'>ب-مشروط 
+                            ب-مشروط {{ final_theory.mashrot }}
                         </div> 
                         <div>
                             ذکر مشروط:
-                            <input type='text' class='remove' style='width:90%'>
+                            {{ final_theory.mashrot_reason }}
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div>
-                            <input type='checkbox'>ج-عدم صلاحیت/تناسب پزشکی جهت انجام شغل مورد نظر 
+                            ج-عدم صلاحیت/تناسب پزشکی جهت انجام شغل مورد نظر {{ final_theory.rad }}
                         </div> 
                         <div>
                             علل رد صلاحیت پزشکی:
-                            <input type='text' class='remove' style='width:90%'>
+                            {{ final_theory.rad_reason }}
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class='text-center'>توصیه های پزشکی:<textarea  rows = "6" cols = "136" style="resize:none"></textarea></td>
+                    <td class='text-center'>توصیه های پزشکی:{{ final_theory.recommendations }}</td>
                 </tr>
             </table>
         </div>

@@ -555,3 +555,18 @@ def addexaminations_view(request):
     if final_theory.is_valid():
         final_theory.save()
     return redirect('examinations')
+
+
+@login_required(login_url='login')
+def examinations_output_view(request):
+    personal_species=Personal_Species_Model.objects.get(pk=1)
+    job_history=Job_History_Model.objects.get(pk=1)
+    assessment=Assessment_Model.objects.get(pk=1)
+    personal_history=Personal_History_Model.objects.get(pk=1)
+    examinations=Examinations_Model.objects.get(pk=1)
+    experiments=Experiments_Model.objects.get(pk=1)
+    para_clinic=Para_Clinic_Model.objects.get(pk=1)
+    consulting=Consulting_Model.objects.get(pk=1)
+    final_theory=Final_Theory_Model.objects.get(pk=1)
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
+    return render(request, 'examinations_output.html',context)

@@ -166,21 +166,128 @@ class examinations_form(forms.ModelForm):
     class Meta:
         model=Examinations_Model
         fields='__all__' 
+        widgets={
+        'weight' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'blood_pressure' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'length' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'pulse' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
+        }
 
 class experiments_form(forms.ModelForm):
     class Meta:
         model=Experiments_Model
         fields='__all__' 
+        widgets={
+        'cbc_wbc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'cbc_rbc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'cbc_hb' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'cbc_htc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'cbc_plt' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'ua_prot' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'ua_glu' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'ua_rbc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'ua_wbc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'ua_bact' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'fbs' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'chol' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'ldl' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'hdl' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'tg' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'bun' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'cr' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'alt' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'ast' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'alk' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'hbs' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'se' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'ppd' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'first_date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'first_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'first_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'second_date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'second_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'second_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'third_date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'third_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'third_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
+        }
 
 class para_clinic_form(forms.ModelForm):
     class Meta:
         model=Para_Clinic_Model
         fields='__all__' 
+        widgets={
+        'opto_date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_hedat_r_ba' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_hedat_r_bi' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_hedat_l_ba' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_hedat_l_bi' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_rangi_hedat_r_ba' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_rangi_hedat_r_bi' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_rangi_hedat_l_ba' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_rangi_hedat_l_bi' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_meidan_hedat_r_ba' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_meidan_hedat_r_bi' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_meidan_hedat_l_ba' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_meidan_hedat_l_bi' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_omgh' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_eight_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_eight_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_six_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_six_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_four_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_four_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_two_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_two_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_one_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_one_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_five_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_five_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_eight_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_eight_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_six_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_six_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_four_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_four_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_two_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_two_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_one_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_one_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_five_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_l_five_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'espiro_date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'espiro_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'espiro_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'other_cxr_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'other_cxr_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'other_cxr_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'other_ecg_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'other_ecg_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'other_ecg_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
+        }
 
 class consulting_form(forms.ModelForm):
     class Meta:
         model=Consulting_Model
         fields='__all__' 
+        widgets={
+        'first_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'first_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'first_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'second_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'second_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'second_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
+        }
 
 class final_theory_form(forms.ModelForm):
     class Meta:
