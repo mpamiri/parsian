@@ -757,19 +757,19 @@
                 </tr>
                 <tr>
                     <td colspan='6'>توضیحات لازم در خصوص موارد ثبت شده در جدول و ثبت نتایج اندازه گیری ها:
-                        {% if personal_species.required_description == null %}
+                        {% if assessment.required_description == null %}
                         ذکر نشده
                         {% else %}
-                        {{ personal_species.required_description }}
+                        {{ assessment.required_description }}
                         {% endif %}
                     </td>
                 </tr>
                 <tr>
                     <td colspan='6'>کارشناسی بهداشت حرفه ای در خصوص شرایط محیط کار:
-                        {% if personal_species.kar_shenas == null %}
+                        {% if assessment.kar_shenas == null %}
                         ذکر نشده
                         {% else %}
-                        {{ personal_species.kar_shenas }}
+                        {{ assessment.kar_shenas }}
                         {% endif %}
                     </td>
                 </tr>
@@ -778,10 +778,10 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 نام و نام خانوادگی کارشناس بهداشت حرفه ای:
-                                {% if personal_species.kar_shenas_name == null %}
+                                {% if assessment.kar_shenas_name == null %}
                                 ذکر نشده
                                 {% else %}
-                                {{ personal_species.kar_shenas_name }}
+                                {{ assessment.kar_shenas_name }}
                                 {% endif %}
                             </div>
                         </div>
@@ -819,78 +819,222 @@
                 <tr>
                     <td>1</td>
                     <td>آیا سابقه بیماری دارید؟ذکر نمایید.</td>
-                    <td>{{ personal_history.first_y }}</td>
-                    <td>{{ personal_history.first_n }}</td>
-                    <td>{{ personal_history.first_des }}</td>
+                    <td>
+                        {% if personal_history.first_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.first_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.first_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.first_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>در صورت ابتلا به بیماری آیا علایم شما در محیط کار تغییر می کند؟</td>
-                    <td>{{ personal_history.second_y }}</td>
-                    <td>{{ personal_history.second_n }}</td>
-                    <td>{{ personal_history.second_des }}</td>
+                    <td>
+                        {% if personal_history.second_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.second_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.second_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.second_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>در صورت ابتلا به بیماری آیا همکاران شما علایم مشابه در محل کار دارند؟</td>
-                    <td>{{ personal_history.third_y }}</td>
-                    <td>{{ personal_history.third_n }}</td>
-                    <td>{{ personal_history.third_des }}</td>
+                    <td>
+                        {% if personal_history.third_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.third_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.third_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.third_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>در صورت ابتلا به بیماری آیا علایم شما در زمان تعطیلات و مرخصی ها تغییر می کند؟</td>
-                    <td>{{ personal_history.fourth_y }}</td>
-                    <td>{{ personal_history.fourth_n }}</td>
-                    <td>{{ personal_history.fourth_des }}</td>
+                    <td>
+                        {% if personal_history.fourth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.fourth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.fourth_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.fourth_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td>آیا به غذا,دارو یا ماده خاصی حساسیت دارید؟</td>
-                    <td>{{ personal_history.fifth_y }}</td>
-                    <td>{{ personal_history.fifth_n }}</td>
-                    <td>{{ personal_history.fifth_des }}</td>
+                    <td>
+                        {% if personal_history.fifth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.fifth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.fifth_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.fifth_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>6</td>
                     <td>آیا سابقه بستری در بیمارستان دارید؟به چه دلیل؟</td>
-                    <td>{{ personal_history.sixth_y }}</td>
-                    <td>{{ personal_history.sixth_n }}</td>
-                    <td>{{ personal_history.sixth_des }}</td>
+                    <td>
+                        {% if personal_history.sixth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.sixth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.sixth_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.sixth_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>7</td>
                     <td>آیا سابقه عمل جراحی دارید؟ذکر نمایید</td>
-                    <td>{{ personal_history.seventh_y }}</td>
-                    <td>{{ personal_history.seventh_n }}</td>
-                    <td>{{ personal_history.seventh_des }}</td>
+                    <td>
+                        {% if personal_history.seventh_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.seventh_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.seventh_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.seventh_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>8</td>
                     <td>آیا سابقه سرطان یا بیماری مزمن در فامیل دارید؟ذکر نمایید</td>
-                    <td>{{ personal_history.eighth_y }}</td>
-                    <td>{{ personal_history.eighth_n }}</td>
-                    <td>{{ personal_history.eighth_des }}</td>
+                    <td>
+                        {% if personal_history.eighth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.eighth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.eighth_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.eighth_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>9</td>
                     <td>آیا دارو خاصی مصرف می کنید؟ذکر کنید.</td>
-                    <td>{{ personal_history.ninth_y }}</td>
-                    <td>{{ personal_history.ninth_n }}</td>
-                    <td>{{ personal_history.ninth_des }}</td>
+                    <td>
+                        {% if personal_history.ninth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.ninth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.ninth_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.ninth_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>10</td>
                     <td>آیا اکنون سیگار می کشید؟</td>
-                    <td>{{ personal_history.tenth_y }}</td>
-                    <td>{{ personal_history.tenth_n }}</td>
+                    <td>
+                        {% if personal_history.tenth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.tenth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
                     <td>
                         <div class='row'>
                             <div class='col'>
-                                تعداد نخ روزانه:{{ personal_history.tenth_des_number }}
+                                تعداد نخ روزانه:
+                                {% if personal_history.tenth_des_number == null %}
+                                ذکر نشده
+                                {% else %}
+                                {{ personal_history.tenth_des_number }}
+                                {% endif %}
                             </div>
                             <div class='col'>
-                                مدت استعمال:{{ personal_history.tenth_des_duration }}
+                                مدت استعمال:
+                                {% if personal_history.tenth_des_duration == null %}
+                                ذکر نشده
+                                {% else %}
+                                {{ personal_history.tenth_des_duration }}
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -898,15 +1042,33 @@
                 <tr>
                     <td>11</td>
                     <td>آیا سابقه قبلی مصرف سیگار دارید؟</td>
-                    <td>{{ personal_history.eleventh_y }}</td>
-                    <td>{{ personal_history.eleventh_n }}</td>
+                    <td>
+                        {% if personal_history.eleventh_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.eleventh_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
                     <td>
                         <div class='row'>
                             <div class='col'>
-                                تعداد نخ روزانه:{{ personal_history.eleventh_des_number }}
+                                تعداد نخ روزانه:
+                                {% if personal_history.eleventh_des_number == null %}
+                                ذکر نشده
+                                {% else %}
+                                {{ personal_history.eleventh_des_number }}
+                                {% endif %}
                             </div>
                             <div class='col'>
-                                مدت استعمال:{{ personal_history.eleventh_des_duration }}
+                                مدت استعمال:
+                                {% if personal_history.eleventh_des_duration == null %}
+                                ذکر نشده
+                                {% else %}
+                                {{ personal_history.eleventh_des_duration }}
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -914,22 +1076,54 @@
                 <tr>
                     <td>12</td>
                     <td>آیا در اوقات فراغت به ورزش یا سرگرمی خاصی مشغول هستید؟ذکر کنید.</td>
-                    <td>{{ personal_history.twelfth_y }}</td>
-                    <td>{{ personal_history.twelfth_n }}</td>
-                    <td>{{ personal_history.twelfth_des }}</td>
+                    <td>
+                        {% if personal_history.twelfth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.twelfth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.twelfth_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.twelfth_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>13</td>
                     <td>آیا تا کنون به حادثه شغلی دچار شده اید؟</td>
-                    <td>{{ personal_history.thirteenth_y }}</td>
-                    <td>{{ personal_history.thirteenth_n }}</td>
+                    <td>
+                        {% if personal_history.thirteenth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.thirteenth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
                     <td>
                         <div class='row'>
                             <div class='col'>
-                                نوع آسیب:{{ personal_history.thirteenth_des_type }}
+                                نوع آسیب:
+                                {% if personal_history.thirteenth_des_type == null %}
+                                ذکر نشده
+                                {% else %}
+                                {{ personal_history.thirteenth_des_type }}
+                                {% endif %}
                             </div>
                             <div class='col'>
-                                علت:{{ personal_history.thirteenth_des_reason }}
+                                علت:
+                                {% if personal_history.thirteenth_des_reason == null %}
+                                ذکر نشده
+                                {% else %}
+                                {{ personal_history.thirteenth_des_reason }}
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -937,23 +1131,65 @@
                 <tr>
                     <td>14</td>
                     <td>آیا سابقه غیبت از کار به دلیل بیماری بیش از 3 روز دارید؟</td>
-                    <td>{{ personal_history.fourteenth_y }}</td>
-                    <td>{{ personal_history.fourteenth_n }}</td>
-                    <td>{{ personal_history.fourteenth_des }}</td>
+                    <td>
+                        {% if personal_history.fourteenth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.fourteenth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.fourteenth_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.fourteenth_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>15</td>
                     <td>آیا منزل شما در مجاورت مرکز صنعتی قرار دارد؟</td>
-                    <td>{{ personal_history.fifteenth_y }}</td>
-                    <td>{{ personal_history.fifteenth_n }}</td>
-                    <td>{{ personal_history.fifteenth_des }}</td>
+                    <td>
+                        {% if personal_history.fifteenth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.fifteenth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.fifteenth_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.fifteenth_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>16</td>
                     <td>آیا سابقه معرفی به کمیسیون پزشکی را دارید؟</td>
-                    <td>{{ personal_history.sixteenth_y }}</td>
-                    <td>{{ personal_history.sixteenth_n }}</td>
-                    <td>{{ personal_history.sixteenth_des }}</td>
+                    <td>
+                        {% if personal_history.sixteenth_y == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.sixteenth_n == False %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if personal_history.sixteenth_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ personal_history.sixteenth_des }}
+                        {% endif %}
+                    </td>
                 </tr>
             </table>
         </div>
@@ -1002,41 +1238,77 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کاهش وزن</lable>
-                                {{ examinations.local_sym_kahesh_vazn }}
+                                {% if examinations.local_sym_kahesh_vazn == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>کاهش اشتها</lable>
-                                {{ examinations.local_sym_kahesh_eshteha }}
+                                {% if examinations.local_sym_kahesh_eshteha == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>خستگی مزمن</lable>
-                                {{ examinations.local_sym_khastegi }}
+                                {% if examinations.local_sym_khastegi == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>اختلال در خواب</lable>
-                                {{ examinations.local_sym_ekhtelal_dar_khab }}
+                                {% if examinations.local_sym_ekhtelal_dar_khab == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تعریق بیش از حد</lable>
-                                {{ examinations.local_sym_tarigh }}
+                                {% if examinations.local_sym_tarigh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>عدم تحمل گرما و سرما</lable>
-                                {{ examinations.local_sym_adam_tahamol }}
+                                {% if examinations.local_sym_adam_tahamol == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تب</lable>
-                                {{ examinations.local_sym_tab }}
+                                {% if examinations.local_sym_tab == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.local_sym_other }}
+                                {% if examinations.local_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.local_sym_without_sign }}
+                                {% if examinations.local_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -1047,26 +1319,48 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>وضعیت ظاهری(toxic/ill)</lable>
-                                {{ examinations.local_sign_zaheri }}
+                                {% if examinations.local_sign_zaheri == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>مخاطات رنگ پریده</lable>
-                                {{ examinations.local_sign_rang_paride }}
+                                {% if examinations.local_sign_rang_paride == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.local_sign_other }}
+                                {% if examinations.local_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.local_sign_without_sign }}
+                                {% if examinations.local_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.local_des }}</td>
+                    <td>
+                        {% if examinations.local_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.local_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>چشم</td>
@@ -1075,41 +1369,77 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کاهش حد بینایی</lable>
-                                {{ examinations.eye_sym_kahesh_binayi }}
+                                {% if examinations.eye_sym_kahesh_binayi == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تاری دید</lable>
-                                {{ examinations.eye_sym_tari_did }}
+                                {% if examinations.eye_sym_tari_did == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>خستگی چشم</lable>
-                                {{ examinations.eye_sym_khastegi }}
+                                {% if examinations.eye_sym_khastegi == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>دوبینی</lable>
-                                {{ examinations.eye_sym_dobini }}
+                                {% if examinations.eye_sym_dobini == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>سوزش چشم</lable>
-                                {{ examinations.eye_sym_sozesh }}
+                                {% if examinations.eye_sym_sozesh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>ترس از نور</lable>
-                                {{ examinations.eye_sym_tars_az_nor }}
+                                {% if examinations.eye_sym_tars_az_nor == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>اشک ریزش</lable>
-                                {{ examinations.eye_sym_ashk }}
+                                {% if examinations.eye_sym_ashk == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.eye_sym_other }}
+                                {% if examinations.eye_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.eye_sym_without_sign }}
+                                {% if examinations.eye_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -1120,36 +1450,66 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>رفلکس غیر طبیعی مردمک</lable>
-                                {{ examinations.eye_sign_reflex }}
+                                {% if examinations.eye_sign_reflex == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>قرمزی چشم</lable>
-                                {{ examinations.eye_sign_red }}
+                                {% if examinations.eye_sign_red == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>اسکلرای ایکتریک</lable>
-                                {{ examinations.eye_sign_sklrai }}
+                                {% if examinations.eye_sign_sklrai == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>نیستاگموس</lable>
-                                {{ examinations.eye_sign_nistagemos }}
+                                {% if examinations.eye_sign_nistagemos == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.eye_sign_other }}
+                                {% if examinations.eye_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.eye_sign_without_sign }}
+                                {% if examinations.eye_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.eye_des }}</td>
+                    <td>
+                        {% if examinations.eye_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.eye_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>پوست,مو و ناخن</td>
@@ -1158,41 +1518,77 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>خارش پوست</lable>
-                                {{ examinations.skin_sym_kharesh_post }}
+                                {% if examinations.skin_sym_kharesh_post == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ریزش مو</lable>
-                                {{ examinations.skin_sym_rizesh_mo }}
+                                {% if examinations.skin_sym_rizesh_mo == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>قرمزی پوست</lable>
-                                {{ examinations.skin_sym_red }}
+                                {% if examinations.skin_sym_red == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تغییر رنگ پوست</lable>
-                                {{ examinations.skin_sym_taghir_post }}
+                                {% if examinations.skin_sym_taghir_post == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>زخم مزمن</lable>
-                                {{ examinations.skin_sym_zakhm }}
+                                {% if examinations.skin_sym_zakhm == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>پوسته ریزی</lable>
-                                {{ examinations.skin_sym_poste_rizi }}
+                                {% if examinations.skin_sym_poste_rizi == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تغییر رنگ ناخن</lable>
-                                {{ examinations.skin_sym_taghir_nakhon }}
+                                {% if examinations.skin_sym_taghir_nakhon == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.skin_sym_other }}
+                                {% if examinations.skin_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.skin_sym_without_sign }}
+                                {% if examinations.skin_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -1203,62 +1599,116 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>ماکول</lable>
-                                {{ examinations.skin_sign_makol }}
+                                {% if examinations.skin_sign_makol == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>پاپول</lable>
-                                {{ examinations.skin_sign_papol }}
+                                {% if examinations.skin_sign_papol == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ندول</lable>
-                                {{ examinations.skin_sign_nadol }}
+                                {% if examinations.skin_sign_nadol == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>وزیکول</lable>
-                                {{ examinations.skin_sign_vezikol }}
+                                {% if examinations.skin_sign_vezikol == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>زخم</lable>
-                                {{ examinations.skin_sign_zakhm }}
+                                {% if examinations.skin_sign_zakhm == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>کهیر</lable>
-                                {{ examinations.skin_sign_kahir }}
+                                {% if examinations.skin_sign_kahir == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کلابینگ</lable>
-                                {{ examinations.skin_sign_klabing }}
+                                {% if examinations.skin_sign_klabing == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ریزش منطقه ای مو</lable>
-                                {{ examinations.skin_sign_rizesh_mantaghe }}
+                                {% if examinations.skin_sign_rizesh_mantaghe == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ریزش جنرال مو</lable>
-                                {{ examinations.skin_sign_rizesh_general }}
+                                {% if examinations.skin_sign_rizesh_general == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>تغییرات پیگمانی</lable>
-                                {{ examinations.skin_sign_taghirat_peygmani }}
+                                {% if examinations.skin_sign_taghirat_peygmani == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.skin_sign_other }}
+                                {% if examinations.skin_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.skin_sign_without_sign }}
+                                {% if examinations.skin_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.skin_des }}</td>
+                    <td>
+                        {% if examinations.skin_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.skin_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>گوش,حلق,بینی و دهان</td>
@@ -1267,69 +1717,129 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کاهش شنوایی</lable>
-                                {{ examinations.gosh_sym_kahesh_shenavaii }}
+                                {% if examinations.gosh_sym_kahesh_shenavaii == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>وزوز گوش</lable>
-                                {{ examinations.gosh_sym_vez_vez_gosh }}
+                                {% if examinations.gosh_sym_vez_vez_gosh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>سرگیجه واقعی</lable>
-                                {{ examinations.gosh_sym_sargije }}
+                                {% if examinations.gosh_sym_sargije == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>درد گوش</lable>
-                                {{ examinations.gosh_sym_dard_gosh }}
+                                {% if examinations.gosh_sym_dard_gosh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ترشح گوش</lable>
-                                {{ examinations.gosh_sym_tarashoh_gosh }}
+                                {% if examinations.gosh_sym_tarashoh_gosh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>گرفتگی صدا</lable>
-                                {{ examinations.gosh_sym_gereftegi_seda }}
+                                {% if examinations.gosh_sym_gereftegi_seda == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>گلودرد</lable>
-                                {{ examinations.gosh_sym_galodard }}
+                                {% if examinations.gosh_sym_galodard == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>آبریزش بینی</lable>
-                                {{ examinations.gosh_sym_abrrizesh_bini }}
+                                {% if examinations.gosh_sym_abrrizesh_bini == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>اختلال بویایی</lable>
-                                {{ examinations.gosh_sym_ekhtelal_boyayi }}
+                                {% if examinations.gosh_sym_ekhtelal_boyayi == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>خارش و سوزش بینی</lable>
-                                {{ examinations.gosh_sym_khareshvsozesh }}
+                                {% if examinations.gosh_sym_khareshvsozesh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>خونریزی بینی</lable>
-                                {{ examinations.gosh_sym_khonrizi }}
+                                {% if examinations.gosh_sym_khonrizi == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>خشکی دهان</lable>
-                                {{ examinations.gosh_sym_khoshki }}
+                                {% if examinations.gosh_sym_khoshki == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>احساس مزه فلزی در دهان</lable>
-                                {{ examinations.gosh_sym_ehsas }}
+                                {% if examinations.gosh_sym_ehsas == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.gosh_sym_other }}
+                                {% if examinations.gosh_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.gosh_sym_without_sign }}
+                                {% if examinations.gosh_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -1340,72 +1850,134 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>التهاب پرده تمپان</lable>
-                                {{ examinations.gosh_sign_eltehab_parde }}
+                                {% if examinations.gosh_sign_eltehab_parde == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>پارگی پرده تمپان</lable>
-                                {{ examinations.gosh_sign_paregi }}
+                                {% if examinations.gosh_sign_paregi == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>افزایش غیر طبیعی سرومن</lable>
-                                {{ examinations.gosh_sign_afzayesh }}
+                                {% if examinations.gosh_sign_afzayesh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ترشح پشت حلق</lable>
-                                {{ examinations.gosh_sign_tarashoh }}
+                                {% if examinations.gosh_sign_tarashoh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>اگزودای حلق</lable>
-                                {{ examinations.gosh_sign_egzodai }}
+                                {% if examinations.gosh_sign_egzodai == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>قرمزی حلق</lable>
-                                {{ examinations.gosh_sign_red }}
+                                {% if examinations.gosh_sign_red == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>پولیپ بینی</lable>
-                                {{ examinations.gosh_sign_polip }}
+                                {% if examinations.gosh_sign_polip == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تندرنس سینوس ها</lable>
-                                {{ examinations.gosh_sign_tndrs }}
+                                {% if examinations.gosh_sign_tndrs == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>lead line</lable>
-                                {{ examinations.gosh_sign_lead }}
+                                {% if examinations.gosh_sign_lead == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بوی بد دهان</lable>
-                                {{ examinations.gosh_sign_bad_smell }}
+                                {% if examinations.gosh_sign_bad_smell == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>التهاب لثه</lable>
-                                {{ examinations.gosh_sign_eltehab_lase }}
+                                {% if examinations.gosh_sign_eltehab_lase == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>پرفوراسیون/زخم سپتوم</lable>
-                                {{ examinations.gosh_sign_zakhm }}
+                                {% if examinations.gosh_sign_zakhm == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.gosh_sign_other }}
+                                {% if examinations.gosh_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.gosh_sign_without_sign }}
+                                {% if examinations.gosh_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.gosh_des }}</td>
+                    <td>
+                        {% if examinations.gosh_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.gosh_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>سر و گردن</td>
@@ -1414,19 +1986,35 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>درد گردن</lable>
-                                {{ examinations.sar_sym_dard_gardan }}
+                                {% if examinations.sar_sym_dard_gardan == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>توده گردنی</lable>
-                                {{ examinations.sar_sym_tode_gardani }}
+                                {% if examinations.sar_sym_tode_gardani == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.sar_sym_other }}
+                                {% if examinations.sar_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.sar_sym_without_sign }}
+                                {% if examinations.sar_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -1437,26 +2025,48 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>بزرگی تیروئید</lable>
-                                {{ examinations.sar_sign_bozorgi_tiroid }}
+                                {% if examinations.sar_sign_bozorgi_tiroid == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>لنفادنوپاتی گردنی</lable>
-                                {{ examinations.sar_sign_gardani }}
+                                {% if examinations.sar_sign_gardani == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.sar_sign_other }}
+                                {% if examinations.sar_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.sar_sign_without_sign }}
+                                {% if examinations.sar_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.sar_des }}</td>
+                    <td>
+                        {% if examinations.sar_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.sar_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>ریه</td>
@@ -1465,29 +2075,53 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>سرفه</lable>
-                                {{ examinations.rie_sym_sorfe }}
+                                {% if examinations.rie_sym_sorfe == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>خلط</lable>
-                                {{ examinations.rie_sym_khelt }}
+                                {% if examinations.rie_sym_khelt == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تنگی نفس کوشش</lable>
-                                {{ examinations.rie_sym_tangi }}
+                                {% if examinations.rie_sym_tangi == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>خس خس سینه</lable>
-                                {{ examinations.rie_sym_sine }}
+                                {% if examinations.rie_sym_sine == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.rie_sym_other }}
+                                {% if examinations.rie_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.rie_sym_without_sign }}
+                                {% if examinations.rie_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -1498,44 +2132,82 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>وضعیت ظاهری غیر طبیعی قفسه سینه</lable>
-                                {{ examinations.rie_sign_zaheri }}
+                                {% if examinations.rie_sign_zaheri == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>خشونت صدا</lable>
-                                {{ examinations.rie_sign_khoshonat }}
+                                {% if examinations.rie_sign_khoshonat == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ویزینگ</lable>
-                                {{ examinations.rie_sign_vizing }}
+                                {% if examinations.rie_sign_vizing == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کراکل</lable>
-                                {{ examinations.rie_sign_cracel }}
+                                {% if examinations.rie_sign_cracel == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تاکی پنه</lable>
-                                {{ examinations.rie_sign_taki_pene }}
+                                {% if examinations.rie_sign_taki_pene == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>کاهش صداهای ریوی</lable>
-                                {{ examinations.rie_sign_kahesh_sedaha }}
+                                {% if examinations.rie_sign_kahesh_sedaha == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.rie_sign_other }}
+                                {% if examinations.rie_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.rie_sign_without_sign }}
+                                {% if examinations.rie_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.rie_des }}</td>
+                    <td>
+                        {% if examinations.rie_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.rie_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>قلب و عروق</td>
@@ -1544,37 +2216,69 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>درد قفسه سینه</lable>
-                                {{ examinations.ghalb_sym_dard }}
+                                {% if examinations.ghalb_sym_dard == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تپش قلب</lable>
-                                {{ examinations.ghalb_sym_tapesh }}
+                                {% if examinations.ghalb_sym_tapesh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تنگی نفس ناگهانی شبانه</lable>
-                                {{ examinations.ghalb_sym_tangi_shabane }}
+                                {% if examinations.ghalb_sym_tangi_shabane == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تنگی نفس دروضعیت خوابیده</lable>
-                                {{ examinations.ghalb_sym_tangi_khabide }}
+                                {% if examinations.ghalb_sym_tangi_khabide == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>سیانوز</lable>
-                                {{ examinations.ghalb_sym_sianoz }}
+                                {% if examinations.ghalb_sym_sianoz == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>سابقه سنکوپ</lable>
-                                {{ examinations.ghalb_sym_senkop }}
+                                {% if examinations.ghalb_sym_senkop == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.ghalb_sym_other }}
+                                {% if examinations.ghalb_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
+                                {% if examinations.ghalb_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                                 <lable>بدون علامت</lable>
-                                {{ examinations.ghalb_sym_without_sign }}
                             </div>
                         </div>
                     </td>
@@ -1585,44 +2289,82 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>S1S2غیر طبیعی</lable>
-                                {{ examinations.ghalb_sign_s }}
+                                {% if examinations.ghalb_sign_s == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>صدای اضافه قلب</lable>
-                                {{ examinations.ghalb_sign_seda_ezafe }}
+                                {% if examinations.ghalb_sign_seda_ezafe == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>آریتمی</lable>
-                                {{ examinations.ghalb_sign_aritmi }}
+                                {% if examinations.ghalb_sign_aritmi == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>واریس اندام تحتانی</lable>
-                                {{ examinations.ghalb_sign_varis_tahtani }}
+                                {% if examinations.ghalb_sign_varis_tahtani == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>واریس اندام فوقانی</lable>
-                                {{ examinations.ghalb_sign_varis_foghani }}
+                                {% if examinations.ghalb_sign_varis_foghani == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ادم اندام</lable>
-                                {{ examinations.ghalb_sign_andam }}
+                                {% if examinations.ghalb_sign_andam == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.ghalb_sign_other }}
+                                {% if examinations.ghalb_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.ghalb_sign_without_sign }}
+                                {% if examinations.ghalb_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.ghalb_des }}</td>
+                    <td>
+                        {% if examinations.ghalb_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.ghalb_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>شکم و لگن</td>
@@ -1631,55 +2373,103 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>بی اشتهایی</lable>
-                                {{ examinations.shekam_sym_bi_eshteha }}
+                                {% if examinations.shekam_sym_bi_eshteha == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تهوع</lable>
-                                {{ examinations.shekam_sym_tahavo }}
+                                {% if examinations.shekam_sym_tahavo == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>استفراغ</lable>
-                                {{ examinations.shekam_sym_estefragh }}
+                                {% if examinations.shekam_sym_estefragh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>درد شکم</lable>
-                                {{ examinations.shekam_sym_dard_shekam }}
+                                {% if examinations.shekam_sym_dard_shekam == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>سوزش سر دل</lable>
-                                {{ examinations.shekam_sym_soozesh }}
+                                {% if examinations.shekam_sym_soozesh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>اسهال</lable>
-                                {{ examinations.shekam_sym_eshal }}
+                                {% if examinations.shekam_sym_eshal == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>یبوست</lable>
-                                {{ examinations.shekam_sym_yobosat }}
+                                {% if examinations.shekam_sym_yobosat == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>مدفوع قیری</lable>
-                                {{ examinations.shekam_sym_ghiri }}
+                                {% if examinations.shekam_sym_ghiri == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>خون روشن در مدفوع</lable>
-                                {{ examinations.shekam_sym_roshan }}
+                                {% if examinations.shekam_sym_roshan == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>               
                             <div class='col'>
                                 <lable>اختلال در بلع</lable>
-                                {{ examinations.shekam_sym_ekhtelal }}
+                                {% if examinations.shekam_sym_ekhtelal == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.shekam_sym_other }}
+                                {% if examinations.shekam_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.shekam_sym_without_sign }}
+                                {% if examinations.shekam_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -1690,48 +2480,90 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>تندرنس شکمی</lable>
-                                {{ examinations.shekam_sign_shekami }}
+                                {% if examinations.shekam_sign_shekami == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ریباند تندرنس</lable>
-                                {{ examinations.shekam_sign_rebond }}
+                                {% if examinations.shekam_sign_rebond == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>هپاتومگالی</lable>
-                                {{ examinations.shekam_sign_hepatomegaly }}
+                                {% if examinations.shekam_sign_hepatomegaly == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>اسپلنومگالی</lable>
-                                {{ examinations.shekam_sign_espelnomegali }}
+                                {% if examinations.shekam_sign_espelnomegali == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>آسیت</lable>
-                                {{ examinations.shekam_sign_asib }}
+                                {% if examinations.shekam_sign_asib == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>توده شکمی</lable>
-                                {{ examinations.shekam_sign_tode_shekami }}
+                                {% if examinations.shekam_sign_tode_shekami == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>دیستانسیون شکمی</lable>
-                                {{ examinations.shekam_sign_distansion }}
+                                {% if examinations.shekam_sign_distansion == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.shekam_sign_other }}
+                                {% if examinations.shekam_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.shekam_sign_without_sign }}
+                                {% if examinations.shekam_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.shekam_des }}</td>
+                    <td>
+                        {% if examinations.shekam_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.shekam_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>کلیه و مجاری ادراری,تناسلی</td>
@@ -1740,33 +2572,61 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>سوزش درار</lable>
-                                {{ examinations.colie_sym_soozesh }}
+                                {% if examinations.colie_sym_soozesh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تکرر ادرار</lable>
-                                {{ examinations.colie_sym_tekrar }}
+                                {% if examinations.colie_sym_tekrar == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ادرار خونی</lable>
-                                {{ examinations.colie_sym_khoni }}
+                                {% if examinations.colie_sym_khoni == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>درد پهلو</lable>
-                                {{ examinations.colie_sym_pahlo }}
+                                {% if examinations.colie_sym_pahlo == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>احساس سنگینی یا توده در بیضه</lable>
-                                {{ examinations.colie_sym_sangini }}
+                                {% if examinations.colie_sym_sangini == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.colie_sym_other }}
+                                {% if examinations.colie_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.colie_sym_without_sign }}
+                                {% if examinations.colie_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -1777,26 +2637,48 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>تندرستیCVA</lable>
-                                {{ examinations.colie_sign_cva }}
+                                {% if examinations.colie_sign_cva == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>واریکوسل</lable>
-                                {{ examinations.colie_sign_varikosel }}
+                                {% if examinations.colie_sign_varikosel == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.colie_sign_other }}
+                                {% if examinations.colie_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.colie_sign_without_sign }}
+                                {% if examinations.colie_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.colie_des }}</td>
+                    <td>
+                        {% if examinations.colie_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.colie_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>اسکلتی و عضلانی</td>
@@ -1805,33 +2687,61 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>خشکی مفصل</lable>
-                                {{ examinations.eskelety_sym_mafsal }}
+                                {% if examinations.eskelety_sym_mafsal == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>کمردرد</lable>
-                                {{ examinations.eskelety_sym_kamar_dard }}
+                                {% if examinations.eskelety_sym_kamar_dard == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>درد زانو</lable>
-                                {{ examinations.eskelety_sym_zano }}
+                                {% if examinations.eskelety_sym_zano == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>درد شانه</lable>
-                                {{ examinations.eskelety_sym_shane }}
+                                {% if examinations.eskelety_sym_shane == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>درد سایر مفاصل</lable>
-                                {{ examinations.eskelety_sym_other_mafasel }}
+                                {% if examinations.eskelety_sym_other_mafasel == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.eskelety_sym_other }}
+                                {% if examinations.eskelety_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.eskelety_sym_without_sign }}
+                                {% if examinations.eskelety_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -1842,50 +2752,92 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>محدودیت حرکتی مفصل</lable>
-                                {{ examinations.eskelety_sign_mahdodiat }}
+                                {% if examinations.eskelety_sign_mahdodiat == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>کاهش قدرت عضلانی در اندام فوقانی</lable>
-                                {{ examinations.eskelety_sign_kahesh_foghani }}
+                                {% if examinations.eskelety_sign_kahesh_foghani == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>کاهش قدرت عضلانی در اندام تحتانی</lable>
-                                {{ examinations.eskelety_sign_kahesh_tahtani }}
+                                {% if examinations.eskelety_sign_kahesh_tahtani == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>اسکولیوز</lable>
-                                {{ examinations.eskelety_sign_eskolioz }}
+                                {% if examinations.eskelety_sign_eskolioz == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>امپوتاسیون</lable>
-                                {{ examinations.eskelety_sign_empotasion }}
+                                {% if examinations.eskelety_sign_empotasion == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تست SLR مثبت</lable>
-                                {{ examinations.eskelety_sign_slr }}
+                                {% if examinations.eskelety_sign_slr == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تست Reverse-SLR</lable>
-                                {{ examinations.eskelety_sign_r_slr }}
+                                {% if examinations.eskelety_sign_r_slr == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.eskelety_sign_other }}
+                                {% if examinations.eskelety_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.eskelety_sign_without_sign }}
+                                {% if examinations.eskelety_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.eskelety_des }}</td>
+                    <td>
+                        {% if examinations.eskelety_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.eskelety_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>سیستم عصبی</td>
@@ -1894,37 +2846,69 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>سردرد</lable>
-                                {{ examinations.asabi_sym_sar_dard }}
+                                {% if examinations.asabi_sym_sar_dard == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>گیجی</lable>
-                                {{ examinations.asabi_sym_giji }}
+                                {% if examinations.asabi_sym_giji == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>لرزش</lable>
-                                {{ examinations.asabi_sym_larzesh }}
+                                {% if examinations.asabi_sym_larzesh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>اختلال حافظه</lable>
-                                {{ examinations.asabi_sym_ekhtelal }}
+                                {% if examinations.asabi_sym_ekhtelal == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>سابقه صرع/تشنج</lable>
-                                {{ examinations.asabi_sym_tashanoj }}
+                                {% if examinations.asabi_sym_tashanoj == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>گز گز و مور مور انگشتان دست</lable>
-                                {{ examinations.asabi_sym_gez_gez }}
+                                {% if examinations.asabi_sym_gez_gez == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.asabi_sym_other }}
+                                {% if examinations.asabi_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.asabi_sym_without_sign }}
+                                {% if examinations.asabi_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -1935,48 +2919,90 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>رفلکس زانوی غیر طبیعی</lable>
-                                {{ examinations.asabi_sign_tabi_e }}
+                                {% if examinations.asabi_sign_tabi_e == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>رفلکس آشیل غیرطبیعی</lable>
-                                {{ examinations.asabi_sign_gheir_tabi_e }}
+                                {% if examinations.asabi_sign_gheir_tabi_e == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تست رومبرگ مختل</lable>
-                                {{ examinations.asabi_sign_mokhtal }}
+                                {% if examinations.asabi_sign_mokhtal == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>ترمور</lable>
-                                {{ examinations.asabi_sign_trmor }}
+                                {% if examinations.asabi_sign_trmor == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>اختلال حسی اندام ها</lable>
-                                {{ examinations.asabi_sign_hesi }}
+                                {% if examinations.asabi_sign_hesi == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تست تینل مثبت</lable>
-                                {{ examinations.asabi_sign_tinel }}
+                                {% if examinations.asabi_sign_tinel == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>تست فالن مثبت</lable>
-                                {{ examinations.asabi_sign_falen }}
+                                {% if examinations.asabi_sign_falen == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.asabi_sign_other }}
+                                {% if examinations.asabi_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.asabi_sign_without_sign }}
+                                {% if examinations.asabi_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.asabi_des }}</td>
+                    <td>
+                        {% if examinations.asabi_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.asabi_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td rowspan='3'>اعصاب و روان</td>
@@ -1985,33 +3011,61 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>عصبانیت بیش از حد</lable>
-                                {{ examinations.ravan_sym_asabaniat }}
+                                {% if examinations.ravan_sym_asabaniat == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>پرخاشگری</lable>
-                                {{ examinations.ravan_sym_parkhashgari }}
+                                {% if examinations.ravan_sym_parkhashgari == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>اضطراب</lable>
-                                {{ examinations.ravan_sym_ezterab }}
+                                {% if examinations.ravan_sym_ezterab == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>خلق پایین</lable>
-                                {{ examinations.ravan_sym_kholgh }}
+                                {% if examinations.ravan_sym_kholgh == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>کاهش انگیزه</lable>
-                                {{ examinations.ravan_sym_angize }}
+                                {% if examinations.ravan_sym_angize == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.ravan_sym_other }}
+                                {% if examinations.ravan_sym_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون علامت</lable>
-                                {{ examinations.ravan_sym_without_sign }}
+                                {% if examinations.ravan_sym_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
@@ -2022,34 +3076,66 @@
                         <div class='row text-center'>
                             <div class='col'>
                                 <lable>هذیان</lable>
-                                {{ examinations.ravan_sign_hazyan }}
+                                {% if examinations.ravan_sign_hazyan == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>توهم</lable>
-                                {{ examinations.ravan_sign_tavahom }}
+                                {% if examinations.ravan_sign_tavahom == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>اختلال اوریانتاسیون</lable>
-                                {{ examinations.ravan_sign_oriantasion }}
+                                {% if examinations.ravan_sign_oriantasion == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>غیره.....</lable>
-                                {{ examinations.ravan_sign_other }}
+                                {% if examinations.ravan_sign_other == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                             <div class='col'>
                                 <lable>بدون نشانه</lable>
-                                {{ examinations.ravan_sign_without_sign }}
+                                {% if examinations.ravan_sign_without_sign == True %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>توضیحات</td>
-                    <td>{{ examinations.ravan_des }}</td>
+                    <td>
+                        {% if examinations.ravan_des == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.ravan_des }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>سایر موارد:</td>
-                    <td colspan=2>{{ examinations.other }}</td>
+                    <td colspan=2>
+                        {% if examinations.other == null %}
+                        ذکر نشده
+                        {% else %}
+                        {{ examinations.other }}
+                        {% endif %}
+                    </td>
                 </tr>
             </table>
         </div>
