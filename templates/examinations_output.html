@@ -35,7 +35,7 @@
     <path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)"
           d="M0,30L80,38.3C160,47,320,63,480,60C640,57,800,33,960,25C1120,17,1280,23,1440,31.7C1600,40,1760,50,1920,51.7C2080,53,2240,47,2400,50C2560,53,2720,67,2880,61.7C3040,57,3200,33,3360,25C3520,17,3680,23,3840,30C4000,37,4160,43,4320,46.7C4480,50,4640,50,4800,55C4960,60,5120,70,5280,68.3C5440,67,5600,53,5760,53.3C5920,53,6080,67,6240,66.7C6400,67,6560,53,6720,55C6880,57,7040,73,7200,66.7C7360,60,7520,30,7680,28.3C7840,27,8000,53,8160,68.3C8320,83,8480,87,8640,88.3C8800,90,8960,90,9120,76.7C9280,63,9440,37,9600,25C9760,13,9920,17,10080,20C10240,23,10400,27,10560,25C10720,23,10880,17,11040,25C11200,33,11360,57,11440,68.3L11520,80L11520,100L11440,100C11360,100,11200,100,11040,100C10880,100,10720,100,10560,100C10400,100,10240,100,10080,100C9920,100,9760,100,9600,100C9440,100,9280,100,9120,100C8960,100,8800,100,8640,100C8480,100,8320,100,8160,100C8000,100,7840,100,7680,100C7520,100,7360,100,7200,100C7040,100,6880,100,6720,100C6560,100,6400,100,6240,100C6080,100,5920,100,5760,100C5600,100,5440,100,5280,100C5120,100,4960,100,4800,100C4640,100,4480,100,4320,100C4160,100,4000,100,3840,100C3680,100,3520,100,3360,100C3200,100,3040,100,2880,100C2720,100,2560,100,2400,100C2240,100,2080,100,1920,100C1760,100,1600,100,1440,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
 </svg>
-<section class='container'>
+<section class='container' id='print'>
         <div class='row text-center mb-4'>
             <div class='col'>
                 به نام خدا
@@ -3151,22 +3151,22 @@
         </div> 
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                CBC:WBC{{ experiments.cbc_wbc }}RBC{{ experiments.cbc_rbc }}Hb{{ experiments.cbc_hb }}HTC{{ experiments.cbc_htc }}Plt{{ experiments.cbc_plt }}
+                CBC:WBC<p class='red'>{{ experiments.cbc_wbc }}</p>RBC<p class='red'>{{ experiments.cbc_rbc }}</p>Hb<p class='red'>{{ experiments.cbc_hb }}</p>HTC<p class='red'>{{ experiments.cbc_htc }}</p>Plt<p class='red'>{{ experiments.cbc_plt }}</p>
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                U/A:Prot{{ experiments.ua_prot }} Glu{{ experiments.ua_glu }}RBC{{ experiments.ua_rbc }}WBC{{ experiments.ua_wbc }}Bact{{ experiments.ua_bact }}
+                U/A:Prot<p class='red'>{{ experiments.ua_prot }}</p> Glu<p class='red'>{{ experiments.ua_glu }}</p>RBC<p class='red'>{{ experiments.ua_rbc }}</p>WBC<p class='red'>{{ experiments.ua_wbc }}</p>Bact<p class='red'>{{ experiments.ua_bact }}</p>
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                FBS{{ experiments.fbs }} Total Chol{{ experiments.chol }}LDL{{ experiments.ldl }}HDL{{ experiments.hdl }}TG{{ experiments.tg }}
+                FBS<p class='red'>{{ experiments.fbs }}</p> Total Chol<p class='red'>{{ experiments.chol }}</p>LDL<p class='red'>{{ experiments.ldl }}</p>HDL<p class='red'>{{ experiments.hdl }}</p>TG<p class='red'>{{ experiments.tg }}</p>
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                BUN{{ experiments.bun }} Cr{{ experiments.cr }}ALT{{ experiments.alt }}AST{{ experiments.ast }}ALK.Ph{{ experiments.alk }}HBS AG{{ experiments.hbs }}S/E & OB{{ experiments.se }}PPD{{ experiments.ppd }}
+                BUN<p class='red'>{{ experiments.bun }}</p> Cr<p class='red'>{{ experiments.cr }}</p>ALT<p class='red'>{{ experiments.alt }}</p>AST<p class='red'>{{ experiments.ast }}</p>ALK.Ph<p class='red'>{{ experiments.alk }}</p>HBS AG<p class='red'>{{ experiments.hbs }}</p>S/E & OB<p class='red'>{{ experiments.se }}</p>PPD<p class='red'>{{ experiments.ppd }}</p>
             </div>
         </div>
         <div class='row mt-4'>
@@ -3176,20 +3176,53 @@
         </div> 
         <div class='row mt-3'>
             <div class='col'>
-                1-نوع:{{ experiments.first_type }} نتیجه:{{ experiments.first_result }}تاریخ:13{{ experiments.first_date_year }}/
-                {{ experiments.first_date_month }}/{{ experiments.first_date_day }}
+                1-نوع:
+                {% if experiments.first_type == null %}
+                <p class='red'>ذکر نشده</p>
+                {% else %}
+                {{ experiments.first_type }}
+                {% endif %}
+                نتیجه:
+                {% if experiments.first_result == null %}
+                <p class='red'>ذکر نشده</p>
+                {% else %}
+                {{ experiments.first_result }}
+                {% endif %}
+                تاریخ:13{{ experiments.first_date_year }}/{{ experiments.first_date_month }}/{{ experiments.first_date_day }}
             </div>
         </div>
         <div class='row mt-3'>
             <div class='col'>
-                2-نوع:{{ experiments.second_type }} نتیجه:{{ experiments.second_result }}تاریخ:13{{ experiments.second_date_year }}/
-                {{ experiments.second_date_month }}/{{ experiments.second_date_day }}
+                2-نوع:
+                {% if experiments.second_type == null %}
+                <p class='red'>ذکر نشده</p>
+                {% else %}
+                {{ experiments.second_type }}
+                {% endif %}
+                نتیجه:
+                {% if experiments.second_result == null %}
+                <p class='red'>ذکر نشده</p>
+                {% else %}
+                {{ experiments.second_result }}
+                {% endif %}
+                تاریخ:13{{ experiments.second_date_year }}/{{ experiments.second_date_month }}/{{ experiments.second_date_day }}
             </div>
         </div>
         <div class='row mt-3'>
             <div class='col'>
-                3-نوع:{{ experiments.third_type }} نتیجه:{{ experiments.third_result }}تاریخ:13{{ experiments.third_date_year }}/
-                {{ experiments.third_date_month }}/{{ experiments.third_date_day }}
+                3-نوع:
+                {% if experiments.third_type == null %}
+                <p class='red'>ذکر نشده</p>
+                {% else %}
+                {{ experiments.third_type }}
+                {% endif %}
+                نتیجه:
+                {% if experiments.third_result == null %}
+                <p class='red'>ذکر نشده</p>
+                {% else %}
+                {{ experiments.third_result }}
+                {% endif %}
+                تاریخ:13{{ experiments.third_date_year }}/{{ experiments.third_date_month }}/{{ experiments.third_date_day }}
             </div>
         </div>
         <div class='row b-green mt-5'>
@@ -3271,42 +3304,192 @@
                     <th>13{{ para_clinic.audio_date_year }}/{{ para_clinic.audio_date_month }}/{{ para_clinic.audio_date_day }}</th>
                 </tr>
                 <tr>
-                    <td rowspan=4>{{ para_clinic.oudio_tafsir }}</td>
-                    <td>{{ para_clinic.audio_r_eight_ac }}</td>
-                    <td>{{ para_clinic.audio_r_six_ac }}</td>
-                    <td>{{ para_clinic.audio_r_four_ac }}</td>
-                    <td>{{ para_clinic.audio_r_two_ac }}</td>
-                    <td>{{ para_clinic.audio_r_one_ac }}</td>
-                    <td>{{ para_clinic.audio_r_five_ac }}</td>
+                    <td rowspan=4>
+                        {% if para_clinic.oudio_tafsir == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.oudio_tafsir }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_eight_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_eight_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_six_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_six_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_four_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_four_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_two_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_two_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_one_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_one_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_five_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_five_ac }}
+                        {% endif %}
+                    </td>
                     <td>AC</td>
                     <td rowspan=2>گوش راست</td>
                 </tr>
                 <tr>
-                    <td>{{ para_clinic.audio_r_eight_bc }}</td>
-                    <td>{{ para_clinic.audio_r_six_bc }}</td>
-                    <td>{{ para_clinic.audio_r_four_bc }}</td>
-                    <td>{{ para_clinic.audio_r_two_bc }}</td>
-                    <td>{{ para_clinic.audio_r_one_ac }}</td>
-                    <td>{{ para_clinic.audio_r_five_bc }}</td>
+                    <td>
+                        {% if para_clinic.audio_r_eight_bc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_eight_bc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_six_bc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_six_bc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_four_bc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_four_bc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_two_bc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_two_bc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_one_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_one_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_r_five_bc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_r_five_bc }}
+                        {% endif %}
+                    </td>
                     <td>BC</td>
                 </tr>
                 <tr>
-                    <td>{{ para_clinic.audio_l_eight_ac }}</td>
-                    <td>{{ para_clinic.audio_l_six_ac }}</td>
-                    <td>{{ para_clinic.audio_l_four_ac }}</td>
-                    <td>{{ para_clinic.audio_l_two_ac }}</td>
-                    <td>{{ para_clinic.audio_l_one_ac }}</td>
-                    <td>{{ para_clinic.audio_l_five_ac }}</td>
+                    <td>
+                        {% if para_clinic.audio_l_eight_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_eight_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_l_six_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_six_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_l_four_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_four_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_l_two_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_two_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_l_one_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_one_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_l_five_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_five_ac }}
+                        {% endif %}
+                    </td>
                     <td>AC</td>
                     <td rowspan=2>گوش راست</td>
                 </tr>
                 <tr>
-                    <td>{{ para_clinic.audio_l_eight_bc }}</td>
-                    <td>{{ para_clinic.audio_l_six_bc }}</td>
-                    <td>{{ para_clinic.audio_l_four_bc }}</td>
-                    <td>{{ para_clinic.audio_l_two_bc }}</td>
-                    <td>{{ para_clinic.audio_l_one_ac }}</td>
-                    <td>{{ para_clinic.audio_l_five_bc }}</td>
+                    <td>
+                        {% if para_clinic.audio_l_eight_bc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_eight_bc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_l_six_bc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_six_bc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_l_four_bc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_four_bc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_l_two_bc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_two_bc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_l_one_ac == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_one_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.audio_l_five_bc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.audio_l_five_bc }}
+                        {% endif %}
+                    </td>
                     <td>BC</td>
                 </tr>
             </table>
@@ -3325,9 +3508,27 @@
                    <td>FEV1(درصد/مقدار)</td>
                </tr>
                <tr>
-                    <td>{{ para_clinic.espiro_fevvfvc }}</td>
-                    <td>{{ para_clinic.espiro_fev }}</td>
-                    <td>{{ para_clinic.espiro_fvc }}</td>
+                    <td>
+                        {% if para_clinic.espiro_fevvfvc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.espiro_fevvfvc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.espiro_fev == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.espiro_fev }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.espiro_fvc == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.espiro_fvc }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>VEXT(Back Extrapolated Volume)</td>
@@ -3335,13 +3536,35 @@
                     <td>FEF 25-75%</td>
                 </tr>
                 <tr>
-                     <td>{{ para_clinic.espiro_vext }}</td>
-                     <td>{{ para_clinic.espiro_pef }}</td>
-                     <td>{{ para_clinic.espiro_fef }}</td>
+                     <td>
+                        {% if para_clinic.espiro_vext == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.espiro_vext }}
+                        {% endif %}
+                    </td>
+                     <td>
+                        {% if para_clinic.espiro_pef == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.espiro_pef }}
+                        {% endif %}
+                    </td>
+                     <td>
+                        {% if para_clinic.espiro_fef == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.espiro_fef }}
+                        {% endif %}
+                    </td>
                  </tr>
                  <tr>
                      <td colspan=3><p>تفسیر:</p>
+                        {% if para_clinic.espiro_tafsir == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
                         {{ para_clinic.espiro_tafsir }}
+                        {% endif %}
                      </td>
                  </tr>
             </table>
@@ -3353,15 +3576,31 @@
             <table>
                 <tr>
                     <td><p>یافته های CXR(P-A)</p>تاریخ انجام:13{{ para_clinic.other_cxr_year }}/{{ para_clinic.other_cxr_month }}/{{ para_clinic.other_cxr_day }}</td>
-                    <td width=75%>{{ para_clinic.other_cxr }}</td>
+                    <td width=75%>
+                        {% if para_clinic.other_cxr == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.other_cxr }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td><p>یافته های ECG</p>تاریخ انجام:13{{ para_clinic.other_ecg_year }}/{{ para_clinic.other_ecg_month }}/{{ para_clinic.other_ecg_day }}</td>
-                    <td width=75%>{{ para_clinic.other_ecg }}</td>
+                    <td width=75%>
+                        {% if para_clinic.other_ecg == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.other_ecg }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr class='text-center'>
                     <td colspan=3><p>نتیجه رادیوگرافی,سونوگرافی,سی تی اسکن و سایر موارد:</p>
+                        {% if para_clinic.other_result == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
                         {{ para_clinic.other_result }}
+                        {% endif %}
                     </td>
                 </tr>
             </table>
@@ -3384,13 +3623,29 @@
                             تاریخ :13{{ consulting.first_year }}/{{ consulting.first_month }}/{{ consulting.first_day }}
                         </div>
                         <div class='mt-1'>
-                            علت ارجاع:{{ consulting.first_reason }}
+                            علت ارجاع:
+                            {% if consulting.first_reason == null %}
+                            <p class='red'>ذکر نشده</p>
+                            {% else %}
+                            {{ consulting.first_reason }}
+                            {% endif %}
                         </div>
                         <div class='mt-1'>
-                            نوع تخصص:{{ consulting.first_type }}
+                            نوع تخصص:
+                            {% if consulting.first_type == null %}
+                            <p class='red'>ذکر نشده</p>
+                            {% else %}
+                            {{ consulting.first_type }}
+                            {% endif %}
                         </div>
                     </td>
-                    <td width=70%>{{ consulting.first_result }}</td>
+                    <td width=70%>
+                        {% if consulting.first_result == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ consulting.first_result }}
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -3398,13 +3653,29 @@
                             تاریخ :13{{ consulting.second_year }}/{{ consulting.second_month }}/{{ consulting.second_day }}
                         </div>
                         <div class='mt-1'>
-                            علت ارجاع:{{ consulting.second_reason }}
+                            علت ارجاع:
+                            {% if consulting.second_reason == null %}
+                            <p class='red'>ذکر نشده</p>
+                            {% else %}
+                            {{ consulting.second_reason }}
+                            {% endif %}
                         </div>
                         <div class='mt-1'>
-                            نوع تخصص:{{ consulting.second_type }}
+                            نوع تخصص:
+                            {% if consulting.second_type == null %}
+                            <p class='red'>ذکر نشده</p>
+                            {% else %}
+                            {{ consulting.second_type }}
+                            {% endif %}
                         </div>
                     </td>
-                    <td width=70%>{{ consulting.second_result }}</td>
+                    <td width=70%>
+                        {% if consulting.second_result == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ consulting.second_result }}
+                        {% endif %}
+                    </td>
                 </tr>
             </table>
         </div>
@@ -3416,34 +3687,80 @@
         <div class='row'>
             <table>
                 <tr>
-                    <td>الف-بلامانع{{ final_theory.belamane }}</td>
+                    <td>الف-بلامانع
+                        {% if final_theory.belamane == True %}
+                        <i class="fa-solid fa-check"></i>
+                        {% else %}
+                        <i class="fa-solid fa-x"></i>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>
                         <div>
-                            ب-مشروط {{ final_theory.mashrot }}
+                            ب-مشروط 
+                            {% if final_theory.mashrot == True %}
+                            <i class="fa-solid fa-check"></i>
+                            {% else %}
+                            <i class="fa-solid fa-x"></i>
+                            {% endif %}
                         </div> 
                         <div>
                             ذکر مشروط:
-                            {{ final_theory.mashrot_reason }}
+                            {% if final_theory.mashrot_reason == True %}
+                            <i class="fa-solid fa-check"></i>
+                            {% else %}
+                            <i class="fa-solid fa-x"></i>
+                            {% endif %}
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div>
-                            ج-عدم صلاحیت/تناسب پزشکی جهت انجام شغل مورد نظر {{ final_theory.rad }}
+                            ج-عدم صلاحیت/تناسب پزشکی جهت انجام شغل مورد نظر 
+                            {% if final_theory.rad == True %}
+                            <i class="fa-solid fa-check"></i>
+                            {% else %}
+                            <i class="fa-solid fa-x"></i>
+                            {% endif %}
                         </div> 
                         <div>
                             علل رد صلاحیت پزشکی:
+                            {% if final_theory.rad_reason == null %}
+                            <p class='red'>ذکر نشده</p>
+                            {% else %}
                             {{ final_theory.rad_reason }}
+                            {% endif %}
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class='text-center'>توصیه های پزشکی:{{ final_theory.recommendations }}</td>
+                    <td class='text-center'>توصیه های پزشکی:
+                        {% if final_theory.recommendations == null %}
+                        <p class='red'>ذکر نشده</p>
+                        {% else %}
+                        {{ final_theory.recommendations }}
+                        {% endif %}
+                    </td>
                 </tr>
             </table>
         </div>
+</section>
+<section>
+    <div class='row text-center mt-5'>
+        <div class='col'>
+            <input type="button" value="print" onclick="printDiv()">
+        </div>
+    </div>
+    <script>
+    function printDiv() {
+        const printContents = document.getElementById('print').innerHTML;
+        const originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+    </script>
 </section>
 {% endblock content %}

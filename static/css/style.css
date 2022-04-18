@@ -266,3 +266,13 @@ border: 1px solid black;
 .hwidth{
   width: 100%;
 }
+.False{
+color: red;
+display: inline;
+border: none;
+}
+.True{
+color: chartreuse;
+display: inline;
+border: none;
+}
