@@ -271,6 +271,9 @@ color: red;
 display: inline;
 border: none;
 }
+.false{
+color: red;   
+}
 .True{
 color: chartreuse;
 display: inline;

@@ -48,7 +48,7 @@
                     </td>
                     <td width=17%>نوع معاینات</td>
                     {% if personal_species.examinations_type == null %}
-                    <td>ذکر نشده</td>
+                    <td class='False'>ذکر نشده</td>
                     {% else %}
                     <td>{{ personal_species.examinations_type }}</td>
                     {% endif %}
@@ -78,7 +78,7 @@
             <div class='col'>
                 <lable>نام و نام خانوادگی:</lable>
                 {% if personal_species.name == null %}
-                ذکر نشده
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ personal_species.name }}
                 {% endif %}
@@ -87,7 +87,7 @@
             <div class='col'>
                 <lable>نام پدر:</lable>
                 {% if personal_species.fathers_name == null %}
-                ذکر نشده
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ personal_species.fathers_name }}
                 {% endif %}
@@ -135,7 +135,7 @@
             <div class='col'>
                 <lable>رسته خدمت:</lable>
                 {% if personal_species.raste == null %}
-                ذکر نشده
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ personal_species.raste }}
                 {% endif %}
@@ -145,7 +145,7 @@
                 {% if personal_species.medical_exemption == True %}
                 <i class="fa-solid fa-check"></i>
                 {% else %}
-                <i class="fa-solid fa-x"></i>
+                <i class="fa-solid fa-x False"></i>
                 {% endif %}
             </div>
         </div>
@@ -153,7 +153,7 @@
             <div class='col'>
                 <lable>علت معافیت پزشکی:</lable>
                 {% if personal_species.medical_exemption_reason == null %}
-                ذکر نشده
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ personal_species.medical_exemption_reason }}
                 {% endif %}
@@ -161,7 +161,7 @@
             <div class='col'>
                 <lable>نام واحد کاری:</lable>
                 {% if personal_species.job_name == null %}
-                ذکر نشده
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ personal_species.job_name }}
                 {% endif %}
@@ -169,7 +169,7 @@
             <div class='col'>
                 <lable>نام کارفرما:</lable>
                 {% if personal_species.employer_name == null %}
-                ذکر نشده
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ personal_species.employer_name }}
                 {% endif %}
@@ -179,7 +179,7 @@
             <div class='col'>
                 <lable>آدرس و تلفن محل کار:</lable>
                 {% if personal_species.address == null %}
-                ذکر نشده
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ personal_species.address }}
                 {% endif %}
@@ -205,54 +205,54 @@
                 </tr>
                 <tr>
                     {% if job_history.current_job == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.current_job }}</td>
                     {% endif %}
                     {% if job_history.current_job_duty == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.current_job_duty }}</td>
                     {% endif %}
                     {% if job_history.current_job_from == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.current_job_from }}</td>
                     {% endif %}
                     {% if job_history.current_job_to == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.current_job_to }}</td>
                     {% endif %}
                     {% if job_history.current_job_reason == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.current_job_reason }}</td>
                     {% endif %}
                 </tr>
                 <tr>
                     {% if job_history.second_current_job == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.second_current_job }}</td>
                     {% endif %}
                     {% if job_history.second_current_job_duty == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.second_current_job_duty }}</td>
                     {% endif %}
                     {% if job_history.second_current_job_from == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.second_current_job_from }}</td>
                     {% endif %}
                     {% if job_history.second_current_job_to == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.second_current_job_to }}</td>
                     {% endif %}
                     {% if job_history.second_current_job_reason == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.second_current_job_reason }}</td>
                     {% endif %}
@@ -260,54 +260,54 @@
                 <tr>
                     <td rowspan='2'>مشاغل قبلی</td>
                     {% if job_history.previous_job == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.previous_job }}</td>
                     {% endif %}
                     {% if job_history.previous_job_duty == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.previous_job_duty }}</td>
                     {% endif %}
                     {% if job_history.previous_job_from == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.previous_job_from }}</td>
                     {% endif %}
                     {% if job_history.previous_job_to == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.previous_job_to }}</td>
                     {% endif %}
                     {% if job_history.previous_job_reason == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.previous_job_reason }}</td>
                     {% endif %}
                 </tr>
                 <tr>
                     {% if job_history.second_previous_job == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.second_previous_job }}</td>
                     {% endif %}
                     {% if job_history.second_previous_job_duty == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.second_previous_job_duty }}</td>
                     {% endif %}
                     {% if job_history.second_previous_job_from == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.second_previous_job_from }}</td>
                     {% endif %}
                     {% if job_history.second_previous_job_to == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.second_previous_job_to }}</td>
                     {% endif %}
                     {% if job_history.second_previous_job_reason == null %}
-                    <td>ذکر نشده</td>
+                    <td class='false'>ذکر نشده</td>
                     {% else %}
                     <td>{{ job_history.second_previous_job_reason }}</td>
                     {% endif %}
@@ -336,7 +336,7 @@
                             {% if assessment.current_ph_noise == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>سر و صدا</lable>                           
                         </div>
@@ -344,7 +344,7 @@
                             {% if assessment.current_ph_erteash == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>ارتعاش</lable>                           
                         </div>
@@ -352,7 +352,7 @@
                             {% if assessment.current_ph_not_unizan == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>اشعه غیر یونیزان</lable>                            
                         </div>
@@ -360,7 +360,7 @@
                             {% if assessment.current_ph_unizan == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>اشعه یونیزان</lable>          
                         </div>
@@ -368,7 +368,7 @@
                             {% if assessment.current_ph_stress == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>استرس حرارتی</lable>                         
                         </div>
@@ -376,7 +376,7 @@
                             {% if assessment.current_ph_other == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>سایر</lable>                      
                         </div>
@@ -386,7 +386,7 @@
                             {% if assessment.current_sh_dust == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>گرد و غبار</lable>                      
                         </div>
@@ -394,7 +394,7 @@
                             {% if assessment.current_sh_metals == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>دمه فلزات</lable>                       
                         </div>
@@ -402,7 +402,7 @@
                             {% if assessment.current_sh_halal == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>حلال</lable>                        
                         </div>
@@ -410,7 +410,7 @@
                             {% if assessment.current_sh_afat == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>آفت کشها</lable>                            
                         </div>
@@ -418,7 +418,7 @@
                             {% if assessment.current_sh_asidvbaz == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>اسید و بازها</lable>              
                         </div>
@@ -426,7 +426,7 @@
                             {% if assessment.current_sh_gaz == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>گاز ها</lable>                        
                         </div>
@@ -436,7 +436,7 @@
                             {% if assessment.current_bio_gazesh == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>گزش</lable>                         
                         </div>
@@ -444,7 +444,7 @@
                             {% if assessment.current_bio_bactery == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>باکتری</lable>                         
                         </div>
@@ -452,7 +452,7 @@
                             {% if assessment.current_bio_virus == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>ویروس</lable>                            
                         </div>
@@ -460,7 +460,7 @@
                             {% if assessment.current_bio_angal == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>انگل</lable>                           
                         </div>
@@ -468,7 +468,7 @@
                             {% if assessment.current_bio_other == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>سایر</lable>                           
                         </div>
@@ -478,7 +478,7 @@
                             {% if assessment.current_er_standvsit == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>ایستادن یا نشستن طولانی مدت</lable>                            
                         </div>
@@ -486,7 +486,7 @@
                             {% if assessment.current_er_loop == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>کار تکراری</lable>                            
                         </div>
@@ -494,7 +494,7 @@
                             {% if assessment.current_er_hamlvnaghl == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>حمل و نقل بار سنگین</lable>                           
                         </div>
@@ -502,7 +502,7 @@
                             {% if assessment.current_er_vaziat_namonaseb == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>وضعیت نامناسب بدن</lable>                            
                         </div>
@@ -510,7 +510,7 @@
                             {% if assessment.current_er_other == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>سایر</lable>                           
                         </div>
@@ -520,7 +520,7 @@
                             {% if assessment.current_rav_order == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>نوبت کاری</lable>                           
                         </div>
@@ -528,7 +528,7 @@
                             {% if assessment.current_rav_stressor == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>استرسور های شغلی</lable>       
                         </div>
@@ -536,7 +536,7 @@
                             {% if assessment.current_rav_other == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>سایر</lable>
                         </div>
@@ -549,7 +549,7 @@
                             {% if assessment.previous_ph_noise == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>سر و صدا</lable>                           
                         </div>
@@ -557,7 +557,7 @@
                             {% if assessment.previous_ph_erteash == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>ارتعاش</lable>                           
                         </div>
@@ -565,7 +565,7 @@
                             {% if assessment.previous_ph_not_unizan == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>اشعه غیر یونیزان</lable>                            
                         </div>
@@ -573,7 +573,7 @@
                             {% if assessment.previous_ph_unizan == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>اشعه یونیزان</lable>          
                         </div>
@@ -581,7 +581,7 @@
                             {% if assessment.previous_ph_stress == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>استرس حرارتی</lable>                         
                         </div>
@@ -589,7 +589,7 @@
                             {% if assessment.previous_ph_other == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>سایر</lable>                      
                         </div>
@@ -599,7 +599,7 @@
                             {% if assessment.previous_sh_dust == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>گرد و غبار</lable>                      
                         </div>
@@ -607,7 +607,7 @@
                             {% if assessment.previous_sh_metals == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>دمه فلزات</lable>                       
                         </div>
@@ -615,7 +615,7 @@
                             {% if assessment.previous_sh_halal == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>حلال</lable>                        
                         </div>
@@ -623,7 +623,7 @@
                             {% if assessment.previous_sh_afat == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>آفت کشها</lable>                            
                         </div>
@@ -631,7 +631,7 @@
                             {% if assessment.previous_sh_asidvbaz == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>اسید و بازها</lable>              
                         </div>
@@ -639,7 +639,7 @@
                             {% if assessment.previous_sh_gaz == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>گاز ها</lable>                        
                         </div>
@@ -649,7 +649,7 @@
                             {% if assessment.previous_bio_gazesh == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>گزش</lable>                         
                         </div>
@@ -657,7 +657,7 @@
                             {% if assessment.previous_bio_bactery == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>باکتری</lable>                         
                         </div>
@@ -665,7 +665,7 @@
                             {% if assessment.previous_bio_virus == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>ویروس</lable>                            
                         </div>
@@ -673,7 +673,7 @@
                             {% if assessment.previous_bio_angal == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>انگل</lable>                           
                         </div>
@@ -681,7 +681,7 @@
                             {% if assessment.previous_bio_other == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>سایر</lable>                           
                         </div>
@@ -691,7 +691,7 @@
                             {% if assessment.previous_er_standvsit == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>ایستادن یا نشستن طولانی مدت</lable>                            
                         </div>
@@ -699,7 +699,7 @@
                             {% if assessment.previous_er_loop == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>کار تکراری</lable>                            
                         </div>
@@ -707,7 +707,7 @@
                             {% if assessment.previous_er_hamlvnaghl == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>حمل و نقل بار سنگین</lable>                           
                         </div>
@@ -715,7 +715,7 @@
                             {% if assessment.previous_er_vaziat_namonaseb == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>وضعیت نامناسب بدن</lable>                            
                         </div>
@@ -723,7 +723,7 @@
                             {% if assessment.previous_er_other == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>سایر</lable>                           
                         </div>
@@ -733,7 +733,7 @@
                             {% if assessment.previous_rav_order == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>نوبت کاری</lable>                           
                         </div>
@@ -741,7 +741,7 @@
                             {% if assessment.previous_rav_stressor == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>استرسور های شغلی</lable>       
                         </div>
@@ -749,7 +749,7 @@
                             {% if assessment.previous_rav_other == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                             <lable>سایر</lable>
                         </div>
@@ -758,7 +758,7 @@
                 <tr>
                     <td colspan='6'>توضیحات لازم در خصوص موارد ثبت شده در جدول و ثبت نتایج اندازه گیری ها:
                         {% if assessment.required_description == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ assessment.required_description }}
                         {% endif %}
@@ -767,7 +767,7 @@
                 <tr>
                     <td colspan='6'>کارشناسی بهداشت حرفه ای در خصوص شرایط محیط کار:
                         {% if assessment.kar_shenas == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ assessment.kar_shenas }}
                         {% endif %}
@@ -779,7 +779,7 @@
                             <div class='col'>
                                 نام و نام خانوادگی کارشناس بهداشت حرفه ای:
                                 {% if assessment.kar_shenas_name == null %}
-                                ذکر نشده
+                                <p class='False'>ذکر نشده</p>
                                 {% else %}
                                 {{ assessment.kar_shenas_name }}
                                 {% endif %}
@@ -826,12 +826,12 @@
                     </td>
                     <td>
                         {% if personal_history.first_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.first_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.first_des }}
                         {% endif %}
@@ -847,12 +847,12 @@
                     </td>
                     <td>
                         {% if personal_history.second_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.second_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.second_des }}
                         {% endif %}
@@ -868,12 +868,12 @@
                     </td>
                     <td>
                         {% if personal_history.third_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.third_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.third_des }}
                         {% endif %}
@@ -889,12 +889,12 @@
                     </td>
                     <td>
                         {% if personal_history.fourth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.fourth_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.fourth_des }}
                         {% endif %}
@@ -910,12 +910,12 @@
                     </td>
                     <td>
                         {% if personal_history.fifth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.fifth_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.fifth_des }}
                         {% endif %}
@@ -931,12 +931,12 @@
                     </td>
                     <td>
                         {% if personal_history.sixth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.sixth_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.sixth_des }}
                         {% endif %}
@@ -952,12 +952,12 @@
                     </td>
                     <td>
                         {% if personal_history.seventh_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.seventh_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.seventh_des }}
                         {% endif %}
@@ -973,12 +973,12 @@
                     </td>
                     <td>
                         {% if personal_history.eighth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.eighth_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.eighth_des }}
                         {% endif %}
@@ -994,12 +994,12 @@
                     </td>
                     <td>
                         {% if personal_history.ninth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.ninth_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.ninth_des }}
                         {% endif %}
@@ -1015,7 +1015,7 @@
                     </td>
                     <td>
                         {% if personal_history.tenth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
@@ -1023,7 +1023,7 @@
                             <div class='col'>
                                 تعداد نخ روزانه:
                                 {% if personal_history.tenth_des_number == null %}
-                                ذکر نشده
+                                <p class='False'>ذکر نشده</p>
                                 {% else %}
                                 {{ personal_history.tenth_des_number }}
                                 {% endif %}
@@ -1031,7 +1031,7 @@
                             <div class='col'>
                                 مدت استعمال:
                                 {% if personal_history.tenth_des_duration == null %}
-                                ذکر نشده
+                                <p class='False'>ذکر نشده</p>
                                 {% else %}
                                 {{ personal_history.tenth_des_duration }}
                                 {% endif %}
@@ -1049,7 +1049,7 @@
                     </td>
                     <td>
                         {% if personal_history.eleventh_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
@@ -1057,7 +1057,7 @@
                             <div class='col'>
                                 تعداد نخ روزانه:
                                 {% if personal_history.eleventh_des_number == null %}
-                                ذکر نشده
+                                <p class='False'>ذکر نشده</p>
                                 {% else %}
                                 {{ personal_history.eleventh_des_number }}
                                 {% endif %}
@@ -1065,7 +1065,7 @@
                             <div class='col'>
                                 مدت استعمال:
                                 {% if personal_history.eleventh_des_duration == null %}
-                                ذکر نشده
+                                <p class='False'>ذکر نشده</p>
                                 {% else %}
                                 {{ personal_history.eleventh_des_duration }}
                                 {% endif %}
@@ -1083,12 +1083,12 @@
                     </td>
                     <td>
                         {% if personal_history.twelfth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.twelfth_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.twelfth_des }}
                         {% endif %}
@@ -1104,7 +1104,7 @@
                     </td>
                     <td>
                         {% if personal_history.thirteenth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
@@ -1112,7 +1112,7 @@
                             <div class='col'>
                                 نوع آسیب:
                                 {% if personal_history.thirteenth_des_type == null %}
-                                ذکر نشده
+                                <p class='False'>ذکر نشده</p>
                                 {% else %}
                                 {{ personal_history.thirteenth_des_type }}
                                 {% endif %}
@@ -1120,7 +1120,7 @@
                             <div class='col'>
                                 علت:
                                 {% if personal_history.thirteenth_des_reason == null %}
-                                ذکر نشده
+                                <p class='False'>ذکر نشده</p>
                                 {% else %}
                                 {{ personal_history.thirteenth_des_reason }}
                                 {% endif %}
@@ -1138,12 +1138,12 @@
                     </td>
                     <td>
                         {% if personal_history.fourteenth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.fourteenth_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.fourteenth_des }}
                         {% endif %}
@@ -1159,12 +1159,12 @@
                     </td>
                     <td>
                         {% if personal_history.fifteenth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.fifteenth_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.fifteenth_des }}
                         {% endif %}
@@ -1180,12 +1180,12 @@
                     </td>
                     <td>
                         {% if personal_history.sixteenth_n == False %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                     <td>
                         {% if personal_history.sixteenth_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ personal_history.sixteenth_des }}
                         {% endif %}
@@ -1241,7 +1241,7 @@
                                 {% if examinations.local_sym_kahesh_vazn == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1249,7 +1249,7 @@
                                 {% if examinations.local_sym_kahesh_eshteha == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1257,7 +1257,7 @@
                                 {% if examinations.local_sym_khastegi == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1265,7 +1265,7 @@
                                 {% if examinations.local_sym_ekhtelal_dar_khab == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1273,7 +1273,7 @@
                                 {% if examinations.local_sym_tarigh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1283,7 +1283,7 @@
                                 {% if examinations.local_sym_adam_tahamol == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1291,7 +1291,7 @@
                                 {% if examinations.local_sym_tab == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1299,7 +1299,7 @@
                                 {% if examinations.local_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1307,7 +1307,7 @@
                                 {% if examinations.local_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1322,7 +1322,7 @@
                                 {% if examinations.local_sign_zaheri == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1330,7 +1330,7 @@
                                 {% if examinations.local_sign_rang_paride == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1338,7 +1338,7 @@
                                 {% if examinations.local_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1346,7 +1346,7 @@
                                 {% if examinations.local_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1356,7 +1356,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.local_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.local_des }}
                         {% endif %}
@@ -1372,7 +1372,7 @@
                                 {% if examinations.eye_sym_kahesh_binayi == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1380,7 +1380,7 @@
                                 {% if examinations.eye_sym_tari_did == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1388,7 +1388,7 @@
                                 {% if examinations.eye_sym_khastegi == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1396,7 +1396,7 @@
                                 {% if examinations.eye_sym_dobini == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1404,7 +1404,7 @@
                                 {% if examinations.eye_sym_sozesh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1414,7 +1414,7 @@
                                 {% if examinations.eye_sym_tars_az_nor == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1422,7 +1422,7 @@
                                 {% if examinations.eye_sym_ashk == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1430,7 +1430,7 @@
                                 {% if examinations.eye_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1438,7 +1438,7 @@
                                 {% if examinations.eye_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1453,7 +1453,7 @@
                                 {% if examinations.eye_sign_reflex == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1461,7 +1461,7 @@
                                 {% if examinations.eye_sign_red == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1469,7 +1469,7 @@
                                 {% if examinations.eye_sign_sklrai == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1477,7 +1477,7 @@
                                 {% if examinations.eye_sign_nistagemos == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1487,7 +1487,7 @@
                                 {% if examinations.eye_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1495,7 +1495,7 @@
                                 {% if examinations.eye_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1505,7 +1505,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.eye_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.eye_des }}
                         {% endif %}
@@ -1521,7 +1521,7 @@
                                 {% if examinations.skin_sym_kharesh_post == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1529,7 +1529,7 @@
                                 {% if examinations.skin_sym_rizesh_mo == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1537,7 +1537,7 @@
                                 {% if examinations.skin_sym_red == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1545,7 +1545,7 @@
                                 {% if examinations.skin_sym_taghir_post == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1553,7 +1553,7 @@
                                 {% if examinations.skin_sym_zakhm == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1563,7 +1563,7 @@
                                 {% if examinations.skin_sym_poste_rizi == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1571,7 +1571,7 @@
                                 {% if examinations.skin_sym_taghir_nakhon == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1579,7 +1579,7 @@
                                 {% if examinations.skin_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1587,7 +1587,7 @@
                                 {% if examinations.skin_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1602,7 +1602,7 @@
                                 {% if examinations.skin_sign_makol == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1610,7 +1610,7 @@
                                 {% if examinations.skin_sign_papol == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1618,7 +1618,7 @@
                                 {% if examinations.skin_sign_nadol == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1626,7 +1626,7 @@
                                 {% if examinations.skin_sign_vezikol == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1634,7 +1634,7 @@
                                 {% if examinations.skin_sign_zakhm == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1642,7 +1642,7 @@
                                 {% if examinations.skin_sign_kahir == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1652,7 +1652,7 @@
                                 {% if examinations.skin_sign_klabing == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1660,7 +1660,7 @@
                                 {% if examinations.skin_sign_rizesh_mantaghe == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1668,7 +1668,7 @@
                                 {% if examinations.skin_sign_rizesh_general == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1678,7 +1678,7 @@
                                 {% if examinations.skin_sign_taghirat_peygmani == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1686,7 +1686,7 @@
                                 {% if examinations.skin_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1694,7 +1694,7 @@
                                 {% if examinations.skin_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1704,7 +1704,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.skin_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.skin_des }}
                         {% endif %}
@@ -1720,7 +1720,7 @@
                                 {% if examinations.gosh_sym_kahesh_shenavaii == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1728,7 +1728,7 @@
                                 {% if examinations.gosh_sym_vez_vez_gosh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1736,7 +1736,7 @@
                                 {% if examinations.gosh_sym_sargije == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1744,7 +1744,7 @@
                                 {% if examinations.gosh_sym_dard_gosh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1752,7 +1752,7 @@
                                 {% if examinations.gosh_sym_tarashoh_gosh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1762,7 +1762,7 @@
                                 {% if examinations.gosh_sym_gereftegi_seda == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1770,7 +1770,7 @@
                                 {% if examinations.gosh_sym_galodard == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1778,7 +1778,7 @@
                                 {% if examinations.gosh_sym_abrrizesh_bini == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1786,7 +1786,7 @@
                                 {% if examinations.gosh_sym_ekhtelal_boyayi == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1794,7 +1794,7 @@
                                 {% if examinations.gosh_sym_khareshvsozesh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1804,7 +1804,7 @@
                                 {% if examinations.gosh_sym_khonrizi == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1812,7 +1812,7 @@
                                 {% if examinations.gosh_sym_khoshki == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1820,7 +1820,7 @@
                                 {% if examinations.gosh_sym_ehsas == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1830,7 +1830,7 @@
                                 {% if examinations.gosh_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1838,7 +1838,7 @@
                                 {% if examinations.gosh_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1853,7 +1853,7 @@
                                 {% if examinations.gosh_sign_eltehab_parde == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1861,7 +1861,7 @@
                                 {% if examinations.gosh_sign_paregi == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1869,7 +1869,7 @@
                                 {% if examinations.gosh_sign_afzayesh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1877,7 +1877,7 @@
                                 {% if examinations.gosh_sign_tarashoh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1887,7 +1887,7 @@
                                 {% if examinations.gosh_sign_egzodai == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1895,7 +1895,7 @@
                                 {% if examinations.gosh_sign_red == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1903,7 +1903,7 @@
                                 {% if examinations.gosh_sign_polip == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1911,7 +1911,7 @@
                                 {% if examinations.gosh_sign_tndrs == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1921,7 +1921,7 @@
                                 {% if examinations.gosh_sign_lead == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1929,7 +1929,7 @@
                                 {% if examinations.gosh_sign_bad_smell == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1937,7 +1937,7 @@
                                 {% if examinations.gosh_sign_eltehab_lase == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1945,7 +1945,7 @@
                                 {% if examinations.gosh_sign_zakhm == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1955,7 +1955,7 @@
                                 {% if examinations.gosh_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1963,7 +1963,7 @@
                                 {% if examinations.gosh_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -1973,7 +1973,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.gosh_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.gosh_des }}
                         {% endif %}
@@ -1989,7 +1989,7 @@
                                 {% if examinations.sar_sym_dard_gardan == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -1997,7 +1997,7 @@
                                 {% if examinations.sar_sym_tode_gardani == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2005,7 +2005,7 @@
                                 {% if examinations.sar_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2013,7 +2013,7 @@
                                 {% if examinations.sar_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2028,7 +2028,7 @@
                                 {% if examinations.sar_sign_bozorgi_tiroid == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2036,7 +2036,7 @@
                                 {% if examinations.sar_sign_gardani == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2044,7 +2044,7 @@
                                 {% if examinations.sar_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2052,7 +2052,7 @@
                                 {% if examinations.sar_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2062,7 +2062,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.sar_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.sar_des }}
                         {% endif %}
@@ -2078,7 +2078,7 @@
                                 {% if examinations.rie_sym_sorfe == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2086,7 +2086,7 @@
                                 {% if examinations.rie_sym_khelt == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2094,7 +2094,7 @@
                                 {% if examinations.rie_sym_tangi == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2102,7 +2102,7 @@
                                 {% if examinations.rie_sym_sine == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2112,7 +2112,7 @@
                                 {% if examinations.rie_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2120,7 +2120,7 @@
                                 {% if examinations.rie_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2135,7 +2135,7 @@
                                 {% if examinations.rie_sign_zaheri == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2143,7 +2143,7 @@
                                 {% if examinations.rie_sign_khoshonat == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2151,7 +2151,7 @@
                                 {% if examinations.rie_sign_vizing == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2161,7 +2161,7 @@
                                 {% if examinations.rie_sign_cracel == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2169,7 +2169,7 @@
                                 {% if examinations.rie_sign_taki_pene == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2177,7 +2177,7 @@
                                 {% if examinations.rie_sign_kahesh_sedaha == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2185,7 +2185,7 @@
                                 {% if examinations.rie_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2193,7 +2193,7 @@
                                 {% if examinations.rie_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2203,7 +2203,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.rie_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.rie_des }}
                         {% endif %}
@@ -2219,7 +2219,7 @@
                                 {% if examinations.ghalb_sym_dard == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2227,7 +2227,7 @@
                                 {% if examinations.ghalb_sym_tapesh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2235,7 +2235,7 @@
                                 {% if examinations.ghalb_sym_tangi_shabane == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2243,7 +2243,7 @@
                                 {% if examinations.ghalb_sym_tangi_khabide == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2253,7 +2253,7 @@
                                 {% if examinations.ghalb_sym_sianoz == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2261,7 +2261,7 @@
                                 {% if examinations.ghalb_sym_senkop == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2269,14 +2269,14 @@
                                 {% if examinations.ghalb_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
                                 {% if examinations.ghalb_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                                 <lable>بدون علامت</lable>
                             </div>
@@ -2292,7 +2292,7 @@
                                 {% if examinations.ghalb_sign_s == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2300,7 +2300,7 @@
                                 {% if examinations.ghalb_sign_seda_ezafe == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2308,7 +2308,7 @@
                                 {% if examinations.ghalb_sign_aritmi == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2316,7 +2316,7 @@
                                 {% if examinations.ghalb_sign_varis_tahtani == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2326,7 +2326,7 @@
                                 {% if examinations.ghalb_sign_varis_foghani == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2334,7 +2334,7 @@
                                 {% if examinations.ghalb_sign_andam == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2342,7 +2342,7 @@
                                 {% if examinations.ghalb_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2350,7 +2350,7 @@
                                 {% if examinations.ghalb_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2360,7 +2360,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.ghalb_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.ghalb_des }}
                         {% endif %}
@@ -2376,7 +2376,7 @@
                                 {% if examinations.shekam_sym_bi_eshteha == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2384,7 +2384,7 @@
                                 {% if examinations.shekam_sym_tahavo == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2392,7 +2392,7 @@
                                 {% if examinations.shekam_sym_estefragh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2400,7 +2400,7 @@
                                 {% if examinations.shekam_sym_dard_shekam == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2408,7 +2408,7 @@
                                 {% if examinations.shekam_sym_soozesh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2418,7 +2418,7 @@
                                 {% if examinations.shekam_sym_eshal == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2426,7 +2426,7 @@
                                 {% if examinations.shekam_sym_yobosat == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2434,7 +2434,7 @@
                                 {% if examinations.shekam_sym_ghiri == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2442,7 +2442,7 @@
                                 {% if examinations.shekam_sym_roshan == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>               
                             <div class='col'>
@@ -2450,7 +2450,7 @@
                                 {% if examinations.shekam_sym_ekhtelal == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2460,7 +2460,7 @@
                                 {% if examinations.shekam_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2468,7 +2468,7 @@
                                 {% if examinations.shekam_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2483,7 +2483,7 @@
                                 {% if examinations.shekam_sign_shekami == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2491,7 +2491,7 @@
                                 {% if examinations.shekam_sign_rebond == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2499,7 +2499,7 @@
                                 {% if examinations.shekam_sign_hepatomegaly == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2507,7 +2507,7 @@
                                 {% if examinations.shekam_sign_espelnomegali == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2515,7 +2515,7 @@
                                 {% if examinations.shekam_sign_asib == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2525,7 +2525,7 @@
                                 {% if examinations.shekam_sign_tode_shekami == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2533,7 +2533,7 @@
                                 {% if examinations.shekam_sign_distansion == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2541,7 +2541,7 @@
                                 {% if examinations.shekam_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2549,7 +2549,7 @@
                                 {% if examinations.shekam_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2559,7 +2559,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.shekam_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.shekam_des }}
                         {% endif %}
@@ -2575,7 +2575,7 @@
                                 {% if examinations.colie_sym_soozesh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2583,7 +2583,7 @@
                                 {% if examinations.colie_sym_tekrar == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2591,7 +2591,7 @@
                                 {% if examinations.colie_sym_khoni == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2599,7 +2599,7 @@
                                 {% if examinations.colie_sym_pahlo == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2609,7 +2609,7 @@
                                 {% if examinations.colie_sym_sangini == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2617,7 +2617,7 @@
                                 {% if examinations.colie_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2625,7 +2625,7 @@
                                 {% if examinations.colie_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2640,7 +2640,7 @@
                                 {% if examinations.colie_sign_cva == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2648,7 +2648,7 @@
                                 {% if examinations.colie_sign_varikosel == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2656,7 +2656,7 @@
                                 {% if examinations.colie_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2664,7 +2664,7 @@
                                 {% if examinations.colie_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2674,7 +2674,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.colie_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.colie_des }}
                         {% endif %}
@@ -2690,7 +2690,7 @@
                                 {% if examinations.eskelety_sym_mafsal == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2698,7 +2698,7 @@
                                 {% if examinations.eskelety_sym_kamar_dard == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2706,7 +2706,7 @@
                                 {% if examinations.eskelety_sym_zano == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2714,7 +2714,7 @@
                                 {% if examinations.eskelety_sym_shane == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2722,7 +2722,7 @@
                                 {% if examinations.eskelety_sym_other_mafasel == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2732,7 +2732,7 @@
                                 {% if examinations.eskelety_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2740,7 +2740,7 @@
                                 {% if examinations.eskelety_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2755,7 +2755,7 @@
                                 {% if examinations.eskelety_sign_mahdodiat == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2763,7 +2763,7 @@
                                 {% if examinations.eskelety_sign_kahesh_foghani == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2771,7 +2771,7 @@
                                 {% if examinations.eskelety_sign_kahesh_tahtani == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2781,7 +2781,7 @@
                                 {% if examinations.eskelety_sign_eskolioz == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2789,7 +2789,7 @@
                                 {% if examinations.eskelety_sign_empotasion == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2797,7 +2797,7 @@
                                 {% if examinations.eskelety_sign_slr == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2805,7 +2805,7 @@
                                 {% if examinations.eskelety_sign_r_slr == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2815,7 +2815,7 @@
                                 {% if examinations.eskelety_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2823,7 +2823,7 @@
                                 {% if examinations.eskelety_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2833,7 +2833,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.eskelety_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.eskelety_des }}
                         {% endif %}
@@ -2849,7 +2849,7 @@
                                 {% if examinations.asabi_sym_sar_dard == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2857,7 +2857,7 @@
                                 {% if examinations.asabi_sym_giji == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2865,7 +2865,7 @@
                                 {% if examinations.asabi_sym_larzesh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2873,7 +2873,7 @@
                                 {% if examinations.asabi_sym_ekhtelal == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2881,7 +2881,7 @@
                                 {% if examinations.asabi_sym_tashanoj == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2891,7 +2891,7 @@
                                 {% if examinations.asabi_sym_gez_gez == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2899,7 +2899,7 @@
                                 {% if examinations.asabi_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2907,7 +2907,7 @@
                                 {% if examinations.asabi_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2922,7 +2922,7 @@
                                 {% if examinations.asabi_sign_tabi_e == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2930,7 +2930,7 @@
                                 {% if examinations.asabi_sign_gheir_tabi_e == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2938,7 +2938,7 @@
                                 {% if examinations.asabi_sign_mokhtal == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2946,7 +2946,7 @@
                                 {% if examinations.asabi_sign_trmor == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2956,7 +2956,7 @@
                                 {% if examinations.asabi_sign_hesi == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2964,7 +2964,7 @@
                                 {% if examinations.asabi_sign_tinel == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2972,7 +2972,7 @@
                                 {% if examinations.asabi_sign_falen == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2980,7 +2980,7 @@
                                 {% if examinations.asabi_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -2988,7 +2988,7 @@
                                 {% if examinations.asabi_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -2998,7 +2998,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.asabi_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.asabi_des }}
                         {% endif %}
@@ -3014,7 +3014,7 @@
                                 {% if examinations.ravan_sym_asabaniat == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -3022,7 +3022,7 @@
                                 {% if examinations.ravan_sym_parkhashgari == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -3030,7 +3030,7 @@
                                 {% if examinations.ravan_sym_ezterab == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -3038,7 +3038,7 @@
                                 {% if examinations.ravan_sym_kholgh == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -3048,7 +3048,7 @@
                                 {% if examinations.ravan_sym_angize == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -3056,7 +3056,7 @@
                                 {% if examinations.ravan_sym_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -3064,7 +3064,7 @@
                                 {% if examinations.ravan_sym_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -3079,7 +3079,7 @@
                                 {% if examinations.ravan_sign_hazyan == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -3087,7 +3087,7 @@
                                 {% if examinations.ravan_sign_tavahom == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -3095,7 +3095,7 @@
                                 {% if examinations.ravan_sign_oriantasion == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -3103,7 +3103,7 @@
                                 {% if examinations.ravan_sign_other == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -3111,7 +3111,7 @@
                                 {% if examinations.ravan_sign_without_sign == True %}
                                 <i class="fa-solid fa-check"></i>
                                 {% else %}
-                                <i class="fa-solid fa-x"></i>
+                                <i class="fa-solid fa-x False"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -3121,7 +3121,7 @@
                     <td>توضیحات</td>
                     <td>
                         {% if examinations.ravan_des == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.ravan_des }}
                         {% endif %}
@@ -3131,7 +3131,7 @@
                     <td>سایر موارد:</td>
                     <td colspan=2>
                         {% if examinations.other == null %}
-                        ذکر نشده
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ examinations.other }}
                         {% endif %}
@@ -3151,22 +3151,22 @@
         </div> 
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                CBC:WBC<p class='red'>{{ experiments.cbc_wbc }}</p>RBC<p class='red'>{{ experiments.cbc_rbc }}</p>Hb<p class='red'>{{ experiments.cbc_hb }}</p>HTC<p class='red'>{{ experiments.cbc_htc }}</p>Plt<p class='red'>{{ experiments.cbc_plt }}</p>
+                CBC:WBC<p class='False'>{{ experiments.cbc_wbc }}</p>RBC<p class='False'>{{ experiments.cbc_rbc }}</p>Hb<p class='False'>{{ experiments.cbc_hb }}</p>HTC<p class='False'>{{ experiments.cbc_htc }}</p>Plt<p class='False'>{{ experiments.cbc_plt }}</p>
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                U/A:Prot<p class='red'>{{ experiments.ua_prot }}</p> Glu<p class='red'>{{ experiments.ua_glu }}</p>RBC<p class='red'>{{ experiments.ua_rbc }}</p>WBC<p class='red'>{{ experiments.ua_wbc }}</p>Bact<p class='red'>{{ experiments.ua_bact }}</p>
+                U/A:Prot<p class='False'>{{ experiments.ua_prot }}</p> Glu<p class='False'>{{ experiments.ua_glu }}</p>RBC<p class='False'>{{ experiments.ua_rbc }}</p>WBC<p class='False'>{{ experiments.ua_wbc }}</p>Bact<p class='False'>{{ experiments.ua_bact }}</p>
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                FBS<p class='red'>{{ experiments.fbs }}</p> Total Chol<p class='red'>{{ experiments.chol }}</p>LDL<p class='red'>{{ experiments.ldl }}</p>HDL<p class='red'>{{ experiments.hdl }}</p>TG<p class='red'>{{ experiments.tg }}</p>
+                FBS<p class='False'>{{ experiments.fbs }}</p> Total Chol<p class='False'>{{ experiments.chol }}</p>LDL<p class='False'>{{ experiments.ldl }}</p>HDL<p class='False'>{{ experiments.hdl }}</p>TG<p class='False'>{{ experiments.tg }}</p>
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                BUN<p class='red'>{{ experiments.bun }}</p> Cr<p class='red'>{{ experiments.cr }}</p>ALT<p class='red'>{{ experiments.alt }}</p>AST<p class='red'>{{ experiments.ast }}</p>ALK.Ph<p class='red'>{{ experiments.alk }}</p>HBS AG<p class='red'>{{ experiments.hbs }}</p>S/E & OB<p class='red'>{{ experiments.se }}</p>PPD<p class='red'>{{ experiments.ppd }}</p>
+                BUN<p class='False'>{{ experiments.bun }}</p> Cr<p class='False'>{{ experiments.cr }}</p>ALT<p class='False'>{{ experiments.alt }}</p>AST<p class='False'>{{ experiments.ast }}</p>ALK.Ph<p class='False'>{{ experiments.alk }}</p>HBS AG<p class='False'>{{ experiments.hbs }}</p>S/E & OB<p class='False'>{{ experiments.se }}</p>PPD<p class='False'>{{ experiments.ppd }}</p>
             </div>
         </div>
         <div class='row mt-4'>
@@ -3178,13 +3178,13 @@
             <div class='col'>
                 1-نوع:
                 {% if experiments.first_type == null %}
-                <p class='red'>ذکر نشده</p>
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ experiments.first_type }}
                 {% endif %}
                 نتیجه:
                 {% if experiments.first_result == null %}
-                <p class='red'>ذکر نشده</p>
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ experiments.first_result }}
                 {% endif %}
@@ -3195,13 +3195,13 @@
             <div class='col'>
                 2-نوع:
                 {% if experiments.second_type == null %}
-                <p class='red'>ذکر نشده</p>
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ experiments.second_type }}
                 {% endif %}
                 نتیجه:
                 {% if experiments.second_result == null %}
-                <p class='red'>ذکر نشده</p>
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ experiments.second_result }}
                 {% endif %}
@@ -3212,13 +3212,13 @@
             <div class='col'>
                 3-نوع:
                 {% if experiments.third_type == null %}
-                <p class='red'>ذکر نشده</p>
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ experiments.third_type }}
                 {% endif %}
                 نتیجه:
                 {% if experiments.third_result == null %}
-                <p class='red'>ذکر نشده</p>
+                <p class='False'>ذکر نشده</p>
                 {% else %}
                 {{ experiments.third_result }}
                 {% endif %}
@@ -3306,49 +3306,49 @@
                 <tr>
                     <td rowspan=4>
                         {% if para_clinic.oudio_tafsir == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.oudio_tafsir }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_eight_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_eight_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_six_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_six_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_four_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_four_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_two_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_two_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_one_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_one_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_five_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_five_ac }}
                         {% endif %}
@@ -3359,42 +3359,42 @@
                 <tr>
                     <td>
                         {% if para_clinic.audio_r_eight_bc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_eight_bc }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_six_bc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_six_bc }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_four_bc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_four_bc }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_two_bc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_two_bc }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_one_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_one_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_r_five_bc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_r_five_bc }}
                         {% endif %}
@@ -3404,42 +3404,42 @@
                 <tr>
                     <td>
                         {% if para_clinic.audio_l_eight_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_eight_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_l_six_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_six_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_l_four_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_four_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_l_two_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_two_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_l_one_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_one_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_l_five_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_five_ac }}
                         {% endif %}
@@ -3450,42 +3450,42 @@
                 <tr>
                     <td>
                         {% if para_clinic.audio_l_eight_bc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_eight_bc }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_l_six_bc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_six_bc }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_l_four_bc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_four_bc }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_l_two_bc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_two_bc }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_l_one_ac == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_one_ac }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.audio_l_five_bc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.audio_l_five_bc }}
                         {% endif %}
@@ -3510,21 +3510,21 @@
                <tr>
                     <td>
                         {% if para_clinic.espiro_fevvfvc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.espiro_fevvfvc }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.espiro_fev == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.espiro_fev }}
                         {% endif %}
                     </td>
                     <td>
                         {% if para_clinic.espiro_fvc == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.espiro_fvc }}
                         {% endif %}
@@ -3538,21 +3538,21 @@
                 <tr>
                      <td>
                         {% if para_clinic.espiro_vext == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.espiro_vext }}
                         {% endif %}
                     </td>
                      <td>
                         {% if para_clinic.espiro_pef == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.espiro_pef }}
                         {% endif %}
                     </td>
                      <td>
                         {% if para_clinic.espiro_fef == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.espiro_fef }}
                         {% endif %}
@@ -3561,7 +3561,7 @@
                  <tr>
                      <td colspan=3><p>تفسیر:</p>
                         {% if para_clinic.espiro_tafsir == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.espiro_tafsir }}
                         {% endif %}
@@ -3578,7 +3578,7 @@
                     <td><p>یافته های CXR(P-A)</p>تاریخ انجام:13{{ para_clinic.other_cxr_year }}/{{ para_clinic.other_cxr_month }}/{{ para_clinic.other_cxr_day }}</td>
                     <td width=75%>
                         {% if para_clinic.other_cxr == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.other_cxr }}
                         {% endif %}
@@ -3588,7 +3588,7 @@
                     <td><p>یافته های ECG</p>تاریخ انجام:13{{ para_clinic.other_ecg_year }}/{{ para_clinic.other_ecg_month }}/{{ para_clinic.other_ecg_day }}</td>
                     <td width=75%>
                         {% if para_clinic.other_ecg == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.other_ecg }}
                         {% endif %}
@@ -3597,7 +3597,7 @@
                 <tr class='text-center'>
                     <td colspan=3><p>نتیجه رادیوگرافی,سونوگرافی,سی تی اسکن و سایر موارد:</p>
                         {% if para_clinic.other_result == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.other_result }}
                         {% endif %}
@@ -3625,7 +3625,7 @@
                         <div class='mt-1'>
                             علت ارجاع:
                             {% if consulting.first_reason == null %}
-                            <p class='red'>ذکر نشده</p>
+                            <p class='False'>ذکر نشده</p>
                             {% else %}
                             {{ consulting.first_reason }}
                             {% endif %}
@@ -3633,7 +3633,7 @@
                         <div class='mt-1'>
                             نوع تخصص:
                             {% if consulting.first_type == null %}
-                            <p class='red'>ذکر نشده</p>
+                            <p class='False'>ذکر نشده</p>
                             {% else %}
                             {{ consulting.first_type }}
                             {% endif %}
@@ -3641,7 +3641,7 @@
                     </td>
                     <td width=70%>
                         {% if consulting.first_result == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ consulting.first_result }}
                         {% endif %}
@@ -3655,7 +3655,7 @@
                         <div class='mt-1'>
                             علت ارجاع:
                             {% if consulting.second_reason == null %}
-                            <p class='red'>ذکر نشده</p>
+                            <p class='False'>ذکر نشده</p>
                             {% else %}
                             {{ consulting.second_reason }}
                             {% endif %}
@@ -3663,7 +3663,7 @@
                         <div class='mt-1'>
                             نوع تخصص:
                             {% if consulting.second_type == null %}
-                            <p class='red'>ذکر نشده</p>
+                            <p class='False'>ذکر نشده</p>
                             {% else %}
                             {{ consulting.second_type }}
                             {% endif %}
@@ -3671,7 +3671,7 @@
                     </td>
                     <td width=70%>
                         {% if consulting.second_result == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ consulting.second_result }}
                         {% endif %}
@@ -3691,7 +3691,7 @@
                         {% if final_theory.belamane == True %}
                         <i class="fa-solid fa-check"></i>
                         {% else %}
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x False"></i>
                         {% endif %}
                     </td>
                 </tr>
@@ -3702,7 +3702,7 @@
                             {% if final_theory.mashrot == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                         </div> 
                         <div>
@@ -3710,7 +3710,7 @@
                             {% if final_theory.mashrot_reason == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                         </div>
                     </td>
@@ -3722,13 +3722,13 @@
                             {% if final_theory.rad == True %}
                             <i class="fa-solid fa-check"></i>
                             {% else %}
-                            <i class="fa-solid fa-x"></i>
+                            <i class="fa-solid fa-x False"></i>
                             {% endif %}
                         </div> 
                         <div>
                             علل رد صلاحیت پزشکی:
                             {% if final_theory.rad_reason == null %}
-                            <p class='red'>ذکر نشده</p>
+                            <p class='False'>ذکر نشده</p>
                             {% else %}
                             {{ final_theory.rad_reason }}
                             {% endif %}
@@ -3738,7 +3738,7 @@
                 <tr>
                     <td class='text-center'>توصیه های پزشکی:
                         {% if final_theory.recommendations == null %}
-                        <p class='red'>ذکر نشده</p>
+                        <p class='False'>ذکر نشده</p>
                         {% else %}
                         {{ final_theory.recommendations }}
                         {% endif %}
