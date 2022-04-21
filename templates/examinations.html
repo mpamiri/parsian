@@ -1695,7 +1695,17 @@
                 </tr>
                 <tr>
                     <td>سایر موارد:</td>
-                    <td colspan=2>{{ examinations.other }}</td>
+                    <td colspan=2>
+                        <div class='row text-center'>
+                            <div class='col'>
+                                {{ examinations.other }}
+                            </div>
+                            <div class='col'>
+                                <label for="code">کد پزشک</label>
+                                {{ examinations.code }}
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -2001,7 +2011,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class='text-center'>توصیه های پزشکی:{{ final_theory.recommendations }}</td>
+                    <td class='text-center'>
+                        <div class='row'>
+                            <div class='col'>
+                                توصیه های پزشکی:{{ final_theory.recommendations }}
+                            </div>
+                            <div class='col'>
+                                علت باز بودن پرونده:{{ final_theory.reason }}
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </div>

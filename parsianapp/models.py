@@ -498,6 +498,8 @@ class Examinations_Model(models.Model):
     ravan_des = models.CharField(max_length=50, null=True, blank=True)
 
     other = models.CharField(max_length=50, null=True, blank=True)
+    CODE_CHOICES = [(1, '1'), (2, '2'), (3, '3')]
+    code = models.IntegerField(default=1, choices=CODE_CHOICES, null=True, blank=True)
 
 class Experiments_Model(models.Model):
     date_year=models.IntegerField(default=0, null=True, blank=True)
@@ -632,3 +634,8 @@ class Final_Theory_Model(models.Model):
     rad = models.BooleanField(default=False)
     rad_reason = models.CharField(max_length=50, null=True, blank=True)
     recommendations = models.CharField(max_length=50, null=True, blank=True)
+    reason = models.CharField(max_length=50, null=True, blank=True)
+
+class Summary_Of_Results(models.Model):
+    examination = models.ForeignKey(Examinations_Model, on_delete=models.CASCADE,default=0)
+    species = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,default=0)

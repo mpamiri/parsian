@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model
+from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,Summary_Of_Results
 from .forms import registration, summary_of_results_form,submit_company_form,disease_form,personal_species_form,job_history_form,assessment_form,personal_history_form,examinations_form,experiments_form,para_clinic_form,consulting_form,final_theory_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
@@ -126,6 +126,16 @@ def adddisease_view(request):
 
 @login_required(login_url='login')
 def disease_code_view(request):
+    personal_species=Personal_Species_Model.objects.all()
+    job_history=Job_History_Model.objects.all()
+    assessment=Assessment_Model.objects.all()
+    personal_history=Personal_History_Model.objects.all()
+    examinations=Examinations_Model.objects.all()
+    experiments=Experiments_Model.objects.all()
+    para_clinic=Para_Clinic_Model.objects.all()
+    consulting=Consulting_Model.objects.all()
+    final_theory=Final_Theory_Model.objects.all()
+    summary_of_results=Summary_Of_Results.objects.all()
     work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
@@ -133,11 +143,20 @@ def disease_code_view(request):
         code=''
     Summary=Summary_Of_Results_Model.objects.filter(examinations_code=code)
     company=Submit_Company_Model.objects.filter(examinations_code=code)
-    context={'Summary':Summary,'Company':company}
+    context={'Summary':summary_of_results,'Summary':Summary,'Company':company,'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
     return render(request, 'disease_code.html',context)
 
 @login_required(login_url='login')
 def open_docs_view(request):
+    personal_species=Personal_Species_Model.objects.all()
+    job_history=Job_History_Model.objects.all()
+    assessment=Assessment_Model.objects.all()
+    personal_history=Personal_History_Model.objects.all()
+    examinations=Examinations_Model.objects.all()
+    experiments=Experiments_Model.objects.all()
+    para_clinic=Para_Clinic_Model.objects.all()
+    consulting=Consulting_Model.objects.all()
+    final_theory=Final_Theory_Model.objects.all()
     work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
@@ -145,11 +164,20 @@ def open_docs_view(request):
         code=''
     Summary=Summary_Of_Results_Model.objects.filter(examinations_code=code)
     company=Submit_Company_Model.objects.filter(examinations_code=code)
-    context={'Summary':Summary,'Company':company}
+    context={'Summary':Summary,'Company':company,'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
     return render(request, 'open_docs.html',context)
 
 @login_required(login_url='login')
 def summary_of_examinations_view(request):
+    personal_species=Personal_Species_Model.objects.all()
+    job_history=Job_History_Model.objects.all()
+    assessment=Assessment_Model.objects.all()
+    personal_history=Personal_History_Model.objects.all()
+    examinations=Examinations_Model.objects.all()
+    experiments=Experiments_Model.objects.all()
+    para_clinic=Para_Clinic_Model.objects.all()
+    consulting=Consulting_Model.objects.all()
+    final_theory=Final_Theory_Model.objects.all()
     work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
@@ -157,11 +185,20 @@ def summary_of_examinations_view(request):
         code=''
     Summary=Summary_Of_Results_Model.objects.filter(examinations_code=code)
     company=Submit_Company_Model.objects.filter(examinations_code=code)
-    context={'Summary':Summary,'Company':company}
+    context={'Summary':Summary,'Company':company,'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
     return render(request, 'summary_of_examinations.html',context)
 
 @login_required(login_url='login')
 def problem_view(request):
+    personal_species=Personal_Species_Model.objects.all()
+    job_history=Job_History_Model.objects.all()
+    assessment=Assessment_Model.objects.all()
+    personal_history=Personal_History_Model.objects.all()
+    examinations=Examinations_Model.objects.all()
+    experiments=Experiments_Model.objects.all()
+    para_clinic=Para_Clinic_Model.objects.all()
+    consulting=Consulting_Model.objects.all()
+    final_theory=Final_Theory_Model.objects.all()
     work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
@@ -169,15 +206,33 @@ def problem_view(request):
         code=''
     Summary=Summary_Of_Results_Model.objects.filter(examinations_code=code)
     company=Submit_Company_Model.objects.filter(examinations_code=code)
-    context={'Summary':Summary,'Company':company}
+    context={'Summary':Summary,'Company':company,'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
     return render(request, 'problem.html',context)
 
 @login_required(login_url='login')
 def specialist_view(request):
+    personal_species=Personal_Species_Model.objects.all()
+    job_history=Job_History_Model.objects.all()
+    assessment=Assessment_Model.objects.all()
+    personal_history=Personal_History_Model.objects.all()
+    examinations=Examinations_Model.objects.all()
+    experiments=Experiments_Model.objects.all()
+    para_clinic=Para_Clinic_Model.objects.all()
+    consulting=Consulting_Model.objects.all()
+    final_theory=Final_Theory_Model.objects.all()
     return render(request, 'specialist.html')
 
 @login_required(login_url='login')
 def graph_view(request):
+    personal_species=Personal_Species_Model.objects.all()
+    job_history=Job_History_Model.objects.all()
+    assessment=Assessment_Model.objects.all()
+    personal_history=Personal_History_Model.objects.all()
+    examinations=Examinations_Model.objects.all()
+    experiments=Experiments_Model.objects.all()
+    para_clinic=Para_Clinic_Model.objects.all()
+    consulting=Consulting_Model.objects.all()
+    final_theory=Final_Theory_Model.objects.all()
     count=0
     a_tri,b_tri,c_tri=0,0,0
     data_tri=[]
@@ -468,11 +523,20 @@ def graph_view(request):
     data_psa,
     data_n,
     data_d]
-    context={'Summary':Summary,'Company':company,'data':data,'count':count}
+    context={'Summary':Summary,'Company':company,'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'data':data,'count':count}
     return render(request, 'graph.html',context)
 
 @login_required(login_url='login')
 def solo_output_view(request):
+    personal_species=Personal_Species_Model.objects.all()
+    job_history=Job_History_Model.objects.all()
+    assessment=Assessment_Model.objects.all()
+    personal_history=Personal_History_Model.objects.all()
+    examinations=Examinations_Model.objects.all()
+    experiments=Experiments_Model.objects.all()
+    para_clinic=Para_Clinic_Model.objects.all()
+    consulting=Consulting_Model.objects.all()
+    final_theory=Final_Theory_Model.objects.all()
     work=Disease_Model.objects.last()
     model=Disease_Model.objects.last()
     if work:
@@ -494,7 +558,7 @@ def solo_output_view(request):
         
     }
     form=disease_form(initial=initial_dict)
-    context={'Summary':Summary,'Company':company,'solo_page':solo_page,'nums':nums,'form':form}
+    context={'Summary':Summary,'Company':company,'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'solo_page':solo_page,'nums':nums,'form':form}
     return render(request, 'solo_output.html',context)
 
 @login_required(login_url='login')

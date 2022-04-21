@@ -78,10 +78,10 @@
             <tr>
                 {% load django_template_maths %}
                 <td></td>
-                <td>{{ summary.name }}</td>
-                <td>{{ 1401|sub:summary.age }}</td>
-                <td>{{ summary.job }}</td>
-                <td>{{ summary.code }}</td>
+                <td>{{ summary.species__name }}</td>
+                <td>{{ summary.species__age }}</td>
+                <td>{{ summary.species__job_name }}</td>
+                <td>{{ summary.examinations__code }}</td>
             </tr>
             {% endfor %}
         </table>

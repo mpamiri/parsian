@@ -76,14 +76,13 @@
                 <th>علت بسته نشدن پرونده</th>
             </tr>
             <tr>
-                {% for summary in Summary %}
-                {% load django_template_maths %}
+                {% for species in personal_species %}
                 <td></td>
-                <td>{{ summary.number }}</td>
-                <td>{{ summary.name }}</td>
-                <td>{{ summary.job }}</td>
+                <td>{{ species.number }}</td>
+                <td>{{ species.name }}</td>
+                <td>{{ species.job }}</td>
                 <td></td>
-                <td>{{ summary.reson_for_opening_the_case }}</td>
+                <td>{{ species.reson_for_opening_the_case }}</td>
             </tr>
             {% endfor %}
         </table>
