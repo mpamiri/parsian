@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,Summary_Of_Results
-from .forms import registration, summary_of_results_form,submit_company_form,disease_form,personal_species_form,job_history_form,assessment_form,personal_history_form,examinations_form,experiments_form,para_clinic_form,consulting_form,final_theory_form
+from .forms import registration, summary_of_results_form,submit_company_form,disease_form,personal_species_form,job_history_form,assessment_form,personal_history_form,examinations_form,experiments_form,para_clinic_form,consulting_form,final_theory_form,submit_course_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -94,7 +94,22 @@ def logoutuser_view(request):
 
 
 @login_required(login_url='login')
-def company_view(request):
+def submit_course_view(request):
+    form=submit_course_form()
+    context={'form':form}
+    return render(request, 'submit_course.html',context)
+
+
+@require_POST
+def addcourse_view(request):
+    form=submit_course_form(request.POST)
+    if form.is_valid():
+        new_company=form.save()
+    return redirect('submit_course')
+
+
+@login_required(login_url='login')
+def submit_company_view(request):
     form=submit_company_form()
     context={'form':form}
     return render(request, 'submit_company.html',context)
@@ -105,7 +120,7 @@ def addcompany_view(request):
     form=submit_company_form(request.POST)
     if form.is_valid():
         new_company=form.save()
-    return redirect('submit_company')
+    return redirect('submit_ccompany')
 
 @login_required(login_url='login')
 def output_view(request):

@@ -74,9 +74,9 @@
                 <th>شغل</th>
                 <th>وضعیت پرونده</th>
                 <th>علت بسته نشدن پرونده</th>
-            </tr>
+            </tr>            
+            {% for species in personal_species %}
             <tr>
-                {% for species in personal_species %}
                 <td></td>
                 <td>{{ species.number }}</td>
                 <td>{{ species.name }}</td>

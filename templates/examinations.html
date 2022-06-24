@@ -1,9 +1,6 @@
 {% extends 'article/userbase.html' %}
 {% load static %}
 {% block content %}
-<style>
-    
-</style>
 <section class="b-green">
     <div>
         <div class="container">
@@ -30,6 +27,13 @@
     <form action='{% url 'addexaminations' %}' method='POST'>
         <div class='row text-center mb-4'>
             <div class='col'>
+                {% csrf_token %}
+                <lable>کد دوره معاینات:</lable>
+                {{ personal_species.examinations_code }}
+            </div>
+        </div>
+        <div class='row text-center mb-4'>
+            <div class='col'>
                 به نام خدا
             </div>
         </div>
@@ -39,7 +43,6 @@
                     <td rowspan='4' width=30%><img src="{% static 'images/examination2.png' %}" style="height: 80px;width: 150px;">
                     </td>
                     <td width=17%>نوع معاینات</td>
-                    {% csrf_token %}
                     <td>{{ personal_species.examinations_type }}</td>
                     <td rowspan='4' width=17%>محل الصاق عکس</td>
                 </tr>

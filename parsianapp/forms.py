@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model
+from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,Company,ExaminationsCourse
 from . import models
 from django.core.validators import MaxValueValidator, MinValueValidator 
 class registration(UserCreationForm):
@@ -78,14 +78,21 @@ class summary_of_results_form(forms.ModelForm):
 
 class submit_company_form(forms.ModelForm):
     class Meta:
-        model = Submit_Company_Model
+        model = Company
         fields = '__all__'
         widgets={
-        'company' : forms.TextInput(attrs={'autocomplete': 'off' , })
-        ,'doctor' : forms.TextInput(attrs={'autocomplete': 'off'})
-        ,'specialist' : forms.TextInput(attrs={'autocomplete': 'off'})
-        ,'date' : forms.TextInput(attrs={'autocomplete': 'off'})
-        ,'examinations_code' : forms.TextInput(attrs={'autocomplete': 'off'})}
+        'company' : forms.TextInput(attrs={'autocomplete': 'off' , })}
+
+class submit_course_form(forms.ModelForm):
+    class Meta:
+        model = ExaminationsCourse
+        fields = '__all__'
+        widgets={
+        'company' : forms.TextInput(attrs={'autocomplete': 'off' }),
+        'year' : forms.TextInput(attrs={'autocomplete': 'off' }),
+        'doctor' : forms.TextInput(attrs={'autocomplete': 'off' }),
+        'employer' : forms.TextInput(attrs={'autocomplete': 'off' }),
+        'examinations_code' : forms.TextInput(attrs={'autocomplete': 'off' })}
 
 class disease_form(forms.ModelForm):
     class Meta:

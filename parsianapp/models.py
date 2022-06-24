@@ -2,6 +2,20 @@ from django.db import models
 from django import forms
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils.timezone import timezone
+
+class Company(models.Model):
+    name = models.CharField(max_length=20, null=True, blank=True,unique=True)
+
+class ExaminationsCourse(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    year = models.IntegerField(default=0, null=True, blank=True)
+    employer = models.CharField(max_length=20, null=True, blank=True,unique=True)
+    doctor = models.CharField(max_length=20, null=True, blank=True,unique=True)
+    examinations_code = models.CharField(max_length=20, null=True, blank=True,unique=True)
+
+
+
 
 class Summary_Of_Results_Model(models.Model):
     name = models.CharField(max_length=20, null=True, blank=True,unique=True)
@@ -107,7 +121,6 @@ class Submit_Company_Model(models.Model):
 
 
 class Disease_Model(models.Model):
-    examinations_code=models.CharField(max_length=20, null=True, blank=True)
     order_CHOICES = [(1, '1'), (10, '10'), (20, '20'), (30, '30'), (40, '40'), (50, '50')]
     order_number = models.IntegerField(default=1, choices=order_CHOICES, null=True, blank=True)
 

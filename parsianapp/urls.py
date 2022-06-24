@@ -13,7 +13,8 @@ urlpatterns =[
     path('manage/input/submit_person/',views.submit_person_view,name='submit_person'),
     path('login/',views.login_view,name='login'),
     path('manage/input/summary_of_results/add_summary/',views.addperson_view,name='addsummary'),
-    path('manage/input/submit_company/',views.company_view,name='submit_company'),
+    path('manage/input/submit_course/',views.submit_course_view,name='submit_course'),
+    path('manage/input/submit_company/',views.submit_company_view,name='submit_company'),
     path('manage/output/',views.output_view,name='output'),
     path('manage/output/disease_code',views.disease_code_view,name='disease_code'),
     path('manage/output/disease_code/add',views.adddisease_view,name='adddisease'),
@@ -26,6 +27,7 @@ urlpatterns =[
     path('manage/output/graph',views.graph_view,name='graph'),  
     path('manage/output/solo_output',views.solo_output_view,name='solo_output'),  
     path('manage/submit_company/add_company',views.addcompany_view,name='addcompany'),
+    path('manage/submit_course/add_course',views.addcourse_view,name='addcourse'),
     path('manage/input/examinations',views.examinations_view,name='examinations'),
     path('manage/output/solo_output/add_order',views.addorder_view,name='addorder')    
 ]
