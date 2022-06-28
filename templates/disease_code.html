@@ -1,4 +1,5 @@
 {% extends 'article/userbase.html' %}
+{% load django_template_maths %}
 {% load static %}
 {% block content %}
 <style>
@@ -74,14 +75,16 @@
                 <th>شغل</th>
                 <th>کد پزشک </th>
             </tr>
-            {% for summary in Summary %}
+            {% for item in personal_species %}
             <tr>
-                {% load django_template_maths %}
                 <td></td>
-                <td>{{ summary.species__name }}</td>
-                <td>{{ summary.species__age }}</td>
-                <td>{{ summary.species__job_name }}</td>
-                <td>{{ summary.examinations__code }}</td>
+                {% comment %} <td>{{ item.assessment.all.0.current_ph_noise}}</td> {% endcomment %}
+                <td>{{ item.name }}</td>
+                <td>{{ 1401|sub:item.age }}</td>
+                <td>{{ item.job_name }}</td>
+                <td></td>
+                {% comment %} <td>{{ summary.species.job_name }}</td>
+                <td>{{ summary.examinations_code }}</td> {% endcomment %}
             </tr>
             {% endfor %}
         </table>

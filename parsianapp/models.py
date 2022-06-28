@@ -7,13 +7,26 @@ from django.utils.timezone import timezone
 class Company(models.Model):
     name = models.CharField(max_length=20, null=True, blank=True,unique=True)
 
+    def __str__(self):
+        return f'{self.name}'
+
 class ExaminationsCourse(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     year = models.IntegerField(default=0, null=True, blank=True)
     employer = models.CharField(max_length=20, null=True, blank=True,unique=True)
     doctor = models.CharField(max_length=20, null=True, blank=True,unique=True)
     examinations_code = models.CharField(max_length=20, null=True, blank=True,unique=True)
+    def __str__(self):
+        return f'{self.examinations_code}'
 
+class Person(models.Model):
+    name = models.CharField(max_length=20, null=True, blank=True)
+    age = models.CharField(max_length=20, null=True, blank=True)
+    melli_code = models.CharField(max_length=20, null=True, blank=True,unique=True)
+    
+# class Examination(models.Model):
+#     examinations_course = models.ForeignKey(ExaminationsCourse, on_delete=models.CASECADE)
+#     personal_species = models.ForeignKey()
 
 
 
@@ -121,11 +134,13 @@ class Submit_Company_Model(models.Model):
 
 
 class Disease_Model(models.Model):
+    examinations_code=models.CharField(max_length=20, null=True, blank=True)
     order_CHOICES = [(1, '1'), (10, '10'), (20, '20'), (30, '30'), (40, '40'), (50, '50')]
     order_number = models.IntegerField(default=1, choices=order_CHOICES, null=True, blank=True)
 
 
 class Personal_Species_Model(models.Model):
+    examinations_code = models.ForeignKey(ExaminationsCourse, on_delete=models.CASCADE,default='')
     examinations_type= models.CharField(max_length=20, null=True, blank=True,unique=True)
     date_year=models.IntegerField(default=0, null=True, blank=True)
     date_month=models.IntegerField(default=0, null=True, blank=True)
@@ -152,6 +167,7 @@ class Personal_Species_Model(models.Model):
 
 
 class Job_History_Model(models.Model):
+    person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='history',null=True,blank=True)
     current_job = models.CharField(max_length=50, null=True, blank=True)
     current_job_duty = models.CharField(max_length=50, null=True, blank=True)
     current_job_from = models.CharField(max_length=50, null=True, blank=True)
@@ -172,8 +188,10 @@ class Job_History_Model(models.Model):
     second_previous_job_from = models.CharField(max_length=50, null=True, blank=True)
     second_previous_job_to = models.CharField(max_length=50, null=True, blank=True)
     second_previous_job_reason = models.CharField(max_length=50, null=True, blank=True)
+    # assessment = models.ForeignKey(Assessment_Model, on_delete=models.CASECADE)
 
 class Assessment_Model(models.Model):
+    person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='assessment',null=True,blank=True)
     current_ph_noise = models.BooleanField(default=False)
     current_ph_erteash = models.BooleanField(default=False)
     current_ph_not_unizan = models.BooleanField(default=False)
@@ -232,6 +250,7 @@ class Assessment_Model(models.Model):
     date_day=models.IntegerField(default=0, null=True, blank=True)
 
 class Personal_History_Model(models.Model):
+    person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='personalhistory',null=True,blank=True)    
     first_y = models.BooleanField(default=False)  
     first_n = models.BooleanField(default=False) 
     first_des = models.CharField(max_length=50, null=True, blank=True)
@@ -286,6 +305,7 @@ class Personal_History_Model(models.Model):
     
 
 class Examinations_Model(models.Model):
+    person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='examinations',null=True,blank=True) 
     date_year=models.IntegerField(default=0, null=True, blank=True)
     date_month=models.IntegerField(default=0, null=True, blank=True)
     date_day=models.IntegerField(default=0, null=True, blank=True)
@@ -515,6 +535,7 @@ class Examinations_Model(models.Model):
     code = models.IntegerField(default=1, choices=CODE_CHOICES, null=True, blank=True)
 
 class Experiments_Model(models.Model):
+    person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='experiment',null=True,blank=True) 
     date_year=models.IntegerField(default=0, null=True, blank=True)
     date_month=models.IntegerField(default=0, null=True, blank=True)
     date_day=models.IntegerField(default=0, null=True, blank=True)
@@ -559,6 +580,7 @@ class Experiments_Model(models.Model):
 
 
 class Para_Clinic_Model(models.Model):
+    person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='para',null=True,blank=True) 
     opto_date_year=models.IntegerField(default=0, null=True, blank=True)
     opto_hedat_r_ba=models.IntegerField(default=0, null=True, blank=True)
     opto_hedat_r_bi=models.IntegerField(default=0, null=True, blank=True)
@@ -626,6 +648,7 @@ class Para_Clinic_Model(models.Model):
 
 
 class Consulting_Model(models.Model):
+    person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='consulting',null=True,blank=True) 
     first_year=models.IntegerField(default=0, null=True, blank=True)
     first_month=models.IntegerField(default=0, null=True, blank=True)
     first_day=models.IntegerField(default=0, null=True, blank=True)
@@ -641,6 +664,7 @@ class Consulting_Model(models.Model):
 
 
 class Final_Theory_Model(models.Model):
+    person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='final',null=True,blank=True) 
     belamane = models.BooleanField(default=False)
     mashrot = models.BooleanField(default=False)
     mashrot_reason = models.CharField(max_length=50, null=True, blank=True)
@@ -649,6 +673,3 @@ class Final_Theory_Model(models.Model):
     recommendations = models.CharField(max_length=50, null=True, blank=True)
     reason = models.CharField(max_length=50, null=True, blank=True)
 
-class Summary_Of_Results(models.Model):
-    examination = models.ForeignKey(Examinations_Model, on_delete=models.CASCADE,default=0)
-    species = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,default=0)

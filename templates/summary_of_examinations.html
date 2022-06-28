@@ -100,51 +100,66 @@
                 <th>انجام شده</th>
                 <th>انجام نشده</th>
             </tr>
-            {% for summary in Summary %}
+            {% for item in personal_species %}
             <tr>
                 {% load django_template_maths %}
                 <td colspan='3'></td>
-                <td colspan='3'>{{ summary.name }}</td>
-                <td colspan='3'>{{ 1401|sub:summary.age }}</td>
-                <td colspan='3'>{{ summary.job }}</td>
-                <td colspan='3'>{{ summary.harmful_factors }}</td>
+                <td colspan='3'>{{ item.name }}</td>
+                <td colspan='3'>{{ 1401|sub:item.age }}</td>
+                <td colspan='3'>{{ item.job_name }}</td>
+                <td colspan='3'></td>
                 {% if summary.left_ear_hearing == 'normal' and summary.right_ear_hearing == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% else %}
+                {% elif summary.left_ear_hearing == 'normal' and summary.right_ear_hearing == 'normal' %}
                     <td></td>
                     <td>*</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
                 {% endif %}
                 {% if summary.breathing_test == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% else %}
+                {% elif summary.breathing_test == 'normal' %}
                     <td></td>
                     <td>*</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
                 {% endif %}
                 {% if summary.color_vision == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% else %}
+                {% elif summary.color_vision != 'normal' %}
                     <td></td>
                     <td>*</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
                 {% endif %}
                 {% if summary.urine == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% else %}
+                {% elif summary.urine != 'normal' %}
                     <td></td>
                     <td>*</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
                 {% endif %}
                     <td>{{ summary.code }}</td>
                 {% if summary.refer_to_specialist == 'none' %}
                     <td>*</td>
                     <td></td>
-                {% else %}
+                {% elif summary.refer_to_specialist != 'none' %}
                     <td></td>
                     <td>*</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
                 {% endif %}
-                {% if summary.final_theory == 'belamane' %}
+                {% if item.final.all.0.belamane == True %}
                     <td>*</td>
                     <td></td>
                     <td></td>
@@ -154,7 +169,7 @@
                     <td>*</td>
                     <td></td>
                     <td></td>
-                {% elif summary.final_theory  == 'mashrot' %}   
+                {% elif item.final.all.0.mashrot == True %} 
                     <td></td>
                     <td></td>
                     <td>*</td>
@@ -178,10 +193,14 @@
                     <td></td>
                     <td>*</td>
                     <td></td>
-                {% else %}
+                {% elif summary.occupational_actions  != 'done' %}
                     <td></td>
                     <td></td>
                     <td>*</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 {% endif %}
             </tr>
             
@@ -190,27 +209,4 @@
         
     </div>
 </section>
-<div class='container mt-5'>
-    <div class='row text-center'>
-        <div class='col'>
-            <a href='javascript:generatePDF()' id="elementH">new</a>
-        </div>
-    </div>
-</div>
-<script>
-    var doc = new jsPDF();
-    var elementHTML = $('#contnet').html();
-    var specialElementHandlers = {
-        '#elementH': function (element, renderer) {
-            return true;
-        }
-    };
-    doc.fromHTML(elementHTML, 15, 15, {
-        'width': 170,
-        'elementHandlers': specialElementHandlers
-    });
-
-    // Save the PDF
-    doc.save('document.pdf');
-</script>
 {% endblock content %}

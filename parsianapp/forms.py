@@ -83,12 +83,16 @@ class submit_company_form(forms.ModelForm):
         widgets={
         'company' : forms.TextInput(attrs={'autocomplete': 'off' , })}
 
+class ExaminationsCompanyChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+         return obj.name
+
 class submit_course_form(forms.ModelForm):
+    company : ExaminationsCompanyChoiceField(queryset=Company.objects.all())
     class Meta:
         model = ExaminationsCourse
         fields = '__all__'
         widgets={
-        'company' : forms.TextInput(attrs={'autocomplete': 'off' }),
         'year' : forms.TextInput(attrs={'autocomplete': 'off' }),
         'doctor' : forms.TextInput(attrs={'autocomplete': 'off' }),
         'employer' : forms.TextInput(attrs={'autocomplete': 'off' }),
@@ -101,7 +105,12 @@ class disease_form(forms.ModelForm):
         widgets={'examinations_code' : forms.TextInput(attrs={'id':'myInput','onkeyup':"filterFunction()",'autocomplete': 'off'})
         ,'order_number' : forms.Select(attrs={'class':'choose','autocomplete': 'off'})}  
 
+class ExaminationsCourseChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+         return obj.examinations_code
+
 class personal_species_form(forms.ModelForm):
+    examinations_code = ExaminationsCourseChoiceField(queryset=ExaminationsCourse.objects.all())
     class Meta:
         model=Personal_Species_Model
         fields='__all__' 

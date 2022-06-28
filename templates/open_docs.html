@@ -75,14 +75,22 @@
                 <th>وضعیت پرونده</th>
                 <th>علت بسته نشدن پرونده</th>
             </tr>            
-            {% for species in personal_species %}
+            {% for item in personal_species %}
             <tr>
                 <td></td>
-                <td>{{ species.number }}</td>
-                <td>{{ species.name }}</td>
-                <td>{{ species.job }}</td>
                 <td></td>
-                <td>{{ species.reson_for_opening_the_case }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.job_name }}</td>
+                {% if item.final.all.0.belamane == True %}               
+                <td>بلامانع</td>
+                {% elif item.final.all.0.mashrot == True %}
+                <td>مشروط</td>
+                {% elif item.final.all.0.rad == True %}
+                <td>عدم صلاحیت</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                <td>{{ item.final.all.0.reason }}</td>
             </tr>
             {% endfor %}
         </table>
