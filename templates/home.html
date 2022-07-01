@@ -1,6 +1,14 @@
 {% extends 'article/base.html' %}
 {% load static %}
 {% block content %}
+    {% if user.is_authenticated %}
+    <div class='user text-center'>
+      <span>hello {{user.username}}</span>
+      <span>
+          <a href={% url 'logout' %}>logout</a>
+      </span>
+    </div>
+    {% endif %}
     <section class="b-green">
       <div>
         <div class="container">

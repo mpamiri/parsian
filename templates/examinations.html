@@ -1,4 +1,4 @@
-{% extends 'article/userbase.html' %}
+{% extends 'article/base.html' %}
 {% load static %}
 {% block content %}
 <section class="b-green">
@@ -156,27 +156,27 @@
                     <td>{{ job_history.current_job_to }}</td>
                     <td>{{ job_history.current_job_reason }}</td>
                 </tr>
-                <tr>
-                    <td>{{ job_history.second_current_job }}</td>
-                    <td>{{ job_history.second_current_job_duty }}</td>
-                    <td>{{ job_history.second_current_job_from }}</td>
-                    <td>{{ job_history.second_current_job_to }}</td>
-                    <td>{{ job_history.second_current_job_reason }}</td>
+                <tr style = 'height : 32.5px'>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                <tr>
-                    <td rowspan='2'>مشاغل قبلی</td>
-                    <td>{{ job_history.previous_job }}</td>
-                    <td>{{ job_history.previous_job_duty }}</td>
-                    <td>{{ job_history.previous_job_from }}</td>
-                    <td>{{ job_history.previous_job_to }}</td>
-                    <td>{{ job_history.previous_job_reason }}</td>
+                <tr style = 'height : 32.5px'>
+                    <td rowspan='2' >مشاغل قبلی</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                <tr>
-                    <td>{{ job_history.second_previous_job }}</td>
-                    <td>{{ job_history.second_previous_job_duty }}</td>
-                    <td>{{ job_history.second_previous_job_from }}</td>
-                    <td>{{ job_history.second_previous_job_to }}</td>
-                    <td>{{ job_history.second_previous_job_reason }}</td>
+                <tr style = 'height : 32.5px'>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
         </div>
@@ -2026,6 +2026,14 @@
                     </td>
                 </tr>
             </table>
+        </div>
+        <div class='row text-center mt-4'>
+            <div class='col'>
+                مشکلات مشاهده شده:{{ final_theory.problems }}
+            </div>
+            <div class='col box'>
+                کد بیماری شغلی:{{ final_theory.d_code }}
+            </div>
         </div>
         <div class='row text-center mt-4'>
             <div class='col'>

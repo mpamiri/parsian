@@ -309,4 +309,12 @@ class final_theory_form(forms.ModelForm):
     class Meta:
         model=Final_Theory_Model
         fields='__all__' 
+        widgets={
+        'mashrot_reason' : forms.TextInput(attrs={'autocomplete': 'off'}),
+        'rad_reason' : forms.TextInput(attrs={'autocomplete': 'off'}),
+        'recommendations' : forms.TextInput(attrs={'autocomplete': 'off'}),
+        'reason' : forms.TextInput(attrs={'autocomplete': 'off'}),
+        'problems' : forms.TextInput(attrs={'autocomplete': 'off'}),
+        'd_code' : forms.NumberInput(attrs={'autocomplete': 'off','class':'box'})
+        }
 

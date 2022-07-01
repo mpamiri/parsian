@@ -1,4 +1,4 @@
-{% extends 'article/userbase.html' %}
+{% extends 'article/base.html' %}
 {% load static %}
 {% block content %}
 <style>
@@ -9,6 +9,17 @@
         counter-increment: rowNumber;
         }
         table tr td:first-child::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
+        }
+    table tr:nth-child(2){
+        counter-reset: rowNumber;
+        }
+        table tr {
+        counter-increment: rowNumber;
+        }
+        table tr td:nth-child(2)::before {
         content: counter(rowNumber);
         min-width: 1em;
         margin-right: 0.5em;
@@ -72,25 +83,27 @@
                 <th>شماره ارجاع</th>
                 <th>نام</th>
                 <th>شغل</th>
-                <th>وضعیت پرونده</th>
                 <th>علت بسته نشدن پرونده</th>
             </tr>            
             {% for item in personal_species %}
             <tr>
                 <td></td>
                 <td></td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.job_name }}</td>
-                {% if item.final.all.0.belamane == True %}               
-                <td>بلامانع</td>
-                {% elif item.final.all.0.mashrot == True %}
-                <td>مشروط</td>
-                {% elif item.final.all.0.rad == True %}
-                <td>عدم صلاحیت</td>
+                {% if item.name %}
+                <td>{{ item.name}}</td>
                 {% else %}
-                <td></td>
+                <td class='false'>ندارد</td>
                 {% endif %}
+                {% if item.job_name%}
+                <td>{{ item.job_name }}</td>
+                {% else %}
+                <td class='false'>ندارد</td>
+                {% endif %}
+                {% if item.final.all.0.reason %}
                 <td>{{ item.final.all.0.reason }}</td>
+                {% else %}
+                <td class='false'>ندارد</td>
+                {% endif %}
             </tr>
             {% endfor %}
         </table>

@@ -1,4 +1,5 @@
-{% extends 'article/userbase.html' %}
+{% extends 'article/base.html' %}
+{% load django_template_maths %}
 {% load static %}
 {% block content %}
 <section class="b-green">
@@ -34,23 +35,22 @@ xmlns="http://www.w3.org/2000/svg">
     </div>
 </section>
 <section id='print'>
-{% for company in Company %}
-{% for summary in solo_page %}
+{% for item in personal_species %}
     <div class='container' style='font-size: 15px;'>
         <div class='row text-center mt-5'>
             <div class='col'>
                 <lable>تاریخ انجام معاینات:</lable>
-                {{ company.date }}
+                {{ examinations_course.year }}
             </div>
         </div>
         <div class='row text-center'>
             <div class='col'>
                 <lable>کارخانه/کارگاه/شرکت:</lable>
-                {{ company.company }}            
+                {{ examinations_course.company }}            
             </div>
             <div class='col'>
                 <lable>نام:</lable>
-                {{ summary.name }}            
+                {{ item.name }}            
             </div>
         </div>
         <div class='row text-center'>
@@ -62,12 +62,12 @@ xmlns="http://www.w3.org/2000/svg">
                 </tr>
                 <tr>
                     <td class='first'>سن</td>
-                    <td class='second'>{{ summary.age }}</td>
+                    <td class='second'>{{ 1401|sub:item.age }}</td>
                     <td class='third'>---</td>
                 </tr>
                 <tr>
                     <td class='first'>قد</td>
-                    <td class='second'>{{ summary.length }}</td>
+                    <td class='second'>{{ item.examinations.all.0.length }}</td>
                     <td class='third'>---</td>
                 </tr>
                 <tr>
@@ -100,12 +100,12 @@ xmlns="http://www.w3.org/2000/svg">
                 </tr>
                 <tr>
                     <td class='first'>فشار خون</td>
-                    <td class='second'>{{ summary.blood_pressure }}</td>
-                    {% if summary.blood_pressure < 9 %}
+                    <td class='second'>{{ item.examinations.all.0.blood_pressure }}</td>
+                    {% if item.examinations.all.0.blood_pressure < 9 %}
                     <td class='third'>پایین</td>
-                    {% elif summary.blood_pressure >= 9 and summary.blood_pressure <= 14 %}
+                    {% elif item.examinations.all.0.blood_pressure >= 9 and item.examinations.all.0.blood_pressure <= 14 %}
                     <td class='third'>نرمال</td>
-                    {% elif summary.blood_pressure > 9 %}
+                    {% elif item.examinations.all.0.blood_pressure > 9 %}
                     <td class='third'>بالا</td>
                     {% else %}
                     <td class='third'>ندارد/غیر نرمال</td>
@@ -234,35 +234,14 @@ xmlns="http://www.w3.org/2000/svg">
                     {% endif %}
                 </tr>
                 <tr>
-                    <td class='first'>بینایی چشم راست با عینک</td>
+                    <td class='first'>نوار قلب</td>
                     <td class='second'>---</td>
                     <td class='third'>{{ summary.heart }}</td>
-                </tr>
-                <tr>
-                    <td class='first'>سن</td>
-                    <td class='second'>{{ summary.age }}</td>
-                    <td class='third'>---</td>
-                </tr>
-                <tr>
-                    <td class='first'>سن</td>
-                    <td class='second'>{{ summary.age }}</td>
-                    <td class='third'>---</td>
-                </tr>
-                <tr>
-                    <td class='first'>سن</td>
-                    <td class='second'>{{ summary.age }}</td>
-                    <td class='third'>---</td>
-                </tr>
-                <tr>
-                    <td class='first'>سن</td>
-                    <td class='second'>{{ summary.age }}</td>
-                    <td class='third'>---</td>
                 </tr>
             </table>
         </div>
     </div>
     <hr size="5px" width="100%" color="black" class='mt-5'>
-    {% endfor %}
     {% endfor %}
 </section>
 <section>
@@ -289,13 +268,4 @@ xmlns="http://www.w3.org/2000/svg">
         </div>
     </div>
 </section>
-<script>
-    function printDiv() {
-        const printContents = document.getElementById('print').innerHTML;
-        const originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-    }
-</script>
 {% endblock content %}

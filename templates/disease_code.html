@@ -1,4 +1,4 @@
-{% extends 'article/userbase.html' %}
+{% extends 'article/base.html' %}
 {% load django_template_maths %}
 {% load static %}
 {% block content %}
@@ -73,15 +73,29 @@
                 <th>نام</th>
                 <th>سن</th>
                 <th>شغل</th>
-                <th>کد پزشک </th>
+                <th>مدت اشتغال به ماه</th>
+                <th>کد بیماری شغلی</th>
             </tr>
             {% for item in personal_species %}
             <tr>
                 <td></td>
                 {% comment %} <td>{{ item.assessment.all.0.current_ph_noise}}</td> {% endcomment %}
+                {% if item.name %}
                 <td>{{ item.name }}</td>
+                {% else %}
+                <td class = 'false'>ذکر نشده</td>
+                {% endif %}
+                {% if item.age %}
                 <td>{{ 1401|sub:item.age }}</td>
+                {% else %}
+                <td class = 'false'>ذکر نشده</td>
+                {% endif %}
+                {% if item.job_name %}
                 <td>{{ item.job_name }}</td>
+                {% else %}
+                <td class = 'false'>ذکر نشده</td>
+                {% endif %}
+                <td></td>
                 <td></td>
                 {% comment %} <td>{{ summary.species.job_name }}</td>
                 <td>{{ summary.examinations_code }}</td> {% endcomment %}
@@ -90,11 +104,13 @@
         </table>
     </div>
 </section>
+<section class='container'>
     <div class='row text-center mt-5'>
         <div class='col'>
             <input type="button" value="print" onclick="printDiv()">
         </div>
     </div>
+</section>
 <script>
     function printDiv() {
         const printContents = document.getElementById('print').innerHTML;

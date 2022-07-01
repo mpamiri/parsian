@@ -1,4 +1,4 @@
-{% extends 'article/userbase.html' %}
+{% extends 'article/base.html' %}
 {% load static %}
 {% block content %}
 <section class="b-green">
@@ -64,20 +64,23 @@ xmlns="http://www.w3.org/2000/svg">
                 <th>دارد</th>
                 <th>ندارد</th>
             </tr>
-            {% for summary in Summary %}
+            {% for item in personal_species %}
             <tr>
                 <td></td>
-                <td>{{ summary.name }}</td>
-                <td>{{ summary.job }}</td>
-                <td>{{ summary.problem }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.job_name }}</td>
+                <td></td>
                 {% if summary.problems_with_the_persons_job == 'darad' %}
                 <td>*</td>
                 <td></td>
-                {% else %}
+                {% elif summary.problems_with_the_persons_job != 'darad' %}
                 <td></td>
                 <td>*</td>
+                {% else %}
+                <td></td>
+                <td></td>
                 {% endif %}
-                <td>{{ summary.recommendations }}</td>
+                <td>{{ item.final.all.0.recommendations }}</td>
             </tr>
             {% endfor %}
         </table>

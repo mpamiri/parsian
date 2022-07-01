@@ -1,4 +1,4 @@
-{% extends 'article/userbase.html' %}
+{% extends 'article/base.html' %}
 {% load static %}
 {% block content %}
 <style>
@@ -76,10 +76,8 @@
                 <th colspan='2'>اسپیرومتری</th>
                 <th colspan='2'>اپتومتری</th>
                 <th colspan='2'>ازمایشات</th>
-                <th colspan='1' rowspan='2'>کد پزشک </th>
                 <th colspan='2'>ارجاع به متخصص</th>
                 <th colspan='4'>نظر نهایی پزشک</th>
-                <th colspan='3'>اقدامات کارشناس</th>
             </tr>
             <tr>
                 <th>نرمال</th>
@@ -95,23 +93,31 @@
                 <th>بلامانع</th>
                 <th>تغییر شغل</th>
                 <th>مشروط</th>
-                <th>کمیسیون</th>
-                <th>درحال پیگیری</th>
-                <th>انجام شده</th>
-                <th>انجام نشده</th>
             </tr>
             {% for item in personal_species %}
             <tr>
                 {% load django_template_maths %}
                 <td colspan='3'></td>
+                {% if item.name %}
                 <td colspan='3'>{{ item.name }}</td>
+                {% else %}
+                <td class='false' colspan='3'>ذکر نشده</td>
+                {% endif %}
+                {% if item.age %}
                 <td colspan='3'>{{ 1401|sub:item.age }}</td>
+                {% else %}
+                <td class = 'false' colspan='3'>ذکر نشده</td>
+                {% endif %}
+                {% if item.job_name %}
                 <td colspan='3'>{{ item.job_name }}</td>
-                <td colspan='3'></td>
+                {% else %}
+                <td class = 'false' colspan='3'>ذکر نشده</td>
+                {% endif %}
+                <td colspan='3' colspan='3'></td>
                 {% if summary.left_ear_hearing == 'normal' and summary.right_ear_hearing == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% elif summary.left_ear_hearing == 'normal' and summary.right_ear_hearing == 'normal' %}
+                {% elif summary.left_ear_hearing != 'normal' and summary.right_ear_hearing != 'normal' %}
                     <td></td>
                     <td>*</td>
                 {% else %}
@@ -121,7 +127,7 @@
                 {% if summary.breathing_test == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% elif summary.breathing_test == 'normal' %}
+                {% elif summary.breathing_test != 'normal' %}
                     <td></td>
                     <td>*</td>
                 {% else %}
@@ -148,7 +154,6 @@
                     <td></td>
                     <td></td>
                 {% endif %}
-                    <td>{{ summary.code }}</td>
                 {% if summary.refer_to_specialist == 'none' %}
                     <td>*</td>
                     <td></td>
@@ -163,37 +168,15 @@
                     <td>*</td>
                     <td></td>
                     <td></td>
-                    <td></td>
                 {% elif summary.final_theory  == 'taghir_shekl' %}
                     <td></td>
                     <td>*</td>
-                    <td></td>
                     <td></td>
                 {% elif item.final.all.0.mashrot == True %} 
                     <td></td>
                     <td></td>
                     <td>*</td>
-                    <td></td> 
                 {% elif summary.final_theory  == 'comision' %}   
-                    <td></td>
-                    <td></td>
-                    <td>*</td>
-                    <td></td> 
-                {% else %}
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td> 
-                {% endif %}
-                {% if summary.occupational_actions == 'darhal_peygiri' %}
-                    <td>*</td>
-                    <td></td>
-                    <td></td>
-                {% elif summary.occupational_actions  == 'done' %}
-                    <td></td>
-                    <td>*</td>
-                    <td></td>
-                {% elif summary.occupational_actions  != 'done' %}
                     <td></td>
                     <td></td>
                     <td>*</td>

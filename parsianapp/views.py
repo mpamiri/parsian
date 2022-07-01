@@ -50,15 +50,12 @@ def login_view(request):
 
         if user is not None:
             auth_login(request, user)
-            return redirect('../manage')
+            return redirect('../')
         else:
             messages.info(request, 'username or password is incorect')
     return render(request, 'login.html')
 
 
-@login_required(login_url='login')
-def manage_view(request):
-    return render(request, 'manage.html')
 
 
 @login_required(login_url='login')
@@ -172,7 +169,7 @@ def open_docs_view(request):
     else:
         code=''
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
-    personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
+    personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course,final__mashrot='False',final__belamane='False',final__rad='False')
     job_history=Job_History_Model.objects.all()
     assessment=Assessment_Model.objects.all()
     personal_history=Personal_History_Model.objects.all()
@@ -565,8 +562,8 @@ def solo_output_view(request):
     consulting=Consulting_Model.objects.all()
     final_theory=Final_Theory_Model.objects.all()
     company=Submit_Company_Model.objects.all()
-    if model:
-        number=model.order_number
+    if work:
+        number=work.order_number
     else:
         number='1'
     p = Paginator(Summary_Of_Results_Model.objects.filter(examinations_code=code),number)
@@ -577,7 +574,7 @@ def solo_output_view(request):
         'order_number':number       
     }
     form=disease_form(initial=initial_dict)
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'form' :form,'examinations_course' : examinations_course}
     return render(request, 'solo_output.html',context)
 
 @login_required(login_url='login')
