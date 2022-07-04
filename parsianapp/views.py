@@ -158,7 +158,8 @@ def disease_code_view(request):
     para_clinic=Para_Clinic_Model.objects.all()
     consulting=Consulting_Model.objects.all()
     final_theory=Final_Theory_Model.objects.all()
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
+    items=[]
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory, 'examinations_course':examinations_course}
     return render(request, 'disease_code.html',context)
 
 @login_required(login_url='login')
@@ -178,7 +179,7 @@ def open_docs_view(request):
     para_clinic=Para_Clinic_Model.objects.all()
     consulting=Consulting_Model.objects.all()
     final_theory=Final_Theory_Model.objects.all()
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory , 'examinations_course':examinations_course}
     return render(request, 'open_docs.html',context)
 
 @login_required(login_url='login')
@@ -198,7 +199,7 @@ def summary_of_examinations_view(request):
     para_clinic=Para_Clinic_Model.objects.all()
     consulting=Consulting_Model.objects.all()
     final_theory=Final_Theory_Model.objects.all()
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory , 'examinations_course':examinations_course}
     return render(request, 'summary_of_examinations.html',context)
 
 @login_required(login_url='login')
@@ -218,7 +219,7 @@ def problem_view(request):
     para_clinic=Para_Clinic_Model.objects.all()
     consulting=Consulting_Model.objects.all()
     final_theory=Final_Theory_Model.objects.all()
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'examinations_course':examinations_course}
     return render(request, 'problem.html',context)
 
 @login_required(login_url='login')
@@ -238,7 +239,7 @@ def specialist_view(request):
     para_clinic=Para_Clinic_Model.objects.all()
     consulting=Consulting_Model.objects.all()
     final_theory=Final_Theory_Model.objects.all()
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'examinations_course':examinations_course}
     return render(request, 'specialist.html',context)
 
 @login_required(login_url='login')
@@ -541,7 +542,7 @@ def graph_view(request):
     data_psa,
     data_n,
     data_d]
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory}
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'examinations_course':examinations_course}
     return render(request, 'graph.html',context)
 
 @login_required(login_url='login')
@@ -607,6 +608,7 @@ def examinations_view(request):
 
 @require_POST
 def addexaminations_view(request):
+    items = ''
     personal_species=personal_species_form(request.POST)
     job_history=job_history_form(request.POST)
     assessment=assessment_form(request.POST)
@@ -621,10 +623,56 @@ def addexaminations_view(request):
     if personal_species.is_valid() and  job_history.is_valid():
         new_job_history = job_history.save(commit=False)
         new_job_history.person = new_person
+        new_job_history.durations = ((new_job_history.current_job_to_year * 12) + new_job_history.current_job_to_month) - ((new_job_history.current_job_from_year * 12) + new_job_history.current_job_from_month)
         new_job_history.save()
     if personal_species.is_valid() and  assessment.is_valid():
         new_assessment = assessment.save(commit=False)
         new_assessment.person = new_person
+        if new_assessment.current_ph_noise == True:
+            items += ' سر و صدا/'
+        if new_assessment.current_ph_erteash == True:
+            items += ' ارتعاش/'
+        if new_assessment.current_ph_not_unizan == True:
+            items += ' اشعه غیر یونیزان/'
+        if new_assessment.current_ph_unizan == True:
+            items += ' اشعه یونیزان/'
+        if new_assessment.current_ph_stress == True:
+            items += ' استرس حرارتی/'
+        if new_assessment.current_sh_dust == True:
+            items += ' گرد و غبار/'
+        if new_assessment.current_sh_metals == True:
+            items += ' دمه فلزات/'
+        if new_assessment.current_sh_halal == True:
+            items += ' حلال/'
+        if new_assessment.current_sh_afat == True:
+            items += ' آفت کشها/'
+        if new_assessment.current_sh_asidvbaz == True:
+            items += ' اسید و بازها/'
+        if new_assessment.current_sh_gaz == True:
+            items += ' گاز ها/'
+        if new_assessment.current_bio_gazesh == True:
+            items += ' گزش/'
+        if new_assessment.current_bio_bactery == True:
+            items += ' باکتری/'
+        if new_assessment.current_bio_virus == True:
+            items += ' ویروس/'
+        if new_assessment.current_bio_angal == True:
+            items += ' انگل/'
+        if new_assessment.current_er_standvsit == True:
+            items += ' ایستادن یا نشستن طولانی مدت/'
+        if new_assessment.current_er_loop == True:
+            items += ' کار تکراری/'
+        if new_assessment.current_er_hamlvnaghl == True:
+            items += ' حمل و نقل بار سنگین/'
+        if new_assessment.current_er_vaziat_namonaseb == True:
+            items += ' وضعیت نامناسب بدن/'
+        if new_assessment.current_rav_order == True:
+            items += ' نوبت کاری/'
+        if new_assessment.current_rav_stressor == True:
+            items += ' استرسور های شغلی/'  
+        if new_assessment.required_description:
+            items += new_assessment.required_description
+        new_assessment.assessments = items    
         new_assessment.save()
     if personal_species.is_valid() and  personal_history.is_valid():
         new_personal_history = personal_history.save(commit=False)
@@ -637,6 +685,135 @@ def addexaminations_view(request):
     if personal_species.is_valid() and  experiments.is_valid():
         new_experiments = experiments.save(commit=False)
         new_experiments.person = new_person
+        if new_experiments.cbc_wbc:
+            if new_experiments.cbc_wbc < 4 and new_experiments.cbc_wbc >10:
+                new_experiments.cbc_wbc_status = False 
+        else:
+            new_experiments.cbc_wbc_status = True
+        if new_experiments.cbc_plt:
+            if new_experiments.cbc_plt < 140 and new_experiments.cbc_plt >450:
+                    new_experiments.cbc_plt_status = False 
+        else:
+            new_experiments.cbc_plt_status = True
+        if new_experiments.ua_prot:
+            if new_experiments.ua_prot < 0 and new_experiments.ua_prot >0:
+                    new_experiments.ua_prot_status = False
+        else:
+            new_experiments.ua_prot_status = True
+        if new_experiments.ua_glu:
+            if new_experiments.ua_glu < 0 and new_experiments.ua_glu >0:
+                    new_experiments.ua_glu_status = False 
+        else:
+            new_experiments.ua_glu_status = True
+        if new_experiments.ua_rbc:
+            if new_experiments.ua_rbc > 3:
+                new_experiments.ua_rbc_status = False 
+        else:
+            new_experiments.ua_rbc_status = True
+        if new_experiments.ua_wbc:
+            if new_experiments.ua_wbc > 5:
+                new_experiments.ua_wbc_status = False 
+        else:
+            new_experiments.ua_wbc_status = True
+        if new_experiments.ua_bact:
+            if new_experiments.ua_bact < 0 and new_experiments.ua_bact > 0:
+                new_experiments.ua_bact_status = False 
+        else:
+            new_experiments.ua_bact_status = True
+        if new_experiments.fbs:
+            if new_experiments.fbs < 70 and new_experiments.fbs > 125:
+                new_experiments.fbs_status = False 
+        else:
+            new_experiments.fbs_status = True
+        if new_experiments.chol:
+            if new_experiments.chol > 200:
+                new_experiments.chol_status = False 
+        else:
+            new_experiments.chol_status = True
+        if new_experiments.ldl:
+            if new_experiments.ldl >100:
+                new_experiments.ldl_status = False 
+        else:
+            new_experiments.ldl_status = True
+        if new_experiments.tsh:
+            if new_experiments.tsh < 0.4 and new_experiments.tsh > 5:
+                new_experiments.tsh_status = False  
+        else:
+            new_experiments.tsh_status = True
+        if new_experiments.tg:
+            if new_experiments.tg > 200:
+                    new_experiments.tg_status = False 
+        else:
+            new_experiments.tg_status = True
+        if new_experiments.cr:
+            if new_experiments.cr >= 1.4:
+                new_experiments.cr_status = False 
+        else:
+            new_experiments.cr_status = True
+        if new_experiments.alt:
+            if new_experiments.alt >= 40:
+                new_experiments.alt_status = False 
+        else:
+            new_experiments.alt_status = True
+        if new_experiments.ast:
+            if new_experiments.ast >= 40:
+                new_experiments.ast_status = False 
+        else:
+            new_experiments.ast_status = True
+        if new_experiments.ast:
+            if new_experiments.alk < 14 and new_experiments.alk > 20:
+                    new_experiments.alk_status = False 
+        else:
+            new_experiments.alk_status = True
+        if new_experiments.lead:
+            if ew_experiments.lead > 20:
+                new_experiments.lead_status = False 
+        else:
+            new_experiments.lead_status = True
+        if new_experiments.d:
+            if new_experiments.d <= 30 and new_experiments.d >101:
+                new_experiments.d_status = False  
+        else:
+            new_experiments.d_status = True
+        if new_experiments.psa:
+            if new_person.age < 40:
+                if new_experiments.psa >= 1.7:
+                    new_experiments.psa_status = False
+            if new_person.age < 50 and new_person.age >= 40 :
+                if new_experiments.psa >= 2.2:
+                    new_experiments.psa_status = False
+            if nnew_person.age < 60 and new_person.age >= 50:
+                if new_experiments.psa >= 3.4:
+                    new_experiments.psa_status = False
+            if new_person.age < 70 and new_person.age >= 60:
+                if new_experiments.psa >= 6.16:
+                    new_experiments.psa_status = False
+            if new_person.age > 70:
+                if new_experiments.psa >= 6.77:
+                    new_experiments.psa_status = False
+        else:
+            new_experiments.psa_status = True
+        if new_person.gender == 'mard':
+            if new_experiments.cbc_rbc:
+                if new_experiments.cbc_rbc < 4 and new_experiments.cbc_rbc >5.5:
+                    new_experiments.cbc_rbc_status = False 
+            else:
+                new_experiments.cbc_rbc_status = True
+            if new_experiments.cbc_hb:
+                if new_experiments.cbc_hb < 12 and new_experiments.cbc_hb >16:
+                    new_experiments.cbc_hb_status = False 
+            else:
+                new_experiments.cbc_hb_status = True
+            if new_experiments.cbc_htc:
+                if new_experiments.cbc_htc < 40 and new_experiments.cbc_htc >54:
+                    new_experiments.cbc_htc_status = False 
+            else:
+                new_experiments.cbc_htc_status = True
+            if new_experiments.hdl:
+                if new_experiments.hdl > 40:
+                    new_experiments.hdl_status = False    
+            else:
+                new_experiments.hdl_status = True      
         new_experiments.save()
     if personal_species.is_valid() and  para_clinic.is_valid():
         new_para_clinic = para_clinic.save(commit=False)

@@ -57,7 +57,7 @@
                 </tr>
                 <tr>
                     <td width=17%>تاریخ</td>
-                    <td>13{{ personal_species.date_year }}/{{ personal_species.date_month }}/{{ personal_species.date_day }}</td>
+                    <td>{{ personal_species.date_year }}/{{ personal_species.date_month }}/{{ personal_species.date_day }}</td>
                 </tr>
                 <tr>
                     <td width=17%>شماره پرونده</td>
@@ -214,15 +214,15 @@
                     {% else %}
                     <td>{{ job_history.current_job_duty }}</td>
                     {% endif %}
-                    {% if job_history.current_job_from == null %}
+                    {% if job_history.current_job_from_year == null  and job_history.current_job_from_month == null and job_history.current_job_from_day == null %}
                     <td class='false'>ذکر نشده</td>
                     {% else %}
-                    <td>{{ job_history.current_job_from }}</td>
+                    <td>{{ job_history.current_job_from_year }}/{{ job_history.current_job_from_month }}/{{ job_history.current_job_from_day }}</td>
                     {% endif %}
-                    {% if job_history.current_job_to == null %}
+                    {% if job_history.current_job_to_year == null  and job_history.current_job_to_month == null and job_history.current_job_to_day == null %}
                     <td class='false'>ذکر نشده</td>
                     {% else %}
-                    <td>{{ job_history.current_job_to }}</td>
+                    <td>{{ job_history.current_job_to_year }}/{{ job_history.current_job_to_month }}/{{ job_history.current_job_to_day }}</td>
                     {% endif %}
                     {% if job_history.current_job_reason == null %}
                     <td class='false'>ذکر نشده</td>
@@ -787,7 +787,7 @@
                         </div>
                         <div class='row'>
                             <div class='col'>
-                                تاریخ:13{{ assessment.date_year }}/{{ assessment.date_month }}/{{ assessment.date_day }}
+                                تاریخ:{{ assessment.date_year }}/{{ assessment.date_month }}/{{ assessment.date_day }}
                             </div>
                             <div class='col'>
                                 مهر و امضا:
@@ -1095,7 +1095,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>13</td>
+                    <td></td>
                     <td>آیا تا کنون به حادثه شغلی دچار شده اید؟</td>
                     <td>
                         {% if personal_history.thirteenth_y == True %}
@@ -1205,7 +1205,7 @@
         </div>
         <div class='row text-center'>
             <div class='col'>
-                تاریخ:13{{ examinations.date_year }}/{{ examinations.date_month }}/{{ examinations.date_day }}
+                تاریخ:{{ examinations.date_year }}/{{ examinations.date_month }}/{{ examinations.date_day }}
             </div>
             <div class='col'>
                 وزن(kg):{{ examinations.weight }}
@@ -3146,27 +3146,27 @@
         </div>
         <div class='row mt-2'>
             <div class='col'>
-                تاریخ:13{{ experiments.date_year }}/{{ experiments.date_month }}/{{ experiments.date_day }}
+                تاریخ:{{ experiments.date_year }}/{{ experiments.date_month }}/{{ experiments.date_day }}
             </div>
         </div> 
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                CBC:WBC<p class='False'>{{ experiments.cbc_wbc }}</p>RBC<p class='False'>{{ experiments.cbc_rbc }}</p>Hb<p class='False'>{{ experiments.cbc_hb }}</p>HTC<p class='False'>{{ experiments.cbc_htc }}</p>Plt<p class='False'>{{ experiments.cbc_plt }}</p>
+                CBC:WBC:<p class='False'>{{ experiments.cbc_wbc }}</p>RBC:<p class='False'>{{ experiments.cbc_rbc }}</p>Hb:<p class='False'>{{ experiments.cbc_hb }}</p>HTC:<p class='False'>{{ experiments.cbc_htc }}</p>Plt:<p class='False'>{{ experiments.cbc_plt }}</p>
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                U/A:Prot<p class='False'>{{ experiments.ua_prot }}</p> Glu<p class='False'>{{ experiments.ua_glu }}</p>RBC<p class='False'>{{ experiments.ua_rbc }}</p>WBC<p class='False'>{{ experiments.ua_wbc }}</p>Bact<p class='False'>{{ experiments.ua_bact }}</p>
+                U/A:Prot:<p class='False'>{{ experiments.ua_prot }}</p> Glu:<p class='False'>{{ experiments.ua_glu }}</p>RBC:<p class='False'>{{ experiments.ua_rbc }}</p>WBC:<p class='False'>{{ experiments.ua_wbc }}</p>Bact:<p class='False'>{{ experiments.ua_bact }}</p>
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                FBS<p class='False'>{{ experiments.fbs }}</p> Total Chol<p class='False'>{{ experiments.chol }}</p>LDL<p class='False'>{{ experiments.ldl }}</p>HDL<p class='False'>{{ experiments.hdl }}</p>TG<p class='False'>{{ experiments.tg }}</p>
+                FBS:<p class='False'>{{ experiments.fbs }}</p> Total Chol:<p class='False'>{{ experiments.chol }}</p>LDL:<p class='False'>{{ experiments.ldl }}</p>HDL:<p class='False'>{{ experiments.hdl }}</p>TG:<p class='False'>{{ experiments.tg }}</p>D3:<p class='False'>{{ experiments.d }}</p>TSH:<p class='False'>{{ experiments.tsh }}</p>
             </div>
         </div>
         <div class='row mt-3' dir=ltr>
             <div class='col'>
-                BUN<p class='False'>{{ experiments.bun }}</p> Cr<p class='False'>{{ experiments.cr }}</p>ALT<p class='False'>{{ experiments.alt }}</p>AST<p class='False'>{{ experiments.ast }}</p>ALK.Ph<p class='False'>{{ experiments.alk }}</p>HBS AG<p class='False'>{{ experiments.hbs }}</p>S/E & OB<p class='False'>{{ experiments.se }}</p>PPD<p class='False'>{{ experiments.ppd }}</p>
+                PSA:<p class='False'>{{ experiments.psa }}</p> Cr:<p class='False'>{{ experiments.cr }}</p>ALT:<p class='False'>{{ experiments.alt }}</p>AST:<p class='False'>{{ experiments.ast }}</p>ALK.Ph:<p class='False'>{{ experiments.alk }}</p>LEAD:<p class='False'>{{ experiments.lead }}</p>S/E & OB:<p class='False'>{{ experiments.se_status }}</p>PPD:<p class='False'>{{ experiments.ppd_status }}</p>
             </div>
         </div>
         <div class='row mt-4'>
@@ -3188,7 +3188,7 @@
                 {% else %}
                 {{ experiments.first_result }}
                 {% endif %}
-                تاریخ:13{{ experiments.first_date_year }}/{{ experiments.first_date_month }}/{{ experiments.first_date_day }}
+                تاریخ:{{ experiments.first_date_year }}/{{ experiments.first_date_month }}/{{ experiments.first_date_day }}
             </div>
         </div>
         <div class='row mt-3'>
@@ -3205,7 +3205,7 @@
                 {% else %}
                 {{ experiments.second_result }}
                 {% endif %}
-                تاریخ:13{{ experiments.second_date_year }}/{{ experiments.second_date_month }}/{{ experiments.second_date_day }}
+                تاریخ:{{ experiments.second_date_year }}/{{ experiments.second_date_month }}/{{ experiments.second_date_day }}
             </div>
         </div>
         <div class='row mt-3'>
@@ -3222,7 +3222,7 @@
                 {% else %}
                 {{ experiments.third_result }}
                 {% endif %}
-                تاریخ:13{{ experiments.third_date_year }}/{{ experiments.third_date_month }}/{{ experiments.third_date_day }}
+                تاریخ:{{ experiments.third_date_year }}/{{ experiments.third_date_month }}/{{ experiments.third_date_day }}
             </div>
         </div>
         <div class='row b-green mt-5'>
@@ -3264,7 +3264,7 @@
                     <th>بدون اصلاح</th>
                 </tr>
                 <tr>
-                    <td rowspan=3>{{ para_clinic.opto_date_year }}13</td>
+                    <td rowspan=3>{{ para_clinic.opto_date_year }}</td>
                     <td>10/{{ para_clinic.opto_hedat_r_ba }}</td>
                     <td>10/{{ para_clinic.opto_hedat_r_bi }}</td>
                     <td>10/{{ para_clinic.opto_hedat_l_ba }}</td>
@@ -3301,7 +3301,7 @@
                     <th>1000</th>
                     <th>500</th>
                     <th>فرکانس</th>
-                    <th>13{{ para_clinic.audio_date_year }}/{{ para_clinic.audio_date_month }}/{{ para_clinic.audio_date_day }}</th>
+                    <th>{{ para_clinic.audio_date_year }}/{{ para_clinic.audio_date_month }}/{{ para_clinic.audio_date_day }}</th>
                 </tr>
                 <tr>
                     <td rowspan=4>
@@ -3500,7 +3500,7 @@
         <div class='row mt-3'>
             <table class='text-center'>
                <tr>
-                   <td colspan=3>تاریخ انجام:13{{ para_clinic.espiro_date_year }}/{{ para_clinic.espiro_date_month }}/{{ para_clinic.espiro_date_day }}</td>
+                   <td colspan=3>تاریخ انجام:{{ para_clinic.espiro_date_year }}/{{ para_clinic.espiro_date_month }}/{{ para_clinic.espiro_date_day }}</td>
                </tr>
                <tr>
                    <td>FEV1/FVC%</td>
@@ -3575,7 +3575,7 @@
         <div class='row mt-3'>
             <table>
                 <tr>
-                    <td><p>یافته های CXR(P-A)</p>تاریخ انجام:13{{ para_clinic.other_cxr_year }}/{{ para_clinic.other_cxr_month }}/{{ para_clinic.other_cxr_day }}</td>
+                    <td><p>یافته های CXR(P-A)</p>تاریخ انجام:{{ para_clinic.other_cxr_year }}/{{ para_clinic.other_cxr_month }}/{{ para_clinic.other_cxr_day }}</td>
                     <td width=75%>
                         {% if para_clinic.other_cxr == null %}
                         <p class='False'>ذکر نشده</p>
@@ -3585,7 +3585,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><p>یافته های ECG</p>تاریخ انجام:13{{ para_clinic.other_ecg_year }}/{{ para_clinic.other_ecg_month }}/{{ para_clinic.other_ecg_day }}</td>
+                    <td><p>یافته های ECG</p>تاریخ انجام:{{ para_clinic.other_ecg_year }}/{{ para_clinic.other_ecg_month }}/{{ para_clinic.other_ecg_day }}</td>
                     <td width=75%>
                         {% if para_clinic.other_ecg == null %}
                         <p class='False'>ذکر نشده</p>
@@ -3620,7 +3620,7 @@
                 <tr>
                     <td>
                         <div class='mt-1'>
-                            تاریخ :13{{ consulting.first_year }}/{{ consulting.first_month }}/{{ consulting.first_day }}
+                            تاریخ :{{ consulting.first_year }}/{{ consulting.first_month }}/{{ consulting.first_day }}
                         </div>
                         <div class='mt-1'>
                             علت ارجاع:
@@ -3650,7 +3650,7 @@
                 <tr>
                     <td>
                         <div class='mt-1'>
-                            تاریخ :13{{ consulting.second_year }}/{{ consulting.second_month }}/{{ consulting.second_day }}
+                            تاریخ :{{ consulting.second_year }}/{{ consulting.second_month }}/{{ consulting.second_day }}
                         </div>
                         <div class='mt-1'>
                             علت ارجاع:
@@ -3745,6 +3745,18 @@
                     </td>
                 </tr>
             </table>
+        </div>
+        <div class='row text-center mt-4'>
+            <div class='col'>
+                {% if final_theory.problems == null %}
+                <p class='False'>مشکلات مشاهده شده:ذکر نشده</p>
+                {% else %}
+                مشکلات مشاهده شده:{{ final_theory.problems }}
+                {% endif %}
+            </div>
+            <div class='col box'>
+                کد بیماری شغلی:{{ final_theory.d_code }}
+            </div>
         </div>
 </section>
 <section>
