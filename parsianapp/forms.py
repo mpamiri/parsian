@@ -103,7 +103,12 @@ class disease_form(forms.ModelForm):
         model=Disease_Model
         fields='__all__'
         widgets={'examinations_code' : forms.TextInput(attrs={'id':'myInput','onkeyup':"filterFunction()",'autocomplete': 'off'})
-        ,'order_number' : forms.Select(attrs={'class':'choose','autocomplete': 'off'})}  
+        ,'order_number' : forms.Select(attrs={'autocomplete': 'off'})
+        ,'age' : forms.NumberInput(attrs={'autocomplete': 'off'})
+        ,'name' : forms.TextInput(attrs={'autocomplete': 'off'})
+        ,'fathers_name' : forms.TextInput(attrs={'autocomplete': 'off'})
+        ,'personal_code' : forms.NumberInput(attrs={'autocomplete': 'off'})
+        }  
 
 class ExaminationsCourseChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
@@ -262,6 +267,8 @@ class para_clinic_form(forms.ModelForm):
         'opto_omgh' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'audio_date_year' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'audio_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'audio_r_tafsir' : forms.Select(attrs={'autocomplete': 'off'}),
+        'audio_l_tafsir' : forms.Select(attrs={'autocomplete': 'off'}),
         'audio_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'audio_r_eight_ac' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'audio_r_eight_bc' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
@@ -324,4 +331,7 @@ class final_theory_form(forms.ModelForm):
         'problems' : forms.TextInput(attrs={'autocomplete': 'off'}),
         'd_code' : forms.NumberInput(attrs={'autocomplete': 'off','class':'box'})
         }
+
+
+
 

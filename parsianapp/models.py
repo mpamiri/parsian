@@ -13,8 +13,8 @@ class Company(models.Model):
 class ExaminationsCourse(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     year = models.IntegerField(null=True, blank=True)
-    employer = models.CharField(max_length=20, null=True, blank=True,unique=True)
-    doctor = models.CharField(max_length=20, null=True, blank=True,unique=True)
+    employer = models.CharField(max_length=20, null=True, blank=True)
+    doctor = models.CharField(max_length=20, null=True, blank=True)
     examinations_code = models.CharField(max_length=20, null=True, blank=True,unique=True)
     def __str__(self):
         return f'{self.examinations_code}'
@@ -132,7 +132,11 @@ class Submit_Company_Model(models.Model):
 class Disease_Model(models.Model):
     examinations_code=models.CharField(max_length=20, null=True, blank=True)
     order_CHOICES = [(1, '1'), (10, '10'), (20, '20'), (30, '30'), (40, '40'), (50, '50')]
-    order_number = models.IntegerField(default=1, choices=order_CHOICES, null=True, blank=True)
+    order_number = models.IntegerField(default=1, choices=order_CHOICES, null=True,blank=True)
+    name = models.CharField(max_length=50,null=True,blank=True)
+    personal_code = models.IntegerField(null=True,blank=True)
+    fathers_name = models.CharField(max_length=20, null=True, blank=True)
+    age = models.IntegerField(null=True,blank=True)
 
 
 class Personal_Species_Model(models.Model):
@@ -533,8 +537,10 @@ class Examinations_Model(models.Model):
     ravan_des = models.CharField(max_length=50, null=True, blank=True)
 
     other = models.CharField(max_length=50, null=True, blank=True)
+    body_mass = models.IntegerField(null=True, blank=True)
     CODE_CHOICES = [(1, '1'), (2, '2'), (3, '3')]
     code = models.IntegerField(default=1, choices=CODE_CHOICES, null=True, blank=True)
+    not_normals = models.CharField(max_length=50,null=True,blank=True)
 
 class Experiments_Model(models.Model):
     person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='experiment',null=True,blank=True) 
@@ -569,6 +575,7 @@ class Experiments_Model(models.Model):
     cbc_hb_status=models.BooleanField(default=True)
     cbc_htc_status=models.BooleanField(default=True)
     cbc_plt_status=models.BooleanField(default=True)
+    ua_prot_status=models.BooleanField(default=True)
     ua_glu_status=models.BooleanField(default=True)
     ua_rbc_status=models.BooleanField(default=True)
     ua_wbc_status=models.BooleanField(default=True)
@@ -614,20 +621,19 @@ class Para_Clinic_Model(models.Model):
     opto_hedat_r_bi=models.IntegerField(null=True, blank=True)
     opto_hedat_l_ba=models.IntegerField(null=True, blank=True)
     opto_hedat_l_bi=models.IntegerField(null=True, blank=True)
-    opto_rangi_hedat_r_ba=models.IntegerField(null=True, blank=True)
-    opto_rangi_hedat_r_bi=models.IntegerField(null=True, blank=True)
-    opto_rangi_hedat_l_ba=models.IntegerField(null=True, blank=True)
-    opto_rangi_hedat_l_bi=models.IntegerField(null=True, blank=True)
-    opto_meidan_hedat_r_ba=models.IntegerField(null=True, blank=True)
-    opto_meidan_hedat_r_bi=models.IntegerField(null=True, blank=True)
-    opto_meidan_hedat_l_ba=models.IntegerField(null=True, blank=True)
-    opto_meidan_hedat_l_bi=models.IntegerField(null=True, blank=True)
+    rangi_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
+    opto_rangi=models.CharField(null=True, blank=True,max_length=50,choices=rangi_CHOICES)
+    meidan_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
+    opto_meidan=models.CharField(null=True, blank=True,max_length=50,choices=meidan_CHOICES)
     opto_omgh = models.IntegerField(null=True, blank=True)
 
     audio_date_year=models.IntegerField(null=True, blank=True)
     audio_date_month=models.IntegerField(null=True, blank=True)
     audio_date_day=models.IntegerField(null=True, blank=True)
-    oudio_tafsir = models.CharField(max_length=50, null=True, blank=True)
+    audio_r_status_CHOICES = [('normal', 'نرمال'), ('kahesh_shenavai_hedayati', 'کاهش شنوایی هدایتی'), ('kahesh_shenavai_hesi_asabi', 'کاهش شنوایی حسی عصبی'), ('kahesh_shenavai_nashi_az_seda', 'کاهش شنوایی ناشی از صدا'), ('toaman_hedayati_va_hesi_asabi', 'توامان هدایتی و حسی عصبی')]
+    audio_r_tafsir = models.CharField(max_length=50,choices=audio_r_status_CHOICES, null=True, blank=True)
+    audio_l_status_CHOICES = [('normal', 'نرمال'), ('kahesh_shenavai_hedayati', 'کاهش شنوایی هدایتی'), ('kahesh_shenavai_hesi_asabi', 'کاهش شنوایی حسی عصبی'), ('kahesh_shenavai_nashi_az_seda', 'کاهش شنوایی ناشی از صدا'), ('toaman_hedayati_va_hesi_asabi', 'توامان هدایتی و حسی عصبی')]
+    audio_l_tafsir = models.CharField(max_length=50,choices=audio_l_status_CHOICES, null=True, blank=True)
     audio_r_eight_ac = models.IntegerField(null=True, blank=True)
     audio_r_eight_bc = models.IntegerField(null=True, blank=True)
     audio_r_six_ac = models.IntegerField(null=True, blank=True)
@@ -665,11 +671,14 @@ class Para_Clinic_Model(models.Model):
     ESPIRO_TAFSIR_CHOICES = [('normal', 'نرمال'), ('ensedadi', 'انسدادی'), ('tahdidi', 'تحدیدی'),('ensedadivtahdidi','انسدادی و تحدیدی'),('again','نیاز به تکرار')]
     espiro_tafsir = models.CharField(max_length=50,choices=ESPIRO_TAFSIR_CHOICES, null=True, blank=True)
 
-    other_cxr = models.CharField(max_length=50, null=True, blank=True)
+    cxr_CHOICES = [('normal', 'نرمال'),('not_normal','غیر نرمال')]
+    other_cxr = models.CharField(max_length=50,choices=cxr_CHOICES,null=True, blank=True)
     other_cxr_year=models.IntegerField(null=True, blank=True)
     other_cxr_month=models.IntegerField(null=True, blank=True)
     other_cxr_day=models.IntegerField(null=True, blank=True)
-    other_ecg = models.CharField(max_length=50, null=True, blank=True)
+
+    ecg_CHOICES = [('normal', 'نرمال'),('not_normal','غیر نرمال'),('not_ekhtesasi','تغییرات غیر اختصاصی'),('again','نیاز به تکرار')]
+    other_ecg = models.CharField(max_length=50,choices=ecg_CHOICES, null=True, blank=True)
     other_ecg_year=models.IntegerField(null=True, blank=True)
     other_ecg_month=models.IntegerField(null=True, blank=True)
     other_ecg_day=models.IntegerField(null=True, blank=True)

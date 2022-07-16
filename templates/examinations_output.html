@@ -41,7 +41,34 @@
                 به نام خدا
             </div>
         </div>
-        <div class='row text-center'>
+        <form action='{% url 'addexaminationsoutput' %}' method='POST'>
+            <div class='row text-center mt-4'>
+                <div class='col'>
+                    {% csrf_token %}
+                    <lable> نام</lable>
+                    {{ form.name }}
+                </div>
+                <div class='col'>
+                    <lable>نام پدر</lable>
+                    {{ form.fathers_name }}
+                </div>
+                <div class='col'>
+                    <lable>سال تولد</lable>
+                    {{ form.age }}
+                </div>
+                <div class='col'>
+                    <lable>کد ملی</lable>
+                    {{ form.personal_code }}
+                </div>
+            </div>
+            <div class='row text-center mt-3'>
+                <div class='col'>
+                    <input type="submit" value="ذخیره و ثبت جدید">
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class='row text-center mt-4'>
             <table>
                 <tr>
                     <td rowspan='4' width=30%><img src="{% static 'images/examination2.png' %}" style="height: 80px;width: 150px;">

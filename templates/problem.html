@@ -67,17 +67,9 @@ xmlns="http://www.w3.org/2000/svg">
                 <td></td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.job_name }}</td>
-                <td></td>
-                {% if summary.problems_with_the_persons_job == 'darad' %}
-                <td>*</td>
-                <td></td>
-                {% elif summary.problems_with_the_persons_job != 'darad' %}
-                <td></td>
-                <td>*</td>
-                {% else %}
+                <td>{{ item.final.all.0.problems }}</td>
                 <td></td>
                 <td></td>
-                {% endif %}
                 <td>{{ item.final.all.0.recommendations }}</td>
             </tr>
             {% endfor %}

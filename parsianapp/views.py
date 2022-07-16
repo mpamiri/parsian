@@ -11,6 +11,15 @@ from django.views.decorators.http import require_POST
 from django.views import generic
 from . import forms, models
 from django.core.paginator import Paginator
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from shutil import move
+import os.path
+from fpdf import FPDF
+import pyautogui
+from time import sleep
+from PIL import Image
+
 
 
 def home_view(request):
@@ -128,12 +137,12 @@ def output_view(request):
 
 @require_POST
 def adddisease_view(request):
-    if Disease_Model.DoesNotExist():
-        new_disease = Disease_Model(examinations_code='',order_number= 1)
-        new_disease.save()
-        model=Disease_Model.objects.get(pk=1)
+    if Disease_Model:
+        model=Disease_Model.objects.last()
     else:
-        model=Disease_Model.objects.get(pk=1)
+        a = Disease_Model(examinations_code='',order_number=1)
+        a.save()
+        model=Disease_Model.objects.last()
     form=disease_form(request.POST)
     if form.is_valid():
         model.examinations_code=form.cleaned_data['examinations_code']
@@ -161,6 +170,28 @@ def disease_code_view(request):
     items=[]
     context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory, 'examinations_course':examinations_course}
     return render(request, 'disease_code.html',context)
+
+
+def disease_pdf_view(request):
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver.get("http://127.0.0.1:8000/login")
+    username = driver.find_element('name',"username")
+    password = driver.find_element('name',"password")
+    login_but = driver.find_element('name',"login")
+    username.send_keys('parsa')
+    password.send_keys('690088choose')
+    login_but.click()
+    driver.get("http://127.0.0.1:8000/output/disease_code")
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
+    driver.find_element('id','print').screenshot('images/img.png')
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.image('images/img.png',None,None,200,260)
+    pdf.output("pdfs/disease.pdf", "F")
+
 
 @login_required(login_url='login')
 def open_docs_view(request):
@@ -251,15 +282,6 @@ def graph_view(request):
         code=''
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
-    job_history=Job_History_Model.objects.all()
-    assessment=Assessment_Model.objects.all()
-    personal_history=Personal_History_Model.objects.all()
-    examinations=Examinations_Model.objects.all()
-    experiments=Experiments_Model.objects.all()
-    para_clinic=Para_Clinic_Model.objects.all()
-    consulting=Consulting_Model.objects.all()
-    final_theory=Final_Theory_Model.objects.all()
-    count=0
     a_tri,b_tri,c_tri=0,0,0
     data_tri=[]
     a_chl,b_chl,c_chl=0,0,0
@@ -280,7 +302,7 @@ def graph_view(request):
     data_lg=[]
     a_u,b_u,c_u=0,0,0
     data_u=[]
-    a_p,b_p,c_p,d_p,e_p=0,0,0,0,0
+    a_p,b_p,c_p,e_p=0,0,0,0,
     data_p=[]
     a_s,b_s,c_s,d_s=0,0,0,0
     data_s=[]
@@ -290,54 +312,59 @@ def graph_view(request):
     data_n=[]
     a_d,b_d,c_d,d_d,e_d=0,0,0,0,0
     data_d=[]
-    for summary in Summary:
+    count=0
+    for summary in personal_species:
         count+=1
-        if summary.triglyceride < 200:
-            a_tri += 1
-        elif summary.triglyceride >= 200:
+        experiments=Experiments_Model.objects.filter(person=summary).last()
+        if experiments.tg:
+            c_tri += 1
+        elif experiments.tg_status == False:
             b_tri += 1
         else:
-            c_tri += 1    
+            a_tri += 1    
     data_tri.append(a_tri)
     data_tri.append(b_tri)
     data_tri.append(c_tri)
 
 
-    for summary in Summary:
-        if summary.cholesterol < 200:
-            a_chl += 1
-        elif summary.cholesterol >= 200:
+    for summary in personal_species:
+        experiments=Experiments_Model.objects.filter(person=summary).last()
+        if experiments.chol:
+            c_chl += 1
+        elif experiments.chol_status == False:
             b_chl += 1
         else:
-            c_chl += 1    
+            a_chl += 1   
     data_chl.append(a_chl)
     data_chl.append(b_chl)
     data_chl.append(c_chl)
 
 
-    for summary in Summary:
-        if summary.blood_sugar < 100:
+    for summary in personal_species:
+        experiments=Experiments_Model.objects.filter(person=summary).last()
+        if experiments.fbs ==  None:
+            d_sug += 1   
+        elif experiments.fbs < 100:
             a_sug += 1
-        elif summary.blood_sugar < 126:
+        elif experiments.fbs < 126:
             b_sug += 1
-        elif summary.blood_sugar >=126:
-            c_sug += 1
-        else:
-            d_sug += 1    
+        elif experiments.fbs >=126:
+            c_sug += 1  
     data_sug.append(a_sug)
     data_sug.append(b_sug)
     data_sug.append(c_sug)
     data_sug.append(d_sug)
 
-    for summary in Summary:
-        if summary.blood_pressure < 9:
-            c_pre += 1
-        elif summary.blood_pressure >= 9 and summary.blood_pressure <= 14:
-            a_pre += 1
-        elif summary.blood_pressure > 14:
-            b_pre += 1
-        else:
+    for summary in personal_species:
+        examinations=Examinations_Model.objects.filter(person=summary).last()
+        if examinations.blood_pressure == None:
             d_pre += 1
+        elif examinations.blood_pressure < 9:
+            c_pre += 1
+        elif examinations.blood_pressure >= 9 and examinations.blood_pressure <= 14:
+            a_pre += 1
+        elif examinations.blood_pressure > 14:
+            b_pre += 1
     data_pre.append(a_pre)
     data_pre.append(b_pre)
     data_pre.append(c_pre)
@@ -345,42 +372,45 @@ def graph_view(request):
 
 
 
-    for summary in Summary:
-        if summary.right_eye_vision < 1:
+    for summary in personal_species:
+        para=Para_Clinic_Model.objects.filter(person=summary).last()
+        if para.opto_hedat_r_bi == None:
+            c_ry += 1 
+        elif para.opto_hedat_r_bi < 10:
             b_ry += 1
-        elif summary.right_eye_vision >= 1:
-            a_ry += 1
-        else:
-            c_ry += 1    
+        elif summary.opto_hedat_r_bi == 10:
+            a_ry += 1   
     data_ry.append(a_ry)
     data_ry.append(b_ry)
     data_ry.append(c_ry)
 
 
-    for summary in Summary:
-        if summary.left_eye_vision < 1:
+    for summary in personal_species:
+        para=Para_Clinic_Model.objects.filter(person=summary).last()
+        if para.opto_hedat_l_bi == None:
+            c_ly += 1 
+        elif para.opto_hedat_l_bi < 10:
             b_ly += 1
-        elif summary.left_eye_vision >= 1:
-            a_ly += 1
-        else:
-            c_ly += 1    
+        elif summary.opto_hedat_l_bi == 10:
+            a_ly += 1  
     data_ly.append(a_ly)
     data_ly.append(b_ly)
     data_ly.append(c_ly)
 
 
-    for summary in Summary:
-        if summary.breathing_test == 'normal':
+    for summary in personal_species:
+        para=Para_Clinic_Model.objects.filter(person=summary).last()
+        if para.espiro_tafsir == 'normal':
             a_esp += 1
-        elif summary.breathing_test == 'tahdidi':
+        elif para.espiro_tafsir == 'tahdidi':
             b_esp += 1
-        elif summary.breathing_test == 'ensedadi':
+        elif para.espiro_tafsir == 'ensedadi':
             c_esp += 1
-        elif summary.breathing_test == 'try':
+        elif para.espiro_tafsir == 'try':
             d_esp += 1
-        elif summary.breathing_test == 'namaie_toaman':
+        elif para.espiro_tafsir == 'namaie_toaman':
             e_esp += 1
-        elif summary.breathing_test == 'none' or summary.breathing_test == 'null':
+        elif para.espiro_tafsir == None:
             f_esp += 1
     data_esp.append(a_esp)
     data_esp.append(b_esp)
@@ -389,18 +419,19 @@ def graph_view(request):
     data_esp.append(e_esp)
     data_esp.append(f_esp) 
 
-    for summary in Summary:
-        if summary.right_ear_hearing == 'normal':
+    for summary in personal_species:
+        para=Para_Clinic_Model.objects.filter(person=summary).last()
+        if para.audio_r_tafsir == 'normal':
             a_rg += 1
-        elif summary.right_ear_hearing == 'kahesh_shenavai_hedayati':
+        elif para.audio_r_tafsir == 'kahesh_shenavai_hedayati':
             b_rg += 1
-        elif summary.right_ear_hearing == 'kahesh_shenavai_hesi_asabi':
+        elif para.audio_r_tafsir == 'kahesh_shenavai_hesi_asabi':
             c_rg += 1
-        elif summary.right_ear_hearing == 'kahesh_shenavai_nashi_az_seda':
+        elif para.audio_r_tafsir == 'kahesh_shenavai_nashi_az_seda':
             d_rg += 1
-        elif summary.right_ear_hearing == 'toaman_hedayati_va_hesi_asabi':
+        elif para.audio_r_tafsir == 'toaman_hedayati_va_hesi_asabi':
             e_rg += 1
-        elif summary.right_ear_hearing == 'none' or summary.right_ear_hearing == 'null':
+        elif para.audio_r_tafsir == None:
             f_rg += 1
     data_rg.append(a_rg)
     data_rg.append(b_rg)
@@ -411,66 +442,67 @@ def graph_view(request):
 
 
 
-    for summary in Summary:
-        if summary.left_ear_hearing == 'normal':
+    for summary in personal_species:
+        para=Para_Clinic_Model.objects.filter(person=summary).last()
+        if para.audio_l_tafsir == 'normal':
             a_lg += 1
-        elif summary.left_ear_hearing == 'kahesh_shenavai_hedayati':
+        elif para.audio_l_tafsir == 'kahesh_shenavai_hedayati':
             b_lg += 1
-        elif summary.left_ear_hearing == 'kahesh_shenavai_hesi_asabi':
+        elif para.audio_l_tafsir == 'kahesh_shenavai_hesi_asabi':
             c_lg += 1
-        elif summary.left_ear_hearing == 'kahesh_shenavai_nashi_az_seda':
+        elif para.audio_l_tafsir == 'kahesh_shenavai_nashi_az_seda':
             d_lg += 1
-        elif summary.left_ear_hearing == 'toaman_hedayati_va_hesi_asabi':
+        elif para.audio_l_tafsir == 'toaman_hedayati_va_hesi_asabi':
             e_lg += 1
-        elif summary.left_ear_hearing == 'none' or summary.left_ear_hearing == 'null':
+        elif para.audio_l_tafsir == None:
             f_lg += 1
     data_lg.append(a_lg)
     data_lg.append(b_lg)
     data_lg.append(c_lg)
     data_lg.append(d_lg) 
     data_lg.append(e_lg)
-    data_lg.append(f_lg)
+    data_lg.append(f_lg) 
 
 
-    for summary in Summary:
-        if summary.urine == 'normal':
-            a_u += 1
-        elif summary.urine == 'not_normal':
+    for summary in personal_species:
+        experiments=Experiments_Model.objects.filter(person=summary).last()
+        if experiments.ua_prot == None or experiments.ua_glu == None or experiments.ua_rbc == None or experiments.ua_wbc == None or experiments.ua_bact == None:
+            c_u += 1
+        elif experiments.ua_prot_status == False or experiments.ua_glu_status == False or experiments.ua_rbc_status == False or experiments.ua_wbc_status == False or experiments.ua_bact_status == False:
             b_u += 1
-        elif summary.urine == 'none' or summary.urine == 'null':
-            c_u += 1  
+        else:
+            a_u += 1  
     data_u.append(a_u)
     data_u.append(b_u)
     data_u.append(c_u) 
 
 
 
-    for summary in Summary:
-        if summary.final_theory == 'belamane':
+    for summary in personal_species:
+        final=Final_Theory_Model.objects.filter(person=summary).last()
+        if final.belamane == True:
             a_p += 1
-        elif summary.final_theory == 'taghir_shekl':
+        elif final.rad == True:
             b_p += 1
-        elif summary.final_theory == 'mashrot':
+        elif final.mashrot == True:
             c_p += 1
-        elif summary.final_theory == 'comision':
-            d_p += 1
-        elif  summary.final_theory == 'null':
+        else:
             e_p += 1
     data_p.append(a_p)
     data_p.append(b_p)
     data_p.append(c_p)
-    data_p.append(d_p)
     data_p.append(e_p)
 
-    for summary in Summary:
-        if summary.blood_lead < 20:
+    for summary in personal_species:
+        experiments=Experiments_Model.objects.filter(person=summary).last()
+        if experiments.lead == None:
+            d_s += 1  
+        elif experiments.lead < 20:
             a_s += 1
-        elif summary.blood_lead < 30:
+        elif experiments.lead < 30:
             b_s += 1
-        elif summary.blood_lead >=30:
-            c_s += 1
-        else:
-            d_s += 1    
+        elif experiments.lead >=30:
+            c_s += 1  
     data_s.append(a_s)
     data_s.append(b_s)
     data_s.append(c_s)
@@ -478,28 +510,30 @@ def graph_view(request):
 
 
 
-    for summary in Summary:
-        if summary.PSA < 4:
+    for summary in personal_species:
+        experiments=Experiments_Model.objects.filter(person=summary).last()
+        if experiments.psa == None:
+            c_psa += 1  
+        if experiments.psa_status == True:
             a_psa += 1
-        elif summary.PSA >= 4:
-            b_psa += 1
-        else:
-            c_psa += 1    
+        elif experiments.psa_status == False:
+            b_psa += 1  
     data_psa.append(a_psa)
     data_psa.append(b_psa)
     data_psa.append(c_psa)
 
 
-    for summary in Summary:
-        if summary.heart == 'normal':
+    for summary in personal_species:
+        para = Para_Clinic_Model.objects.filter(person=summary).last()
+        if para.other_ecg == 'normal':
             a_n += 1
-        elif summary.heart == 'taghirat_gheir_ekhtesasi':
+        elif para.other_ecg == 'not_ekhtesasi':
             b_n += 1
-        elif summary.heart == 'try':
+        elif para.other_ecg == 'again':
             c_n += 1
-        elif summary.heart == 'not_normal':
+        elif para.other_ecg == 'not_normal':
             d_n += 1
-        elif  summary.heart == 'null' or summary.heart == 'none'  :
+        elif  para.other_ecg == None :
             e_n += 1
     data_n.append(a_n)
     data_n.append(b_n)
@@ -508,17 +542,18 @@ def graph_view(request):
     data_n.append(e_n)
 
 
-    for summary in Summary:
-        if summary.D3 < 10:
-            a_d += 1
-        elif summary.D3 < 30:
-            b_d += 1
-        elif summary.D3 < 101:
-            c_d += 1
-        elif summary.D3 >= 101:
-            d_d += 1
-        else: 
+    for summary in personal_species:
+        experiments=Experiments_Model.objects.filter(person=summary).last()
+        if experiments.d == None: 
             e_d += 1
+        elif experiments.d < 10:
+            a_d += 1
+        elif experiments.d < 30:
+            b_d += 1
+        elif experiments.d < 101:
+            c_d += 1
+        elif experiments.d >= 101:
+            d_d += 1
     data_d.append(a_d)
     data_d.append(b_d)
     data_d.append(c_d)
@@ -542,7 +577,7 @@ def graph_view(request):
     data_psa,
     data_n,
     data_d]
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'examinations_course':examinations_course}
+    context={'personal_species' : personal_species ,'examinations_course':examinations_course,'data':data,'count':count}
     return render(request, 'graph.html',context)
 
 @login_required(login_url='login')
@@ -562,12 +597,11 @@ def solo_output_view(request):
     para_clinic=Para_Clinic_Model.objects.all()
     consulting=Consulting_Model.objects.all()
     final_theory=Final_Theory_Model.objects.all()
-    company=Submit_Company_Model.objects.all()
     if work:
         number=work.order_number
     else:
         number='1'
-    p = Paginator(Summary_Of_Results_Model.objects.filter(examinations_code=code),number)
+    p = Paginator(Personal_Species_Model.objects.filter(examinations_code=examinations_course),number)
     page=request.GET.get('page')
     solo_page=p.get_page(page)
     nums='a' * solo_page.paginator.num_pages
@@ -575,8 +609,50 @@ def solo_output_view(request):
         'order_number':number       
     }
     form=disease_form(initial=initial_dict)
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'form' :form,'examinations_course' : examinations_course}
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'form' :form,'examinations_course' : examinations_course,'solo_page':solo_page,'nums':nums}
     return render(request, 'solo_output.html',context)
+
+def solo_pdf_view(request):
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome('chromedriver',options=options)
+    driver.get("http://127.0.0.1:8000/login")
+    username = driver.find_element('name',"username")
+    password = driver.find_element('name',"password")
+    login_but = driver.find_element('name',"login")
+    username.send_keys('parsa')
+    password.send_keys('690088choose')
+    login_but.click()
+    driver.get("http://127.0.0.1:8000/output/solo_output")
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
+    driver.find_element('id','print').screenshot('images/solo_img.png')
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.image('images/solo_img.png',None,None,200,260)
+    pdf.output("pdfs/solo.pdf", "F")
+
+
+def disease_pdf_view(request):
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver.get("http://127.0.0.1:8000/login")
+    username = driver.find_element('name',"username")
+    password = driver.find_element('name',"password")
+    login_but = driver.find_element('name',"login")
+    username.send_keys('parsa')
+    password.send_keys('690088choose')
+    login_but.click()
+    driver.get("http://127.0.0.1:8000/output/disease_code")
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
+    driver.find_element('id','print').screenshot('images/img.png')
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.image('images/img.png',None,None,200,260)
+    pdf.add_page()
+    pdf.output("pdfs/yourfile.pdf", "F")
 
 @login_required(login_url='login')
 def input_view(request):
@@ -584,7 +660,7 @@ def input_view(request):
 
 @require_POST
 def addorder_view(request):
-    model=Disease_Model.objects.get(pk=1)
+    model=Disease_Model.objects.last()
     form=disease_form(request.POST)
     if form.is_valid():
         model.order_number=form.cleaned_data['order_number']
@@ -608,6 +684,7 @@ def examinations_view(request):
 
 @require_POST
 def addexaminations_view(request):
+    e_items=''
     items = ''
     personal_species=personal_species_form(request.POST)
     job_history=job_history_form(request.POST)
@@ -681,6 +758,335 @@ def addexaminations_view(request):
     if personal_species.is_valid() and  examinations.is_valid():
         new_examinations = examinations.save(commit=False)
         new_examinations.person = new_person
+        if new_examinations.weight and new_examinations.length:
+            new_examinations.body_mass=new_examinations.weight / (( new_examinations.length / 100) ** 2 )
+        if new_examinations.local_sym_kahesh_vazn == True:
+            e_items += "کاهش وزن/"
+        if new_examinations.local_sym_kahesh_eshteha == True:
+            e_items += "کاهش اشتها/"
+        if new_examinations.local_sym_khastegi == True:
+            e_items += "خستگی مزمن/"
+        if new_examinations.local_sym_ekhtelal_dar_khab == True:
+            e_items += "اختلال در خواب/"
+        if new_examinations.local_sym_tarigh == True:
+            e_items += "تعریق بیش از حد/"
+        if new_examinations.local_sym_adam_tahamol == True:
+            e_items += "عدم تحمل گرما و سرما/"
+        if new_examinations.local_sym_tab == True:
+            e_items += "تب/"
+        if new_examinations.local_sign_zaheri == True:
+            e_items += "وضعیت ظاهری/"
+        if new_examinations.local_sign_rang_paride == True:
+            e_items += "مخاطات رنگ پریده/"
+        if new_examinations.local_des:
+            e_items += new_examinations.local_des
+            e_items += '/'
+        if new_examinations.eye_sym_kahesh_binayi == True:
+            e_items += "کاهش حد بینایی/"
+        if new_examinations.eye_sym_tari_did == True:
+            e_items += "تاری دید/"
+        if new_examinations.eye_sym_khastegi == True:
+            e_items += "خستگی چشم/"
+        if new_examinations.eye_sym_dobini == True:
+            e_items += "دوبینی/"
+        if new_examinations.eye_sym_sozesh == True:
+            e_items += "سوزش چشم/"
+        if new_examinations.eye_sym_tars_az_nor == True:
+            e_items += "ترس از نور/"
+        if new_examinations.eye_sym_ashk == True:
+            e_items += "اشک ریزش/"
+        if new_examinations.eye_sign_reflex == True:
+            e_items += "رفلکس غیر طبیعی مردمک/"
+        if new_examinations.eye_sign_red == True:
+            e_items += "قرمزی چشم/"
+        if new_examinations.eye_sign_sklrai == True:
+            e_items += "اسکلرای ایکتریک/"
+        if new_examinations.eye_sign_nistagemos == True:
+            e_items += "نیستاگموس/"
+        if new_examinations.eye_des:
+            e_items += new_examinations.eye_des
+            e_items += '/'
+        if new_examinations.skin_sym_kharesh_post == True:
+            e_items += "خارش پوست/"
+        if new_examinations.skin_sym_rizesh_mo == True:
+            e_items += "ریزش مو/"
+        if new_examinations.skin_sym_red == True:
+            e_items += "قرمزی پوست/"
+        if new_examinations.skin_sym_taghir_post == True:
+            e_items += "تغییر رنگ پوست/"
+        if new_examinations.skin_sym_zakhm == True:
+            e_items += "زخم مزمن/"
+        if new_examinations.skin_sym_poste_rizi == True:
+            e_items += "پوسته ریزی/"
+        if new_examinations.skin_sym_taghir_nakhon == True:
+            e_items += "تغییر رنگ ناخن/"
+        if new_examinations.skin_sign_makol == True:
+            e_items += "ماکول/"
+        if new_examinations.skin_sign_papol == True:
+            e_items += "پاپول/"
+        if new_examinations.skin_sign_nadol == True:
+            e_items += "ندول/"
+        if new_examinations.skin_sign_vezikol == True:
+            e_items += "وزیکول/"
+        if new_examinations.skin_sign_zakhm == True:
+            e_items += "زخم/"
+        if new_examinations.skin_sign_kahir == True:
+            e_items += "کهیر/"
+        if new_examinations.skin_sign_klabing == True:
+            e_items += "کلابینگ/"
+        if new_examinations.skin_sign_rizesh_mantaghe == True:
+            e_items += "ریزش منطقه ای مو/"
+        if new_examinations.skin_sign_rizesh_general == True:
+            e_items += "ریزش جنرال مو/"
+        if new_examinations.skin_sign_taghirat_peygmani == True:
+            e_items += "تغییرات پیگمانی/"
+        if new_examinations.skin_des:
+            e_items += new_examinations.skin_des
+            e_items += "/"
+        if new_examinations.gosh_sym_kahesh_shenavaii == True:
+            e_items += "کاهش شنوایی/"
+        if new_examinations.gosh_sym_vez_vez_gosh == True:
+            e_items += "وزوز گوش/"
+        if new_examinations.gosh_sym_sargije == True:
+            e_items += "سرگیجه واقعی/"
+        if new_examinations.gosh_sym_dard_gosh == True:
+            e_items += "درد گوش/"
+        if new_examinations.gosh_sym_tarashoh_gosh == True:
+            e_items += "ترشح گوش/"
+        if new_examinations.gosh_sym_gereftegi_seda == True:
+            e_items += "گرفتگی صدا/"
+        if new_examinations.gosh_sym_galodard == True:
+            e_items += "گلودرد/"
+        if new_examinations.gosh_sym_abrrizesh_bini == True:
+            e_items += "آبریزش بینی/"
+        if new_examinations.gosh_sym_ekhtelal_boyayi == True:
+            e_items += "اختلال بویایی/"
+        if new_examinations.gosh_sym_khareshvsozesh == True:
+            e_items += "خارش و سوزش بینی/"
+        if new_examinations.gosh_sym_khonrizi == True:
+            e_items += "خونریزی بینی/"
+        if new_examinations.gosh_sym_khoshki == True:
+            e_items += "خشکی دهان/"
+        if new_examinations.gosh_sym_ehsas == True:
+            e_items += "احساس مزه فلزی در دهان/"
+        if new_examinations.gosh_sign_eltehab_parde == True:
+            e_items += "التهاب پرده تمپان/"
+        if new_examinations.gosh_sign_paregi == True:
+            e_items += "پارگی پرده تمپان/"
+        if new_examinations.gosh_sign_afzayesh == True:
+            e_items += "افزایش غیر طبیعی سرومن/"
+        if new_examinations.gosh_sign_tarashoh == True:
+            e_items += "ترشح پشت حلق/"
+        if new_examinations.gosh_sign_egzodai == True:
+            e_items += "اگزودای حلق/"
+        if new_examinations.gosh_sign_red == True:
+            e_items += "قرمزی حلق/"
+        if new_examinations.gosh_sign_polip == True:
+            e_items += "پولیپ بینی/"
+        if new_examinations.gosh_sign_tndrs == True:
+            e_items += "تندرنس سینوس ها/"
+        if new_examinations.gosh_sign_lead == True:
+            e_items += "lead line/"
+        if new_examinations.gosh_sign_bad_smell == True:
+            e_items += "بوی بد دهان/"
+        if new_examinations.gosh_sign_eltehab_lase == True:
+            e_items += "التهاب لثه/"
+        if new_examinations.gosh_sign_zakhm == True:
+            e_items += "پرفوراسیون/زخم سپتوم/"
+        if new_examinations.gosh_des:
+            e_items += new_examinations.gosh_des
+            e_items += "/"
+        if new_examinations.sar_sym_dard_gardan == True:
+            e_items += "درد گردن/"
+        if new_examinations.sar_sym_tode_gardani == True:
+            e_items += "توده گردنی/"
+        if new_examinations.sar_sign_bozorgi_tiroid == True:
+            e_items += "بزرگی تیروئید/"
+        if new_examinations.sar_sign_gardani == True:
+            e_items += "لنفادنوپاتی گردنی/"
+        if new_examinations.sar_des:
+            e_items += new_examinations.sar_des
+            e_items += "/"
+        if new_examinations.rie_sym_sorfe == True:
+            e_items += "سرفه/"
+        if new_examinations.rie_sym_khelt == True:
+            e_items += "خلط/"
+        if new_examinations.rie_sym_tangi == True:
+            e_items += "تنگی نفس کوشش/"
+        if new_examinations.rie_sym_sine == True:
+            e_items += "خس خس سینه/"
+        if new_examinations.rie_sign_zaheri == True:
+            e_items += "وضعیت ظاهری غیر طبیعی قفسه سینه/"
+        if new_examinations.rie_sign_khoshonat == True:
+            e_items += "خشونت صدا/"
+        if new_examinations.rie_sign_vizing == True:
+            e_items += "ویزینگ/"
+        if new_examinations.rie_sign_cracel == True:
+            e_items += "کراکل/"
+        if new_examinations.rie_sign_taki_pene == True:
+            e_items += "تاکی پنه/"
+        if new_examinations.rie_sign_kahesh_sedaha == True:
+            e_items += "کاهش صداهای ریوی/"
+        if new_examinations.rie_des:
+            e_items += new_examinations.rie_des
+            e_items += "/"
+        if new_examinations.ghalb_sym_dard == True:
+            e_items += "درد قفسه سینه/"
+        if new_examinations.ghalb_sym_tapesh == True:
+            e_items += "تپش قلب/"
+        if new_examinations.ghalb_sym_tangi_shabane == True:
+            e_items += "تنگی نفس ناگهانی شبانه/"
+        if new_examinations.ghalb_sym_tangi_khabide == True:
+            e_items += "تنگی نفس دروضعیت خوابیده/"
+        if new_examinations.ghalb_sym_sianoz == True:
+            e_items += "سیانوز/"
+        if new_examinations.ghalb_sym_senkop == True:
+            e_items += "سابقه سنکوپ/"
+        if new_examinations.ghalb_sign_s == True:
+            e_items += "S1S2غیر طبیعی/"
+        if new_examinations.ghalb_sign_seda_ezafe == True:
+            e_items += "صدای اضافه قلب/"
+        if new_examinations.ghalb_sign_aritmi == True:
+            e_items += "آریتمی/"
+        if new_examinations.ghalb_sign_varis_tahtani == True:
+            e_items += "واریس اندام تحتانی/"
+        if new_examinations.ghalb_sign_varis_foghani == True:
+            e_items += "واریس اندام فوقانی/"
+        if new_examinations.ghalb_sign_andam == True:
+            e_items += "ادم اندام/"
+        if new_examinations.ghalb_des:
+            e_items += new_examinations.ghalb_des
+            e_items += "/"
+        if new_examinations.shekam_sym_bi_eshteha == True:
+            e_items += "بی اشتهایی/"
+        if new_examinations.shekam_sym_tahavo == True:
+            e_items += "تهوع/"
+        if new_examinations.shekam_sym_estefragh == True:
+            e_items += "استفراغ/"
+        if new_examinations.shekam_sym_dard_shekam == True:
+            e_items += "درد شکم/"
+        if new_examinations.shekam_sym_soozesh == True:
+            e_items += "سوزش سر دل/"
+        if new_examinations.shekam_sym_eshal == True:
+            e_items += "اسهال/"
+        if new_examinations.shekam_sym_yobosat == True:
+            e_items += "یبوست/"
+        if new_examinations.shekam_sym_ghiri == True:
+            e_items += "مدفوع قیری/"
+        if new_examinations.shekam_sym_roshan == True:
+            e_items += "خون روشن در مدفوع/"
+        if new_examinations.shekam_sym_ekhtelal == True:
+            e_items += "اختلال در بلع/"
+        if new_examinations.shekam_sign_shekami == True:
+            e_items += "تندرنس شکمی/"
+        if new_examinations.shekam_sign_rebond == True:
+            e_items += "ریباند تندرنس/"
+        if new_examinations.shekam_sign_hepatomegaly == True:
+            e_items += "هپاتومگالی/"
+        if new_examinations.shekam_sign_espelnomegali == True:
+            e_items += "اسپلنومگالی/"
+        if new_examinations.shekam_sign_asib == True:
+            e_items += "آسیت/"
+        if new_examinations.shekam_sign_tode_shekami == True:
+            e_items += "توده شکمی/"
+        if new_examinations.shekam_sign_distansion == True:
+            e_items += "دیستانسیون شکمی/"
+        if new_examinations.shekam_des:
+            e_items += new_examinations.shekam_des
+            e_items += "/"
+        if new_examinations.colie_sym_soozesh == True:
+            e_items += "سوزش درار/"
+        if new_examinations.colie_sym_tekrar == True:
+            e_items += "تکرر ادرار/"
+        if new_examinations.colie_sym_khoni == True:
+            e_items += "ادرار خونی/"
+        if new_examinations.colie_sym_pahlo == True:
+            e_items += "درد پهلو/"
+        if new_examinations.colie_sym_sangini == True:
+            e_items += "احساس سنگینی یا توده در بیضه/"
+        if new_examinations.colie_sign_cva == True:
+            e_items += "تندرستیCVA/"
+        if new_examinations.colie_sign_varikosel == True:
+            e_items += "واریکوسل/"
+        if new_examinations.colie_des:
+            e_items += new_examinations.colie_des
+            e_items += "/"
+        if new_examinations.eskelety_sym_mafsal == True:
+            e_items += "خشکی مفصل/"
+        if new_examinations.eskelety_sym_kamar_dard == True:
+            e_items += "کمردرد/"
+        if new_examinations.eskelety_sym_zano == True:
+            e_items += "درد زانو/"
+        if new_examinations.eskelety_sym_shane == True:
+            e_items += "درد شانه/"
+        if new_examinations.eskelety_sym_other_mafasel == True:
+            e_items += "درد سایر مفاصل/"
+        if new_examinations.eskelety_sign_mahdodiat == True:
+            e_items += "محدودیت حرکتی مفصل/"
+        if new_examinations.eskelety_sign_kahesh_foghani == True:
+            e_items += "کاهش قدرت عضلانی در اندام فوقانی/"
+        if new_examinations.eskelety_sign_kahesh_tahtani == True:
+            e_items += "کاهش قدرت عضلانی در اندام تحتانی/"
+        if new_examinations.eskelety_sign_eskolioz == True:
+            e_items += "اسکولیوز/"
+        if new_examinations.eskelety_sign_empotasion == True:
+            e_items += "امپوتاسیون/"
+        if new_examinations.eskelety_sign_slr == True:
+            e_items += "تست SLR مثبت/"
+        if new_examinations.eskelety_sign_r_slr == True:
+            e_items += "تست Reverse-SLR/"
+        if new_examinations.eskelety_des:
+            e_items += new_examinations.eskelety_des
+            e_items += "/"
+        if new_examinations.asabi_sym_sar_dard == True:
+            e_items += "سردرد/"
+        if new_examinations.asabi_sym_giji == True:
+            e_items += "گیجی/"
+        if new_examinations.asabi_sym_larzesh == True:
+            e_items += "لرزش/"
+        if new_examinations.asabi_sym_ekhtelal == True:
+            e_items += "اختلال حافظه/"
+        if new_examinations.asabi_sym_tashanoj == True:
+            e_items += "سابقه صرع/تشنج/"
+        if new_examinations.asabi_sym_gez_gez == True:
+            e_items += "گز گز و مور مور انگشتان دست/"
+        if new_examinations.asabi_sign_tabi_e == True:
+            e_items += "رفلکس زانوی غیر طبیعی/"
+        if new_examinations.asabi_sign_gheir_tabi_e == True:
+            e_items += "رفلکس آشیل غیرطبیعی/"
+        if new_examinations.asabi_sign_mokhtal == True:
+            e_items += "تست رومبرگ مختل/"
+        if new_examinations.asabi_sign_trmor == True:
+            e_items += "ترمور/"
+        if new_examinations.asabi_sign_hesi == True:
+            e_items += "اختلال حسی اندام ها/"
+        if new_examinations.asabi_sign_tinel == True:
+            e_items += "تست تینل مثبت/"
+        if new_examinations.asabi_sign_falen == True:
+            e_items += "تست فالن مثبت/"
+        if new_examinations.asabi_des:
+            e_items += new_examinations.asabi_des 
+            e_items += "/"
+        if new_examinations.ravan_sym_asabaniat == True:
+            e_items += "عصبانیت بیش از حد/"
+        if new_examinations.ravan_sym_parkhashgari == True:
+            e_items += "پرخاشگری/"
+        if new_examinations.ravan_sym_ezterab == True:
+            e_items += "اضطراب/"
+        if new_examinations.ravan_sym_kholgh == True:
+            e_items += "خلق پایین/"
+        if new_examinations.ravan_sym_angize == True:
+            e_items += "کاهش انگیزه/"
+        if new_examinations.ravan_sign_hazyan == True:
+            e_items += "هذیان/"
+        if new_examinations.ravan_sign_tavahom == True:
+            e_items += "توهم/"
+        if new_examinations.ravan_sign_oriantasion == True:
+            e_items += "اختلال اوریانتاسیون/"
+        if new_examinations.ravan_des:
+            e_items += new_examinations.ravan_des
+            e_items += "/" 
+        new_examinations.not_normals = e_items    
         new_examinations.save()
     if personal_species.is_valid() and  experiments.is_valid():
         new_experiments = experiments.save(commit=False)
@@ -813,6 +1219,27 @@ def addexaminations_view(request):
                 if new_experiments.hdl > 40:
                     new_experiments.hdl_status = False    
             else:
+                new_experiments.hdl_status = True 
+        if new_person.gender == 'zan':
+            if new_experiments.cbc_rbc:
+                if new_experiments.cbc_rbc < 3.5 and new_experiments.cbc_rbc >5:
+                    new_experiments.cbc_rbc_status = False 
+            else:
+                new_experiments.cbc_rbc_status = True
+            if new_experiments.cbc_hb:
+                if new_experiments.cbc_hb < 11 and new_experiments.cbc_hb >15:
+                    new_experiments.cbc_hb_status = False 
+            else:
+                new_experiments.cbc_hb_status = True
+            if new_experiments.cbc_htc:
+                if new_experiments.cbc_htc < 37 and new_experiments.cbc_htc >47:
+                    new_experiments.cbc_htc_status = False 
+            else:
+                new_experiments.cbc_htc_status = True
+            if new_experiments.hdl:
+                if new_experiments.hdl > 50:
+                    new_experiments.hdl_status = False    
+            else:
                 new_experiments.hdl_status = True      
         new_experiments.save()
     if personal_species.is_valid() and  para_clinic.is_valid():
@@ -832,15 +1259,33 @@ def addexaminations_view(request):
 
 @login_required(login_url='login')
 def examinations_output_view(request):
-    
-    personal_species=Personal_Species_Model.objects.get(pk=1)
-    job_history=Job_History_Model.objects.get(pk=1)
-    assessment=Assessment_Model.objects.get(pk=1)
-    personal_history=Personal_History_Model.objects.get(pk=1)
-    examinations=Examinations_Model.objects.get(pk=1)
-    experiments=Experiments_Model.objects.get(pk=1)
-    para_clinic=Para_Clinic_Model.objects.get(pk=1)
-    consulting=Consulting_Model.objects.get(pk=1)
-    final_theory=Final_Theory_Model.objects.get(pk=1)
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
+    form=disease_form()
+    model=Disease_Model.objects.last()
+    if model:
+        code=model.examinations_code
+    else:
+        code=''
+    examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+    personal_species=Personal_Species_Model.objects.filter(name=model.name,age=model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
+    job_history=Job_History_Model.objects.filter(person=personal_species).last()
+    assessment=Assessment_Model.objects.filter(person=personal_species).last()
+    personal_history=Personal_History_Model.objects.filter(person=personal_species).last()
+    examinations=Examinations_Model.objects.filter(person=personal_species).last()
+    experiments=Experiments_Model.objects.filter(person=personal_species).last()
+    para_clinic=Para_Clinic_Model.objects.filter(person=personal_species).last()
+    consulting=Consulting_Model.objects.filter(person=personal_species).last()
+    final_theory=Final_Theory_Model.objects.filter(person=personal_species).last()
+    context={'form':form, 'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
     return render(request, 'examinations_output.html',context)
+
+@require_POST
+def addexaminations_output_view(request):
+    model=Disease_Model.objects.last()
+    form=disease_form(request.POST)
+    if form.is_valid():
+        model.name=form.cleaned_data['name']
+        model.fathers_name=form.cleaned_data['fathers_name']
+        model.age=form.cleaned_data['age']
+        model.personal_code=form.cleaned_data['personal_code']
+        model.save()
+    return redirect('examinations_output')

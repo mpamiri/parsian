@@ -118,7 +118,7 @@ nav h5 img{
 margin-right:20px;
 }
 .ham{
-  margin-right: 700px;
+  margin-left: 30px;
   }
 .inf{
 border-style:ridge;
@@ -243,19 +243,19 @@ border: 1px solid black;
   width: 40%;
 }
 .mytable {
-  font-size: 12px;
+  font-size: 20px;
 }
 .parstable{
-  width : 1100px;
+  width : 1090px;
   margin-right : 30px;
   font-size: 20px;
 }
 .extable{
   width : 1100px;
-  font-size: 15px;
+  font-size: 20px;
 }
 .rfsize{
-  font-size: 15px;
+  font-size: 20px;
 }
 .remove{
   border: none;
