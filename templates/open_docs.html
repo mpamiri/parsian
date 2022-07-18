@@ -90,35 +90,21 @@
                 {% if item.name %}
                 <td>{{ item.name}}</td>
                 {% else %}
-                <td class='false'>ندارد</td>
+                <td class='none'>ندارد</td>
                 {% endif %}
                 {% if item.job_name%}
                 <td>{{ item.job_name }}</td>
                 {% else %}
-                <td class='false'>ندارد</td>
+                <td class='none'>ندارد</td>
                 {% endif %}
                 {% if item.final.all.0.reason %}
                 <td>{{ item.final.all.0.reason }}</td>
                 {% else %}
-                <td class='false'>ندارد</td>
+                <td class='none'>ندارد</td>
                 {% endif %}
             </tr>
             {% endfor %}
         </table>
     </div>
 </section>
-<div class='row text-center mt-5'>
-    <div class='col'>
-        <input type="button" value="print" onclick="printDiv()">
-    </div>
-</div>
-<script>
-function printDiv() {
-    const printContents = document.getElementById('print').innerHTML;
-    const originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-}
-</script>
 {% endblock content %}

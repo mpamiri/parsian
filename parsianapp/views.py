@@ -582,6 +582,7 @@ def graph_view(request):
 
 @login_required(login_url='login')
 def solo_output_view(request):
+    solo_output_view.current_path = request.get_full_path()
     work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
@@ -609,10 +610,17 @@ def solo_output_view(request):
         'order_number':number       
     }
     form=disease_form(initial=initial_dict)
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'form' :form,'examinations_course' : examinations_course,'solo_page':solo_page,'nums':nums}
+    context={'personal_species' : personal_species,'form' :form,'examinations_course' : examinations_course,'solo_page':solo_page,'nums':nums}
     return render(request, 'solo_output.html',context)
 
 def solo_pdf_view(request):
+    work=Disease_Model.objects.last()
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+    personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
     options.headless = True
     driver = webdriver.Chrome('chromedriver',options=options)
@@ -623,14 +631,50 @@ def solo_pdf_view(request):
     username.send_keys('parsa')
     password.send_keys('690088choose')
     login_but.click()
-    driver.get("http://127.0.0.1:8000/output/solo_output")
+    driver.get("http://127.0.0.1:8000"+solo_output_view.current_path)
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-    driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
-    driver.find_element('id','print').screenshot('images/solo_img.png')
+    driver.set_window_size(S('Width'),S('Height'))
+    i = 0
+    count = 0
     pdf = FPDF()
-    pdf.add_page()
-    pdf.image('images/solo_img.png',None,None,200,260)
-    pdf.output("pdfs/solo.pdf", "F")
+    for x in personal_species:
+        count += 1
+    n = count
+    if count < work.order_number:
+        last_count = count
+    elif count % work.order_number == 0:
+        count = count // work.order_number
+        last_count = 0
+    else:
+        count = (count // work.order_number) + 1
+        last_count = n - ((count - 1) * work.order_number)
+    if count < work.order_number:
+        while i < last_count :
+            i += 1    
+            driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
+            pdf.add_page()
+            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,260)
+            os.remove('images/'+ str(i) +'solo_img.png')
+        pdf.output("pdfs/solo.pdf", "F")
+        driver.quit()
+    elif solo_output_view.current_path == ('/output/solo_output?page=' + str(count)):
+        while i < last_count :
+            i += 1    
+            driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
+            pdf.add_page()
+            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,260)
+            os.remove('images/'+ str(i) +'solo_img.png')
+        pdf.output("pdfs/solo.pdf", "F")
+        driver.quit()
+    else:
+        while i < work.order_number :
+            i += 1    
+            driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
+            pdf.add_page()
+            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,260)
+            os.remove('images/'+ str(i) +'solo_img.png')
+        pdf.output("pdfs/solo.pdf", "F")
+        driver.quit()
 
 
 def disease_pdf_view(request):

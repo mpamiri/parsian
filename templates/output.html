@@ -42,30 +42,30 @@ xmlns="http://www.w3.org/2000/svg">
     </form>
     <div class='row text-center mt-4'>
         <div class="col">
-            <a class='b-green' href='disease_code' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black" id='1'>کد بیماری</a>
+            <a class='b-green' href="{% url 'disease_code' %}" style="text-decoration: none;border-radius: 15px;padding: 5px;color:black" id='1'>کد بیماری</a>
         </div>
         <div class="col">
-            <a class='b-green' href='open_docs' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">پرونده های باز</a>
+            <a class='b-green' href="{% url 'open_docs' %}" style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">پرونده های باز</a>
         </div>
         <div class="col">
-            <a class='b-green' href='summary_of_examinations' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">خلاصه معاینات دوره ای</a>
+            <a class='b-green' href="{% url 'summary_of_examinations' %}" style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">خلاصه معاینات دوره ای</a>
         </div>
         <div class="col">
-            <a class='b-green' href='problem' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">مشکل مشاهده شده</a>
+            <a class='b-green' href="{% url 'problem' %}" style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">مشکل مشاهده شده</a>
         </div>
     </div>
     <div class='row text-center mt-4'>
         <div class="col">
-            <a class='b-green' href='specialist' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">ارجاع متخصص</a>
+            <a class='b-green' href="{% url 'specialist' %}" style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">ارجاع متخصص</a>
         </div>
         <div class="col">
-            <a class='b-green' href='graph' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">نمودار</a>
+            <a class='b-green' href="{% url 'graph' %}" style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">نمودار</a>
         </div>
         <div class="col">
-            <a class='b-green' href='solo_output' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">خروجی انفرادی</a>
+            <a class='b-green' href="{% url 'solo_output' %}" style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">خروجی انفرادی</a>
         </div>
         <div class="col">
-            <a class='b-green' href='examinations_output' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">خروجی معاینات</a>
+            <a class='b-green' href="{% url 'examinations_output' %}" style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">خروجی معاینات</a>
         </div>
     </div>
 </section>

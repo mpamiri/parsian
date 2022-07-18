@@ -81,27 +81,27 @@
                 {% if item.name %}
                 <td>{{ item.name }}</td>
                 {% else %}
-                <td class = 'false'>ذکر نشده</td>
+                <td class = 'none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
                 <td>{{ 1401|sub:item.age }}</td>
                 {% else %}
-                <td class = 'false'>ذکر نشده</td>
+                <td class = 'none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.job_name %}
                 <td>{{ item.job_name }}</td>
                 {% else %}
-                <td class = 'false'>ذکر نشده</td>
+                <td class = 'none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.history.all.0.durations %}
                 <td>{{ item.history.all.0.durations }}</td>
                 {% else %}
-                <td class = 'false'>ذکر نشده</td>
+                <td class = 'none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.final.all.0.d_code %}
                 <td>{{ item.final.all.0.code }}</td>
                 {% else %}
-                <td class = 'false'>ذکر نشده</td>
+                <td class = 'none'>ذکر نشده</td>
                 {% endif %}
                 {% comment %} <td>{{ summary.species.job_name }}</td>
                 <td>{{ summary.examinations_code }}</td> {% endcomment %}

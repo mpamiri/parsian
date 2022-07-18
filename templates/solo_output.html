@@ -34,8 +34,8 @@ xmlns="http://www.w3.org/2000/svg">
         </div>
     </div>
 </section>
-<section id='print'>
 {% for item in solo_page %}
+<section id='print{{ forloop.counter }}'>
     <div class='container' style='font-size: 15px;'>
         <div class='row text-center mt-5'>
             <div class='col'>
@@ -54,7 +54,7 @@ xmlns="http://www.w3.org/2000/svg">
             </div>
         </div>
         <div class='row text-center'>
-            <table class='mytable'>
+            <table class='parstable'>
                 <tr>
                     <th class='first'>ویژگی</th>
                     <th class='second'>مقدار</th>
@@ -65,7 +65,7 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.age %}
                     <td class='second'>{{ 1401|sub:item.age }}</td>
                     {% else %}
-                    <td class='second false'>ذکر نشده</td>
+                    <td class='second  none'>ذکر نشده</td>
                     {% endif %}
                     <td class='third'>---</td>
                 </tr>
@@ -74,7 +74,7 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.examinations.all.0.length %}
                     <td class='second'>{{ item.examinations.all.0.length }}</td>
                     {% else %}
-                    <td class='second false'>ذکر نشده</td>
+                    <td class='second  none'>ذکر نشده</td>
                     {% endif %}
                     <td class='third'>---</td>
                 </tr>
@@ -83,7 +83,7 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.examnations.all.0.body_mass %}
                     <td class='second'>{{ item.examinations.all.0.body_mass }}</td>
                     {% else %}
-                    <td class='false second'>ذکر نشده</td>
+                    <td class=' none second'>ذکر نشده</td>
                     {% endif %}
                     {% if item.examinations.all.0.body_mass < 20 %}
                     <td class='third'>کمبود وزن</td>
@@ -96,7 +96,7 @@ xmlns="http://www.w3.org/2000/svg">
                     {% elif item.examinations.all.0.body_mass > 40 %}
                     <td class='third'>چاقی شدید</td>
                     {% else %}
-                    <td class='third'>ندارد</td>
+                    <td class='third none'>ذکر نشده</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -104,16 +104,16 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.experiment.all.0.fbs %}                    
                     <td class='second'>{{ item.experiment.all.0.fbs }}</td>
                     {% else %}
-                    <td class='second false'>ذکر نشده</td>
+                    <td class='second  none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.experiment.all.0.fbs < 100 %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% elif item.experiment.all.0.fbs < 126 %}
                     <td class='third'>در محدوده احتیاط</td>
                     {% elif item.experiment.all.0.fbs == None %}
-                    <td class='third'>ندارد</td>
+                    <td class='third none'>ذکر نشده</td>
                     {% else %}
-                    <td class='third'>غیر نرمال</td>
+                    <td class='third false'>غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -121,16 +121,16 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.examinations.all.0.blood_pressure %}
                     <td class='second'>{{ item.examinations.all.0.blood_pressure }}</td>
                     {% else %}
-                    <td class='false second'>ذکر نشده</td>
+                    <td class='none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.examinations.all.0.blood_pressure < 9 %}
                     <td class='third'>پایین</td>
                     {% elif item.examinations.all.0.blood_pressure >= 9 and item.examinations.all.0.blood_pressure <= 14 %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% elif item.examinations.all.0.blood_pressure > 9 %}
                     <td class='third'>بالا</td>
                     {% else %}
-                    <td class='third'>ندارد/غیر نرمال</td>
+                    <td class='third none'>ذکر نشده/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -138,12 +138,12 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.experiment.all.0.chol %}
                     <td class='second'>{{ item.experiment.all.0.chol }}</td>
                     {% else %}
-                    <td class='false second'>ذکر نشده</td>
+                    <td class='none'>ذکر نشده</td>
                     {% endif %}                    
                     {% if item.experiment.all.0.chol < 200 %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% else %}
-                    <td class='third'>ندارد/غیر نرمال</td>
+                    <td class='third none'>ذکر نشده/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -151,21 +151,21 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.experiment.all.0.tg %}
                     <td class='second'>{{ item.experiment.all.0.tg }}</td>
                     {% else %}
-                    <td class='false second'>ذکر نشده</td>
+                    <td class='none'>ذکر نشده</td>
                     {% endif %}                    
                     {% if item.experiment.all.0.tg < 200 %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% else %}
-                    <td class='third'>ندارد/غیر نرمال</td>
+                    <td class='third none'>ذکر نشده/غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
                     <td class='first'>ادرار</td>
                     <td class='second'>---</td>
                     {% if item.experiment.all.0.ua_prot == 0 and item.experiment.all.0.ua_glu == 0 and item.experiment.all.0.ua_rbc < 3 and item.experiment.all.0.ua_wbc < 5  and item.experiment.all.0.ua_bact == 0  %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% elif item.experiment.all.0.ua_prot == None and item.experiment.all.0.ua_glu == None and item.experiment.all.0.ua_rbc == None and item.experiment.all.0.ua_wbc == None  and item.experiment.all.0.ua_bact == None  %}
-                    <td class='third false'>ندارد</td>
+                    <td class='third  none'>ذکر نشده</td>
                     {% else %}
                     <td class='third false'>غیر نرمال</td>
                     {% endif %}
@@ -174,7 +174,7 @@ xmlns="http://www.w3.org/2000/svg">
                     <td class='first'>تست تنفس</td>
                     <td class='second'>---</td>
                     {% if item.para.all.0.espiro_tafsir == 'normal' %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.espiro_tafsir == 'ensedadi' %}
                     <td class='third'>انسدادی</td>
                     {% elif item.para.all.0.espiro_tafsir == 'tahdidi' %}
@@ -184,29 +184,29 @@ xmlns="http://www.w3.org/2000/svg">
                     {% elif item.para.all.0.espiro_tafsir == 'again' %}
                     <td class='third'>نیاز به تکرار</td>
                     {% else %}
-                    <td class='third'>ندارد</td>
+                    <td class='third none'>ذکر نشده</td>
                     {% endif %}
                 </tr>
                 <tr>
                     <td class='first'>شنوایی گوش چپ</td>
                     <td class='second'>---</td>
                     {% if item.para.all.0.audio_l_eight_ac <= 25 and item.para.all.0.audio_l_eight_bc <= 25 and item.para.all.0.audio_l_six_ac <= 25 and item.para.all.0.audio_l_six_bc <= 25 and item.para.all.0.audio_l_four_ac <= 25 and item.para.all.0.audio_l_four_bc <= 25 and item.para.all.0.audio_l_two_ac <= 25 and item.para.all.0.audio_l_two_bc <= 25 and item.para.all.0.audio_l_one_ac <= 25 and item.para.all.0.audio_l_one_bc <= 25 and item.para.all.0.audio_l_five_ac <= 25  and item.para.all.0.audio_l_five_bc <= 25 %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.audio_l_eight_ac >= 25 or item.para.all.0.audio_l_eight_bc >= 25 or item.para.all.0.audio_l_six_ac >= 25 or item.para.all.0.audio_l_six_bc >= 25 or item.para.all.0.audio_l_four_ac >= 25 or item.para.all.0.audio_l_four_bc >= 25 or item.para.all.0.audio_l_two_ac >= 25 or item.para.all.0.audio_l_two_bc >= 25 or item.para.all.0.audio_l_one_ac >= 25 or item.para.all.0.audio_l_one_bc >= 25 or item.para.all.0.audio_l_five_ac >= 25  or item.para.all.0.audio_l_five_bc >= 25 %}
-                    <td class='third'>غیر نرمال</td>
+                    <td class='third false'>غیر نرمال</td>
                     {% else %}
-                    <td class='third'>ندارد</td>
+                    <td class='third none'>ذکر نشده</td>
                     {% endif %}
                 </tr>
                 <tr>
                     <td class='first'>شنوایی گوش راست</td>
                     <td class='second'>---</td>
                     {% if item.para.all.0.audio_r_eight_ac <= 25 and item.para.all.0.audio_r_eight_bc <= 25 and item.para.all.0.audio_r_six_ac <= 25 and item.para.all.0.audio_r_six_bc <= 25 and item.para.all.0.audio_r_four_ac <= 25 and item.para.all.0.audio_r_four_bc <= 25 and item.para.all.0.audio_r_two_ac <= 25 and item.para.all.0.audio_r_two_bc <= 25 and item.para.all.0.audio_r_one_ac <= 25 and item.para.all.0.audio_r_one_bc <= 25 and item.para.all.0.audio_r_five_ac <= 25  and item.para.all.0.audio_r_five_bc <= 25 %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.audio_r_eight_ac >= 25 or item.para.all.0.audio_r_eight_bc >= 25 or item.para.all.0.audio_r_six_ac >= 25 or item.para.all.0.audio_r_six_bc >= 25 or item.para.all.0.audio_r_four_ac >= 25 or item.para.all.0.audio_r_four_bc >= 25 or item.para.all.0.audio_r_two_ac >= 25 or item.para.all.0.audio_r_two_bc >= 25 or item.para.all.0.audio_r_one_ac >= 25 or item.para.all.0.audio_r_one_bc >= 25 or item.para.all.0.audio_r_five_ac >= 25  or item.para.all.0.audio_r_five_bc >= 25 %}
-                    <td class='third'>غیر نرمال</td>
+                    <td class='third false'>غیر نرمال</td>
                     {% else %}
-                    <td class='third'>ندارد</td>
+                    <td class='third none'>ذکر نشده</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -214,14 +214,14 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.para.all.0.opto_hedat_l_bi %}
                     <td class='second'>{{ item.para.all.0.opto_hedat_l_bi }}</td>
                     {% else %}
-                    <td class='second'>ندارد</td>
+                    <td class='second none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.para.all.0.opto_hedat_l_bi == 10 %}
-                    <td class='third'>نرمال</td>
-                    {% elif item.para.all.0.opto_hedat_l_bi != 10 %}
-                    <td class='third'> غیر نرمال</td>
+                    <td class='third True'>نرمال</td>
+                    {% elif item.para.all.0.opto_hedat_l_bi == None %}
+                    <td class='third none'> ذکر نشده</td>
                     {% else %}
-                    <td class='third'> ندارد</td>
+                    <td class='third false'> غیر نرمال</td>                  
                     {% endif %}
                 </tr>
                 <tr>
@@ -229,14 +229,14 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.para.all.0.opto_hedat_l_ba %}
                     <td class='second'>{{ item.para.all.0.opto_hedat_l_ba }}</td>
                     {% else %}
-                    <td class='second'>ندارد</td>
+                    <td class='second none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.para.all.0.opto_hedat_l_ba == 10 %}
-                    <td class='third'>نرمال</td>
-                    {% elif item.para.all.0.opto_hedat_l_ba != 10 %}
-                    <td class='third'> غیر نرمال</td>
+                    <td class='third True'>نرمال</td>
+                    {% elif item.para.all.0.opto_hedat_l_ba == None %}
+                    <td class='third none'> ذکر نشده</td>
                     {% else %}
-                    <td class='third'> ندارد</td>
+                    <td class='third false'> غیر نرمال</td>  
                     {% endif %}
                 </tr>
                 <tr>
@@ -244,14 +244,14 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.para.all.0.opto_hedat_r_bi %}
                     <td class='second'>{{ item.para.all.0.opto_hedat_r_bi }}</td>
                     {% else %}
-                    <td class='second'>ندارد</td>
+                    <td class='second none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.para.all.0.opto_hedat_r_bi == 10 %}
-                    <td class='third'>نرمال</td>
-                    {% elif item.para.all.0.opto_hedat_r_bi != 10 %}
-                    <td class='third'> غیر نرمال</td>
+                    <td class='third True'>نرمال</td>
+                    {% elif item.para.all.0.opto_hedat_r_bi == None %}
+                    <td class='third none'> ذکر نشده</td>
                     {% else %}
-                    <td class='third'> ندارد</td>
+                    <td class='third false'> غیر نرمال</td>  
                     {% endif %}
                 </tr>
                 <tr>
@@ -259,14 +259,14 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.para.all.0.opto_hedat_r_ba %}
                     <td class='second'>{{ item.para.all.0.opto_hedat_r_ba }}</td>
                     {% else %}
-                    <td class='second'>ندارد</td>
+                    <td class='second none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.para.all.0.opto_hedat_r_ba == 10 %}
-                    <td class='third'>نرمال</td>
-                    {% elif item.para.all.0.opto_hedat_r_ba != 10 %}
-                    <td class='third'> غیر نرمال</td>
+                    <td class='third True'>نرمال</td>
+                    {% elif item.para.all.0.opto_hedat_r_ba == None %}
+                    <td class='third none'> ذکر نشده</td>
                     {% else %}
-                    <td class='third'> ندارد</td>
+                    <td class='third false'> غیر نرمال</td>  
                     {% endif %}
                 </tr>
                 <tr>
@@ -275,7 +275,7 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.para.all.0.other_cxr %}
                     <td class='third'>{{ item.para.all.0.other_cxr }}</td>
                     {% else %}
-                    <td class='third'>ندارد</td>
+                    <td class='third none'>ذکر نشده</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -283,14 +283,14 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.experiment.all.0.lead %}
                     <td class='second'>{{ item.experiment.all.0.lead }}</td>
                     {% else %}
-                    <td class='false second'>ذکر نشده</td>
+                    <td class='none'>ذکر نشده</td>
                     {% endif %}                    
                     {% if item.experiment.all.0.lead <= 20 %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% elif item.experiment.all.0.lead > 20 %}
-                    <td class='third'>غیر نرمال</td>
+                    <td class='third false'>غیر نرمال</td>
                     {% else %}
-                    <td class='third'>ندارد</td>
+                    <td class='third none'>ذکر نشده</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -298,14 +298,14 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.experiment.all.0.psa %}
                     <td class='second'>{{ item.experiment.all.0.psa }}</td>
                     {% else %}
-                    <td class='false second'>ذکر نشده</td>
+                    <td class='none'>ذکر نشده</td>
                     {% endif %}     
                     {% if item.experiment.all.0.psa == None %}
-                    <td class='third'>ندارد</td>               
+                    <td class='third none'>ذکر نشده</td>               
                     {% elif item.experiment.all.0.psa_status == True %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% else %}
-                    <td class='third'>غیر نرمال</td>
+                    <td class='third false'>غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -313,14 +313,14 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.experiment.all.0.tsh %}
                     <td class='second'>{{ item.experiment.all.0.tsh }}</td>
                     {% else %}
-                    <td class='false second'>ذکر نشده</td>
+                    <td class='none'>ذکر نشده</td>
                     {% endif %}     
                     {% if item.experiment.all.0.tsh == None %}
-                    <td class='third'>ندارد</td>               
+                    <td class='third none'>ذکر نشده</td>               
                     {% elif item.experiment.all.0.tsh_status == True %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% else %}
-                    <td class='third'>غیر نرمال</td>
+                    <td class='third false'>غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -328,14 +328,14 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.experiment.all.0.cr %}
                     <td class='second'>{{ item.experiment.all.0.cr }}</td>
                     {% else %}
-                    <td class='false second'>ذکر نشده</td>
+                    <td class='none'>ذکر نشده</td>
                     {% endif %}     
                     {% if item.experiment.all.0.cr == None %}
-                    <td class='third'>ندارد</td>               
+                    <td class='third none'>ذکر نشده</td>               
                     {% elif item.experiment.all.0.cr_status == True %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% else %}
-                    <td class='third'>غیر نرمال</td>
+                    <td class='third false'>غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -343,14 +343,14 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.experiment.all.0.cr %}
                     <td class='second'>{{ item.experiment.all.0.d }}</td>
                     {% else %}
-                    <td class='false second'>ذکر نشده</td>
+                    <td class='none'>ذکر نشده</td>
                     {% endif %}     
                     {% if item.experiment.all.0.d == None %}
-                    <td class='third'>ندارد</td>               
+                    <td class='third none'>ذکر نشده</td>               
                     {% elif item.experiment.all.0.d_status == True %}
-                    <td class='third'>نرمال</td>
+                    <td class='third True'>نرمال</td>
                     {% else %}
-                    <td class='third'>غیر نرمال</td>
+                    <td class='third false'>غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -359,7 +359,7 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.para.all.0.other_ecg %}
                     <td class='third'>{{ item.para.all.0.other_ecg }}</td>
                     {% else %}
-                    <td class='third'>ندارد</td>    
+                    <td class='third none'>ذکر نشده</td>    
                     {% endif %}
                 </tr>
                 <tr>
@@ -367,7 +367,7 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.examinations.all.0.not_normals %}
                     <td class='third' colspan=2>{{ item.examinations.all.0.not_normals }}</td>
                     {% else %}
-                    <td class='third' colspan=2>ندارد</td>    
+                    <td class='third none' colspan=2>ذکر نشده</td>    
                     {% endif %}
                 </tr>
                 <tr>
@@ -375,15 +375,15 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.final.all.0.recommendations %}
                     <td class='third' colspan=2>{{ item.final.all.0.recommendations }}</td>
                     {% else %}
-                    <td class='third' colspan=2>ندارد</td>    
+                    <td class='third none' colspan=2>ذکر نشده</td>    
                     {% endif %}
                 </tr>
             </table>
         </div>
     </div>
-    <hr size="5px" width="100%" color="black" class='mt-5'>
-{% endfor %}
 </section>
+{% endfor %}
+<hr size="5px" width="100%" color="black" class='mt-5'>
 <section>
     <div class='container mt-5'>
         <div class='row text-center'>
@@ -392,14 +392,18 @@ xmlns="http://www.w3.org/2000/svg">
             </div>
         </div>
     </div>
-    <div id="container" dir='ltr' class='mt-5'>
-        <div id="pagination">
+    <div id="container" dir='ltr' class='mt-5' >
+        <div id="pagination" class = 'row text-center'>
             {% if solo_page.has_previous %}
             <a class='blocks' href='?page=1' style='text-decoration: none;color: black;'>اول</a>
             <a class='blocks' href='?page={{ solo_page.previous_page_number }}' style='text-decoration: none;color: black;'>&laquo;</a>
             {% endif %}
             {% for num in nums %}
-                <a class='blocks' href='?page={{ forloop.counter }}' style='text-decoration: none;color: black;'>{{ forloop.counter }}</a>    
+            {% if forloop.counter|divisibleby:21 %}
+            </div>
+            <div id="pagination" class="row text-center">
+            {% endif %}
+            <a class='blocks text-center' href='?page={{ forloop.counter }}' style='text-decoration: none;color: black;'>{{ forloop.counter }}</a>    
             {% endfor %}
             {% if solo_page.has_next %}
             <a class='blocks' href='?page={{ solo_page.next_page_number }}' style='text-decoration: none;color: black;'>&raquo;</a>

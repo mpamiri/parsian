@@ -243,11 +243,11 @@ border: 1px solid black;
   width: 40%;
 }
 .mytable {
+  width: 1200;
   font-size: 20px;
 }
 .parstable{
-  width : 1090px;
-  margin-right : 30px;
+  width : 1300px;
   font-size: 20px;
 }
 .extable{
@@ -276,6 +276,17 @@ color: red;
 }
 .True{
 color: chartreuse;
+}
+.none{
+  color: rgb(216, 216, 0);
+}
+.None{
+  color: rgb(216, 216, 0);
+  display: inline;
+  border: none;
+}
+.Blue{
+color: blue;
 display: inline;
 border: none;
 }

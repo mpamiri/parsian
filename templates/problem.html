@@ -65,12 +65,28 @@ xmlns="http://www.w3.org/2000/svg">
             {% for item in personal_species %}
             <tr>
                 <td></td>
+                {% if item.name %}
                 <td>{{ item.name }}</td>
+                {% else %}
+                <td class='none'>ذکر نشده</td>
+                {% endif %}
+                {% if item.job_name %}
                 <td>{{ item.job_name }}</td>
+                {% else %}
+                <td class='none'>ذکر نشده</td>
+                {% endif %}
+                {% if item.final.all.0.problems %}
                 <td>{{ item.final.all.0.problems }}</td>
+                {% else %}
+                <td class='none'>ذکر نشده</td>
+                {% endif %}
                 <td></td>
                 <td></td>
+                {% if item.final.all.0.recommendations %}
                 <td>{{ item.final.all.0.recommendations }}</td>
+                {% else %}
+                <td class='none'>ذکر نشده</td>
+                {% endif %}
             </tr>
             {% endfor %}
         </table>

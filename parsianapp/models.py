@@ -150,14 +150,14 @@ class Personal_Species_Model(models.Model):
     name = models.CharField(max_length=20, null=True, blank=True,unique=True)
     fathers_name = models.CharField(max_length=20, null=True, blank=True)
     gender_CHOICES = [('mard', 'مرد'), ('zan', 'زن')]
-    gender = models.CharField(default='mard', choices=gender_CHOICES, null=True, blank=True, max_length=20)
+    gender = models.CharField(default='mard', choices=gender_CHOICES, max_length=20)
     marriage_status_CHOICES = [('mojarad', 'مجرد'), ('motahel', 'متاحل')]
-    marriage_status = models.CharField(default='mojarad', choices=marriage_status_CHOICES, null=True, blank=True, max_length=20)
+    marriage_status = models.CharField(default='mojarad', choices=marriage_status_CHOICES,  max_length=20)
     children = models.IntegerField(null=True, blank=True)
     age = models.IntegerField(null=True, blank=True,validators=[MinValueValidator(1300),MaxValueValidator(1400)])
     personal_code = models.IntegerField(null=True, blank=True)
     military_status_CHOICES = [('khedmat_karde', 'خدمت کرده'), ('moaf', 'معاف')]
-    military_status = models.CharField(default='khedmat_karde', choices=military_status_CHOICES, null=True, blank=True, max_length=20)
+    military_status = models.CharField(default='khedmat_karde', choices=military_status_CHOICES, max_length=20)
     raste = models.CharField(max_length=20, null=True, blank=True)
     medical_exemption = models.BooleanField(default=False)
     medical_exemption_reason = models.CharField(max_length=20, null=True, blank=True)

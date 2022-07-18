@@ -105,17 +105,17 @@
                 {% if item.name %}
                 <td colspan='3'>{{ item.name }}</td>
                 {% else %}
-                <td class='false' colspan='3'>ذکر نشده</td>
+                <td class='none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
                 <td colspan='3'>{{ 1401|sub:item.age }}</td>
                 {% else %}
-                <td class = 'false' colspan='3'>ذکر نشده</td>
+                <td class = 'none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 {% if item.job_name %}
                 <td colspan='3'>{{ item.job_name }}</td>
                 {% else %}
-                <td class = 'false' colspan='3'>ذکر نشده</td>
+                <td class = 'none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 <td colspan='3' colspan='3'>{{ item.assessment.all.0.assessments }}</td>
                 {% if item.para.all.0.audio_r_eight_ac <= 25 and item.para.all.0.audio_r_eight_bc <= 25 and item.para.all.0.audio_r_six_ac <= 25 and item.para.all.0.audio_r_six_bc <= 25 and item.para.all.0.audio_r_four_ac <= 25 and item.para.all.0.audio_r_four_bc <= 25 and item.para.all.0.audio_r_two_ac <= 25 and item.para.all.0.audio_r_two_bc <= 25 and item.para.all.0.audio_r_one_ac <= 25 and item.para.all.0.audio_r_one_bc <= 25 and item.para.all.0.audio_r_five_ac <= 25  and item.para.all.0.audio_r_five_bc <= 25 %}
