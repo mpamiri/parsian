@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.conf import settings
+from django.http import HttpResponse , Http404
 from django.contrib.auth.forms import UserCreationForm
 from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,ExaminationsCourse
 from .forms import registration, summary_of_results_form,submit_company_form,disease_form,personal_species_form,job_history_form,assessment_form,personal_history_form,examinations_form,experiments_form,para_clinic_form,consulting_form,final_theory_form,submit_course_form
@@ -14,7 +15,7 @@ from django.core.paginator import Paginator
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from shutil import move
-import os.path
+import os
 from fpdf import FPDF
 import pyautogui
 from time import sleep
@@ -173,6 +174,13 @@ def disease_code_view(request):
 
 
 def disease_pdf_view(request):
+    work=Disease_Model.objects.last()
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+    personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
     options.headless = True
     driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
@@ -185,12 +193,37 @@ def disease_pdf_view(request):
     login_but.click()
     driver.get("http://127.0.0.1:8000/output/disease_code")
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-    driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
-    driver.find_element('id','print').screenshot('images/img.png')
+    driver.set_window_size(S('Width'),S('Height'))
+    count = 0
+    i = 0
     pdf = FPDF()
+    driver.find_element('id','diseaseHead').screenshot('images/Headdisease_img.png')
     pdf.add_page()
-    pdf.image('images/img.png',None,None,200,260)
+    pdf.image('images/Headdisease_img.png',-1,None,220,22)
+    pdf.line(0, 31.5, 220, 31.5)
+    os.remove('images/Headdisease_img.png')
+    for x in personal_species:
+        count += 1
+    while i <= count:
+        if (i - 1) % 20 == 0 and i != 1:
+            driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease_img.png')
+            pdf.add_page()
+            pdf.image('images/'+ str(i) +'disease_img.png',-1,None,210,10)
+            os.remove('images/'+ str(i) +'disease_img.png')
+            i += 1 
+        else:   
+            driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease_img.png')
+            pdf.image('images/'+ str(i) +'disease_img.png',-1,None,210,10)
+            os.remove('images/'+ str(i) +'disease_img.png')
+            i += 1
     pdf.output("pdfs/disease.pdf", "F")
+    file_path = os.path.join('pdfs/disease.pdf')
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
 
 
 @login_required(login_url='login')
@@ -213,6 +246,60 @@ def open_docs_view(request):
     context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory , 'examinations_course':examinations_course}
     return render(request, 'open_docs.html',context)
 
+
+def open_docs_pdf_view(request):
+    work=Disease_Model.objects.last()
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+    personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course,final__mashrot='False',final__belamane='False',final__rad='False')
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver.get("http://127.0.0.1:8000/login")
+    username = driver.find_element('name',"username")
+    password = driver.find_element('name',"password")
+    login_but = driver.find_element('name',"login")
+    username.send_keys('parsa')
+    password.send_keys('690088choose')
+    login_but.click()
+    driver.get("http://127.0.0.1:8000/output/open_docs")
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(S('Width'),S('Height'))
+    count = 0
+    i = 0
+    pdf = FPDF()
+    driver.find_element('id','OpenCourseHead').screenshot('images/OpenCourseHead_img.png')
+    pdf.add_page()
+    pdf.image('images/OpenCourseHead_img.png',-1,None,220,22)
+    os.remove('images/OpenCourseHead_img.png')
+    pdf.line(0, 31.5, 220, 31.5)
+    for x in personal_species:
+        count += 1
+    while i <= count:
+        if (i - 1) % 20 == 0 and i != 1:
+            driver.find_element('id','open' + str(i)).screenshot('images/'+ str(i) +'open_img.png')
+            pdf.add_page()
+            pdf.image('images/'+ str(i) +'open_img.png',-1,None,210,10)
+            os.remove('images/'+ str(i) +'open_img.png')
+            i += 1 
+        else:   
+            driver.find_element('id','open' + str(i)).screenshot('images/'+ str(i) +'open_img.png')
+            pdf.image('images/'+ str(i) +'open_img.png',-1,None,210,10)
+            os.remove('images/'+ str(i) +'open_img.png')
+            i += 1
+    pdf.output("pdfs/open.pdf", "F")
+    file_path = os.path.join('pdfs/open.pdf')
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
+
 @login_required(login_url='login')
 def summary_of_examinations_view(request):
     work=Disease_Model.objects.last()
@@ -233,6 +320,61 @@ def summary_of_examinations_view(request):
     context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory , 'examinations_course':examinations_course}
     return render(request, 'summary_of_examinations.html',context)
 
+
+
+def summary_of_examinations_pdf_view(request):
+    work=Disease_Model.objects.last()
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+    personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver.get("http://127.0.0.1:8000/login")
+    username = driver.find_element('name',"username")
+    password = driver.find_element('name',"password")
+    login_but = driver.find_element('name',"login")
+    username.send_keys('parsa')
+    password.send_keys('690088choose')
+    login_but.click()
+    driver.get("http://127.0.0.1:8000/output/summary_of_examinations")
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(S('Width'),S('Height'))
+    count = 0
+    i = 0
+    pdf = FPDF()
+    driver.find_element('id','Head').screenshot('images/Head_img.png')
+    pdf.add_page()
+    pdf.image('images/Head_img.png',-1,None,220,22)
+    pdf.line(0, 31.5, 220, 31.5)
+    os.remove('images/Head_img.png')
+    for x in personal_species:
+        count += 1
+    while i <= count:
+        if (i - 1) % 20 == 0 and i != 1:
+            driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary_img.png')
+            pdf.add_page()
+            pdf.image('images/'+ str(i) +'summary_img.png',-1,None,210,10)
+            os.remove('images/'+ str(i) +'summary_img.png')
+            i += 1 
+        else:   
+            driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary_img.png')
+            pdf.image('images/'+ str(i) +'summary_img.png',-1,None,210,10)
+            os.remove('images/'+ str(i) +'summary_img.png')
+            i += 1
+    pdf.output("pdfs/summary.pdf", "F")
+    file_path = os.path.join('pdfs/summary.pdf')
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
+
 @login_required(login_url='login')
 def problem_view(request):
     work=Disease_Model.objects.last()
@@ -252,7 +394,57 @@ def problem_view(request):
     final_theory=Final_Theory_Model.objects.all()
     context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory,'examinations_course':examinations_course}
     return render(request, 'problem.html',context)
-
+def problem_pdf_view(request):
+    work=Disease_Model.objects.last()
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+    personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver.get("http://127.0.0.1:8000/login")
+    username = driver.find_element('name',"username")
+    password = driver.find_element('name',"password")
+    login_but = driver.find_element('name',"login")
+    username.send_keys('parsa')
+    password.send_keys('690088choose')
+    login_but.click()
+    driver.get("http://127.0.0.1:8000/output/problem")
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(S('Width'),S('Height'))
+    count = 0
+    i = -1
+    pdf = FPDF()
+    driver.find_element('id','Head').screenshot('images/Head_img.png')
+    pdf.add_page()
+    pdf.image('images/Head_img.png',-1,None,220,22)
+    pdf.line(0, 31.5, 220, 31.5)
+    os.remove('images/Head_img.png')
+    for x in personal_species:
+        count += 1
+    while i <= count:
+        if (i - 1) % 20 == 0 and i != 1:
+            driver.find_element('id','problem' + str(i)).screenshot('images/'+ str(i) +'problem_img.png')
+            pdf.add_page()
+            pdf.image('images/'+ str(i) +'problem_img.png',-1,None,210,10)
+            os.remove('images/'+ str(i) +'problem_img.png')
+            i += 1 
+        else:   
+            driver.find_element('id','problem' + str(i)).screenshot('images/'+ str(i) +'problem_img.png')
+            pdf.image('images/'+ str(i) +'problem_img.png',-1,None,210,10)
+            os.remove('images/'+ str(i) +'problem_img.png')
+            i += 1
+    pdf.output("pdfs/problem.pdf", "F")
+    file_path = os.path.join('pdfs/problem.pdf')
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
 @login_required(login_url='login')
 def specialist_view(request):
     work=Disease_Model.objects.last()
@@ -598,6 +790,13 @@ def solo_output_view(request):
     para_clinic=Para_Clinic_Model.objects.all()
     consulting=Consulting_Model.objects.all()
     final_theory=Final_Theory_Model.objects.all()
+    count = 0
+    for x in personal_species:
+        count += 1
+    if count % work.order_number == 0:
+        count = count // work.order_number
+    else:
+        count = (count // work.order_number) + 1
     if work:
         number=work.order_number
     else:
@@ -610,7 +809,7 @@ def solo_output_view(request):
         'order_number':number       
     }
     form=disease_form(initial=initial_dict)
-    context={'personal_species' : personal_species,'form' :form,'examinations_course' : examinations_course,'solo_page':solo_page,'nums':nums}
+    context={'personal_species' : personal_species,'form' :form,'examinations_course' : examinations_course,'solo_page':solo_page,'nums':nums,'count': count }
     return render(request, 'solo_output.html',context)
 
 def solo_pdf_view(request):
@@ -648,7 +847,7 @@ def solo_pdf_view(request):
     else:
         count = (count // work.order_number) + 1
         last_count = n - ((count - 1) * work.order_number)
-    if count < work.order_number:
+    if n < work.order_number:
         while i < last_count :
             i += 1    
             driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
@@ -675,28 +874,13 @@ def solo_pdf_view(request):
             os.remove('images/'+ str(i) +'solo_img.png')
         pdf.output("pdfs/solo.pdf", "F")
         driver.quit()
-
-
-def disease_pdf_view(request):
-    options = Options()
-    options.headless = True
-    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
-    driver.get("http://127.0.0.1:8000/login")
-    username = driver.find_element('name',"username")
-    password = driver.find_element('name',"password")
-    login_but = driver.find_element('name',"login")
-    username.send_keys('parsa')
-    password.send_keys('690088choose')
-    login_but.click()
-    driver.get("http://127.0.0.1:8000/output/disease_code")
-    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-    driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
-    driver.find_element('id','print').screenshot('images/img.png')
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.image('images/img.png',None,None,200,260)
-    pdf.add_page()
-    pdf.output("pdfs/yourfile.pdf", "F")
+    file_path = os.path.join('pdfs/solo.pdf')
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
 
 @login_required(login_url='login')
 def input_view(request):
