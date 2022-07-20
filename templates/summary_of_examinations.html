@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <style>
-    table tr:nth-child(3){
+    table tr:first-child){
     counter-reset: rowNumber;
     }
     table tr {
@@ -102,37 +102,107 @@
                 </tr>
             </thead>
             {% for item in personal_species %}
-            <tr id='summary{{ forloop.counter }}'>
-                <td></td>
-                {% comment %} <td>{{ item.assessment.all.0.current_ph_noise}}</td> {% endcomment %}
+            <tr id = 'summary{{ forloop.counter }}'>
+                {% load django_template_maths %}
+                <td colspan='3'></td>
                 {% if item.name %}
-                <td>{{ item.name }}</td>
+                <td colspan='3'>{{ item.name }}</td>
                 {% else %}
-                <td class = 'none'>ذکر نشده</td>
+                <td class='none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
-                <td>{{ item.age }}</td>
+                <td colspan='3'>{{ 1401|sub:item.age }}</td>
                 {% else %}
-                <td class = 'none'>ذکر نشده</td>
+                <td class = 'none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 {% if item.job_name %}
-                <td>{{ item.job_name }}</td>
+                <td colspan='3'>{{ item.job_name }}</td>
                 {% else %}
-                <td class = 'none'>ذکر نشده</td>
+                <td class = 'none' colspan='3'>ذکر نشده</td>
                 {% endif %}
-                {% if item.history.all.0.durations %}
-                <td>{{ item.history.all.0.durations }}</td>
+                <td colspan='3' colspan='3'>{{ item.assessment.all.0.assessments }}</td>
+                {% if item.para.all.0.audio_r_eight_ac <= 25 and item.para.all.0.audio_r_eight_bc <= 25 and item.para.all.0.audio_r_six_ac <= 25 and item.para.all.0.audio_r_six_bc <= 25 and item.para.all.0.audio_r_four_ac <= 25 and item.para.all.0.audio_r_four_bc <= 25 and item.para.all.0.audio_r_two_ac <= 25 and item.para.all.0.audio_r_two_bc <= 25 and item.para.all.0.audio_r_one_ac <= 25 and item.para.all.0.audio_r_one_bc <= 25 and item.para.all.0.audio_r_five_ac <= 25  and item.para.all.0.audio_r_five_bc <= 25 %}
+                    <td>*</td>
+                    <td></td>
+                {% elif item.para.all.0.audio_r_eight_ac >= 25 or item.para.all.0.audio_r_eight_bc >= 25 or item.para.all.0.audio_r_six_ac >= 25 or item.para.all.0.audio_r_six_bc >= 25 or item.para.all.0.audio_r_four_ac >= 25 or item.para.all.0.audio_r_four_bc >= 25 or item.para.all.0.audio_r_two_ac >= 25 or item.para.all.0.audio_r_two_bc >= 25 or item.para.all.0.audio_r_one_ac >= 25 or item.para.all.0.audio_r_one_bc >= 25 or item.para.all.0.audio_r_five_ac >= 25  or item.para.all.0.audio_r_five_bc >= 25 %}
+                    <td></td>
+                    <td>*</td>
                 {% else %}
-                <td class = 'none'>ذکر نشده</td>
+                    <td></td>
+                    <td></td>
                 {% endif %}
-                {% if item.final.all.0.d_code %}
-                <td>{{ item.final.all.0.code }}</td>
+                {% if item.para.all.0.audio_l_eight_ac <= 25 and item.para.all.0.audio_l_eight_bc <= 25 and item.para.all.0.audio_l_six_ac <= 25 and item.para.all.0.audio_l_six_bc <= 25 and item.para.all.0.audio_l_four_ac <= 25 and item.para.all.0.audio_l_four_bc <= 25 and item.para.all.0.audio_l_two_ac <= 25 and item.para.all.0.audio_l_two_bc <= 25 and item.para.all.0.audio_l_one_ac <= 25 and item.para.all.0.audio_l_one_bc <= 25 and item.para.all.0.audio_l_five_ac <= 25  and item.para.all.0.audio_l_five_bc <= 25 %}
+                    <td>*</td>
+                    <td></td>
+                {% elif item.para.all.0.audio_l_eight_ac >= 25 or item.para.all.0.audio_l_eight_bc >= 25 or item.para.all.0.audio_l_six_ac >= 25 or item.para.all.0.audio_l_six_bc >= 25 or item.para.all.0.audio_l_four_ac >= 25 or item.para.all.0.audio_l_four_bc >= 25 or item.para.all.0.audio_l_two_ac >= 25 or item.para.all.0.audio_l_two_bc >= 25 or item.para.all.0.audio_l_one_ac >= 25 or item.para.all.0.audio_l_one_bc >= 25 or item.para.all.0.audio_l_five_ac >= 25  or item.para.all.0.audio_l_five_bc >= 25 %}
+                    <td></td>
+                    <td>*</td>
                 {% else %}
-                <td class = 'none'>ذکر نشده</td>
+                    <td></td>
+                    <td></td>
                 {% endif %}
-                {% comment %} <td>{{ summary.species.job_name }}</td>
-                <td>{{ summary.examinations_code }}</td> {% endcomment %}
-            </tr>
+                {% if item.para.all.0.espiro_tafsir == 'normal' %}
+                    <td>*</td>
+                    <td></td>
+                {% elif item.para.all.0.espiro_tafsir == 'again' or item.para.all.0.espiro_tafsir == 'ensedadi' or item.assessment.all.0.espiro_tafsir == 'tahdidi' or item.assessment.all.0.espiro_tafsir == 'ensedadivtahdidi' %}
+                    <td></td>
+                    <td>*</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
+                {% endif %}
+                {% if item.para.all.0.opto_hedat_r_ba == 10 and item.para.all.0.opto_hedat_r_bi == 10 %}
+                    <td>*</td>
+                    <td></td>
+                {% elif item.para.all.0.opto_hedat_r_ba < 10 or item.para.all.0.opto_hedat_r_bi < 10 %}
+                    <td></td>
+                    <td>*</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
+                {% endif %}
+                {% if item.para.all.0.opto_hedat_l_ba == 10 and item.para.all.0.opto_hedat_l_bi == 10 %}
+                    <td>*</td>
+                    <td></td>
+                {% elif item.para.all.0.opto_hedat_l_ba < 10 or item.para.all.0.opto_hedat_l_bi < 10 %}
+                    <td></td>
+                    <td>*</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
+                {% endif %}
+                {% if item.experiment.all.0.cbc_wbc_status == False or item.experiment.all.0.cbc_rbc_status == False or item.experiment.all.0.cbc_hb_status == False or item.experiment.all.0.cbc_htc_status == False or item.experiment.all.0.cbc_plt_status == False or item.experiment.all.0.ua_glu_status == False or item.experiment.all.0.ua_rbc_status == False or item.experiment.all.0.ua_wbc_status == False or item.experiment.all.0.ua_bact_status == False or item.experiment.all.0.fbs_status == False or item.experiment.all.0.chol_status == False or item.experiment.all.0.ldl_status == False or item.experiment.all.0.hdl_status == False or item.experiment.all.0.tg_status == False or item.experiment.all.0.psa_status == False or item.experiment.all.0.cr_status == False or item.experiment.all.0.alt_status == False or item.experiment.all.0.ast_status == False or item.experiment.all.0.alk_status == False or item.experiment.all.0.lead_status == False or item.experiment.all.0.alt_status == False or item.experiment.all.0.se_status == 'not_normal' or item.experiment.all.0.ppd_status == 'not_normal' or item.experiment.all.0.d_status == False or item.experiment.all.0.tsh_status == False %}
+                    <td></td>
+                    <td>*</td>
+                {% else %}
+                    <td>*</td>
+                    <td></td>
+                {% endif %}
+                {% if item.consulting.all.0.first_year or item.consulting.all.0.first_month or item.consulting.all.0.first_day or item.consulting.all.0.first_reason or item.consulting.all.0.first_type or item.consulting.all.0.first_result or item.consulting.all.0.second_year or item.consulting.all.0.second_month or item.consulting.all.0.second_day or item.consulting.all.0.second_reason or item.consulting.all.0.second_type or item.consulting.all.0.second_result %}
+                    <td>*</td>
+                    <td></td>
+                {% else %}
+                    <td></td>
+                    <td>*</td>
+                {% endif %}
+                {% if item.final.all.0.belamane == True %}
+                    <td>*</td>
+                    <td></td>
+                    <td></td>
+                {% elif item.final.all.0.rad == True %}
+                    <td></td>
+                    <td>*</td>
+                    <td></td>
+                {% elif item.final.all.0.mashrot == True %} 
+                    <td></td>
+                    <td></td>
+                    <td>*</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                {% endif %}
+            </tr>            
             {% endfor %}
         </table>
     </div>

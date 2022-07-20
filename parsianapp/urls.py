@@ -29,6 +29,7 @@ urlpatterns =[
     path('output/examinations_output/add',views.addexaminations_output_view,name='addexaminationsoutput'),
     path('output/specialist',views.specialist_view,name='specialist'),
     path('output/graph',views.graph_view,name='graph'),  
+    path('output/graph/pdf',views.graph_pdf_view,name='graph_pdf'),  
     path('output/solo_output',views.solo_output_view,name='solo_output'),  
     path('output/solo_output/pdf',views.solo_pdf_view,name='solo_pdf'),
     path('submit_company/add_company',views.addcompany_view,name='addcompany'),

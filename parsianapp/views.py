@@ -193,14 +193,13 @@ def disease_pdf_view(request):
     login_but.click()
     driver.get("http://127.0.0.1:8000/output/disease_code")
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-    driver.set_window_size(S('Width'),S('Height'))
+    driver.set_window_size(1920,S('Height'))
     count = 0
     i = 0
     pdf = FPDF()
     driver.find_element('id','diseaseHead').screenshot('images/Headdisease_img.png')
     pdf.add_page()
     pdf.image('images/Headdisease_img.png',-1,None,220,22)
-    pdf.line(0, 31.5, 220, 31.5)
     os.remove('images/Headdisease_img.png')
     for x in personal_species:
         count += 1
@@ -208,12 +207,12 @@ def disease_pdf_view(request):
         if (i - 1) % 20 == 0 and i != 1:
             driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'disease_img.png',-1,None,210,10)
+            pdf.image('images/'+ str(i) +'disease_img.png',3,None,200,8)
             os.remove('images/'+ str(i) +'disease_img.png')
             i += 1 
         else:   
             driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease_img.png')
-            pdf.image('images/'+ str(i) +'disease_img.png',-1,None,210,10)
+            pdf.image('images/'+ str(i) +'disease_img.png',3,None,200,8)
             os.remove('images/'+ str(i) +'disease_img.png')
             i += 1
     pdf.output("pdfs/disease.pdf", "F")
@@ -267,7 +266,7 @@ def open_docs_pdf_view(request):
     login_but.click()
     driver.get("http://127.0.0.1:8000/output/open_docs")
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-    driver.set_window_size(S('Width'),S('Height'))
+    driver.set_window_size(1920,S('Height'))
     count = 0
     i = 0
     pdf = FPDF()
@@ -275,19 +274,18 @@ def open_docs_pdf_view(request):
     pdf.add_page()
     pdf.image('images/OpenCourseHead_img.png',-1,None,220,22)
     os.remove('images/OpenCourseHead_img.png')
-    pdf.line(0, 31.5, 220, 31.5)
     for x in personal_species:
         count += 1
     while i <= count:
         if (i - 1) % 20 == 0 and i != 1:
             driver.find_element('id','open' + str(i)).screenshot('images/'+ str(i) +'open_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'open_img.png',-1,None,210,10)
+            pdf.image('images/'+ str(i) +'open_img.png',3,None,200,8)
             os.remove('images/'+ str(i) +'open_img.png')
             i += 1 
         else:   
             driver.find_element('id','open' + str(i)).screenshot('images/'+ str(i) +'open_img.png')
-            pdf.image('images/'+ str(i) +'open_img.png',-1,None,210,10)
+            pdf.image('images/'+ str(i) +'open_img.png',3,None,200,8)
             os.remove('images/'+ str(i) +'open_img.png')
             i += 1
     pdf.output("pdfs/open.pdf", "F")
@@ -342,27 +340,31 @@ def summary_of_examinations_pdf_view(request):
     login_but.click()
     driver.get("http://127.0.0.1:8000/output/summary_of_examinations")
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-    driver.set_window_size(S('Width'),S('Height'))
+    driver.set_window_size(1920,S('Height'))
     count = 0
     i = 0
     pdf = FPDF()
     driver.find_element('id','Head').screenshot('images/Head_img.png')
     pdf.add_page()
     pdf.image('images/Head_img.png',-1,None,220,22)
-    pdf.line(0, 31.5, 220, 31.5)
     os.remove('images/Head_img.png')
     for x in personal_species:
         count += 1
     while i <= count:
-        if (i - 1) % 20 == 0 and i != 1:
+        if i == 0:
+            driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary_img.png')
+            pdf.image('images/'+ str(i) +'summary_img.png',3,None,200,20)
+            os.remove('images/'+ str(i) +'summary_img.png')
+            i += 1
+        elif (i - 1) % 15 == 0 and i != 1:
             driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'summary_img.png',-1,None,210,10)
+            pdf.image('images/'+ str(i) +'summary_img.png',3,None,200,12)
             os.remove('images/'+ str(i) +'summary_img.png')
             i += 1 
         else:   
             driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary_img.png')
-            pdf.image('images/'+ str(i) +'summary_img.png',-1,None,210,10)
+            pdf.image('images/'+ str(i) +'summary_img.png',3,None,200,12)
             os.remove('images/'+ str(i) +'summary_img.png')
             i += 1
     pdf.output("pdfs/summary.pdf", "F")
@@ -421,7 +423,6 @@ def problem_pdf_view(request):
     driver.find_element('id','Head').screenshot('images/Head_img.png')
     pdf.add_page()
     pdf.image('images/Head_img.png',-1,None,220,22)
-    pdf.line(0, 31.5, 220, 31.5)
     os.remove('images/Head_img.png')
     for x in personal_species:
         count += 1
@@ -429,12 +430,12 @@ def problem_pdf_view(request):
         if (i - 1) % 20 == 0 and i != 1:
             driver.find_element('id','problem' + str(i)).screenshot('images/'+ str(i) +'problem_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'problem_img.png',-1,None,210,10)
+            pdf.image('images/'+ str(i) +'problem_img.png',3,None,200,8)
             os.remove('images/'+ str(i) +'problem_img.png')
             i += 1 
         else:   
             driver.find_element('id','problem' + str(i)).screenshot('images/'+ str(i) +'problem_img.png')
-            pdf.image('images/'+ str(i) +'problem_img.png',-1,None,210,10)
+            pdf.image('images/'+ str(i) +'problem_img.png',3,None,200,8)
             os.remove('images/'+ str(i) +'problem_img.png')
             i += 1
     pdf.output("pdfs/problem.pdf", "F")
@@ -706,7 +707,7 @@ def graph_view(request):
         experiments=Experiments_Model.objects.filter(person=summary).last()
         if experiments.psa == None:
             c_psa += 1  
-        if experiments.psa_status == True:
+        elif experiments.psa_status == True:
             a_psa += 1
         elif experiments.psa_status == False:
             b_psa += 1  
@@ -771,6 +772,49 @@ def graph_view(request):
     data_d]
     context={'personal_species' : personal_species ,'examinations_course':examinations_course,'data':data,'count':count}
     return render(request, 'graph.html',context)
+
+
+def graph_pdf_view(request):
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver.get("http://127.0.0.1:8000/login")
+    username = driver.find_element('name',"username")
+    password = driver.find_element('name',"password")
+    login_but = driver.find_element('name',"login")
+    username.send_keys('parsa')
+    password.send_keys('690088choose')
+    login_but.click()
+    driver.get("http://127.0.0.1:8000/output/graph")
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(1920,S('Height'))
+    pdf = FPDF()
+    driver.find_element('id','Head').screenshot('images/Head_img.png')
+    pdf.add_page()
+    pdf.image('images/Head_img.png',-1,None,220,22)
+    os.remove('images/Head_img.png')
+    pdf.line(0, 31.5, 220, 31.5)
+    i = 0
+    while i <= 14:        
+        if i % 2 == 0 and i != 0:
+            driver.find_element('id','graph' + str(i)).screenshot('images/'+ str(i) +'graph_img.png')
+            pdf.add_page()
+            pdf.image('images/'+ str(i) +'graph_img.png',10,None,200,100)
+            os.remove('images/'+ str(i) +'graph_img.png')
+            i += 1 
+        else:
+            driver.find_element('id','graph' + str(i)).screenshot('images/'+ str(i) +'graph_img.png')
+            pdf.image('images/'+ str(i) +'graph_img.png',10,None,200,100)
+            os.remove('images/'+ str(i) +'graph_img.png')
+            i += 1 
+    pdf.output("pdfs/graph.pdf", "F")
+    file_path = os.path.join('pdfs/graph.pdf')
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
 
 @login_required(login_url='login')
 def solo_output_view(request):
@@ -852,7 +896,7 @@ def solo_pdf_view(request):
             i += 1    
             driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,260)
+            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,200)
             os.remove('images/'+ str(i) +'solo_img.png')
         pdf.output("pdfs/solo.pdf", "F")
         driver.quit()
@@ -861,7 +905,7 @@ def solo_pdf_view(request):
             i += 1    
             driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,260)
+            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,200)
             os.remove('images/'+ str(i) +'solo_img.png')
         pdf.output("pdfs/solo.pdf", "F")
         driver.quit()
@@ -870,7 +914,7 @@ def solo_pdf_view(request):
             i += 1    
             driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,260)
+            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,200)
             os.remove('images/'+ str(i) +'solo_img.png')
         pdf.output("pdfs/solo.pdf", "F")
         driver.quit()
