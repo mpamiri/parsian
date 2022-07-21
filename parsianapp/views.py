@@ -879,7 +879,7 @@ def solo_pdf_view(request):
     driver.set_window_size(S('Width'),S('Height'))
     i = 0
     count = 0
-    pdf = FPDF()
+    pdf = FPDF('P', 'mm', 'A5')
     for x in personal_species:
         count += 1
     n = count
@@ -896,7 +896,7 @@ def solo_pdf_view(request):
             i += 1    
             driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,200)
+            pdf.image('images/'+ str(i) +'solo_img.png',0,None,140,140)
             os.remove('images/'+ str(i) +'solo_img.png')
         pdf.output("pdfs/solo.pdf", "F")
         driver.quit()
@@ -905,7 +905,7 @@ def solo_pdf_view(request):
             i += 1    
             driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,200)
+            pdf.image('images/'+ str(i) +'solo_img.png',0,None,140,140)
             os.remove('images/'+ str(i) +'solo_img.png')
         pdf.output("pdfs/solo.pdf", "F")
         driver.quit()
@@ -914,7 +914,7 @@ def solo_pdf_view(request):
             i += 1    
             driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'solo_img.png',-8,None,220,200)
+            pdf.image('images/'+ str(i) +'solo_img.png',0,None,140,140)
             os.remove('images/'+ str(i) +'solo_img.png')
         pdf.output("pdfs/solo.pdf", "F")
         driver.quit()
@@ -1549,6 +1549,61 @@ def examinations_output_view(request):
     final_theory=Final_Theory_Model.objects.filter(person=personal_species).last()
     context={'form':form, 'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
     return render(request, 'examinations_output.html',context)
+
+
+def examinations_output_pdf_view(request):
+    work=Disease_Model.objects.last()
+    if work:
+        code=work.examinations_code
+    else:
+        code=''
+    examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+    personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver.get("http://127.0.0.1:8000/login")
+    username = driver.find_element('name',"username")
+    password = driver.find_element('name',"password")
+    login_but = driver.find_element('name',"login")
+    username.send_keys('parsa')
+    password.send_keys('690088choose')
+    login_but.click()
+    driver.get("http://127.0.0.1:8000/output/examinations_output")
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(1920,S('Height'))
+    count = 0
+    i = 0
+    pdf = FPDF()
+    driver.find_element('id','examinations0').screenshot('images/examinations0.png')
+    pdf.add_page()
+    pdf.image('images/examinations0.png',4,None,200,240)
+    os.remove('images/examinations0.png')
+    driver.find_element('id','examinations1').screenshot('images/examinations1.png')
+    pdf.add_page()
+    pdf.image('images/examinations1.png',4,None,200,180)
+    os.remove('images/examinations1.png')
+    driver.find_element('id','examinations2').screenshot('images/examinations2.png')
+    pdf.add_page()
+    pdf.image('images/examinations2.png',10,None,180,265)
+    os.remove('images/examinations2.png')
+    driver.find_element('id','examinations3').screenshot('images/examinations3.png')
+    pdf.add_page()
+    pdf.image('images/examinations3.png',4,None,200,265)
+    os.remove('images/examinations3.png')
+    driver.find_element('id','examinations4').screenshot('images/examinations4.png')
+    pdf.add_page()
+    pdf.image('images/examinations4.png',4,None,200,140)
+    os.remove('images/examinations4.png')
+    pdf.output("pdfs/examinations.pdf", "F")
+    file_path = os.path.join('pdfs/examinations.pdf')
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
 
 @require_POST
 def addexaminations_output_view(request):
