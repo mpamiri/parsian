@@ -1,5 +1,6 @@
 {% load static %}
 {% block head %}
+{% load has_group %}
 <!DOCTYPE html>
     <html lang='fa' dir="rtl" >
     <head>
@@ -57,7 +58,7 @@
             <li class="nav-item nav-li">
                 <a class="nav-link text-dark green text-center" 
                 href="{% url 'contact_us' %}" tabindex="-1" aria-disabled="true"><b>ارتباط با ما</b></a></li>
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated  %}
             <li class="nav-item nav-li">
                 <a class="nav-link text-dark green text-center" 
                 href="{% url 'input' %}" tabindex="-1" aria-disabled="true" name='input'><b>ورودی</b></a></li>

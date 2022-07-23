@@ -68,10 +68,10 @@
             <thead id='summary0'>       
                 <tr>
                     <th colspan='3' rowspan='2'>ردیف</th>
-                    <th colspan='3' rowspan='2'>نام</th>
-                    <th colspan='3' rowspan='2'>سن</th>
-                    <th colspan='3' rowspan='2'>شغل</th>
-                    <th colspan='3' rowspan='2'>عوامل زیان اور</th>
+                    <th colspan='3' rowspan='2' class='summary_name'>نام</th>
+                    <th colspan='3' rowspan='2' >سن</th>
+                    <th colspan='3' rowspan='2' class='summary_name'>شغل</th>
+                    <th colspan='3' rowspan='2' class='summary_name'>عوامل زیان اور</th>
                     <th colspan='2'>ادیومتری گوش راست</th>
                     <th colspan='2'>ادیومتری گوش چپ</th>
                     <th colspan='2'>اسپیرومتری</th>
@@ -82,23 +82,23 @@
                     <th colspan='3'>نظر نهایی پزشک</th>
                 </tr>
                 <tr>
-                    <th>نرمال</th>
-                    <th>غیر نرمال</th>
-                    <th>نرمال</th>
-                    <th>غیر نرمال</th>
-                    <th>نرمال</th>
-                    <th>غیر نرمال</th>
-                    <th>نرمال</th>
-                    <th>غیر نرمال</th>
-                    <th>نرمال</th>
-                    <th>غیر نرمال</th>
-                    <th>نرمال</th>
-                    <th>غیر نرمال</th>
-                    <th>دارد</th>
-                    <th>ندارد</th>
-                    <th>بلامانع</th>
-                    <th>تغییر شغل</th>
-                    <th>مشروط</th>
+                    <th class='summary_n'>نرمال</th>
+                    <th class='summary_n'>غیر نرمال</th>
+                    <th class='summary_n'>نرمال</th>
+                    <th class='summary_n'>غیر نرمال</th>
+                    <th class='summary_n'>نرمال</th>
+                    <th class='summary_n'>غیر نرمال</th>
+                    <th class='summary_n'>نرمال</th>
+                    <th class='summary_n'>غیر نرمال</th>
+                    <th class='summary_n'>نرمال</th>
+                    <th class='summary_n'>غیر نرمال</th>
+                    <th class='summary_n'>نرمال</th>
+                    <th class='summary_n'>غیر نرمال</th>
+                    <th class='summary_n'>دارد</th>
+                    <th class='summary_n'>ندارد</th>
+                    <th class='summary_n'>بلامانع</th>
+                    <th class='summary_n'>تغییر شغل</th>
+                    <th class='summary_n'>مشروط</th>
                 </tr>
             </thead>
             {% for item in personal_species %}
@@ -113,14 +113,18 @@
                 {% if item.age %}
                 <td colspan='3'>{{ 1401|sub:item.age }}</td>
                 {% else %}
-                <td class = 'none' colspan='3'>ذکر نشده</td>
+                <td class = 'none' colspan='3'>ندارد</td>
                 {% endif %}
                 {% if item.job_name %}
                 <td colspan='3'>{{ item.job_name }}</td>
                 {% else %}
                 <td class = 'none' colspan='3'>ذکر نشده</td>
                 {% endif %}
+                {% if item.assessment.all.0.assessments %}
                 <td colspan='3' colspan='3'>{{ item.assessment.all.0.assessments }}</td>
+                {% else %}
+                <td colspan='3' colspan='3' class='none'>ذکر نشده</td>
+                {% endif %}
                 {% if item.para.all.0.audio_r_eight_ac <= 25 and item.para.all.0.audio_r_eight_bc <= 25 and item.para.all.0.audio_r_six_ac <= 25 and item.para.all.0.audio_r_six_bc <= 25 and item.para.all.0.audio_r_four_ac <= 25 and item.para.all.0.audio_r_four_bc <= 25 and item.para.all.0.audio_r_two_ac <= 25 and item.para.all.0.audio_r_two_bc <= 25 and item.para.all.0.audio_r_one_ac <= 25 and item.para.all.0.audio_r_one_bc <= 25 and item.para.all.0.audio_r_five_ac <= 25  and item.para.all.0.audio_r_five_bc <= 25 %}
                     <td>*</td>
                     <td></td>

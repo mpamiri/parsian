@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import HttpResponse , Http404
 from django.contrib.auth.forms import UserCreationForm
-from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,ExaminationsCourse
-from .forms import registration, summary_of_results_form,submit_company_form,disease_form,personal_species_form,job_history_form,assessment_form,personal_history_form,examinations_form,experiments_form,para_clinic_form,consulting_form,final_theory_form,submit_course_form
+from .models import Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,ExaminationsCourse
+from .forms import registration,disease_form,personal_species_form,job_history_form,assessment_form,personal_history_form,examinations_form,experiments_form,para_clinic_form,consulting_form,final_theory_form,submit_course_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -168,7 +168,6 @@ def disease_code_view(request):
     para_clinic=Para_Clinic_Model.objects.all()
     consulting=Consulting_Model.objects.all()
     final_theory=Final_Theory_Model.objects.all()
-    items=[]
     context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory, 'examinations_course':examinations_course}
     return render(request, 'disease_code.html',context)
 
@@ -188,8 +187,8 @@ def disease_pdf_view(request):
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
     login_but = driver.find_element('name',"login")
-    username.send_keys('parsa')
-    password.send_keys('690088choose')
+    username.send_keys('bot')
+    password.send_keys('botamiri84')
     login_but.click()
     driver.get("http://127.0.0.1:8000/output/disease_code")
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
@@ -197,24 +196,15 @@ def disease_pdf_view(request):
     count = 0
     i = 0
     pdf = FPDF()
-    driver.find_element('id','diseaseHead').screenshot('images/Headdisease_img.png')
-    pdf.add_page()
-    pdf.image('images/Headdisease_img.png',-1,None,220,22)
-    os.remove('images/Headdisease_img.png')
-    for x in personal_species:
-        count += 1
-    while i <= count:
-        if (i - 1) % 20 == 0 and i != 1:
-            driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease_img.png')
-            pdf.add_page()
-            pdf.image('images/'+ str(i) +'disease_img.png',3,None,200,8)
-            os.remove('images/'+ str(i) +'disease_img.png')
-            i += 1 
-        else:   
-            driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease_img.png')
-            pdf.image('images/'+ str(i) +'disease_img.png',3,None,200,8)
-            os.remove('images/'+ str(i) +'disease_img.png')
-            i += 1
+    while i <= count :
+        driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease_img.png')
+        driver.find_element('id','Head').screenshot('images/Head_img.png')
+        pdf.add_page()
+        pdf.image('images/Head_img.png',-1,None,220,22)
+        pdf.image('images/'+ str(i) +'disease_img.png',3,None,200,200)
+        os.remove('images/'+ str(i) +'disease_img.png')
+        os.remove('images/Head_img.png')
+        i += 1
     pdf.output("pdfs/disease.pdf", "F")
     file_path = os.path.join('pdfs/disease.pdf')
     if os.path.exists(file_path):
@@ -268,24 +258,33 @@ def open_docs_pdf_view(request):
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(1920,S('Height'))
     count = 0
-    i = 0
+    i = 1
     pdf = FPDF()
-    driver.find_element('id','OpenCourseHead').screenshot('images/OpenCourseHead_img.png')
     pdf.add_page()
-    pdf.image('images/OpenCourseHead_img.png',-1,None,220,22)
-    os.remove('images/OpenCourseHead_img.png')
+    driver.find_element('id','Head').screenshot('images/Head_img.png')
+    driver.find_element('id','open0').screenshot('images/open0_img.png')
+    pdf.image('images/Head_img.png',-1,None,220,22)
+    pdf.image('images/open0_img.png',3,None,200,10)
+    os.remove('images/Head_img.png')
+    os.remove('images/open0_img.png')
     for x in personal_species:
         count += 1
     while i <= count:
         if (i - 1) % 20 == 0 and i != 1:
             driver.find_element('id','open' + str(i)).screenshot('images/'+ str(i) +'open_img.png')
+            driver.find_element('id','Head').screenshot('images/Head_img.png')
+            driver.find_element('id','open0').screenshot('images/open0_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'open_img.png',3,None,200,8)
+            pdf.image('images/Head_img.png',-1,None,220,22)
+            pdf.image('images/open0_img.png',3,None,200,10)
+            pdf.image('images/'+ str(i) +'open_img.png',3,None,200,10)
             os.remove('images/'+ str(i) +'open_img.png')
+            os.remove('images/open0_img.png')
+            os.remove('images/Head_img.png')
             i += 1 
         else:   
             driver.find_element('id','open' + str(i)).screenshot('images/'+ str(i) +'open_img.png')
-            pdf.image('images/'+ str(i) +'open_img.png',3,None,200,8)
+            pdf.image('images/'+ str(i) +'open_img.png',3,None,200,10)
             os.remove('images/'+ str(i) +'open_img.png')
             i += 1
     pdf.output("pdfs/open.pdf", "F")
@@ -342,29 +341,33 @@ def summary_of_examinations_pdf_view(request):
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(1920,S('Height'))
     count = 0
-    i = 0
+    i = 1
     pdf = FPDF()
-    driver.find_element('id','Head').screenshot('images/Head_img.png')
     pdf.add_page()
+    driver.find_element('id','Head').screenshot('images/Head_img.png')
+    driver.find_element('id','summary0').screenshot('images/summary0_img.png')
     pdf.image('images/Head_img.png',-1,None,220,22)
+    pdf.image('images/summary0_img.png',3,None,200,22)
     os.remove('images/Head_img.png')
+    os.remove('images/summary0_img.png')
     for x in personal_species:
         count += 1
-    while i <= count:
-        if i == 0:
+    while i <= count: 
+        if (i - 1) % 15 == 0 and i != 1:
             driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary_img.png')
-            pdf.image('images/'+ str(i) +'summary_img.png',3,None,200,20)
-            os.remove('images/'+ str(i) +'summary_img.png')
-            i += 1
-        elif (i - 1) % 15 == 0 and i != 1:
-            driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary_img.png')
+            driver.find_element('id','Head').screenshot('images/Head_img.png')
+            driver.find_element('id','summary0').screenshot('images/summary0_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'summary_img.png',3,None,200,12)
+            pdf.image('images/Head_img.png',-1,None,220,22)
+            pdf.image('images/summary0_img.png',3,None,200,20)
+            pdf.image('images/'+ str(i) +'summary_img.png',3,None,200,10)
             os.remove('images/'+ str(i) +'summary_img.png')
+            os.remove('images/summary0_img.png')
+            os.remove('images/Head_img.png')
             i += 1 
         else:   
             driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary_img.png')
-            pdf.image('images/'+ str(i) +'summary_img.png',3,None,200,12)
+            pdf.image('images/'+ str(i) +'summary_img.png',3,None,200,10)
             os.remove('images/'+ str(i) +'summary_img.png')
             i += 1
     pdf.output("pdfs/summary.pdf", "F")
@@ -418,24 +421,33 @@ def problem_pdf_view(request):
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(S('Width'),S('Height'))
     count = 0
-    i = -1
+    i = 1
     pdf = FPDF()
-    driver.find_element('id','Head').screenshot('images/Head_img.png')
     pdf.add_page()
+    driver.find_element('id','Head').screenshot('images/Head_img.png')
+    driver.find_element('id','problem0').screenshot('images/problem0_img.png')
     pdf.image('images/Head_img.png',-1,None,220,22)
+    pdf.image('images/problem0_img.png',3,None,200,22)
     os.remove('images/Head_img.png')
+    os.remove('images/problem0_img.png')
     for x in personal_species:
         count += 1
-    while i <= count:
-        if (i - 1) % 20 == 0 and i != 1:
+    while i <= count: 
+        if (i - 1) % 15 == 0 and i != 1:
             driver.find_element('id','problem' + str(i)).screenshot('images/'+ str(i) +'problem_img.png')
+            driver.find_element('id','Head').screenshot('images/Head_img.png')
+            driver.find_element('id','problem0').screenshot('images/problem0_img.png')
             pdf.add_page()
-            pdf.image('images/'+ str(i) +'problem_img.png',3,None,200,8)
+            pdf.image('images/Head_img.png',-1,None,220,22)
+            pdf.image('images/problem0_img.png',3,None,200,20)
+            pdf.image('images/'+ str(i) +'problem_img.png',3,None,200,10)
             os.remove('images/'+ str(i) +'problem_img.png')
+            os.remove('images/problem0_img.png')
+            os.remove('images/Head_img.png')
             i += 1 
         else:   
             driver.find_element('id','problem' + str(i)).screenshot('images/'+ str(i) +'problem_img.png')
-            pdf.image('images/'+ str(i) +'problem_img.png',3,None,200,8)
+            pdf.image('images/'+ str(i) +'problem_img.png',3,None,200,10)
             os.remove('images/'+ str(i) +'problem_img.png')
             i += 1
     pdf.output("pdfs/problem.pdf", "F")

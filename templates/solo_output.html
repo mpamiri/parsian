@@ -363,6 +363,19 @@ xmlns="http://www.w3.org/2000/svg">
                     {% endif %}
                 </tr>
                 <tr>
+                    <td class='first'>وضعیت پرونده</td>
+                    <td class='second'>---</td>
+                    {% if item.final.all.0.belamane == True %}
+                    <td class='third True'>بلامانع</td>
+                    {% elif item.final.all.0.mashrot == True %}
+                    <td class='third blue'>مشروط</td>
+                    {% elif item.final.all.0.rad == True %}
+                    <td class='third false'>رد صلاحیت</td>
+                    {% else %}
+                    <td class='third none'>باز</td>    
+                    {% endif %}
+                </tr>
+                <tr>
                     <td class='first'>معاینات غیر نرمال</td>
                     {% if item.examinations.all.0.not_normals %}
                     <td class='third' colspan=2>{{ item.examinations.all.0.not_normals }}</td>

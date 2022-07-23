@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.timezone import timezone
 
 class Company(models.Model):
-    name = models.CharField(max_length=20, null=True, blank=True,unique=True)
+    name = models.CharField(max_length=250, null=True, blank=True,unique=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -13,185 +13,76 @@ class Company(models.Model):
 class ExaminationsCourse(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     year = models.IntegerField(null=True, blank=True)
-    employer = models.CharField(max_length=20, null=True, blank=True)
-    doctor = models.CharField(max_length=20, null=True, blank=True)
-    examinations_code = models.CharField(max_length=20, null=True, blank=True,unique=True)
+    employer = models.CharField(max_length=250, null=True, blank=True)
+    doctor = models.CharField(max_length=250, null=True, blank=True)
+    examinations_code = models.CharField(max_length=250, null=True, blank=True,unique=True)
     def __str__(self):
         return f'{self.examinations_code}'
 
-    
-# class Examination(models.Model):
-#     examinations_course = models.ForeignKey(ExaminationsCourse, on_delete=models.CASECADE)
-#     personal_species = models.ForeignKey()
-
-
-
-class Summary_Of_Results_Model(models.Model):
-    name = models.CharField(max_length=20, null=True, blank=True,unique=True)
-    number = models.IntegerField(null=True, blank=True,validators=[MinValueValidator(0)])
-    start_month = models.IntegerField(default=1, null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(12)])
-    start_year = models.IntegerField(default=1300, null=True, blank=True,validators=[MinValueValidator(1300),MaxValueValidator(1400)])
-    job = models.CharField(max_length=30, null=True, blank=True)
-    examinations_code=models.CharField(max_length=20, null=True, blank=True)
-    job_code = models.CharField( null=True, blank=True,max_length=30)
-    gender_CHOICES = [('mard', 'مرد'), ('zan', 'زن')]
-    gender = models.CharField(default='mard', choices=gender_CHOICES, null=True, max_length=20)
-    harmful_factors = models.CharField(max_length=100, null=True, blank=True)
-    CODE_CHOICES = [(1, '1'), (2, '2'), (3, '3')]
-    code = models.IntegerField(default=1, choices=CODE_CHOICES, null=True, blank=True)
-    age = models.IntegerField(default=1300, null=True, blank=True,validators=[MinValueValidator(1300),MaxValueValidator(1400)])
-    length = models.IntegerField(default=100, null=True, blank=True,validators=[MinValueValidator(100),MaxValueValidator(300)])
-    weight = models.IntegerField(default=20, null=True, blank=True,validators=[MinValueValidator(20),MaxValueValidator(200)])
-    body_mass = models.CharField(max_length=300, null=True, blank=True)
-    body_mass_status = models.CharField(max_length=300, null=True, blank=True)
-    blood_sugar = models.IntegerField(default=50, null=True, blank=True,validators=[MinValueValidator(50),MaxValueValidator(500)])
-    blood_sugar_status = models.CharField(max_length=300, null=True, blank=True)
-    blood_pressure = models.IntegerField(default=5, null=True, blank=True,validators=[MinValueValidator(5),MaxValueValidator(20)])
-    blood_pressure_status = models.CharField(max_length=300, null=True, blank=True)
-    cholesterol = models.IntegerField(default=50, null=True, blank=True,validators=[MinValueValidator(50),MaxValueValidator(1000)])
-    cholesterol_status = models.CharField(max_length=300, null=True, blank=True)
-    triglyceride = models.IntegerField(default=20, null=True, blank=True,validators=[MinValueValidator(20),MaxValueValidator(2000)])
-    triglyceride_status = models.CharField(max_length=300, null=True, blank=True)
-    URINE_CHOICES = [('null', ''), ('normal', 'نرمال'), ('not_normal', 'غیر نرمال'), ('none', 'ندارد')]
-    urine = models.CharField(choices=URINE_CHOICES, max_length=300, default='null', null=True, blank=True)
-    breathing_CHOICES = [('null', ''), ('normal', 'نرمال'), ('tahdidi', 'تحدیدی'), ('ensedadi', 'انسدادی'),
-                         ('try', 'نیاز به تکرار'), ('namaie_toaman', 'نمای توامان تحدیدی وانسدادی'),
-                         ('none', 'ندارد')]
-    breathing_test = models.CharField(choices=breathing_CHOICES, max_length=300, default='null', null=True, blank=True)
-    left_ear_CHOICES = [('null', ''), ('normal', 'نرمال'), ('kahesh_shenavai_hedayati', 'کاهش شنوایی هدایتی'),
-                        ('kahesh_shenavai_hesi_asabi', 'کاهش شنوایی حسی عصبی'),
-                        ('kahesh_shenavai_nashi_az_seda', 'کاهش شنوایی ناشی از صدا'),
-                        ('toaman_hedayati_va_hesi_asabi', 'توامان هدایتی و حسی عصبی'), ('none', 'ندارد')]
-    left_ear_hearing = models.CharField(choices=left_ear_CHOICES, max_length=300, default='null', null=True, blank=True)
-    right_ear_CHOICES = [('null', ''), ('normal', 'نرمال'), ('kahesh_shenavai_hedayati', 'کاهش شنوایی هدایتی'),
-                        ('kahesh_shenavai_hesi_asabi', 'کاهش شنوایی حسی عصبی'),
-                        ('kahesh_shenavai_nashi_az_seda', 'کاهش شنوایی ناشی از صدا'),
-                        ('toaman_hedayati_va_hesi_asabi', 'توامان هدایتی و حسی عصبی'), ('none', 'ندارد')]
-    right_ear_hearing = models.CharField(choices=right_ear_CHOICES, max_length=300, default='null', null=True, blank=True)
-    left_eye_vision = models.IntegerField(default=1, null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(12)])
-    left_eye_vision_status = models.CharField(max_length=300, null=True, blank=True)
-    left_eye_vision_with_glasses = models.IntegerField(default=1, null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(12)])
-    right_eye_vision = models.IntegerField(default=1, null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(12)])
-    right_eye_vision_status = models.CharField(max_length=300, null=True, blank=True)
-    right_eye_vision_with_glasses = models.IntegerField(default=1, null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(12)])
-    color_CHOICES = [('null', ''), ('normal', 'نرمال'), ('not_normal', 'غیر نرمال'), ('tashkhis_rang_ghermez', 'تشخیص رنگ قرمز'),
-                     ('none', 'ندارد')]
-    color_vision = models.CharField(choices=color_CHOICES, max_length=300, default='null', null=True, blank=True)
-    field_CHOICES = [('null', ''), ('normal', 'نرمال'), ('not_normal', 'غیر نرمال'), ('none', 'ندارد')]
-    field_of_veiw = models.CharField(choices=field_CHOICES, max_length=300, default='null', null=True, blank=True)
-    depth_CHOICES = [('null', ''), ('normal', 'نرمال'), ('not_normal', 'غیر نرمال'), ('none', 'ندارد')]
-    depth_vision = models.CharField(choices=depth_CHOICES, max_length=300, default='null', null=True, blank=True)
-    breast_CHOICES = [('null', ''), ('normal', 'نرمال'), ('not_normal', 'غیر نرمال'), ('none', 'ندارد')]
-    breast_photo = models.CharField(choices=breast_CHOICES, max_length=300, default='null', null=True, blank=True)
-    heart_CHOICES = [('null', ''), ('normal', 'نرمال'), ('taghirat_gheir_ekhtesasi', 'تغییرات غیر اختصاصی'),
-                     ('try', 'نیاز به تکرار'), ('not_normal', 'غیر نرمال'), ('none', 'ندارد')]
-    heart = models.CharField(choices=heart_CHOICES, max_length=300, default='null', null=True, blank=True)
-    blood_lead = models.IntegerField(null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(50)])
-    blood_lead_status = models.CharField(max_length=300, null=True, blank=True)
-    chratinin = models.IntegerField(null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(5)])
-    PSA = models.IntegerField(null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(20)])
-    PSA_status = models.CharField(max_length=300, null=True, blank=True)
-    D3 = models.IntegerField(null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(5)])
-    TSH = models.IntegerField(null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(5)])
-    TSH_status = models.CharField(max_length=300, null=True, blank=True)
-    problem = models.CharField(max_length=300, null=True, blank=True)
-    problem_CHOICES = [('null', ''), ('darad', 'دارد'), ('none', 'ندارد')]
-    problems_with_the_persons_job = models.CharField(choices=problem_CHOICES, max_length=300, default='null', null=True,blank=True)
-    recommendations = models.CharField(max_length=300, null=True, blank=True)
-    refer_CHOICES = [('null', ''), ('none', 'ندارد'), ('ghalb_orogh', 'قلب و عروق'), ('dakheli', 'داخلی'), ('rie', 'ریه'),
-                     ('ghodad', 'غدد'), ('saier', 'سایر')]
-    refer_to_specialist = models.CharField(choices=refer_CHOICES, max_length=300, default='null', null=True, blank=True)
-    final_CHOICES = [('null', ''), ('belamane', 'بلامانع'), ('taghir_shekl', 'تغییر شغل'), ('mashrot', 'مشروط'),
-                     ('comision', 'کمیسیون')]
-    final_theory = models.CharField(choices=final_CHOICES, max_length=300, default='null', null=True, blank=True)
-    reson_for_opening_the_case = models.CharField(max_length=300, null=True, blank=True)
-    occupational_CHOICES = [('null', ''), ('darhal_peygiri', 'درحال پیگیری'), ('done', 'انجام شده'),
-                            ('not_done', 'انجام نشده')]
-    occupational_actions = models.CharField(choices=occupational_CHOICES, max_length=300, default='null', null=True,
-                                            blank=True)
-    occupational_disease_code = models.CharField(max_length=300, null=True, blank=True)
-    AST = models.IntegerField(null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(20)])
-    AST_status = models.CharField(max_length=300, null=True, blank=True)
-    ALT = models.IntegerField(null=True, blank=True,validators=[MinValueValidator(0),MaxValueValidator(20)])
-    ALT_status = models.CharField(max_length=300, null=True, blank=True)
-    age_two = models.IntegerField(null=True, blank=True)
-    duration_of_employment = models.CharField(max_length=300, null=True, blank=True)
-    overweight = models.CharField(max_length=300, null=True, blank=True)
-
-
-
-
-class Submit_Company_Model(models.Model):
-    company = models.CharField(max_length=20, null=True, blank=True)
-    doctor = models.CharField(max_length=20, null=True, blank=True)
-    date = models.CharField(max_length=20, null=True, blank=True)
-    employer = models.CharField(max_length=20, null=True, blank=True)
-    examinations_code=models.CharField(max_length=20, null=True, blank=True)
-
 
 class Disease_Model(models.Model):
-    examinations_code=models.CharField(max_length=20, null=True, blank=True)
+    examinations_code=models.CharField(max_length=250, null=True, blank=True)
     order_CHOICES = [(1, '1'), (10, '10'), (20, '20'), (30, '30'), (40, '40'), (50, '50')]
     order_number = models.IntegerField(default=1, choices=order_CHOICES, null=True,blank=True)
-    name = models.CharField(max_length=50,null=True,blank=True)
+    name = models.CharField(max_length=250,null=True,blank=True)
     personal_code = models.IntegerField(null=True,blank=True)
-    fathers_name = models.CharField(max_length=20, null=True, blank=True)
+    fathers_name = models.CharField(max_length=250, null=True, blank=True)
     age = models.IntegerField(null=True,blank=True)
 
 
 class Personal_Species_Model(models.Model):
     examinations_code = models.ForeignKey(ExaminationsCourse, on_delete=models.CASCADE)
-    examinations_type= models.CharField(max_length=20, null=True, blank=True,unique=True)
+    examinations_type= models.CharField(max_length=250, null=True, blank=True,unique=True)
     date_year=models.IntegerField( null=True, blank=True)
     date_month=models.IntegerField(null=True, blank=True)
     date_day=models.IntegerField(null=True, blank=True)
     profil_number=models.IntegerField(null=True, blank=True)
     employment_number=models.IntegerField(null=True, blank=True)
-    name = models.CharField(max_length=20, null=True, blank=True,unique=True)
-    fathers_name = models.CharField(max_length=20, null=True, blank=True)
+    name = models.CharField(max_length=250, null=True, blank=True,unique=True)
+    fathers_name = models.CharField(max_length=250, null=True, blank=True)
     gender_CHOICES = [('mard', 'مرد'), ('zan', 'زن')]
-    gender = models.CharField(default='mard', choices=gender_CHOICES, max_length=20)
+    gender = models.CharField(default='mard', choices=gender_CHOICES, max_length=250)
     marriage_status_CHOICES = [('mojarad', 'مجرد'), ('motahel', 'متاحل')]
-    marriage_status = models.CharField(default='mojarad', choices=marriage_status_CHOICES,  max_length=20)
+    marriage_status = models.CharField(default='mojarad', choices=marriage_status_CHOICES,  max_length=250)
     children = models.IntegerField(null=True, blank=True)
     age = models.IntegerField(null=True, blank=True,validators=[MinValueValidator(1300),MaxValueValidator(1400)])
     personal_code = models.IntegerField(null=True, blank=True)
     military_status_CHOICES = [('khedmat_karde', 'خدمت کرده'), ('moaf', 'معاف')]
-    military_status = models.CharField(default='khedmat_karde', choices=military_status_CHOICES, max_length=20)
-    raste = models.CharField(max_length=20, null=True, blank=True)
+    military_status = models.CharField(default='khedmat_karde', choices=military_status_CHOICES, max_length=250)
+    raste = models.CharField(max_length=250, null=True, blank=True)
     medical_exemption = models.BooleanField(default=False)
-    medical_exemption_reason = models.CharField(max_length=20, null=True, blank=True)
-    job_name = models.CharField(max_length=20, null=True, blank=True)
-    employer_name = models.CharField(max_length=20, null=True, blank=True)
-    address = models.CharField(max_length=50, null=True, blank=True)
+    medical_exemption_reason = models.CharField(max_length=250, null=True, blank=True)
+    job_name = models.CharField(max_length=250, null=True, blank=True)
+    employer_name = models.CharField(max_length=250, null=True, blank=True)
+    address = models.CharField(max_length=250, null=True, blank=True)
 
 
 class Job_History_Model(models.Model):
     person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='history',null=True,blank=True)
-    current_job = models.CharField(max_length=50, null=True, blank=True)
-    current_job_duty = models.CharField(max_length=50, null=True, blank=True)
+    current_job = models.CharField(max_length=250, null=True, blank=True)
+    current_job_duty = models.CharField(max_length=250, null=True, blank=True)
     current_job_from_year = models.IntegerField(default=0)
     current_job_from_month = models.IntegerField(default=0)
     current_job_from_day = models.IntegerField(default=0)
     current_job_to_year = models.IntegerField(default=0)
     current_job_to_month = models.IntegerField(default=0)
     current_job_to_day = models.IntegerField(default=0)
-    current_job_reason = models.CharField(max_length=50, null=True, blank=True)
-    second_current_job = models.CharField(max_length=50, null=True, blank=True)
-    second_current_job_duty = models.CharField(max_length=50, null=True, blank=True)
-    second_current_job_from = models.CharField(max_length=50, null=True, blank=True)
-    second_current_job_to = models.CharField(max_length=50, null=True, blank=True)
-    second_current_job_reason = models.CharField(max_length=50, null=True, blank=True)
-    previous_job = models.CharField(max_length=50, null=True, blank=True)
-    previous_job_duty = models.CharField(max_length=50, null=True, blank=True)
-    previous_job_from = models.CharField(max_length=50, null=True, blank=True)
-    previous_job_to = models.CharField(max_length=50, null=True, blank=True)
-    previous_job_reason = models.CharField(max_length=50, null=True, blank=True)
-    second_previous_job = models.CharField(max_length=50, null=True, blank=True)
-    second_previous_job_duty = models.CharField(max_length=50, null=True, blank=True)
-    second_previous_job_from = models.CharField(max_length=50, null=True, blank=True)
-    second_previous_job_to = models.CharField(max_length=50, null=True, blank=True)
-    second_previous_job_reason = models.CharField(max_length=50, null=True, blank=True)
+    current_job_reason = models.CharField(max_length=250, null=True, blank=True)
+    second_current_job = models.CharField(max_length=250, null=True, blank=True)
+    second_current_job_duty = models.CharField(max_length=250, null=True, blank=True)
+    second_current_job_from = models.CharField(max_length=250, null=True, blank=True)
+    second_current_job_to = models.CharField(max_length=250, null=True, blank=True)
+    second_current_job_reason = models.CharField(max_length=250, null=True, blank=True)
+    previous_job = models.CharField(max_length=250, null=True, blank=True)
+    previous_job_duty = models.CharField(max_length=250, null=True, blank=True)
+    previous_job_from = models.CharField(max_length=250, null=True, blank=True)
+    previous_job_to = models.CharField(max_length=250, null=True, blank=True)
+    previous_job_reason = models.CharField(max_length=250, null=True, blank=True)
+    second_previous_job = models.CharField(max_length=250, null=True, blank=True)
+    second_previous_job_duty = models.CharField(max_length=250, null=True, blank=True)
+    second_previous_job_from = models.CharField(max_length=250, null=True, blank=True)
+    second_previous_job_to = models.CharField(max_length=250, null=True, blank=True)
+    second_previous_job_reason = models.CharField(max_length=250, null=True, blank=True)
     durations = models.IntegerField(null=True, blank=True)
     # assessment = models.ForeignKey(Assessment_Model, on_delete=models.CASECADE)
 
@@ -247,67 +138,67 @@ class Assessment_Model(models.Model):
     previous_rav_order = models.BooleanField(default=False)
     previous_rav_stressor = models.BooleanField(default=False)
     previous_rav_other = models.BooleanField(default=False)   
-    required_description = models.CharField(max_length=50, null=True, blank=True)
-    kar_shenas = models.CharField(max_length=50, null=True, blank=True)
-    kar_shenas_name = models.CharField(max_length=50, null=True, blank=True)
+    required_description = models.CharField(max_length=250, null=True, blank=True)
+    kar_shenas = models.CharField(max_length=250, null=True, blank=True)
+    kar_shenas_name = models.CharField(max_length=250, null=True, blank=True)
     date_year=models.IntegerField(null=True, blank=True)
     date_month=models.IntegerField(null=True, blank=True)
     date_day=models.IntegerField(null=True, blank=True)
-    assessments = models.CharField(max_length=50, null=True, blank=True)
+    assessments = models.CharField(max_length=250, null=True, blank=True)
 
 class Personal_History_Model(models.Model):
     person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='personalhistory',null=True,blank=True)    
     first_y = models.BooleanField(default=False)  
     first_n = models.BooleanField(default=False) 
-    first_des = models.CharField(max_length=50, null=True, blank=True)
+    first_des = models.CharField(max_length=250, null=True, blank=True)
     second_y = models.BooleanField(default=False)  
     second_n = models.BooleanField(default=False) 
-    second_des = models.CharField(max_length=50, null=True, blank=True)
+    second_des = models.CharField(max_length=250, null=True, blank=True)
     third_y = models.BooleanField(default=False)  
     third_n = models.BooleanField(default=False) 
-    third_des = models.CharField(max_length=50, null=True, blank=True)
+    third_des = models.CharField(max_length=250, null=True, blank=True)
     fourth_y = models.BooleanField(default=False)  
     fourth_n = models.BooleanField(default=False) 
-    fourth_des = models.CharField(max_length=50, null=True, blank=True)
+    fourth_des = models.CharField(max_length=250, null=True, blank=True)
     fifth_y = models.BooleanField(default=False)  
     fifth_n = models.BooleanField(default=False) 
-    fifth_des = models.CharField(max_length=50, null=True, blank=True)
+    fifth_des = models.CharField(max_length=250, null=True, blank=True)
     sixth_y = models.BooleanField(default=False)  
     sixth_n = models.BooleanField(default=False) 
-    sixth_des = models.CharField(max_length=50, null=True, blank=True)
+    sixth_des = models.CharField(max_length=250, null=True, blank=True)
     seventh_y = models.BooleanField(default=False)  
     seventh_n = models.BooleanField(default=False) 
-    seventh_des = models.CharField(max_length=50, null=True, blank=True)
+    seventh_des = models.CharField(max_length=250, null=True, blank=True)
     eighth_y = models.BooleanField(default=False)  
     eighth_n = models.BooleanField(default=False) 
-    eighth_des = models.CharField(max_length=50, null=True, blank=True)
+    eighth_des = models.CharField(max_length=250, null=True, blank=True)
     ninth_y = models.BooleanField(default=False)  
     ninth_n = models.BooleanField(default=False) 
-    ninth_des = models.CharField(max_length=50, null=True, blank=True)
+    ninth_des = models.CharField(max_length=250, null=True, blank=True)
     tenth_y = models.BooleanField(default=False)  
     tenth_n = models.BooleanField(default=False) 
-    tenth_des_number = models.CharField(max_length=50, null=True, blank=True)
-    tenth_des_duration = models.CharField(max_length=50, null=True, blank=True)
+    tenth_des_number = models.CharField(max_length=250, null=True, blank=True)
+    tenth_des_duration = models.CharField(max_length=250, null=True, blank=True)
     eleventh_y = models.BooleanField(default=False)  
     eleventh_n = models.BooleanField(default=False) 
-    eleventh_des_number = models.CharField(max_length=50, null=True, blank=True)
-    eleventh_des_duration = models.CharField(max_length=50, null=True, blank=True)
+    eleventh_des_number = models.CharField(max_length=250, null=True, blank=True)
+    eleventh_des_duration = models.CharField(max_length=250, null=True, blank=True)
     twelfth_y = models.BooleanField(default=False)  
     twelfth_n = models.BooleanField(default=False) 
-    twelfth_des = models.CharField(max_length=50, null=True, blank=True)
+    twelfth_des = models.CharField(max_length=250, null=True, blank=True)
     thirteenth_y = models.BooleanField(default=False)  
     thirteenth_n = models.BooleanField(default=False) 
-    thirteenth_des_type = models.CharField(max_length=50, null=True, blank=True)
-    thirteenth_des_reason = models.CharField(max_length=50, null=True, blank=True)
+    thirteenth_des_type = models.CharField(max_length=250, null=True, blank=True)
+    thirteenth_des_reason = models.CharField(max_length=250, null=True, blank=True)
     fourteenth_y = models.BooleanField(default=False)  
     fourteenth_n = models.BooleanField(default=False) 
-    fourteenth_des = models.CharField(max_length=50, null=True, blank=True)
+    fourteenth_des = models.CharField(max_length=250, null=True, blank=True)
     fifteenth_y = models.BooleanField(default=False)  
     fifteenth_n = models.BooleanField(default=False) 
-    fifteenth_des = models.CharField(max_length=50, null=True, blank=True)
+    fifteenth_des = models.CharField(max_length=250, null=True, blank=True)
     sixteenth_y = models.BooleanField(default=False)  
     sixteenth_n = models.BooleanField(default=False) 
-    sixteenth_des = models.CharField(max_length=50, null=True, blank=True)
+    sixteenth_des = models.CharField(max_length=250, null=True, blank=True)
     
 
 class Examinations_Model(models.Model):
@@ -332,7 +223,7 @@ class Examinations_Model(models.Model):
     local_sign_rang_paride = models.BooleanField(default=False)
     local_sign_other = models.BooleanField(default=False)
     local_sign_without_sign = models.BooleanField(default=False)
-    local_des = models.CharField(max_length=50, null=True, blank=True)
+    local_des = models.CharField(max_length=250, null=True, blank=True)
     
     eye_sym_kahesh_binayi = models.BooleanField(default=False)
     eye_sym_tari_did = models.BooleanField(default=False)
@@ -349,7 +240,7 @@ class Examinations_Model(models.Model):
     eye_sign_nistagemos = models.BooleanField(default=False)
     eye_sign_other = models.BooleanField(default=False)
     eye_sign_without_sign = models.BooleanField(default=False)
-    eye_des = models.CharField(max_length=50, null=True, blank=True)
+    eye_des = models.CharField(max_length=250, null=True, blank=True)
 
     skin_sym_kharesh_post = models.BooleanField(default=False)
     skin_sym_rizesh_mo = models.BooleanField(default=False)
@@ -372,7 +263,7 @@ class Examinations_Model(models.Model):
     skin_sign_taghirat_peygmani = models.BooleanField(default=False)
     skin_sign_other = models.BooleanField(default=False)
     skin_sign_without_sign = models.BooleanField(default=False)
-    skin_des = models.CharField(max_length=50, null=True, blank=True)
+    skin_des = models.CharField(max_length=250, null=True, blank=True)
 
     gosh_sym_kahesh_shenavaii = models.BooleanField(default=False)
     gosh_sym_vez_vez_gosh = models.BooleanField(default=False)
@@ -403,7 +294,7 @@ class Examinations_Model(models.Model):
     gosh_sign_zakhm = models.BooleanField(default=False)
     gosh_sign_other = models.BooleanField(default=False)
     gosh_sign_without_sign = models.BooleanField(default=False)
-    gosh_des = models.CharField(max_length=50, null=True, blank=True)
+    gosh_des = models.CharField(max_length=250, null=True, blank=True)
 
     sar_sym_dard_gardan = models.BooleanField(default=False)
     sar_sym_tode_gardani = models.BooleanField(default=False)
@@ -413,7 +304,7 @@ class Examinations_Model(models.Model):
     sar_sign_gardani = models.BooleanField(default=False)
     sar_sign_other = models.BooleanField(default=False)
     sar_sign_without_sign = models.BooleanField(default=False)
-    sar_des = models.CharField(max_length=50, null=True, blank=True)
+    sar_des = models.CharField(max_length=250, null=True, blank=True)
 
     rie_sym_sorfe = models.BooleanField(default=False)
     rie_sym_khelt = models.BooleanField(default=False)
@@ -429,7 +320,7 @@ class Examinations_Model(models.Model):
     rie_sign_kahesh_sedaha = models.BooleanField(default=False)
     rie_sign_other = models.BooleanField(default=False)
     rie_sign_without_sign = models.BooleanField(default=False)
-    rie_des = models.CharField(max_length=50, null=True, blank=True)
+    rie_des = models.CharField(max_length=250, null=True, blank=True)
 
     ghalb_sym_dard = models.BooleanField(default=False)
     ghalb_sym_tapesh = models.BooleanField(default=False)
@@ -447,7 +338,7 @@ class Examinations_Model(models.Model):
     ghalb_sign_andam = models.BooleanField(default=False)
     ghalb_sign_other = models.BooleanField(default=False)
     ghalb_sign_without_sign = models.BooleanField(default=False)
-    ghalb_des = models.CharField(max_length=50, null=True, blank=True)
+    ghalb_des = models.CharField(max_length=250, null=True, blank=True)
 
     shekam_sym_bi_eshteha = models.BooleanField(default=False)
     shekam_sym_tahavo = models.BooleanField(default=False)
@@ -470,7 +361,7 @@ class Examinations_Model(models.Model):
     shekam_sign_distansion = models.BooleanField(default=False)
     shekam_sign_other = models.BooleanField(default=False)
     shekam_sign_without_sign = models.BooleanField(default=False)
-    shekam_des = models.CharField(max_length=50, null=True, blank=True)
+    shekam_des = models.CharField(max_length=250, null=True, blank=True)
 
     colie_sym_soozesh = models.BooleanField(default=False)
     colie_sym_tekrar = models.BooleanField(default=False)
@@ -483,7 +374,7 @@ class Examinations_Model(models.Model):
     colie_sign_varikosel = models.BooleanField(default=False)
     colie_sign_other = models.BooleanField(default=False)
     colie_sign_without_sign = models.BooleanField(default=False)
-    colie_des = models.CharField(max_length=50, null=True, blank=True)
+    colie_des = models.CharField(max_length=250, null=True, blank=True)
 
     eskelety_sym_mafsal = models.BooleanField(default=False)
     eskelety_sym_kamar_dard = models.BooleanField(default=False)
@@ -501,7 +392,7 @@ class Examinations_Model(models.Model):
     eskelety_sign_r_slr = models.BooleanField(default=False)
     eskelety_sign_other = models.BooleanField(default=False)
     eskelety_sign_without_sign = models.BooleanField(default=False)
-    eskelety_des = models.CharField(max_length=50, null=True, blank=True)
+    eskelety_des = models.CharField(max_length=250, null=True, blank=True)
 
     asabi_sym_sar_dard = models.BooleanField(default=False)
     asabi_sym_giji = models.BooleanField(default=False)
@@ -520,7 +411,7 @@ class Examinations_Model(models.Model):
     asabi_sign_falen = models.BooleanField(default=False)
     asabi_sign_other = models.BooleanField(default=False)
     asabi_sign_without_sign = models.BooleanField(default=False)
-    asabi_des = models.CharField(max_length=50, null=True, blank=True)
+    asabi_des = models.CharField(max_length=250, null=True, blank=True)
 
     ravan_sym_asabaniat = models.BooleanField(default=False)
     ravan_sym_parkhashgari = models.BooleanField(default=False)
@@ -534,13 +425,13 @@ class Examinations_Model(models.Model):
     ravan_sign_oriantasion = models.BooleanField(default=False)
     ravan_sign_other = models.BooleanField(default=False)
     ravan_sign_without_sign = models.BooleanField(default=False)
-    ravan_des = models.CharField(max_length=50, null=True, blank=True)
+    ravan_des = models.CharField(max_length=250, null=True, blank=True)
 
-    other = models.CharField(max_length=50, null=True, blank=True)
+    other = models.CharField(max_length=250, null=True, blank=True)
     body_mass = models.IntegerField(null=True, blank=True)
     CODE_CHOICES = [(1, '1'), (2, '2'), (3, '3')]
     code = models.IntegerField(default=1, choices=CODE_CHOICES, null=True, blank=True)
-    not_normals = models.CharField(max_length=50,null=True,blank=True)
+    not_normals = models.CharField(max_length=250,null=True,blank=True)
 
 class Experiments_Model(models.Model):
     person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='experiment',null=True,blank=True) 
@@ -597,18 +488,18 @@ class Experiments_Model(models.Model):
     ppd_status = models.CharField(default='normal', choices=ppd_status_CHOICES, null=True, blank=True,max_length=10)
     d_status=models.BooleanField(default=True)
     tsh_status=models.BooleanField(default=True)
-    first_type= models.CharField(max_length=50, null=True, blank=True)
-    first_result= models.CharField(max_length=50, null=True, blank=True)
+    first_type= models.CharField(max_length=250, null=True, blank=True)
+    first_result= models.CharField(max_length=250, null=True, blank=True)
     first_date_year=models.IntegerField(null=True, blank=True)
     first_date_month=models.IntegerField(null=True, blank=True)
     first_date_day=models.IntegerField(null=True, blank=True)
-    second_type= models.CharField(max_length=50, null=True, blank=True)
-    second_result= models.CharField(max_length=50, null=True, blank=True)
+    second_type= models.CharField(max_length=250, null=True, blank=True)
+    second_result= models.CharField(max_length=250, null=True, blank=True)
     second_date_year=models.IntegerField(null=True, blank=True)
     second_date_month=models.IntegerField(null=True, blank=True)
     second_date_day=models.IntegerField(null=True, blank=True)
-    third_type= models.CharField(max_length=50, null=True, blank=True)
-    third_result= models.CharField(max_length=50, null=True, blank=True)
+    third_type= models.CharField(max_length=250, null=True, blank=True)
+    third_result= models.CharField(max_length=250, null=True, blank=True)
     third_date_year=models.IntegerField(null=True, blank=True)
     third_date_month=models.IntegerField(null=True, blank=True)
     third_date_day=models.IntegerField(null=True, blank=True)
@@ -622,18 +513,18 @@ class Para_Clinic_Model(models.Model):
     opto_hedat_l_ba=models.IntegerField(null=True, blank=True)
     opto_hedat_l_bi=models.IntegerField(null=True, blank=True)
     rangi_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
-    opto_rangi=models.CharField(null=True, blank=True,max_length=50,choices=rangi_CHOICES)
+    opto_rangi=models.CharField(null=True, blank=True,max_length=250,choices=rangi_CHOICES)
     meidan_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
-    opto_meidan=models.CharField(null=True, blank=True,max_length=50,choices=meidan_CHOICES)
+    opto_meidan=models.CharField(null=True, blank=True,max_length=250,choices=meidan_CHOICES)
     opto_omgh = models.IntegerField(null=True, blank=True)
 
     audio_date_year=models.IntegerField(null=True, blank=True)
     audio_date_month=models.IntegerField(null=True, blank=True)
     audio_date_day=models.IntegerField(null=True, blank=True)
     audio_r_status_CHOICES = [('normal', 'نرمال'), ('kahesh_shenavai_hedayati', 'کاهش شنوایی هدایتی'), ('kahesh_shenavai_hesi_asabi', 'کاهش شنوایی حسی عصبی'), ('kahesh_shenavai_nashi_az_seda', 'کاهش شنوایی ناشی از صدا'), ('toaman_hedayati_va_hesi_asabi', 'توامان هدایتی و حسی عصبی')]
-    audio_r_tafsir = models.CharField(max_length=50,choices=audio_r_status_CHOICES, null=True, blank=True)
+    audio_r_tafsir = models.CharField(max_length=250,choices=audio_r_status_CHOICES, null=True, blank=True)
     audio_l_status_CHOICES = [('normal', 'نرمال'), ('kahesh_shenavai_hedayati', 'کاهش شنوایی هدایتی'), ('kahesh_shenavai_hesi_asabi', 'کاهش شنوایی حسی عصبی'), ('kahesh_shenavai_nashi_az_seda', 'کاهش شنوایی ناشی از صدا'), ('toaman_hedayati_va_hesi_asabi', 'توامان هدایتی و حسی عصبی')]
-    audio_l_tafsir = models.CharField(max_length=50,choices=audio_l_status_CHOICES, null=True, blank=True)
+    audio_l_tafsir = models.CharField(max_length=250,choices=audio_l_status_CHOICES, null=True, blank=True)
     audio_r_eight_ac = models.IntegerField(null=True, blank=True)
     audio_r_eight_bc = models.IntegerField(null=True, blank=True)
     audio_r_six_ac = models.IntegerField(null=True, blank=True)
@@ -662,27 +553,27 @@ class Para_Clinic_Model(models.Model):
     espiro_date_year=models.IntegerField(null=True, blank=True)
     espiro_date_month=models.IntegerField(null=True, blank=True)
     espiro_date_day=models.IntegerField(null=True, blank=True)
-    espiro_fevvfvc = models.CharField(max_length=50, null=True, blank=True)
-    espiro_fev = models.CharField(max_length=50, null=True, blank=True)
-    espiro_fvc = models.CharField(max_length=50, null=True, blank=True)
-    espiro_vext = models.CharField(max_length=50, null=True, blank=True)
-    espiro_pef = models.CharField(max_length=50, null=True, blank=True)
-    espiro_fef = models.CharField(max_length=50, null=True, blank=True)
+    espiro_fevvfvc = models.CharField(max_length=250, null=True, blank=True)
+    espiro_fev = models.CharField(max_length=250, null=True, blank=True)
+    espiro_fvc = models.CharField(max_length=250, null=True, blank=True)
+    espiro_vext = models.CharField(max_length=250, null=True, blank=True)
+    espiro_pef = models.CharField(max_length=250, null=True, blank=True)
+    espiro_fef = models.CharField(max_length=250, null=True, blank=True)
     ESPIRO_TAFSIR_CHOICES = [('normal', 'نرمال'), ('ensedadi', 'انسدادی'), ('tahdidi', 'تحدیدی'),('ensedadivtahdidi','انسدادی و تحدیدی'),('again','نیاز به تکرار')]
-    espiro_tafsir = models.CharField(max_length=50,choices=ESPIRO_TAFSIR_CHOICES, null=True, blank=True)
+    espiro_tafsir = models.CharField(max_length=250,choices=ESPIRO_TAFSIR_CHOICES, null=True, blank=True)
 
     cxr_CHOICES = [('normal', 'نرمال'),('not_normal','غیر نرمال')]
-    other_cxr = models.CharField(max_length=50,choices=cxr_CHOICES,null=True, blank=True)
+    other_cxr = models.CharField(max_length=250,choices=cxr_CHOICES,null=True, blank=True)
     other_cxr_year=models.IntegerField(null=True, blank=True)
     other_cxr_month=models.IntegerField(null=True, blank=True)
     other_cxr_day=models.IntegerField(null=True, blank=True)
 
     ecg_CHOICES = [('normal', 'نرمال'),('not_normal','غیر نرمال'),('not_ekhtesasi','تغییرات غیر اختصاصی'),('again','نیاز به تکرار')]
-    other_ecg = models.CharField(max_length=50,choices=ecg_CHOICES, null=True, blank=True)
+    other_ecg = models.CharField(max_length=250,choices=ecg_CHOICES, null=True, blank=True)
     other_ecg_year=models.IntegerField(null=True, blank=True)
     other_ecg_month=models.IntegerField(null=True, blank=True)
     other_ecg_day=models.IntegerField(null=True, blank=True)
-    other_result = models.CharField(max_length=50, null=True, blank=True)
+    other_result = models.CharField(max_length=250, null=True, blank=True)
 
 
 class Consulting_Model(models.Model):
@@ -690,25 +581,25 @@ class Consulting_Model(models.Model):
     first_year=models.IntegerField(null=True, blank=True)
     first_month=models.IntegerField(null=True, blank=True)
     first_day=models.IntegerField(null=True, blank=True)
-    first_reason = models.CharField(max_length=50, null=True, blank=True)
-    first_type = models.CharField(max_length=50, null=True, blank=True)
-    first_result = models.CharField(max_length=50, null=True, blank=True)
+    first_reason = models.CharField(max_length=250, null=True, blank=True)
+    first_type = models.CharField(max_length=250, null=True, blank=True)
+    first_result = models.CharField(max_length=250, null=True, blank=True)
     second_year=models.IntegerField(null=True, blank=True)
     second_month=models.IntegerField(null=True, blank=True)
     second_day=models.IntegerField(null=True, blank=True)
-    second_reason = models.CharField(max_length=50, null=True, blank=True)
-    second_type = models.CharField(max_length=50, null=True, blank=True)
-    second_result = models.CharField(max_length=50, null=True, blank=True)
+    second_reason = models.CharField(max_length=250, null=True, blank=True)
+    second_type = models.CharField(max_length=250, null=True, blank=True)
+    second_result = models.CharField(max_length=250, null=True, blank=True)
 
 
 class Final_Theory_Model(models.Model):
     person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='final',null=True,blank=True) 
     belamane = models.BooleanField(default=False)
     mashrot = models.BooleanField(default=False)
-    mashrot_reason = models.CharField(max_length=50, null=True, blank=True)
+    mashrot_reason = models.CharField(max_length=250, null=True, blank=True)
     rad = models.BooleanField(default=False)
-    rad_reason = models.CharField(max_length=50, null=True, blank=True)
-    recommendations = models.CharField(max_length=50, null=True, blank=True)
-    reason = models.CharField(max_length=50, null=True, blank=True)
-    problems = models.CharField(max_length=100, null=True, blank=True)
+    rad_reason = models.CharField(max_length=250, null=True, blank=True)
+    recommendations = models.CharField(max_length=250, null=True, blank=True)
+    reason = models.CharField(max_length=250, null=True, blank=True)
+    problems = models.CharField(max_length=250, null=True, blank=True)
     d_code = models.IntegerField(null=True, blank=True)

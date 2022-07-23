@@ -248,7 +248,7 @@ border: 1px solid black;
 }
 .parstable{
   width : 1300px;
-  font-size: 20px;
+  font-size: 16px;
 }
 .extable{
   width : 1100px;
@@ -292,4 +292,31 @@ border: none;
 }
 .ex_p{
 padding: 20px;
+}     
+.open_first{
+  width: 7.5%;
+}
+.open_second{
+  width: 25%;
+}
+.open_third{
+  width: 25%;
+}
+.summary_name{
+  width: 20%;
+}
+.disease_age{
+  width : 8%
+}
+.disease_month{
+  width: 12%;
+}
+.problem_rec{
+  width: 30%;
+}
+.problem_pr{
+  width: 30%;
+}
+.problem_name{
+  width: 10%;
 }

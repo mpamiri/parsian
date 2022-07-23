@@ -1,8 +1,6 @@
 from django.contrib import admin
-from .models import Summary_Of_Results_Model,Submit_Company_Model,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,Company,ExaminationsCourse
+from .models import Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,Company,ExaminationsCourse
 
-admin.site.register(Summary_Of_Results_Model)
-admin.site.register(Submit_Company_Model)
 admin.site.register(Disease_Model)
 admin.site.register(Personal_Species_Model)
 admin.site.register(Job_History_Model)
