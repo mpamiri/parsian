@@ -195,16 +195,33 @@ def disease_pdf_view(request):
     driver.set_window_size(1920,S('Height'))
     count = 0
     i = 0
+    for n in personal_species:
+        count += 1
+    n = count
+    count = count // 20
+    if i % 20 != 0:
+        count += 1
     pdf = FPDF()
     while i <= count :
-        driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease_img.png')
-        driver.find_element('id','Head').screenshot('images/Head_img.png')
-        pdf.add_page()
-        pdf.image('images/Head_img.png',-1,None,220,22)
-        pdf.image('images/'+ str(i) +'disease_img.png',3,None,200,200)
-        os.remove('images/'+ str(i) +'disease_img.png')
-        os.remove('images/Head_img.png')
-        i += 1
+        if i == count:
+            height = (n - (count * 20) + 1) * 7.14
+            driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease.png')
+            driver.find_element('id','Head').screenshot('images/Head.png')
+            pdf.add_page()
+            pdf.image('images/Head.png',-1,None,220,20)
+            pdf.image('images/'+ str(i) +'disease.png',3,None,205,height)
+            os.remove('images/'+ str(i) +'disease.png')
+            os.remove('images/Head.png')
+            i += 1
+        else:
+            driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease.png')
+            driver.find_element('id','Head').screenshot('images/Head.png')
+            pdf.add_page()
+            pdf.image('images/Head.png',-1,None,220,20)
+            pdf.image('images/'+ str(i) +'disease.png',3,None,205,150)
+            os.remove('images/'+ str(i) +'disease.png')
+            os.remove('images/Head.png')
+            i += 1
     pdf.output("pdfs/disease.pdf", "F")
     file_path = os.path.join('pdfs/disease.pdf')
     if os.path.exists(file_path):
@@ -251,41 +268,40 @@ def open_docs_pdf_view(request):
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
     login_but = driver.find_element('name',"login")
-    username.send_keys('parsa')
-    password.send_keys('690088choose')
+    username.send_keys('bot')
+    password.send_keys('botamiri84')
     login_but.click()
     driver.get("http://127.0.0.1:8000/output/open_docs")
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(1920,S('Height'))
     count = 0
-    i = 1
-    pdf = FPDF()
-    pdf.add_page()
-    driver.find_element('id','Head').screenshot('images/Head_img.png')
-    driver.find_element('id','open0').screenshot('images/open0_img.png')
-    pdf.image('images/Head_img.png',-1,None,220,22)
-    pdf.image('images/open0_img.png',3,None,200,10)
-    os.remove('images/Head_img.png')
-    os.remove('images/open0_img.png')
-    for x in personal_species:
+    i = 0
+    for n in personal_species:
         count += 1
-    while i <= count:
-        if (i - 1) % 20 == 0 and i != 1:
-            driver.find_element('id','open' + str(i)).screenshot('images/'+ str(i) +'open_img.png')
-            driver.find_element('id','Head').screenshot('images/Head_img.png')
-            driver.find_element('id','open0').screenshot('images/open0_img.png')
+    n = count
+    count = count // 20
+    if i % 20 != 0:
+        count += 1
+    pdf = FPDF()
+    while i <= count :
+        if i == count:
+            height = (n - (count * 20) + 1) * 7.14
+            driver.find_element('id','open' + str(i)).screenshot('images/'+ str(i) +'open.png')
+            driver.find_element('id','Head').screenshot('images/Head.png')
             pdf.add_page()
-            pdf.image('images/Head_img.png',-1,None,220,22)
-            pdf.image('images/open0_img.png',3,None,200,10)
-            pdf.image('images/'+ str(i) +'open_img.png',3,None,200,10)
-            os.remove('images/'+ str(i) +'open_img.png')
-            os.remove('images/open0_img.png')
+            pdf.image('images/Head.png',-1,None,220,20)
+            pdf.image('images/'+ str(i) +'open.png',3,None,205,height)
+            os.remove('images/'+ str(i) +'open.png')
+            os.remove('images/Head.png')
+            i += 1
+        else:
+            driver.find_element('id','open' + str(i)).screenshot('images/'+ str(i) +'open.png')
+            driver.find_element('id','Head').screenshot('images/Head.png')
+            pdf.add_page()
+            pdf.image('images/Head.png',-1,None,220,20)
+            pdf.image('images/'+ str(i) +'open.png',3,None,205,150)
+            os.remove('images/'+ str(i) +'open.png')
             os.remove('images/Head_img.png')
-            i += 1 
-        else:   
-            driver.find_element('id','open' + str(i)).screenshot('images/'+ str(i) +'open_img.png')
-            pdf.image('images/'+ str(i) +'open_img.png',3,None,200,10)
-            os.remove('images/'+ str(i) +'open_img.png')
             i += 1
     pdf.output("pdfs/open.pdf", "F")
     file_path = os.path.join('pdfs/open.pdf')
@@ -334,41 +350,40 @@ def summary_of_examinations_pdf_view(request):
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
     login_but = driver.find_element('name',"login")
-    username.send_keys('parsa')
-    password.send_keys('690088choose')
+    username.send_keys('bot')
+    password.send_keys('botamiri84')
     login_but.click()
     driver.get("http://127.0.0.1:8000/output/summary_of_examinations")
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(1920,S('Height'))
     count = 0
-    i = 1
-    pdf = FPDF()
-    pdf.add_page()
-    driver.find_element('id','Head').screenshot('images/Head_img.png')
-    driver.find_element('id','summary0').screenshot('images/summary0_img.png')
-    pdf.image('images/Head_img.png',-1,None,220,22)
-    pdf.image('images/summary0_img.png',3,None,200,22)
-    os.remove('images/Head_img.png')
-    os.remove('images/summary0_img.png')
-    for x in personal_species:
+    i = 0
+    for n in personal_species:
         count += 1
-    while i <= count: 
-        if (i - 1) % 15 == 0 and i != 1:
-            driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary_img.png')
-            driver.find_element('id','Head').screenshot('images/Head_img.png')
-            driver.find_element('id','summary0').screenshot('images/summary0_img.png')
+    n = count
+    count = count // 20
+    if i % 20 != 0:
+        count += 1
+    pdf = FPDF()
+    while i <= count :
+        if i == count:
+            height = (n - (count * 20) + 1) * 7.14
+            driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary.png')
+            driver.find_element('id','Head').screenshot('images/Head.png')
             pdf.add_page()
-            pdf.image('images/Head_img.png',-1,None,220,22)
-            pdf.image('images/summary0_img.png',3,None,200,20)
-            pdf.image('images/'+ str(i) +'summary_img.png',3,None,200,10)
-            os.remove('images/'+ str(i) +'summary_img.png')
-            os.remove('images/summary0_img.png')
-            os.remove('images/Head_img.png')
-            i += 1 
-        else:   
-            driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary_img.png')
-            pdf.image('images/'+ str(i) +'summary_img.png',3,None,200,10)
-            os.remove('images/'+ str(i) +'summary_img.png')
+            pdf.image('images/Head.png',-1,None,220,20)
+            pdf.image('images/'+ str(i) +'summary.png',3,None,205,height)
+            os.remove('images/'+ str(i) +'summary.png')
+            os.remove('images/Head.png')
+            i += 1
+        else:
+            driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary.png')
+            driver.find_element('id','Head').screenshot('images/Head.png')
+            pdf.add_page()
+            pdf.image('images/Head.png',-1,None,220,20)
+            pdf.image('images/'+ str(i) +'summary.png',3,None,205,150)
+            os.remove('images/'+ str(i) +'summary.png')
+            os.remove('images/Head.png')
             i += 1
     pdf.output("pdfs/summary.pdf", "F")
     file_path = os.path.join('pdfs/summary.pdf')
@@ -414,41 +429,40 @@ def problem_pdf_view(request):
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
     login_but = driver.find_element('name',"login")
-    username.send_keys('parsa')
-    password.send_keys('690088choose')
+    username.send_keys('bot')
+    password.send_keys('botamiri84')
     login_but.click()
     driver.get("http://127.0.0.1:8000/output/problem")
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-    driver.set_window_size(S('Width'),S('Height'))
+    driver.set_window_size(1920,S('Height'))
     count = 0
-    i = 1
-    pdf = FPDF()
-    pdf.add_page()
-    driver.find_element('id','Head').screenshot('images/Head_img.png')
-    driver.find_element('id','problem0').screenshot('images/problem0_img.png')
-    pdf.image('images/Head_img.png',-1,None,220,22)
-    pdf.image('images/problem0_img.png',3,None,200,22)
-    os.remove('images/Head_img.png')
-    os.remove('images/problem0_img.png')
-    for x in personal_species:
+    i = 0
+    for n in personal_species:
         count += 1
-    while i <= count: 
-        if (i - 1) % 15 == 0 and i != 1:
-            driver.find_element('id','problem' + str(i)).screenshot('images/'+ str(i) +'problem_img.png')
-            driver.find_element('id','Head').screenshot('images/Head_img.png')
-            driver.find_element('id','problem0').screenshot('images/problem0_img.png')
+    n = count
+    count = count // 20
+    if i % 20 != 0:
+        count += 1
+    pdf = FPDF()
+    while i <= count :
+        if i == count:
+            height = (n - (count * 20) + 1) * 7.14
+            driver.find_element('id','problem' + str(i)).screenshot('images/'+ str(i) +'problem.png')
+            driver.find_element('id','Head').screenshot('images/Head.png')
             pdf.add_page()
-            pdf.image('images/Head_img.png',-1,None,220,22)
-            pdf.image('images/problem0_img.png',3,None,200,20)
-            pdf.image('images/'+ str(i) +'problem_img.png',3,None,200,10)
-            os.remove('images/'+ str(i) +'problem_img.png')
-            os.remove('images/problem0_img.png')
-            os.remove('images/Head_img.png')
-            i += 1 
-        else:   
-            driver.find_element('id','problem' + str(i)).screenshot('images/'+ str(i) +'problem_img.png')
-            pdf.image('images/'+ str(i) +'problem_img.png',3,None,200,10)
-            os.remove('images/'+ str(i) +'problem_img.png')
+            pdf.image('images/Head.png',-1,None,220,20)
+            pdf.image('images/'+ str(i) +'problem.png',3,None,205,height)
+            os.remove('images/'+ str(i) +'problem.png')
+            os.remove('images/Head.png')
+            i += 1
+        else:
+            driver.find_element('id','problem' + str(i)).screenshot('images/'+ str(i) +'problem.png')
+            driver.find_element('id','Head').screenshot('images/Head.png')
+            pdf.add_page()
+            pdf.image('images/Head.png',-1,None,220,20)
+            pdf.image('images/'+ str(i) +'problem.png',3,None,205,150)
+            os.remove('images/'+ str(i) +'problem.png')
+            os.remove('images/Head.png')
             i += 1
     pdf.output("pdfs/problem.pdf", "F")
     file_path = os.path.join('pdfs/problem.pdf')

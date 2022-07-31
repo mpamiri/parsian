@@ -248,7 +248,7 @@ border: 1px solid black;
 }
 .parstable{
   width : 1300px;
-  font-size: 16px;
+  font-size: 20px;
 }
 .extable{
   width : 1100px;
@@ -305,6 +305,9 @@ padding: 20px;
 .summary_name{
   width: 20%;
 }
+.disease_name{
+  width: 30%;
+}
 .disease_age{
   width : 8%
 }
@@ -319,4 +322,7 @@ padding: 20px;
 }
 .problem_name{
   width: 10%;
+}
+.summary_age{
+  width: 6%;
 }

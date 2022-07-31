@@ -60,11 +60,11 @@
             </div>
         </section>
         <table class='parstable' id = 'disease{{ forloop.counter|sub:1|div:20 }}'>
-            <tr id='disease0'>
-                <th class='disease_month'>ردیف</th>
-                <th>نام</th>
-                <th class='disease_month'>سن</th>
-                <th>شغل</th>
+            <tr>
+                <th class='disease_age'>ردیف</th>
+                <th class='disease_name'>نام</th>
+                <th class='disease_age'>سن</th>
+                <th class='disease_name'>شغل</th>
                 <th class='disease_month'>مدت اشتغال به ماه</th>
                 <th class='disease_month'>کد بیماری شغلی</th>
             </tr>
@@ -163,15 +163,15 @@
     <div class='row text-center'>
         <table class='parstable'>        
             <tr id='disease0'>
-                <th class='disease_month'>ردیف</th>
-                <th>نام</th>
-                <th class='disease_month'>سن</th>
-                <th>شغل</th>
+                <th class='disease_age'>ردیف</th>
+                <th class='disease_name'>نام</th>
+                <th class='disease_age'>سن</th>
+                <th class='disease_name'>شغل</th>
                 <th class='disease_month'>مدت اشتغال به ماه</th>
                 <th class='disease_month'>کد بیماری شغلی</th>
             </tr>
             {% for item in personal_species %}
-            <tr id='disease{{ forloop.counter }}'>
+            <tr>
                 <td>{{ forloop.counter }}</td>
                 {% if item.name %}
                 <td>{{ item.name }}</td>

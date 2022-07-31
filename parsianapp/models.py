@@ -517,6 +517,11 @@ class Para_Clinic_Model(models.Model):
     meidan_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
     opto_meidan=models.CharField(null=True, blank=True,max_length=250,choices=meidan_CHOICES)
     opto_omgh = models.IntegerField(null=True, blank=True)
+    opto_r_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
+    opto_r=models.CharField(null=True, blank=True,max_length=250,choices=opto_r_CHOICES)
+    opto_l_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
+    opto_l=models.CharField(null=True, blank=True,max_length=250,choices=opto_l_CHOICES)
+
 
     audio_date_year=models.IntegerField(null=True, blank=True)
     audio_date_month=models.IntegerField(null=True, blank=True)

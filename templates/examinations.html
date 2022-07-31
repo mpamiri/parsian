@@ -2033,4 +2033,17 @@
         </div>
     </form>
 </section>
+</script>
+<script type="text/javascript">
+$(function () {
+$("#id_marriage_status").change(function () {
+if ($(this).val() == 5) {
+$("#txtOtherSports").removeAttr("disabled");
+$("#txtOtherSports").focus();
+} else {
+$("#txtOtherSports").attr("disabled", "disabled");
+}
+});
+});
+</script>
 {% endblock content %}

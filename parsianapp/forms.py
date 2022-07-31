@@ -60,7 +60,7 @@ class personal_species_form(forms.ModelForm):
         'employment_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
         'fathers_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
-        'gender' : forms.Select(attrs={'class':'s_box','autocomplete': 'off'}),
+        'gender' : forms.Select(attrs={'class':'s_box','autocomplete': 'off','id':'select'}),
         'marriage_status' : forms.Select(attrs={'class':'box','autocomplete': 'off'}),
         'children' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'age' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'}),
