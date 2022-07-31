@@ -32,6 +32,7 @@ class Disease_Model(models.Model):
 
 class Personal_Species_Model(models.Model):
     examinations_code = models.ForeignKey(ExaminationsCourse, on_delete=models.CASCADE)
+    user = models.CharField(max_length=250, null=True, blank=True)
     examinations_type= models.CharField(max_length=250, null=True, blank=True,unique=True)
     date_year=models.IntegerField( null=True, blank=True)
     date_month=models.IntegerField(null=True, blank=True)
@@ -510,8 +511,12 @@ class Para_Clinic_Model(models.Model):
     opto_date_year=models.IntegerField(null=True, blank=True)
     opto_hedat_r_ba=models.IntegerField(null=True, blank=True)
     opto_hedat_r_bi=models.IntegerField(null=True, blank=True)
+    hedat_r_status_CHOICES = [('adam_did', 'عدم دید'), ('fc', 'FC'), ('daraie_did', 'دارای دید')]
+    opto_hedat_r_status=models.CharField(null=True, blank=True,max_length=250,choices=hedat_r_status_CHOICES) 
     opto_hedat_l_ba=models.IntegerField(null=True, blank=True)
     opto_hedat_l_bi=models.IntegerField(null=True, blank=True)
+    hedat_l_status_CHOICES = [('adam_did', 'عدم دید'), ('fc', 'FC'), ('daraie_did', 'دارای دید')]
+    opto_hedat_l_status=models.CharField(null=True, blank=True,max_length=250,choices=hedat_l_status_CHOICES) 
     rangi_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
     opto_rangi=models.CharField(null=True, blank=True,max_length=250,choices=rangi_CHOICES)
     meidan_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]

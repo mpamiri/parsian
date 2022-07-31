@@ -1790,8 +1790,8 @@
                     <th colspan=4>میدان بینایی</th>
                 </tr>
                 <tr>
-                    <th colspan=2>R</th>
-                    <th colspan=2>L</th>
+                    <th colspan=2>R{{ para_clinic.opto_hedat_r_status }}</th>
+                    <th colspan=2>L{{ para_clinic.opto_hedat_l_status }}</th>
                     <td colspan=4 rowspan=3>{{ para_clinic.opto_rangi }}</td>
                     <td colspan=4 rowspan=3>{{ para_clinic.opto_meidan }}</td>
                 </tr>
@@ -2033,17 +2033,40 @@
         </div>
     </form>
 </section>
-</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
 $(function () {
-$("#id_marriage_status").change(function () {
-if ($(this).val() == 5) {
-$("#txtOtherSports").removeAttr("disabled");
-$("#txtOtherSports").focus();
+$("#id_opto_hedat_r_status").change(function () {
+if ($(this).val() == 'daraie_did') {
+$("#id_opto_hedat_r_ba").removeAttr("disabled");
+$("#id_opto_hedat_r_ba").focus();
+$("#id_opto_hedat_r_bi").removeAttr("disabled");
+$("#id_opto_hedat_r_bi").focus();
 } else {
-$("#txtOtherSports").attr("disabled", "disabled");
+$("#id_opto_hedat_r_bi").attr("disabled", "disabled");
+$("#id_opto_hedat_r_bi").attr("disabled", "disabled");
 }
 });
 });
+</script>
+<script type="text/javascript">
+$(function () {
+$("#id_opto_hedat_l_status").change(function () {
+if ($(this).val() == 'daraie_did') {
+$("#id_opto_hedat_l_ba").removeAttr("disabled");
+$("#id_opto_hedat_l_ba").focus();
+$("#id_opto_hedat_l_bi").removeAttr("disabled");
+$("#id_opto_hedat_l_bi").focus();
+} else {
+$("#id_opto_hedat_l_bi").attr("disabled", "disabled");
+$("#id_opto_hedat_l_bi").attr("disabled", "disabled");
+}
+});
+});
+</script>
+<script>
+    document.getElementById('id_medical_exemption').onchange = function() {
+        document.getElementById('id_medical_exemption_reason').disabled = !this.checked;
+    };
 </script>
 {% endblock content %}

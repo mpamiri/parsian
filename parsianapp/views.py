@@ -982,6 +982,7 @@ def examinations_view(request):
 
 @require_POST
 def addexaminations_view(request):
+    username = request.user.username
     e_items=''
     items = ''
     personal_species=personal_species_form(request.POST)
@@ -994,7 +995,9 @@ def addexaminations_view(request):
     consulting=consulting_form(request.POST)
     final_theory=final_theory_form(request.POST)
     if personal_species.is_valid():
-        new_person = personal_species.save()
+        new_person = personal_species.save(commit=False)
+        new_person.user = username
+        new_person.save()
     if personal_species.is_valid() and  job_history.is_valid():
         new_job_history = job_history.save(commit=False)
         new_job_history.person = new_person
