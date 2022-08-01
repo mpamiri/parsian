@@ -28,6 +28,7 @@ class Disease_Model(models.Model):
     personal_code = models.IntegerField(null=True,blank=True)
     fathers_name = models.CharField(max_length=250, null=True, blank=True)
     age = models.IntegerField(null=True,blank=True)
+    
 
 
 class Personal_Species_Model(models.Model):
@@ -56,8 +57,7 @@ class Personal_Species_Model(models.Model):
     job_name = models.CharField(max_length=250, null=True, blank=True)
     employer_name = models.CharField(max_length=250, null=True, blank=True)
     address = models.CharField(max_length=250, null=True, blank=True)
-
-
+    
 class Job_History_Model(models.Model):
     person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='history',null=True,blank=True)
     current_job = models.CharField(max_length=250, null=True, blank=True)

@@ -216,12 +216,16 @@ xmlns="http://www.w3.org/2000/svg">
                     {% else %}
                     <td class='second none'>ذکر نشده</td>
                     {% endif %}
-                    {% if item.para.all.0.opto_hedat_l_bi == 10 %}
+                    {% if item.para.all.0.opto_hedat_l_status == 'adam_did' %}
+                    <td class='third'>عدم دید</td>
+                    {% elif item.para.all.0.opto_hedat_l_status == 'fc' %}
+                    <td class='third'>FC</td>
+                    {% elif item.para.all.0.opto_hedat_l_bi == 10 %}
                     <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.opto_hedat_l_bi == None %}
                     <td class='third none'> ذکر نشده</td>
                     {% else %}
-                    <td class='third false'> غیر نرمال</td>                  
+                    <td class='third false'> غیر نرمال</td>  
                     {% endif %}
                 </tr>
                 <tr>
@@ -231,7 +235,11 @@ xmlns="http://www.w3.org/2000/svg">
                     {% else %}
                     <td class='second none'>ذکر نشده</td>
                     {% endif %}
-                    {% if item.para.all.0.opto_hedat_l_ba == 10 %}
+                    {% if item.para.all.0.opto_hedat_l_status == 'adam_did' %}
+                    <td class='third'>عدم دید</td>
+                    {% elif item.para.all.0.opto_hedat_l_status == 'fc' %}
+                    <td class='third'>FC</td>
+                    {% elif item.para.all.0.opto_hedat_l_ba == 10 %}
                     <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.opto_hedat_l_ba == None %}
                     <td class='third none'> ذکر نشده</td>
@@ -246,7 +254,11 @@ xmlns="http://www.w3.org/2000/svg">
                     {% else %}
                     <td class='second none'>ذکر نشده</td>
                     {% endif %}
-                    {% if item.para.all.0.opto_hedat_r_bi == 10 %}
+                    {% if item.para.all.0.opto_hedat_r_status == 'adam_did' %}
+                    <td class='third'>عدم دید</td>
+                    {% elif item.para.all.0.opto_hedat_r_status == 'fc' %}
+                    <td class='third'>FC</td>
+                    {% elif item.para.all.0.opto_hedat_r_bi == 10 %}
                     <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.opto_hedat_r_bi == None %}
                     <td class='third none'> ذکر نشده</td>
@@ -261,7 +273,11 @@ xmlns="http://www.w3.org/2000/svg">
                     {% else %}
                     <td class='second none'>ذکر نشده</td>
                     {% endif %}
-                    {% if item.para.all.0.opto_hedat_r_ba == 10 %}
+                    {% if item.para.all.0.opto_hedat_r_status == 'adam_did' %}
+                    <td class='third'>عدم دید</td>
+                    {% elif item.para.all.0.opto_hedat_r_status == 'fc' %}
+                    <td class='third'>FC</td>
+                    {% elif item.para.all.0.opto_hedat_r_ba == 10 %}
                     <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.opto_hedat_r_ba == None %}
                     <td class='third none'> ذکر نشده</td>

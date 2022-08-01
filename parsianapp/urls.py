@@ -28,6 +28,7 @@ urlpatterns =[
     path('output/examinations_output',views.examinations_output_view,name='examinations_output'),  
     path('output/examinations_output/add',views.addexaminations_output_view,name='addexaminationsoutput'),
     path('output/examinations_output/pdf',views.examinations_output_pdf_view,name='examinations_pdf'),
+    path('output/examinations_output/edit',views.examinations_output_edit_view,name='examinations_edit'),
     path('output/specialist',views.specialist_view,name='specialist'),
     path('output/graph',views.graph_view,name='graph'),  
     path('output/graph/pdf',views.graph_pdf_view,name='graph_pdf'),  

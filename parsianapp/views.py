@@ -1645,3 +1645,596 @@ def addexaminations_output_view(request):
         model.personal_code=form.cleaned_data['personal_code']
         model.save()
     return redirect('examinations_output')
+
+
+def examinations_output_edit_view(request):
+    username = request.user.username
+    e_items=''
+    items = ''
+    model=Disease_Model.objects.last()
+    if model:
+        code=model.examinations_code
+    else:
+        code=''
+    examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+    personal_species_m=Personal_Species_Model.objects.filter(name=model.name,age=model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
+    job_history_m=Job_History_Model.objects.filter(person=personal_species_m).last()
+    assessment_m=Assessment_Model.objects.filter(person=personal_species_m).last()
+    personal_history_m=Personal_History_Model.objects.filter(person=personal_species_m).last()
+    examinations_m=Examinations_Model.objects.filter(person=personal_species_m).last()
+    experiments_m=Experiments_Model.objects.filter(person=personal_species_m).last()
+    para_clinic_m=Para_Clinic_Model.objects.filter(person=personal_species_m).last()
+    consulting_m=Consulting_Model.objects.filter(person=personal_species_m).last()
+    final_theory_m=Final_Theory_Model.objects.filter(person=personal_species_m).last()
+    personal_species=personal_species_form(request.POST or None,instance=personal_species_m)
+    job_history=job_history_form(request.POST or None,instance=job_history_m)
+    assessment=assessment_form(request.POST or None,instance=assessment_m)
+    personal_history=personal_history_form(request.POST or None,instance=personal_history_m)
+    examinations=examinations_form(request.POST or None,instance=examinations_m)
+    experiments=experiments_form(request.POST or None,instance=experiments_m)
+    para_clinic=para_clinic_form(request.POST or None,instance=para_clinic_m)
+    consulting=consulting_form(request.POST or None,instance=consulting_m)
+    final_theory=final_theory_form(request.POST or None,instance=final_theory_m)
+    if personal_species.is_valid():
+        new_person = personal_species.save(commit=False)
+        new_person.user = username
+        new_person.save()
+    if personal_species.is_valid() and  job_history.is_valid():
+        new_job_history = job_history.save(commit=False)
+        new_job_history.person = new_person
+        new_job_history.durations = ((new_job_history.current_job_to_year * 12) + new_job_history.current_job_to_month) - ((new_job_history.current_job_from_year * 12) + new_job_history.current_job_from_month)
+        new_job_history.save()
+    if personal_species.is_valid() and  assessment.is_valid():
+        new_assessment = assessment.save(commit=False)
+        new_assessment.person = new_person
+        if new_assessment.current_ph_noise == True:
+            items += ' سر و صدا/'
+        if new_assessment.current_ph_erteash == True:
+            items += ' ارتعاش/'
+        if new_assessment.current_ph_not_unizan == True:
+            items += ' اشعه غیر یونیزان/'
+        if new_assessment.current_ph_unizan == True:
+            items += ' اشعه یونیزان/'
+        if new_assessment.current_ph_stress == True:
+            items += ' استرس حرارتی/'
+        if new_assessment.current_sh_dust == True:
+            items += ' گرد و غبار/'
+        if new_assessment.current_sh_metals == True:
+            items += ' دمه فلزات/'
+        if new_assessment.current_sh_halal == True:
+            items += ' حلال/'
+        if new_assessment.current_sh_afat == True:
+            items += ' آفت کشها/'
+        if new_assessment.current_sh_asidvbaz == True:
+            items += ' اسید و بازها/'
+        if new_assessment.current_sh_gaz == True:
+            items += ' گاز ها/'
+        if new_assessment.current_bio_gazesh == True:
+            items += ' گزش/'
+        if new_assessment.current_bio_bactery == True:
+            items += ' باکتری/'
+        if new_assessment.current_bio_virus == True:
+            items += ' ویروس/'
+        if new_assessment.current_bio_angal == True:
+            items += ' انگل/'
+        if new_assessment.current_er_standvsit == True:
+            items += ' ایستادن یا نشستن طولانی مدت/'
+        if new_assessment.current_er_loop == True:
+            items += ' کار تکراری/'
+        if new_assessment.current_er_hamlvnaghl == True:
+            items += ' حمل و نقل بار سنگین/'
+        if new_assessment.current_er_vaziat_namonaseb == True:
+            items += ' وضعیت نامناسب بدن/'
+        if new_assessment.current_rav_order == True:
+            items += ' نوبت کاری/'
+        if new_assessment.current_rav_stressor == True:
+            items += ' استرسور های شغلی/'  
+        if new_assessment.required_description:
+            items += new_assessment.required_description
+        new_assessment.assessments = items    
+        new_assessment.save()
+    if personal_species.is_valid() and  personal_history.is_valid():
+        new_personal_history = personal_history.save(commit=False)
+        new_personal_history.person = new_person
+        new_personal_history.save()
+    if personal_species.is_valid() and  examinations.is_valid():
+        new_examinations = examinations.save(commit=False)
+        new_examinations.person = new_person
+        if new_examinations.weight and new_examinations.length:
+            new_examinations.body_mass=new_examinations.weight / (( new_examinations.length / 100) ** 2 )
+        if new_examinations.local_sym_kahesh_vazn == True:
+            e_items += "کاهش وزن/"
+        if new_examinations.local_sym_kahesh_eshteha == True:
+            e_items += "کاهش اشتها/"
+        if new_examinations.local_sym_khastegi == True:
+            e_items += "خستگی مزمن/"
+        if new_examinations.local_sym_ekhtelal_dar_khab == True:
+            e_items += "اختلال در خواب/"
+        if new_examinations.local_sym_tarigh == True:
+            e_items += "تعریق بیش از حد/"
+        if new_examinations.local_sym_adam_tahamol == True:
+            e_items += "عدم تحمل گرما و سرما/"
+        if new_examinations.local_sym_tab == True:
+            e_items += "تب/"
+        if new_examinations.local_sign_zaheri == True:
+            e_items += "وضعیت ظاهری/"
+        if new_examinations.local_sign_rang_paride == True:
+            e_items += "مخاطات رنگ پریده/"
+        if new_examinations.local_des:
+            e_items += new_examinations.local_des
+            e_items += '/'
+        if new_examinations.eye_sym_kahesh_binayi == True:
+            e_items += "کاهش حد بینایی/"
+        if new_examinations.eye_sym_tari_did == True:
+            e_items += "تاری دید/"
+        if new_examinations.eye_sym_khastegi == True:
+            e_items += "خستگی چشم/"
+        if new_examinations.eye_sym_dobini == True:
+            e_items += "دوبینی/"
+        if new_examinations.eye_sym_sozesh == True:
+            e_items += "سوزش چشم/"
+        if new_examinations.eye_sym_tars_az_nor == True:
+            e_items += "ترس از نور/"
+        if new_examinations.eye_sym_ashk == True:
+            e_items += "اشک ریزش/"
+        if new_examinations.eye_sign_reflex == True:
+            e_items += "رفلکس غیر طبیعی مردمک/"
+        if new_examinations.eye_sign_red == True:
+            e_items += "قرمزی چشم/"
+        if new_examinations.eye_sign_sklrai == True:
+            e_items += "اسکلرای ایکتریک/"
+        if new_examinations.eye_sign_nistagemos == True:
+            e_items += "نیستاگموس/"
+        if new_examinations.eye_des:
+            e_items += new_examinations.eye_des
+            e_items += '/'
+        if new_examinations.skin_sym_kharesh_post == True:
+            e_items += "خارش پوست/"
+        if new_examinations.skin_sym_rizesh_mo == True:
+            e_items += "ریزش مو/"
+        if new_examinations.skin_sym_red == True:
+            e_items += "قرمزی پوست/"
+        if new_examinations.skin_sym_taghir_post == True:
+            e_items += "تغییر رنگ پوست/"
+        if new_examinations.skin_sym_zakhm == True:
+            e_items += "زخم مزمن/"
+        if new_examinations.skin_sym_poste_rizi == True:
+            e_items += "پوسته ریزی/"
+        if new_examinations.skin_sym_taghir_nakhon == True:
+            e_items += "تغییر رنگ ناخن/"
+        if new_examinations.skin_sign_makol == True:
+            e_items += "ماکول/"
+        if new_examinations.skin_sign_papol == True:
+            e_items += "پاپول/"
+        if new_examinations.skin_sign_nadol == True:
+            e_items += "ندول/"
+        if new_examinations.skin_sign_vezikol == True:
+            e_items += "وزیکول/"
+        if new_examinations.skin_sign_zakhm == True:
+            e_items += "زخم/"
+        if new_examinations.skin_sign_kahir == True:
+            e_items += "کهیر/"
+        if new_examinations.skin_sign_klabing == True:
+            e_items += "کلابینگ/"
+        if new_examinations.skin_sign_rizesh_mantaghe == True:
+            e_items += "ریزش منطقه ای مو/"
+        if new_examinations.skin_sign_rizesh_general == True:
+            e_items += "ریزش جنرال مو/"
+        if new_examinations.skin_sign_taghirat_peygmani == True:
+            e_items += "تغییرات پیگمانی/"
+        if new_examinations.skin_des:
+            e_items += new_examinations.skin_des
+            e_items += "/"
+        if new_examinations.gosh_sym_kahesh_shenavaii == True:
+            e_items += "کاهش شنوایی/"
+        if new_examinations.gosh_sym_vez_vez_gosh == True:
+            e_items += "وزوز گوش/"
+        if new_examinations.gosh_sym_sargije == True:
+            e_items += "سرگیجه واقعی/"
+        if new_examinations.gosh_sym_dard_gosh == True:
+            e_items += "درد گوش/"
+        if new_examinations.gosh_sym_tarashoh_gosh == True:
+            e_items += "ترشح گوش/"
+        if new_examinations.gosh_sym_gereftegi_seda == True:
+            e_items += "گرفتگی صدا/"
+        if new_examinations.gosh_sym_galodard == True:
+            e_items += "گلودرد/"
+        if new_examinations.gosh_sym_abrrizesh_bini == True:
+            e_items += "آبریزش بینی/"
+        if new_examinations.gosh_sym_ekhtelal_boyayi == True:
+            e_items += "اختلال بویایی/"
+        if new_examinations.gosh_sym_khareshvsozesh == True:
+            e_items += "خارش و سوزش بینی/"
+        if new_examinations.gosh_sym_khonrizi == True:
+            e_items += "خونریزی بینی/"
+        if new_examinations.gosh_sym_khoshki == True:
+            e_items += "خشکی دهان/"
+        if new_examinations.gosh_sym_ehsas == True:
+            e_items += "احساس مزه فلزی در دهان/"
+        if new_examinations.gosh_sign_eltehab_parde == True:
+            e_items += "التهاب پرده تمپان/"
+        if new_examinations.gosh_sign_paregi == True:
+            e_items += "پارگی پرده تمپان/"
+        if new_examinations.gosh_sign_afzayesh == True:
+            e_items += "افزایش غیر طبیعی سرومن/"
+        if new_examinations.gosh_sign_tarashoh == True:
+            e_items += "ترشح پشت حلق/"
+        if new_examinations.gosh_sign_egzodai == True:
+            e_items += "اگزودای حلق/"
+        if new_examinations.gosh_sign_red == True:
+            e_items += "قرمزی حلق/"
+        if new_examinations.gosh_sign_polip == True:
+            e_items += "پولیپ بینی/"
+        if new_examinations.gosh_sign_tndrs == True:
+            e_items += "تندرنس سینوس ها/"
+        if new_examinations.gosh_sign_lead == True:
+            e_items += "lead line/"
+        if new_examinations.gosh_sign_bad_smell == True:
+            e_items += "بوی بد دهان/"
+        if new_examinations.gosh_sign_eltehab_lase == True:
+            e_items += "التهاب لثه/"
+        if new_examinations.gosh_sign_zakhm == True:
+            e_items += "پرفوراسیون/زخم سپتوم/"
+        if new_examinations.gosh_des:
+            e_items += new_examinations.gosh_des
+            e_items += "/"
+        if new_examinations.sar_sym_dard_gardan == True:
+            e_items += "درد گردن/"
+        if new_examinations.sar_sym_tode_gardani == True:
+            e_items += "توده گردنی/"
+        if new_examinations.sar_sign_bozorgi_tiroid == True:
+            e_items += "بزرگی تیروئید/"
+        if new_examinations.sar_sign_gardani == True:
+            e_items += "لنفادنوپاتی گردنی/"
+        if new_examinations.sar_des:
+            e_items += new_examinations.sar_des
+            e_items += "/"
+        if new_examinations.rie_sym_sorfe == True:
+            e_items += "سرفه/"
+        if new_examinations.rie_sym_khelt == True:
+            e_items += "خلط/"
+        if new_examinations.rie_sym_tangi == True:
+            e_items += "تنگی نفس کوشش/"
+        if new_examinations.rie_sym_sine == True:
+            e_items += "خس خس سینه/"
+        if new_examinations.rie_sign_zaheri == True:
+            e_items += "وضعیت ظاهری غیر طبیعی قفسه سینه/"
+        if new_examinations.rie_sign_khoshonat == True:
+            e_items += "خشونت صدا/"
+        if new_examinations.rie_sign_vizing == True:
+            e_items += "ویزینگ/"
+        if new_examinations.rie_sign_cracel == True:
+            e_items += "کراکل/"
+        if new_examinations.rie_sign_taki_pene == True:
+            e_items += "تاکی پنه/"
+        if new_examinations.rie_sign_kahesh_sedaha == True:
+            e_items += "کاهش صداهای ریوی/"
+        if new_examinations.rie_des:
+            e_items += new_examinations.rie_des
+            e_items += "/"
+        if new_examinations.ghalb_sym_dard == True:
+            e_items += "درد قفسه سینه/"
+        if new_examinations.ghalb_sym_tapesh == True:
+            e_items += "تپش قلب/"
+        if new_examinations.ghalb_sym_tangi_shabane == True:
+            e_items += "تنگی نفس ناگهانی شبانه/"
+        if new_examinations.ghalb_sym_tangi_khabide == True:
+            e_items += "تنگی نفس دروضعیت خوابیده/"
+        if new_examinations.ghalb_sym_sianoz == True:
+            e_items += "سیانوز/"
+        if new_examinations.ghalb_sym_senkop == True:
+            e_items += "سابقه سنکوپ/"
+        if new_examinations.ghalb_sign_s == True:
+            e_items += "S1S2غیر طبیعی/"
+        if new_examinations.ghalb_sign_seda_ezafe == True:
+            e_items += "صدای اضافه قلب/"
+        if new_examinations.ghalb_sign_aritmi == True:
+            e_items += "آریتمی/"
+        if new_examinations.ghalb_sign_varis_tahtani == True:
+            e_items += "واریس اندام تحتانی/"
+        if new_examinations.ghalb_sign_varis_foghani == True:
+            e_items += "واریس اندام فوقانی/"
+        if new_examinations.ghalb_sign_andam == True:
+            e_items += "ادم اندام/"
+        if new_examinations.ghalb_des:
+            e_items += new_examinations.ghalb_des
+            e_items += "/"
+        if new_examinations.shekam_sym_bi_eshteha == True:
+            e_items += "بی اشتهایی/"
+        if new_examinations.shekam_sym_tahavo == True:
+            e_items += "تهوع/"
+        if new_examinations.shekam_sym_estefragh == True:
+            e_items += "استفراغ/"
+        if new_examinations.shekam_sym_dard_shekam == True:
+            e_items += "درد شکم/"
+        if new_examinations.shekam_sym_soozesh == True:
+            e_items += "سوزش سر دل/"
+        if new_examinations.shekam_sym_eshal == True:
+            e_items += "اسهال/"
+        if new_examinations.shekam_sym_yobosat == True:
+            e_items += "یبوست/"
+        if new_examinations.shekam_sym_ghiri == True:
+            e_items += "مدفوع قیری/"
+        if new_examinations.shekam_sym_roshan == True:
+            e_items += "خون روشن در مدفوع/"
+        if new_examinations.shekam_sym_ekhtelal == True:
+            e_items += "اختلال در بلع/"
+        if new_examinations.shekam_sign_shekami == True:
+            e_items += "تندرنس شکمی/"
+        if new_examinations.shekam_sign_rebond == True:
+            e_items += "ریباند تندرنس/"
+        if new_examinations.shekam_sign_hepatomegaly == True:
+            e_items += "هپاتومگالی/"
+        if new_examinations.shekam_sign_espelnomegali == True:
+            e_items += "اسپلنومگالی/"
+        if new_examinations.shekam_sign_asib == True:
+            e_items += "آسیت/"
+        if new_examinations.shekam_sign_tode_shekami == True:
+            e_items += "توده شکمی/"
+        if new_examinations.shekam_sign_distansion == True:
+            e_items += "دیستانسیون شکمی/"
+        if new_examinations.shekam_des:
+            e_items += new_examinations.shekam_des
+            e_items += "/"
+        if new_examinations.colie_sym_soozesh == True:
+            e_items += "سوزش درار/"
+        if new_examinations.colie_sym_tekrar == True:
+            e_items += "تکرر ادرار/"
+        if new_examinations.colie_sym_khoni == True:
+            e_items += "ادرار خونی/"
+        if new_examinations.colie_sym_pahlo == True:
+            e_items += "درد پهلو/"
+        if new_examinations.colie_sym_sangini == True:
+            e_items += "احساس سنگینی یا توده در بیضه/"
+        if new_examinations.colie_sign_cva == True:
+            e_items += "تندرستیCVA/"
+        if new_examinations.colie_sign_varikosel == True:
+            e_items += "واریکوسل/"
+        if new_examinations.colie_des:
+            e_items += new_examinations.colie_des
+            e_items += "/"
+        if new_examinations.eskelety_sym_mafsal == True:
+            e_items += "خشکی مفصل/"
+        if new_examinations.eskelety_sym_kamar_dard == True:
+            e_items += "کمردرد/"
+        if new_examinations.eskelety_sym_zano == True:
+            e_items += "درد زانو/"
+        if new_examinations.eskelety_sym_shane == True:
+            e_items += "درد شانه/"
+        if new_examinations.eskelety_sym_other_mafasel == True:
+            e_items += "درد سایر مفاصل/"
+        if new_examinations.eskelety_sign_mahdodiat == True:
+            e_items += "محدودیت حرکتی مفصل/"
+        if new_examinations.eskelety_sign_kahesh_foghani == True:
+            e_items += "کاهش قدرت عضلانی در اندام فوقانی/"
+        if new_examinations.eskelety_sign_kahesh_tahtani == True:
+            e_items += "کاهش قدرت عضلانی در اندام تحتانی/"
+        if new_examinations.eskelety_sign_eskolioz == True:
+            e_items += "اسکولیوز/"
+        if new_examinations.eskelety_sign_empotasion == True:
+            e_items += "امپوتاسیون/"
+        if new_examinations.eskelety_sign_slr == True:
+            e_items += "تست SLR مثبت/"
+        if new_examinations.eskelety_sign_r_slr == True:
+            e_items += "تست Reverse-SLR/"
+        if new_examinations.eskelety_des:
+            e_items += new_examinations.eskelety_des
+            e_items += "/"
+        if new_examinations.asabi_sym_sar_dard == True:
+            e_items += "سردرد/"
+        if new_examinations.asabi_sym_giji == True:
+            e_items += "گیجی/"
+        if new_examinations.asabi_sym_larzesh == True:
+            e_items += "لرزش/"
+        if new_examinations.asabi_sym_ekhtelal == True:
+            e_items += "اختلال حافظه/"
+        if new_examinations.asabi_sym_tashanoj == True:
+            e_items += "سابقه صرع/تشنج/"
+        if new_examinations.asabi_sym_gez_gez == True:
+            e_items += "گز گز و مور مور انگشتان دست/"
+        if new_examinations.asabi_sign_tabi_e == True:
+            e_items += "رفلکس زانوی غیر طبیعی/"
+        if new_examinations.asabi_sign_gheir_tabi_e == True:
+            e_items += "رفلکس آشیل غیرطبیعی/"
+        if new_examinations.asabi_sign_mokhtal == True:
+            e_items += "تست رومبرگ مختل/"
+        if new_examinations.asabi_sign_trmor == True:
+            e_items += "ترمور/"
+        if new_examinations.asabi_sign_hesi == True:
+            e_items += "اختلال حسی اندام ها/"
+        if new_examinations.asabi_sign_tinel == True:
+            e_items += "تست تینل مثبت/"
+        if new_examinations.asabi_sign_falen == True:
+            e_items += "تست فالن مثبت/"
+        if new_examinations.asabi_des:
+            e_items += new_examinations.asabi_des 
+            e_items += "/"
+        if new_examinations.ravan_sym_asabaniat == True:
+            e_items += "عصبانیت بیش از حد/"
+        if new_examinations.ravan_sym_parkhashgari == True:
+            e_items += "پرخاشگری/"
+        if new_examinations.ravan_sym_ezterab == True:
+            e_items += "اضطراب/"
+        if new_examinations.ravan_sym_kholgh == True:
+            e_items += "خلق پایین/"
+        if new_examinations.ravan_sym_angize == True:
+            e_items += "کاهش انگیزه/"
+        if new_examinations.ravan_sign_hazyan == True:
+            e_items += "هذیان/"
+        if new_examinations.ravan_sign_tavahom == True:
+            e_items += "توهم/"
+        if new_examinations.ravan_sign_oriantasion == True:
+            e_items += "اختلال اوریانتاسیون/"
+        if new_examinations.ravan_des:
+            e_items += new_examinations.ravan_des
+            e_items += "/" 
+        new_examinations.not_normals = e_items    
+        new_examinations.save()
+    if personal_species.is_valid() and  experiments.is_valid():
+        new_experiments = experiments.save(commit=False)
+        new_experiments.person = new_person
+        if new_experiments.cbc_wbc:
+            if new_experiments.cbc_wbc < 4 and new_experiments.cbc_wbc >10:
+                new_experiments.cbc_wbc_status = False 
+        else:
+            new_experiments.cbc_wbc_status = True
+        if new_experiments.cbc_plt:
+            if new_experiments.cbc_plt < 140 and new_experiments.cbc_plt >450:
+                    new_experiments.cbc_plt_status = False 
+        else:
+            new_experiments.cbc_plt_status = True
+        if new_experiments.ua_prot:
+            if new_experiments.ua_prot < 0 and new_experiments.ua_prot >0:
+                    new_experiments.ua_prot_status = False
+        else:
+            new_experiments.ua_prot_status = True
+        if new_experiments.ua_glu:
+            if new_experiments.ua_glu < 0 and new_experiments.ua_glu >0:
+                    new_experiments.ua_glu_status = False 
+        else:
+            new_experiments.ua_glu_status = True
+        if new_experiments.ua_rbc:
+            if new_experiments.ua_rbc > 3:
+                new_experiments.ua_rbc_status = False 
+        else:
+            new_experiments.ua_rbc_status = True
+        if new_experiments.ua_wbc:
+            if new_experiments.ua_wbc > 5:
+                new_experiments.ua_wbc_status = False 
+        else:
+            new_experiments.ua_wbc_status = True
+        if new_experiments.ua_bact:
+            if new_experiments.ua_bact < 0 and new_experiments.ua_bact > 0:
+                new_experiments.ua_bact_status = False 
+        else:
+            new_experiments.ua_bact_status = True
+        if new_experiments.fbs:
+            if new_experiments.fbs < 70 and new_experiments.fbs > 125:
+                new_experiments.fbs_status = False 
+        else:
+            new_experiments.fbs_status = True
+        if new_experiments.chol:
+            if new_experiments.chol > 200:
+                new_experiments.chol_status = False 
+        else:
+            new_experiments.chol_status = True
+        if new_experiments.ldl:
+            if new_experiments.ldl >100:
+                new_experiments.ldl_status = False 
+        else:
+            new_experiments.ldl_status = True
+        if new_experiments.tsh:
+            if new_experiments.tsh < 0.4 and new_experiments.tsh > 5:
+                new_experiments.tsh_status = False  
+        else:
+            new_experiments.tsh_status = True
+        if new_experiments.tg:
+            if new_experiments.tg > 200:
+                    new_experiments.tg_status = False 
+        else:
+            new_experiments.tg_status = True
+        if new_experiments.cr:
+            if new_experiments.cr >= 1.4:
+                new_experiments.cr_status = False 
+        else:
+            new_experiments.cr_status = True
+        if new_experiments.alt:
+            if new_experiments.alt >= 40:
+                new_experiments.alt_status = False 
+        else:
+            new_experiments.alt_status = True
+        if new_experiments.ast:
+            if new_experiments.ast >= 40:
+                new_experiments.ast_status = False 
+        else:
+            new_experiments.ast_status = True
+        if new_experiments.ast:
+            if new_experiments.alk < 14 and new_experiments.alk > 20:
+                    new_experiments.alk_status = False 
+        else:
+            new_experiments.alk_status = True
+        if new_experiments.lead:
+            if ew_experiments.lead > 20:
+                new_experiments.lead_status = False 
+        else:
+            new_experiments.lead_status = True
+        if new_experiments.d:
+            if new_experiments.d <= 30 and new_experiments.d >101:
+                new_experiments.d_status = False  
+        else:
+            new_experiments.d_status = True
+        if new_experiments.psa:
+            if new_person.age < 40:
+                if new_experiments.psa >= 1.7:
+                    new_experiments.psa_status = False
+            if new_person.age < 50 and new_person.age >= 40 :
+                if new_experiments.psa >= 2.2:
+                    new_experiments.psa_status = False
+            if nnew_person.age < 60 and new_person.age >= 50:
+                if new_experiments.psa >= 3.4:
+                    new_experiments.psa_status = False
+            if new_person.age < 70 and new_person.age >= 60:
+                if new_experiments.psa >= 6.16:
+                    new_experiments.psa_status = False
+            if new_person.age > 70:
+                if new_experiments.psa >= 6.77:
+                    new_experiments.psa_status = False
+        else:
+            new_experiments.psa_status = True
+        if new_person.gender == 'mard':
+            if new_experiments.cbc_rbc:
+                if new_experiments.cbc_rbc < 4 and new_experiments.cbc_rbc >5.5:
+                    new_experiments.cbc_rbc_status = False 
+            else:
+                new_experiments.cbc_rbc_status = True
+            if new_experiments.cbc_hb:
+                if new_experiments.cbc_hb < 12 and new_experiments.cbc_hb >16:
+                    new_experiments.cbc_hb_status = False 
+            else:
+                new_experiments.cbc_hb_status = True
+            if new_experiments.cbc_htc:
+                if new_experiments.cbc_htc < 40 and new_experiments.cbc_htc >54:
+                    new_experiments.cbc_htc_status = False 
+            else:
+                new_experiments.cbc_htc_status = True
+            if new_experiments.hdl:
+                if new_experiments.hdl > 40:
+                    new_experiments.hdl_status = False    
+            else:
+                new_experiments.hdl_status = True 
+        if new_person.gender == 'zan':
+            if new_experiments.cbc_rbc:
+                if new_experiments.cbc_rbc < 3.5 and new_experiments.cbc_rbc >5:
+                    new_experiments.cbc_rbc_status = False 
+            else:
+                new_experiments.cbc_rbc_status = True
+            if new_experiments.cbc_hb:
+                if new_experiments.cbc_hb < 11 and new_experiments.cbc_hb >15:
+                    new_experiments.cbc_hb_status = False 
+            else:
+                new_experiments.cbc_hb_status = True
+            if new_experiments.cbc_htc:
+                if new_experiments.cbc_htc < 37 and new_experiments.cbc_htc >47:
+                    new_experiments.cbc_htc_status = False 
+            else:
+                new_experiments.cbc_htc_status = True
+            if new_experiments.hdl:
+                if new_experiments.hdl > 50:
+                    new_experiments.hdl_status = False    
+            else:
+                new_experiments.hdl_status = True      
+        new_experiments.save()
+    if personal_species.is_valid() and  para_clinic.is_valid():
+        new_para_clinic = para_clinic.save(commit=False)
+        new_para_clinic.person = new_person
+        new_para_clinic.save()
+    if personal_species.is_valid() and  consulting.is_valid():
+        new_consulting = consulting.save(commit=False)
+        new_consulting.person = new_person
+        new_consulting.save()
+    if personal_species.is_valid() and  final_theory.is_valid():
+        new_final_theory = final_theory.save(commit=False)
+        new_final_theory.person = new_person
+        new_final_theory.save()
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
+    return render(request, 'edit_examinations.html',context)
