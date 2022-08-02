@@ -3,6 +3,7 @@ from django import forms
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.timezone import timezone
+from django.core.exceptions import NON_FIELD_ERRORS
 
 class Company(models.Model):
     name = models.CharField(max_length=250, null=True, blank=True,unique=True)
@@ -34,13 +35,13 @@ class Disease_Model(models.Model):
 class Personal_Species_Model(models.Model):
     examinations_code = models.ForeignKey(ExaminationsCourse, on_delete=models.CASCADE)
     user = models.CharField(max_length=250, null=True, blank=True)
-    examinations_type= models.CharField(max_length=250, null=True, blank=True,unique=True)
+    examinations_type= models.CharField(max_length=250, null=True, blank=True)
     date_year=models.IntegerField( null=True, blank=True)
     date_month=models.IntegerField(null=True, blank=True)
     date_day=models.IntegerField(null=True, blank=True)
     profil_number=models.IntegerField(null=True, blank=True)
     employment_number=models.IntegerField(null=True, blank=True)
-    name = models.CharField(max_length=250, null=True, blank=True,unique=True)
+    name = models.CharField(max_length=250, null=True, blank=True)
     fathers_name = models.CharField(max_length=250, null=True, blank=True)
     gender_CHOICES = [('mard', 'مرد'), ('zan', 'زن')]
     gender = models.CharField(default='mard', choices=gender_CHOICES, max_length=250)
@@ -57,7 +58,9 @@ class Personal_Species_Model(models.Model):
     job_name = models.CharField(max_length=250, null=True, blank=True)
     employer_name = models.CharField(max_length=250, null=True, blank=True)
     address = models.CharField(max_length=250, null=True, blank=True)
-    
+    class Meta:
+        unique_together = ('examinations_code', 'name','fathers_name','age','personal_code')
+
 class Job_History_Model(models.Model):
     person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='history',null=True,blank=True)
     current_job = models.CharField(max_length=250, null=True, blank=True)

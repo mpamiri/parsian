@@ -74,6 +74,12 @@ class personal_species_form(forms.ModelForm):
         'date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
         }
+    def clean_test_value(self):
+        data = self.cleaned_data.get('date_day')
+        if data:
+            return data
+        else:
+            raise form.ValidationError('کد معاینات پر نشده است')
 
 class job_history_form(forms.ModelForm):
     class Meta:
