@@ -190,23 +190,23 @@ xmlns="http://www.w3.org/2000/svg">
                 <tr>
                     <td class='first'>شنوایی گوش چپ</td>
                     <td class='second'>---</td>
-                    {% if item.para.all.0.audio_l_eight_ac <= 25 and item.para.all.0.audio_l_eight_bc <= 25 and item.para.all.0.audio_l_six_ac <= 25 and item.para.all.0.audio_l_six_bc <= 25 and item.para.all.0.audio_l_four_ac <= 25 and item.para.all.0.audio_l_four_bc <= 25 and item.para.all.0.audio_l_two_ac <= 25 and item.para.all.0.audio_l_two_bc <= 25 and item.para.all.0.audio_l_one_ac <= 25 and item.para.all.0.audio_l_one_bc <= 25 and item.para.all.0.audio_l_five_ac <= 25  and item.para.all.0.audio_l_five_bc <= 25 %}
+                    {% if item.para.all.0.audio_l_tafsir == 'normal' %}
                     <td class='third True'>نرمال</td>
-                    {% elif item.para.all.0.audio_l_eight_ac >= 25 or item.para.all.0.audio_l_eight_bc >= 25 or item.para.all.0.audio_l_six_ac >= 25 or item.para.all.0.audio_l_six_bc >= 25 or item.para.all.0.audio_l_four_ac >= 25 or item.para.all.0.audio_l_four_bc >= 25 or item.para.all.0.audio_l_two_ac >= 25 or item.para.all.0.audio_l_two_bc >= 25 or item.para.all.0.audio_l_one_ac >= 25 or item.para.all.0.audio_l_one_bc >= 25 or item.para.all.0.audio_l_five_ac >= 25  or item.para.all.0.audio_l_five_bc >= 25 %}
-                    <td class='third false'>غیر نرمال</td>
-                    {% else %}
+                    {% elif item.para.all.0.audio_l_tafsir == None %}
                     <td class='third none'>ذکر نشده</td>
+                    {% else %}                    
+                    <td class='third false'>غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>
                     <td class='first'>شنوایی گوش راست</td>
                     <td class='second'>---</td>
-                    {% if item.para.all.0.audio_r_eight_ac <= 25 and item.para.all.0.audio_r_eight_bc <= 25 and item.para.all.0.audio_r_six_ac <= 25 and item.para.all.0.audio_r_six_bc <= 25 and item.para.all.0.audio_r_four_ac <= 25 and item.para.all.0.audio_r_four_bc <= 25 and item.para.all.0.audio_r_two_ac <= 25 and item.para.all.0.audio_r_two_bc <= 25 and item.para.all.0.audio_r_one_ac <= 25 and item.para.all.0.audio_r_one_bc <= 25 and item.para.all.0.audio_r_five_ac <= 25  and item.para.all.0.audio_r_five_bc <= 25 %}
+                    {% if item.para.all.0.audio_r_tafsir == 'normal' %}
                     <td class='third True'>نرمال</td>
-                    {% elif item.para.all.0.audio_r_eight_ac >= 25 or item.para.all.0.audio_r_eight_bc >= 25 or item.para.all.0.audio_r_six_ac >= 25 or item.para.all.0.audio_r_six_bc >= 25 or item.para.all.0.audio_r_four_ac >= 25 or item.para.all.0.audio_r_four_bc >= 25 or item.para.all.0.audio_r_two_ac >= 25 or item.para.all.0.audio_r_two_bc >= 25 or item.para.all.0.audio_r_one_ac >= 25 or item.para.all.0.audio_r_one_bc >= 25 or item.para.all.0.audio_r_five_ac >= 25  or item.para.all.0.audio_r_five_bc >= 25 %}
-                    <td class='third false'>غیر نرمال</td>
-                    {% else %}
+                    {% elif item.para.all.0.audio_r_tafsir == None %}
                     <td class='third none'>ذکر نشده</td>
+                    {% else %}                    
+                    <td class='third false'>غیر نرمال</td>
                     {% endif %}
                 </tr>
                 <tr>

@@ -102,7 +102,7 @@
                 <td class='none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
-                <td colspan='3'>{{ 1401|sub:item.age }}</td>
+                <td colspan='3'>{{ item.age }}</td>
                 {% else %}
                 <td class = 'none' colspan='3'>ندارد</td>
                 {% endif %}
@@ -116,25 +116,25 @@
                 {% else %}
                 <td colspan='3' colspan='3' class='none'>ذکر نشده</td>
                 {% endif %}
-                {% if item.para.all.0.audio_r_eight_ac <= 25 and item.para.all.0.audio_r_eight_bc <= 25 and item.para.all.0.audio_r_six_ac <= 25 and item.para.all.0.audio_r_six_bc <= 25 and item.para.all.0.audio_r_four_ac <= 25 and item.para.all.0.audio_r_four_bc <= 25 and item.para.all.0.audio_r_two_ac <= 25 and item.para.all.0.audio_r_two_bc <= 25 and item.para.all.0.audio_r_one_ac <= 25 and item.para.all.0.audio_r_one_bc <= 25 and item.para.all.0.audio_r_five_ac <= 25  and item.para.all.0.audio_r_five_bc <= 25 %}
+                {% if item.para.all.0.audio_r_tafsir == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.audio_r_eight_ac >= 25 or item.para.all.0.audio_r_eight_bc >= 25 or item.para.all.0.audio_r_six_ac >= 25 or item.para.all.0.audio_r_six_bc >= 25 or item.para.all.0.audio_r_four_ac >= 25 or item.para.all.0.audio_r_four_bc >= 25 or item.para.all.0.audio_r_two_ac >= 25 or item.para.all.0.audio_r_two_bc >= 25 or item.para.all.0.audio_r_one_ac >= 25 or item.para.all.0.audio_r_one_bc >= 25 or item.para.all.0.audio_r_five_ac >= 25  or item.para.all.0.audio_r_five_bc >= 25 %}
+                {% elif item.para.all.0.audio_r_tafsir == None %}
                     <td></td>
-                    <td>*</td>
+                    <td></td>
                 {% else %}
                     <td></td>
-                    <td></td>
+                    <td>*</td>
                 {% endif %}
-                {% if item.para.all.0.audio_l_eight_ac <= 25 and item.para.all.0.audio_l_eight_bc <= 25 and item.para.all.0.audio_l_six_ac <= 25 and item.para.all.0.audio_l_six_bc <= 25 and item.para.all.0.audio_l_four_ac <= 25 and item.para.all.0.audio_l_four_bc <= 25 and item.para.all.0.audio_l_two_ac <= 25 and item.para.all.0.audio_l_two_bc <= 25 and item.para.all.0.audio_l_one_ac <= 25 and item.para.all.0.audio_l_one_bc <= 25 and item.para.all.0.audio_l_five_ac <= 25  and item.para.all.0.audio_l_five_bc <= 25 %}
+                {% if item.para.all.0.audio_l_tafsir == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.audio_l_eight_ac >= 25 or item.para.all.0.audio_l_eight_bc >= 25 or item.para.all.0.audio_l_six_ac >= 25 or item.para.all.0.audio_l_six_bc >= 25 or item.para.all.0.audio_l_four_ac >= 25 or item.para.all.0.audio_l_four_bc >= 25 or item.para.all.0.audio_l_two_ac >= 25 or item.para.all.0.audio_l_two_bc >= 25 or item.para.all.0.audio_l_one_ac >= 25 or item.para.all.0.audio_l_one_bc >= 25 or item.para.all.0.audio_l_five_ac >= 25  or item.para.all.0.audio_l_five_bc >= 25 %}
+                {% elif item.para.all.0.audio_l_tafsir == None %}
                     <td></td>
-                    <td>*</td>
+                    <td></td>
                 {% else %}
                     <td></td>
-                    <td></td>
+                    <td>*</td>
                 {% endif %}
                 {% if item.para.all.0.espiro_tafsir == 'normal' %}
                     <td>*</td>
@@ -221,25 +221,25 @@
                 {% else %}
                 <td colspan='3' colspan='3' class='none'>ذکر نشده</td>
                 {% endif %}
-                {% if item.para.all.0.audio_r_eight_ac <= 25 and item.para.all.0.audio_r_eight_bc <= 25 and item.para.all.0.audio_r_six_ac <= 25 and item.para.all.0.audio_r_six_bc <= 25 and item.para.all.0.audio_r_four_ac <= 25 and item.para.all.0.audio_r_four_bc <= 25 and item.para.all.0.audio_r_two_ac <= 25 and item.para.all.0.audio_r_two_bc <= 25 and item.para.all.0.audio_r_one_ac <= 25 and item.para.all.0.audio_r_one_bc <= 25 and item.para.all.0.audio_r_five_ac <= 25  and item.para.all.0.audio_r_five_bc <= 25 %}
+                {% if item.para.all.0.audio_r_tafsir == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.audio_r_eight_ac >= 25 or item.para.all.0.audio_r_eight_bc >= 25 or item.para.all.0.audio_r_six_ac >= 25 or item.para.all.0.audio_r_six_bc >= 25 or item.para.all.0.audio_r_four_ac >= 25 or item.para.all.0.audio_r_four_bc >= 25 or item.para.all.0.audio_r_two_ac >= 25 or item.para.all.0.audio_r_two_bc >= 25 or item.para.all.0.audio_r_one_ac >= 25 or item.para.all.0.audio_r_one_bc >= 25 or item.para.all.0.audio_r_five_ac >= 25  or item.para.all.0.audio_r_five_bc >= 25 %}
+                {% elif item.para.all.0.audio_r_tafsir == None %}
                     <td></td>
-                    <td>*</td>
+                    <td></td>
                 {% else %}
                     <td></td>
-                    <td></td>
+                    <td>*</td>
                 {% endif %}
-                {% if item.para.all.0.audio_l_eight_ac <= 25 and item.para.all.0.audio_l_eight_bc <= 25 and item.para.all.0.audio_l_six_ac <= 25 and item.para.all.0.audio_l_six_bc <= 25 and item.para.all.0.audio_l_four_ac <= 25 and item.para.all.0.audio_l_four_bc <= 25 and item.para.all.0.audio_l_two_ac <= 25 and item.para.all.0.audio_l_two_bc <= 25 and item.para.all.0.audio_l_one_ac <= 25 and item.para.all.0.audio_l_one_bc <= 25 and item.para.all.0.audio_l_five_ac <= 25  and item.para.all.0.audio_l_five_bc <= 25 %}
+                {% if item.para.all.0.audio_l_tafsir == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.audio_l_eight_ac >= 25 or item.para.all.0.audio_l_eight_bc >= 25 or item.para.all.0.audio_l_six_ac >= 25 or item.para.all.0.audio_l_six_bc >= 25 or item.para.all.0.audio_l_four_ac >= 25 or item.para.all.0.audio_l_four_bc >= 25 or item.para.all.0.audio_l_two_ac >= 25 or item.para.all.0.audio_l_two_bc >= 25 or item.para.all.0.audio_l_one_ac >= 25 or item.para.all.0.audio_l_one_bc >= 25 or item.para.all.0.audio_l_five_ac >= 25  or item.para.all.0.audio_l_five_bc >= 25 %}
+                {% elif item.para.all.0.audio_l_tafsir == None %}
                     <td></td>
-                    <td>*</td>
+                    <td></td>
                 {% else %}
                     <td></td>
-                    <td></td>
+                    <td>*</td>
                 {% endif %}
                 {% if item.para.all.0.espiro_tafsir == 'normal' %}
                     <td>*</td>
@@ -386,7 +386,7 @@
                 <td class='none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
-                <td colspan='3'>{{ 1401|sub:item.age }}</td>
+                <td colspan='3'>{{ item.age }}</td>
                 {% else %}
                 <td class = 'none' colspan='3'>ندارد</td>
                 {% endif %}

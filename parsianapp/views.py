@@ -3,7 +3,7 @@ from django.conf import settings
 from django.http import HttpResponse , Http404
 from django.contrib.auth.forms import UserCreationForm
 from .models import Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,ExaminationsCourse
-from .forms import registration,disease_form,personal_species_form,job_history_form,assessment_form,personal_history_form,examinations_form,experiments_form,para_clinic_form,consulting_form,final_theory_form,submit_course_form
+from .forms import submit_company_form,registration,disease_form,personal_species_form,job_history_form,assessment_form,personal_history_form,examinations_form,experiments_form,para_clinic_form,consulting_form,final_theory_form,submit_course_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -535,7 +535,7 @@ def graph_view(request):
     for summary in personal_species:
         count+=1
         experiments=Experiments_Model.objects.filter(person=summary).last()
-        if experiments.tg:
+        if not experiments.tg:
             c_tri += 1
         elif experiments.tg_status == False:
             b_tri += 1
@@ -548,7 +548,7 @@ def graph_view(request):
 
     for summary in personal_species:
         experiments=Experiments_Model.objects.filter(person=summary).last()
-        if experiments.chol:
+        if not experiments.chol:
             c_chl += 1
         elif experiments.chol_status == False:
             b_chl += 1
@@ -597,7 +597,7 @@ def graph_view(request):
             c_ry += 1 
         elif para.opto_hedat_r_bi < 10:
             b_ry += 1
-        elif summary.opto_hedat_r_bi == 10:
+        elif para.opto_hedat_r_bi == 10:
             a_ry += 1   
     data_ry.append(a_ry)
     data_ry.append(b_ry)
@@ -610,7 +610,7 @@ def graph_view(request):
             c_ly += 1 
         elif para.opto_hedat_l_bi < 10:
             b_ly += 1
-        elif summary.opto_hedat_l_bi == 10:
+        elif para.opto_hedat_l_bi == 10:
             a_ly += 1  
     data_ly.append(a_ly)
     data_ly.append(b_ly)
@@ -997,11 +997,14 @@ def addexaminations_view(request):
     if personal_species.is_valid():
         new_person = personal_species.save(commit=False)
         new_person.user = username
+        if new_person.age:
+            new_person.age = 1401 - new_person.age
         new_person.save()
     if personal_species.is_valid() and  job_history.is_valid():
         new_job_history = job_history.save(commit=False)
         new_job_history.person = new_person
-        new_job_history.durations = ((new_job_history.current_job_to_year * 12) + new_job_history.current_job_to_month) - ((new_job_history.current_job_from_year * 12) + new_job_history.current_job_from_month)
+        if new_job_history.current_job_to_year and new_job_history.current_job_to_month and new_job_history.current_job_from_year and new_job_history.current_job_from_month:
+            new_job_history.durations = ((new_job_history.current_job_to_year * 12) + new_job_history.current_job_to_month) - ((new_job_history.current_job_from_year * 12) + new_job_history.current_job_from_month)
         new_job_history.save()
     if personal_species.is_valid() and  assessment.is_valid():
         new_assessment = assessment.save(commit=False)
@@ -1393,155 +1396,219 @@ def addexaminations_view(request):
         new_experiments = experiments.save(commit=False)
         new_experiments.person = new_person
         if new_experiments.cbc_wbc:
-            if new_experiments.cbc_wbc < 4 and new_experiments.cbc_wbc >10:
+            if new_experiments.cbc_wbc < 4 or new_experiments.cbc_wbc >10:
                 new_experiments.cbc_wbc_status = False 
+            else:
+                new_experiments.cbc_wbc_status = True
         else:
             new_experiments.cbc_wbc_status = True
         if new_experiments.cbc_plt:
-            if new_experiments.cbc_plt < 140 and new_experiments.cbc_plt >450:
+            if new_experiments.cbc_plt < 140 or new_experiments.cbc_plt >450:
                     new_experiments.cbc_plt_status = False 
+            else:
+                new_experiments.cbc_plt_status = True
         else:
             new_experiments.cbc_plt_status = True
         if new_experiments.ua_prot:
-            if new_experiments.ua_prot < 0 and new_experiments.ua_prot >0:
+            if new_experiments.ua_prot < 0 or new_experiments.ua_prot >0:
                     new_experiments.ua_prot_status = False
+            else:
+                new_experiments.ua_prot_status = True
         else:
             new_experiments.ua_prot_status = True
         if new_experiments.ua_glu:
-            if new_experiments.ua_glu < 0 and new_experiments.ua_glu >0:
+            if new_experiments.ua_glu < 0 or new_experiments.ua_glu >0:
                     new_experiments.ua_glu_status = False 
+            else:
+                new_experiments.ua_glu_status = True
         else:
             new_experiments.ua_glu_status = True
         if new_experiments.ua_rbc:
             if new_experiments.ua_rbc > 3:
                 new_experiments.ua_rbc_status = False 
+            else:
+                new_experiments.ua_rbc_status = True
         else:
             new_experiments.ua_rbc_status = True
         if new_experiments.ua_wbc:
             if new_experiments.ua_wbc > 5:
                 new_experiments.ua_wbc_status = False 
+            else:
+                new_experiments.ua_wbc_status = True
         else:
             new_experiments.ua_wbc_status = True
         if new_experiments.ua_bact:
-            if new_experiments.ua_bact < 0 and new_experiments.ua_bact > 0:
+            if new_experiments.ua_bact < 0 or new_experiments.ua_bact > 0:
                 new_experiments.ua_bact_status = False 
+            else:
+                new_experiments.ua_bact_status = True
         else:
             new_experiments.ua_bact_status = True
         if new_experiments.fbs:
-            if new_experiments.fbs < 70 and new_experiments.fbs > 125:
+            if new_experiments.fbs < 70 or new_experiments.fbs > 125:
                 new_experiments.fbs_status = False 
+            else:
+                new_experiments.fbs_status = True
         else:
             new_experiments.fbs_status = True
         if new_experiments.chol:
             if new_experiments.chol > 200:
                 new_experiments.chol_status = False 
+            else:
+                new_experiments.chol_status = True
         else:
             new_experiments.chol_status = True
         if new_experiments.ldl:
-            if new_experiments.ldl >100:
+            if new_experiments.ldl > 100:
                 new_experiments.ldl_status = False 
+            else:
+                new_experiments.ldl_status = True
         else:
             new_experiments.ldl_status = True
         if new_experiments.tsh:
-            if new_experiments.tsh < 0.4 and new_experiments.tsh > 5:
+            if new_experiments.tsh < 0.4 or new_experiments.tsh > 5:
                 new_experiments.tsh_status = False  
+            else:
+                new_experiments.tsh_status = True
         else:
             new_experiments.tsh_status = True
         if new_experiments.tg:
             if new_experiments.tg > 200:
-                    new_experiments.tg_status = False 
+                new_experiments.tg_status = False 
+            else:
+                new_experiments.tg_status = True
         else:
             new_experiments.tg_status = True
         if new_experiments.cr:
             if new_experiments.cr >= 1.4:
                 new_experiments.cr_status = False 
+            else:
+                new_experiments.cr_status = True
         else:
             new_experiments.cr_status = True
         if new_experiments.alt:
             if new_experiments.alt >= 40:
                 new_experiments.alt_status = False 
+            else:
+                new_experiments.alt_status = True
         else:
             new_experiments.alt_status = True
         if new_experiments.ast:
             if new_experiments.ast >= 40:
                 new_experiments.ast_status = False 
+            else:
+                new_experiments.ast_status = True
         else:
             new_experiments.ast_status = True
         if new_experiments.ast:
-            if new_experiments.alk < 14 and new_experiments.alk > 20:
+            if new_experiments.alk < 14 or new_experiments.alk > 20:
                     new_experiments.alk_status = False 
+            else:
+                new_experiments.alk_status = True
         else:
             new_experiments.alk_status = True
         if new_experiments.lead:
-            if ew_experiments.lead > 20:
+            if new_experiments.lead > 20:
                 new_experiments.lead_status = False 
+            else:
+                new_experiments.lead_status = True
         else:
             new_experiments.lead_status = True
         if new_experiments.d:
-            if new_experiments.d <= 30 and new_experiments.d >101:
+            if new_experiments.d <= 30 or new_experiments.d >101:
                 new_experiments.d_status = False  
+            else:
+                new_experiments.d_status = True
         else:
             new_experiments.d_status = True
         if new_experiments.psa:
             if new_person.age < 40:
                 if new_experiments.psa >= 1.7:
                     new_experiments.psa_status = False
-            if new_person.age < 50 and new_person.age >= 40 :
+                else:
+                    new_experiments.psa_status = True
+            if new_person.age < 50 or new_person.age >= 40 :
                 if new_experiments.psa >= 2.2:
                     new_experiments.psa_status = False
-            if nnew_person.age < 60 and new_person.age >= 50:
+                else:
+                    new_experiments.psa_status = True
+            if new_person.age < 60 or new_person.age >= 50:
                 if new_experiments.psa >= 3.4:
                     new_experiments.psa_status = False
-            if new_person.age < 70 and new_person.age >= 60:
+                else:
+                    new_experiments.psa_status = True
+            if new_person.age < 70 or new_person.age >= 60:
                 if new_experiments.psa >= 6.16:
                     new_experiments.psa_status = False
+                else:
+                    new_experiments.psa_status = True
             if new_person.age > 70:
                 if new_experiments.psa >= 6.77:
                     new_experiments.psa_status = False
+                else:
+                    new_experiments.psa_status = True
+            else:
+                new_experiments.psa_status = True
         else:
             new_experiments.psa_status = True
         if new_person.gender == 'mard':
             if new_experiments.cbc_rbc:
-                if new_experiments.cbc_rbc < 4 and new_experiments.cbc_rbc >5.5:
+                if new_experiments.cbc_rbc < 4 or new_experiments.cbc_rbc >5.5:
                     new_experiments.cbc_rbc_status = False 
+                else:
+                    new_experiments.cbc_rbc_status = True
             else:
                 new_experiments.cbc_rbc_status = True
             if new_experiments.cbc_hb:
-                if new_experiments.cbc_hb < 12 and new_experiments.cbc_hb >16:
+                if new_experiments.cbc_hb < 12 or new_experiments.cbc_hb >16:
                     new_experiments.cbc_hb_status = False 
+                else:
+                    new_experiments.cbc_hb_status = True
             else:
                 new_experiments.cbc_hb_status = True
             if new_experiments.cbc_htc:
-                if new_experiments.cbc_htc < 40 and new_experiments.cbc_htc >54:
+                if new_experiments.cbc_htc < 40 or new_experiments.cbc_htc >54:
                     new_experiments.cbc_htc_status = False 
+                else:
+                    new_experiments.cbc_htc_status = True
             else:
                 new_experiments.cbc_htc_status = True
             if new_experiments.hdl:
                 if new_experiments.hdl > 40:
                     new_experiments.hdl_status = False    
+                else:
+                    new_experiments.hdl_status = True 
             else:
-                new_experiments.hdl_status = True 
+                new_experiments.hdl_status = True
         if new_person.gender == 'zan':
             if new_experiments.cbc_rbc:
-                if new_experiments.cbc_rbc < 3.5 and new_experiments.cbc_rbc >5:
+                if new_experiments.cbc_rbc < 3.5 or new_experiments.cbc_rbc >5:
                     new_experiments.cbc_rbc_status = False 
+                else:
+                    new_experiments.cbc_rbc_status = True
             else:
                 new_experiments.cbc_rbc_status = True
             if new_experiments.cbc_hb:
-                if new_experiments.cbc_hb < 11 and new_experiments.cbc_hb >15:
+                if new_experiments.cbc_hb < 11 or new_experiments.cbc_hb >15:
                     new_experiments.cbc_hb_status = False 
+                else:
+                    new_experiments.cbc_hb_status = True
             else:
                 new_experiments.cbc_hb_status = True
             if new_experiments.cbc_htc:
-                if new_experiments.cbc_htc < 37 and new_experiments.cbc_htc >47:
+                if new_experiments.cbc_htc < 37 or new_experiments.cbc_htc >47:
                     new_experiments.cbc_htc_status = False 
+                else:
+                    new_experiments.cbc_htc_status = True
             else:
                 new_experiments.cbc_htc_status = True
             if new_experiments.hdl:
                 if new_experiments.hdl > 50:
                     new_experiments.hdl_status = False    
+                else:
+                    new_experiments.hdl_status = True  
             else:
-                new_experiments.hdl_status = True      
+                new_experiments.hdl_status = True    
         new_experiments.save()
     if personal_species.is_valid() and  para_clinic.is_valid():
         new_para_clinic = para_clinic.save(commit=False)
@@ -1567,7 +1634,7 @@ def examinations_output_view(request):
     else:
         code=''
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
-    personal_species=Personal_Species_Model.objects.filter(name=model.name,age=model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
+    personal_species=Personal_Species_Model.objects.filter(name=model.name,age=1401 - model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
     job_history=Job_History_Model.objects.filter(person=personal_species).last()
     assessment=Assessment_Model.objects.filter(person=personal_species).last()
     personal_history=Personal_History_Model.objects.filter(person=personal_species).last()
@@ -1657,7 +1724,7 @@ def examinations_output_edit_view(request):
     else:
         code=''
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
-    personal_species_m=Personal_Species_Model.objects.filter(name=model.name,age=model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
+    personal_species_m=Personal_Species_Model.objects.filter(name=model.name,age=1401 - model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
     job_history_m=Job_History_Model.objects.filter(person=personal_species_m).last()
     assessment_m=Assessment_Model.objects.filter(person=personal_species_m).last()
     personal_history_m=Personal_History_Model.objects.filter(person=personal_species_m).last()
@@ -1682,7 +1749,8 @@ def examinations_output_edit_view(request):
     if personal_species.is_valid() and  job_history.is_valid():
         new_job_history = job_history.save(commit=False)
         new_job_history.person = new_person
-        new_job_history.durations = ((new_job_history.current_job_to_year * 12) + new_job_history.current_job_to_month) - ((new_job_history.current_job_from_year * 12) + new_job_history.current_job_from_month)
+        if new_job_history.current_job_to_year and new_job_history.current_job_to_month and new_job_history.current_job_from_year and new_job_history.current_job_from_month:
+            new_job_history.durations = ((new_job_history.current_job_to_year * 12) + new_job_history.current_job_to_month) - ((new_job_history.current_job_from_year * 12) + new_job_history.current_job_from_month)
         new_job_history.save()
     if personal_species.is_valid() and  assessment.is_valid():
         new_assessment = assessment.save(commit=False)
@@ -2074,155 +2142,219 @@ def examinations_output_edit_view(request):
         new_experiments = experiments.save(commit=False)
         new_experiments.person = new_person
         if new_experiments.cbc_wbc:
-            if new_experiments.cbc_wbc < 4 and new_experiments.cbc_wbc >10:
+            if new_experiments.cbc_wbc < 4 or new_experiments.cbc_wbc >10:
                 new_experiments.cbc_wbc_status = False 
+            else:
+                new_experiments.cbc_wbc_status = True
         else:
             new_experiments.cbc_wbc_status = True
         if new_experiments.cbc_plt:
-            if new_experiments.cbc_plt < 140 and new_experiments.cbc_plt >450:
+            if new_experiments.cbc_plt < 140 or new_experiments.cbc_plt >450:
                     new_experiments.cbc_plt_status = False 
+            else:
+                new_experiments.cbc_plt_status = True
         else:
             new_experiments.cbc_plt_status = True
         if new_experiments.ua_prot:
-            if new_experiments.ua_prot < 0 and new_experiments.ua_prot >0:
+            if new_experiments.ua_prot < 0 or new_experiments.ua_prot >0:
                     new_experiments.ua_prot_status = False
+            else:
+                new_experiments.ua_prot_status = True
         else:
             new_experiments.ua_prot_status = True
         if new_experiments.ua_glu:
-            if new_experiments.ua_glu < 0 and new_experiments.ua_glu >0:
+            if new_experiments.ua_glu < 0 or new_experiments.ua_glu >0:
                     new_experiments.ua_glu_status = False 
+            else:
+                new_experiments.ua_glu_status = True
         else:
             new_experiments.ua_glu_status = True
         if new_experiments.ua_rbc:
             if new_experiments.ua_rbc > 3:
                 new_experiments.ua_rbc_status = False 
+            else:
+                new_experiments.ua_rbc_status = True
         else:
             new_experiments.ua_rbc_status = True
         if new_experiments.ua_wbc:
             if new_experiments.ua_wbc > 5:
                 new_experiments.ua_wbc_status = False 
+            else:
+                new_experiments.ua_wbc_status = True
         else:
             new_experiments.ua_wbc_status = True
         if new_experiments.ua_bact:
-            if new_experiments.ua_bact < 0 and new_experiments.ua_bact > 0:
+            if new_experiments.ua_bact < 0 or new_experiments.ua_bact > 0:
                 new_experiments.ua_bact_status = False 
+            else:
+                new_experiments.ua_bact_status = True
         else:
             new_experiments.ua_bact_status = True
         if new_experiments.fbs:
-            if new_experiments.fbs < 70 and new_experiments.fbs > 125:
+            if new_experiments.fbs < 70 or new_experiments.fbs > 125:
                 new_experiments.fbs_status = False 
+            else:
+                new_experiments.fbs_status = True
         else:
             new_experiments.fbs_status = True
         if new_experiments.chol:
             if new_experiments.chol > 200:
                 new_experiments.chol_status = False 
+            else:
+                new_experiments.chol_status = True
         else:
             new_experiments.chol_status = True
         if new_experiments.ldl:
-            if new_experiments.ldl >100:
+            if new_experiments.ldl > 100:
                 new_experiments.ldl_status = False 
+            else:
+                new_experiments.ldl_status = True
         else:
             new_experiments.ldl_status = True
         if new_experiments.tsh:
-            if new_experiments.tsh < 0.4 and new_experiments.tsh > 5:
+            if new_experiments.tsh < 0.4 or new_experiments.tsh > 5:
                 new_experiments.tsh_status = False  
+            else:
+                new_experiments.tsh_status = True
         else:
             new_experiments.tsh_status = True
         if new_experiments.tg:
             if new_experiments.tg > 200:
-                    new_experiments.tg_status = False 
+                new_experiments.tg_status = False 
+            else:
+                new_experiments.tg_status = True
         else:
             new_experiments.tg_status = True
         if new_experiments.cr:
             if new_experiments.cr >= 1.4:
                 new_experiments.cr_status = False 
+            else:
+                new_experiments.cr_status = True
         else:
             new_experiments.cr_status = True
         if new_experiments.alt:
             if new_experiments.alt >= 40:
                 new_experiments.alt_status = False 
+            else:
+                new_experiments.alt_status = True
         else:
             new_experiments.alt_status = True
         if new_experiments.ast:
             if new_experiments.ast >= 40:
                 new_experiments.ast_status = False 
+            else:
+                new_experiments.ast_status = True
         else:
             new_experiments.ast_status = True
         if new_experiments.ast:
-            if new_experiments.alk < 14 and new_experiments.alk > 20:
+            if new_experiments.alk < 14 or new_experiments.alk > 20:
                     new_experiments.alk_status = False 
+            else:
+                new_experiments.alk_status = True
         else:
             new_experiments.alk_status = True
         if new_experiments.lead:
-            if ew_experiments.lead > 20:
+            if new_experiments.lead > 20:
                 new_experiments.lead_status = False 
+            else:
+                new_experiments.lead_status = True
         else:
             new_experiments.lead_status = True
         if new_experiments.d:
-            if new_experiments.d <= 30 and new_experiments.d >101:
+            if new_experiments.d <= 30 or new_experiments.d >101:
                 new_experiments.d_status = False  
+            else:
+                new_experiments.d_status = True
         else:
             new_experiments.d_status = True
         if new_experiments.psa:
             if new_person.age < 40:
                 if new_experiments.psa >= 1.7:
                     new_experiments.psa_status = False
-            if new_person.age < 50 and new_person.age >= 40 :
+                else:
+                    new_experiments.psa_status = True
+            if new_person.age < 50 or new_person.age >= 40 :
                 if new_experiments.psa >= 2.2:
                     new_experiments.psa_status = False
-            if nnew_person.age < 60 and new_person.age >= 50:
+                else:
+                    new_experiments.psa_status = True
+            if new_person.age < 60 or new_person.age >= 50:
                 if new_experiments.psa >= 3.4:
                     new_experiments.psa_status = False
-            if new_person.age < 70 and new_person.age >= 60:
+                else:
+                    new_experiments.psa_status = True
+            if new_person.age < 70 or new_person.age >= 60:
                 if new_experiments.psa >= 6.16:
                     new_experiments.psa_status = False
+                else:
+                    new_experiments.psa_status = True
             if new_person.age > 70:
                 if new_experiments.psa >= 6.77:
                     new_experiments.psa_status = False
+                else:
+                    new_experiments.psa_status = True
+            else:
+                new_experiments.psa_status = True
         else:
             new_experiments.psa_status = True
         if new_person.gender == 'mard':
             if new_experiments.cbc_rbc:
-                if new_experiments.cbc_rbc < 4 and new_experiments.cbc_rbc >5.5:
+                if new_experiments.cbc_rbc < 4 or new_experiments.cbc_rbc >5.5:
                     new_experiments.cbc_rbc_status = False 
+                else:
+                    new_experiments.cbc_rbc_status = True
             else:
                 new_experiments.cbc_rbc_status = True
             if new_experiments.cbc_hb:
-                if new_experiments.cbc_hb < 12 and new_experiments.cbc_hb >16:
+                if new_experiments.cbc_hb < 12 or new_experiments.cbc_hb >16:
                     new_experiments.cbc_hb_status = False 
+                else:
+                    new_experiments.cbc_hb_status = True
             else:
                 new_experiments.cbc_hb_status = True
             if new_experiments.cbc_htc:
-                if new_experiments.cbc_htc < 40 and new_experiments.cbc_htc >54:
+                if new_experiments.cbc_htc < 40 or new_experiments.cbc_htc >54:
                     new_experiments.cbc_htc_status = False 
+                else:
+                    new_experiments.cbc_htc_status = True
             else:
                 new_experiments.cbc_htc_status = True
             if new_experiments.hdl:
                 if new_experiments.hdl > 40:
                     new_experiments.hdl_status = False    
+                else:
+                    new_experiments.hdl_status = True 
             else:
-                new_experiments.hdl_status = True 
+                new_experiments.hdl_status = True
         if new_person.gender == 'zan':
             if new_experiments.cbc_rbc:
-                if new_experiments.cbc_rbc < 3.5 and new_experiments.cbc_rbc >5:
+                if new_experiments.cbc_rbc < 3.5 or new_experiments.cbc_rbc >5:
                     new_experiments.cbc_rbc_status = False 
+                else:
+                    new_experiments.cbc_rbc_status = True
             else:
                 new_experiments.cbc_rbc_status = True
             if new_experiments.cbc_hb:
-                if new_experiments.cbc_hb < 11 and new_experiments.cbc_hb >15:
+                if new_experiments.cbc_hb < 11 or new_experiments.cbc_hb >15:
                     new_experiments.cbc_hb_status = False 
+                else:
+                    new_experiments.cbc_hb_status = True
             else:
                 new_experiments.cbc_hb_status = True
             if new_experiments.cbc_htc:
-                if new_experiments.cbc_htc < 37 and new_experiments.cbc_htc >47:
+                if new_experiments.cbc_htc < 37 or new_experiments.cbc_htc >47:
                     new_experiments.cbc_htc_status = False 
+                else:
+                    new_experiments.cbc_htc_status = True
             else:
                 new_experiments.cbc_htc_status = True
             if new_experiments.hdl:
                 if new_experiments.hdl > 50:
                     new_experiments.hdl_status = False    
+                else:
+                    new_experiments.hdl_status = True  
             else:
-                new_experiments.hdl_status = True      
+                new_experiments.hdl_status = True    
         new_experiments.save()
     if personal_species.is_valid() and  para_clinic.is_valid():
         new_para_clinic = para_clinic.save(commit=False)
@@ -2235,6 +2367,6 @@ def examinations_output_edit_view(request):
     if personal_species.is_valid() and  final_theory.is_valid():
         new_final_theory = final_theory.save(commit=False)
         new_final_theory.person = new_person
-        new_final_theory.save()
+        new_final_theory.save() 
     context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
     return render(request, 'edit_examinations.html',context)
