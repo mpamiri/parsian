@@ -94,7 +94,8 @@
                     <th class='summary_n'>مشروط</th>
                 </tr>
             </thead>
-            <tr>
+            <tr id = 'summary{{ forloop.counter }}'>
+                {% load django_template_maths %}
                 <td colspan='3'>{{ forloop.counter }}</td>
                 {% if item.name %}
                 <td colspan='3'>{{ item.name }}</td>
@@ -139,7 +140,7 @@
                 {% if item.para.all.0.espiro_tafsir == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.espiro_tafsir == 'again' or item.para.all.0.espiro_tafsir == 'ensedadi' or item.assessment.all.0.espiro_tafsir == 'tahdidi' or item.assessment.all.0.espiro_tafsir == 'ensedadivtahdidi' %}
+                {% elif item.para.all.0.espiro_tafsir == 'again' or item.para.all.0.espiro_tafsir == 'ensedadi' or item.para.all.0.espiro_tafsir == 'tahdidi' or item.para.all.0.espiro_tafsir == 'ensedadivtahdidi' %}
                     <td></td>
                     <td>*</td>
                 {% else %}
@@ -149,7 +150,7 @@
                 {% if item.para.all.0.opto_hedat_r_ba == 10 and item.para.all.0.opto_hedat_r_bi == 10 %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.opto_hedat_r_ba < 10 or item.para.all.0.opto_hedat_r_bi < 10 %}
+                {% elif item.para.all.0.opto_hedat_r_ba < 10 or item.para.all.0.opto_hedat_r_bi < 10 or item.para.all.0.opto_hedat_r_status == 'fc' or item.para.all.0.opto_hedat_r_status == 'adam_did' %}
                     <td></td>
                     <td>*</td>
                 {% else %}
@@ -159,7 +160,7 @@
                 {% if item.para.all.0.opto_hedat_l_ba == 10 and item.para.all.0.opto_hedat_l_bi == 10 %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.opto_hedat_l_ba < 10 or item.para.all.0.opto_hedat_l_bi < 10 %}
+                {% elif item.para.all.0.opto_hedat_l_ba < 10 or item.para.all.0.opto_hedat_l_bi < 10 or item.para.all.0.opto_hedat_l_status == 'fc' or item.para.all.0.opto_hedat_l_status == 'adam_did' %}
                     <td></td>
                     <td>*</td>
                 {% else %}
@@ -197,9 +198,10 @@
                     <td></td>
                     <td></td>
                 {% endif %}
-            </tr>   
+            </tr>            
             {% else %}
-            <tr>
+            <tr id = 'summary{{ forloop.counter }}'>
+                {% load django_template_maths %}
                 <td colspan='3'>{{ forloop.counter }}</td>
                 {% if item.name %}
                 <td colspan='3'>{{ item.name }}</td>
@@ -244,7 +246,7 @@
                 {% if item.para.all.0.espiro_tafsir == 'normal' %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.espiro_tafsir == 'again' or item.para.all.0.espiro_tafsir == 'ensedadi' or item.assessment.all.0.espiro_tafsir == 'tahdidi' or item.assessment.all.0.espiro_tafsir == 'ensedadivtahdidi' %}
+                {% elif item.para.all.0.espiro_tafsir == 'again' or item.para.all.0.espiro_tafsir == 'ensedadi' or item.para.all.0.espiro_tafsir == 'tahdidi' or item.para.all.0.espiro_tafsir == 'ensedadivtahdidi' %}
                     <td></td>
                     <td>*</td>
                 {% else %}
@@ -254,7 +256,7 @@
                 {% if item.para.all.0.opto_hedat_r_ba == 10 and item.para.all.0.opto_hedat_r_bi == 10 %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.opto_hedat_r_ba < 10 or item.para.all.0.opto_hedat_r_bi < 10 %}
+                {% elif item.para.all.0.opto_hedat_r_ba < 10 or item.para.all.0.opto_hedat_r_bi < 10 or item.para.all.0.opto_hedat_r_status == 'fc' or item.para.all.0.opto_hedat_r_status == 'adam_did' %}
                     <td></td>
                     <td>*</td>
                 {% else %}
@@ -264,7 +266,7 @@
                 {% if item.para.all.0.opto_hedat_l_ba == 10 and item.para.all.0.opto_hedat_l_bi == 10 %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.opto_hedat_l_ba < 10 or item.para.all.0.opto_hedat_l_bi < 10 %}
+                {% elif item.para.all.0.opto_hedat_l_ba < 10 or item.para.all.0.opto_hedat_l_bi < 10 or item.para.all.0.opto_hedat_l_status == 'fc' or item.para.all.0.opto_hedat_l_status == 'adam_did' %}
                     <td></td>
                     <td>*</td>
                 {% else %}
@@ -302,7 +304,7 @@
                     <td></td>
                     <td></td>
                 {% endif %}
-            </tr>  
+            </tr>            
             {% endif %}
             {% endfor %}
         </table>
@@ -379,7 +381,7 @@
             {% for item in personal_species %}
             <tr id = 'summary{{ forloop.counter }}'>
                 {% load django_template_maths %}
-                <td colspan='3'></td>
+                <td colspan='3'>{{ forloop.counter }}</td>
                 {% if item.name %}
                 <td colspan='3'>{{ item.name }}</td>
                 {% else %}
@@ -433,7 +435,7 @@
                 {% if item.para.all.0.opto_hedat_r_ba == 10 and item.para.all.0.opto_hedat_r_bi == 10 %}
                     <td>*</td>
                     <td></td>
-                {% elif item.para.all.0.opto_hedat_r_ba < 10 or item.para.all.0.opto_hedat_r_bi < 10 or item.para.all.0.opto_hedat_r_status == 'fc' or item.para.all.0.opto_hedat_r_status == 'adam_did'%}
+                {% elif item.para.all.0.opto_hedat_r_ba < 10 or item.para.all.0.opto_hedat_r_bi < 10 or item.para.all.0.opto_hedat_r_status == 'fc' or item.para.all.0.opto_hedat_r_status == 'adam_did' %}
                     <td></td>
                     <td>*</td>
                 {% else %}

@@ -367,7 +367,7 @@ def summary_of_examinations_pdf_view(request):
     pdf = FPDF()
     while i <= count :
         if i == count:
-            height = (n - (count * 20) + 1) * 7.14
+            height = (n - (count * 20) + 1) * 17
             driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary.png')
             driver.find_element('id','Head').screenshot('images/Head.png')
             pdf.add_page()
@@ -377,11 +377,12 @@ def summary_of_examinations_pdf_view(request):
             os.remove('images/Head.png')
             i += 1
         else:
+            height = (20) * 17
             driver.find_element('id','summary' + str(i)).screenshot('images/'+ str(i) +'summary.png')
             driver.find_element('id','Head').screenshot('images/Head.png')
             pdf.add_page()
             pdf.image('images/Head.png',-1,None,220,20)
-            pdf.image('images/'+ str(i) +'summary.png',3,None,205,150)
+            pdf.image('images/'+ str(i) +'summary.png',3,None,205,height)
             os.remove('images/'+ str(i) +'summary.png')
             os.remove('images/Head.png')
             i += 1
@@ -593,12 +594,15 @@ def graph_view(request):
 
     for summary in personal_species:
         para=Para_Clinic_Model.objects.filter(person=summary).last()
-        if para.opto_hedat_r_bi == None:
-            c_ry += 1 
-        elif para.opto_hedat_r_bi < 10:
+        if para.opto_hedat_r_bi:
+            if para.opto_hedat_r_bi == 10:
+                a_ry += 1  
+            else:
+                b_ry += 1
+        elif para.opto_hedat_r_status == 'fc' or para.opto_hedat_r_status == 'adam_did':
             b_ry += 1
-        elif para.opto_hedat_r_bi == 10:
-            a_ry += 1   
+        else:
+            c_ry += 1 
     data_ry.append(a_ry)
     data_ry.append(b_ry)
     data_ry.append(c_ry)
@@ -606,12 +610,15 @@ def graph_view(request):
 
     for summary in personal_species:
         para=Para_Clinic_Model.objects.filter(person=summary).last()
-        if para.opto_hedat_l_bi == None:
-            c_ly += 1 
-        elif para.opto_hedat_l_bi < 10:
+        if para.opto_hedat_l_bi:
+            if para.opto_hedat_l_bi == 10:
+                a_ly += 1  
+            else:
+                b_ly += 1
+        elif para.opto_hedat_l_status == 'fc' or para.opto_hedat_l_status == 'adam_did':
             b_ly += 1
-        elif para.opto_hedat_l_bi == 10:
-            a_ly += 1  
+        else:
+            c_ly += 1 
     data_ly.append(a_ly)
     data_ly.append(b_ly)
     data_ly.append(c_ly)
