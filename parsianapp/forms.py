@@ -64,7 +64,7 @@ class personal_species_form(forms.ModelForm):
         'marriage_status' : forms.Select(attrs={'class':'box','autocomplete': 'off'}),
         'children' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'age' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'}),
-        'personal_code' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'personal_code' : forms.NumberInput(attrs={'class':'personal_w','autocomplete': 'off'}),
         'military_status' : forms.Select(attrs={'class':'text','autocomplete': 'off'}),
         'raste' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
         'medical_exemption_reason' : forms.TextInput(attrs={'class':'text','autocomplete': 'off' ,'disabled':'disabled'}),
@@ -86,13 +86,13 @@ class job_history_form(forms.ModelForm):
         model=Job_History_Model
         fields='__all__' 
         widgets={
-        'current_job' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
-        'current_job_duty' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'current_job' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'current_job_duty' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
         'current_job_from_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
         'current_job_from_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'current_job_to_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
         'current_job_to_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'current_job_reason' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
+        'current_job_reason' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
         'second_current_job' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
         'second_current_job_duty' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
         'second_current_job_from' : forms.TextInput(attrs={'class':'text remove','autocomplete': 'off'}),
@@ -115,6 +115,8 @@ class assessment_form(forms.ModelForm):
         model=Assessment_Model
         fields='__all__' 
         widgets={
+        'required_description' : forms.TextInput(attrs={'autocomplete': 'off','style':'width:52%'}),
+        'kar_shenas' : forms.TextInput(attrs={'autocomplete': 'off','style':'width:65%'}),
         'date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
         'date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
@@ -125,6 +127,19 @@ class personal_history_form(forms.ModelForm):
         model=Personal_History_Model
         fields='__all__' 
         widgets={
+        'first_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'second_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'third_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'fourth_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'fifth_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'sixth_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'seventh_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'eighth_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'ninth_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'twelfth_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'fourteenth_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'fifteenth_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'sixteenth_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
         'tenth_des_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'eleventh_des_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
         }
@@ -133,7 +148,20 @@ class examinations_form(forms.ModelForm):
         model=Examinations_Model
         fields='__all__' 
         widgets={
+        'local_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'eye_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'skin_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'gosh_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'sar_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'rie_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'ghalb_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'shekam_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'colie_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'eskelety_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'asabi_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'ravan_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
         'weight' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'other' : forms.TextInput(attrs={'autocomplete': 'off','style':'width:100%'}),
         'blood_pressure' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'length' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'pulse' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
@@ -241,11 +269,18 @@ class para_clinic_form(forms.ModelForm):
         'espiro_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'espiro_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'espiro_tafsir' : forms.Select(attrs={'autocomplete': 'off'}),
+        'espiro_fevvfvc' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'espiro_fev' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'espiro_fvc' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'espiro_vext' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'espiro_pef' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'espiro_fef' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
         'other_cxr_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
         'other_cxr_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'other_cxr_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'other_ecg_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
         'other_ecg_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'other_result' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
         'other_ecg_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
         }
 
@@ -259,6 +294,8 @@ class consulting_form(forms.ModelForm):
         'first_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'second_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
         'second_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'first_result' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
+        'second_result' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
         'second_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
         }
 
@@ -267,11 +304,11 @@ class final_theory_form(forms.ModelForm):
         model=Final_Theory_Model
         fields='__all__' 
         widgets={
-        'mashrot_reason' : forms.TextInput(attrs={'autocomplete': 'off'}),
-        'rad_reason' : forms.TextInput(attrs={'autocomplete': 'off'}),
-        'recommendations' : forms.TextInput(attrs={'autocomplete': 'off'}),
-        'reason' : forms.TextInput(attrs={'autocomplete': 'off'}),
-        'problems' : forms.TextInput(attrs={'autocomplete': 'off'}),
+        'mashrot_reason' : forms.TextInput(attrs={'autocomplete': 'off','style':'width : 91%'}),
+        'rad_reason' : forms.TextInput(attrs={'autocomplete': 'off','style':'width : 84%'}),
+        'recommendations' : forms.TextInput(attrs={'autocomplete': 'off','style':'width : 95%'}),
+        'reason' : forms.TextInput(attrs={'autocomplete': 'off','style':'width : 95%'}),
+        'problems' : forms.TextInput(attrs={'autocomplete': 'off','style':'width : 70%'}),
         'd_code' : forms.NumberInput(attrs={'autocomplete': 'off','class':'box'})
         }
 

@@ -338,3 +338,17 @@ width : 50px;
 .examination_box{
 width : 70px
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.personal_w{
+  width : 130px
+}
+.des{
+  width : 100%
+}
