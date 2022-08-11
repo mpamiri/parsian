@@ -3515,10 +3515,10 @@
                 </tr>
                 <tr>
                     <td rowspan=2>
-                        {% if para_clinic.oudio_r_tafsir == null %}
+                        {% if para_clinic.audio_r_tafsir == None %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
-                        {{ para_clinic.oudio_r_tafsir }}
+                        {{ para_clinic.audio_r_tafsir }}
                         {% endif %}
                     </td>
                     <td>
@@ -3809,7 +3809,7 @@
                 </tr>
                 <tr>
                     <td><p>یافته های ECG</p>تاریخ انجام:
-                        {% if para_clinic.other_ecg_year and para_clinic.other_ecg_month and para_clinic.other_day %}
+                        {% if para_clinic.other_ecg_year and para_clinic.other_ecg_month and para_clinic.other_ecg_day %}
                         {{ para_clinic.other_ecg_year }}/{{ para_clinic.other_ecg_month }}/{{ para_clinic.other_ecg_day }}
                         {% else %}
                         ذکر نشده
@@ -3945,10 +3945,10 @@
                         </div> 
                         <div>
                             ذکر مشروط:
-                            {% if final_theory.mashrot_reason == True %}
-                            <i class="fa-solid fa-check True"></i>
+                            {% if final_theory.mashrot_reason == null %}
+                            <p class='None'>ذکر نشده</p>
                             {% else %}
-                            <i class="fa-solid fa-x False"></i>
+                            {{ final_theory.mashrot_reason }}
                             {% endif %}
                         </div>
                     </td>

@@ -632,7 +632,7 @@ def graph_view(request):
             b_esp += 1
         elif para.espiro_tafsir == 'ensedadi':
             c_esp += 1
-        elif para.espiro_tafsir == 'try':
+        elif para.espiro_tafsir == 'again':
             d_esp += 1
         elif para.espiro_tafsir == 'namaie_toaman':
             e_esp += 1
