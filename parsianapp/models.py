@@ -36,9 +36,9 @@ class Personal_Species_Model(models.Model):
     examinations_code = models.ForeignKey(ExaminationsCourse, on_delete=models.CASCADE)
     user = models.CharField(max_length=250, null=True, blank=True)
     examinations_type= models.CharField(max_length=250, null=True, blank=True)
-    date_year=models.IntegerField( null=True, blank=True)
-    date_month=models.IntegerField(null=True, blank=True)
-    date_day=models.IntegerField(null=True, blank=True)
+    species_date_year=models.IntegerField( null=True, blank=True)
+    species_date_month=models.IntegerField(null=True, blank=True)
+    species_date_day=models.IntegerField(null=True, blank=True)
     profil_number=models.IntegerField(null=True, blank=True)
     employment_number=models.IntegerField(null=True, blank=True)
     name = models.CharField(max_length=250,default=None)
@@ -143,9 +143,9 @@ class Assessment_Model(models.Model):
     required_description = models.CharField(max_length=250, null=True, blank=True)
     kar_shenas = models.CharField(max_length=250, null=True, blank=True)
     kar_shenas_name = models.CharField(max_length=250, null=True, blank=True)
-    date_year=models.IntegerField(null=True, blank=True)
-    date_month=models.IntegerField(null=True, blank=True)
-    date_day=models.IntegerField(null=True, blank=True)
+    ass_date_year=models.IntegerField(null=True, blank=True)
+    ass_date_month=models.IntegerField(null=True, blank=True)
+    ass_date_day=models.IntegerField(null=True, blank=True)
     assessments = models.CharField(max_length=250, null=True, blank=True)
 
 class Personal_History_Model(models.Model):
@@ -205,9 +205,9 @@ class Personal_History_Model(models.Model):
 
 class Examinations_Model(models.Model):
     person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='examinations',null=True,blank=True) 
-    date_year=models.IntegerField(null=True, blank=True)
-    date_month=models.IntegerField(null=True, blank=True)
-    date_day=models.IntegerField(null=True, blank=True)
+    exa_date_year=models.IntegerField(null=True, blank=True)
+    exa_date_month=models.IntegerField(null=True, blank=True)
+    exa_date_day=models.IntegerField(null=True, blank=True)
     weight = models.IntegerField(null=True, blank=True)
     blood_pressure = models.IntegerField(null=True, blank=True)
     length = models.IntegerField(null=True, blank=True)
@@ -437,9 +437,9 @@ class Examinations_Model(models.Model):
 
 class Experiments_Model(models.Model):
     person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='experiment',null=True,blank=True) 
-    date_year=models.IntegerField(null=True, blank=True)
-    date_month=models.IntegerField(null=True, blank=True)
-    date_day=models.IntegerField(null=True, blank=True)
+    exp_date_year=models.IntegerField(null=True, blank=True)
+    exp_date_month=models.IntegerField(null=True, blank=True)
+    exp_date_day=models.IntegerField(null=True, blank=True)
     cbc_wbc=models.IntegerField(null=True, blank=True)
     cbc_rbc=models.IntegerField(null=True, blank=True)
     cbc_hb=models.IntegerField(null=True, blank=True)

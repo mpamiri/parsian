@@ -54,7 +54,7 @@ class personal_species_form(forms.ModelForm):
         model=Personal_Species_Model
         fields='__all__' 
         widgets={
-        'date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
+        'species_date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
         'examinations_type' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
         'profil_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'employment_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
@@ -71,8 +71,8 @@ class personal_species_form(forms.ModelForm):
         'job_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
         'employer_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
         'address' : forms.TextInput(attrs={'style':'width : 800px','autocomplete': 'off'}),
-        'date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
+        'species_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'species_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
         }
     def clean_test_value(self):
         data = self.cleaned_data.get('date_day')
@@ -117,9 +117,9 @@ class assessment_form(forms.ModelForm):
         widgets={
         'required_description' : forms.TextInput(attrs={'autocomplete': 'off','style':'width:52%'}),
         'kar_shenas' : forms.TextInput(attrs={'autocomplete': 'off','style':'width:65%'}),
-        'date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
-        'date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
+        'ass_date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
+        'ass_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'ass_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
         }
         
 class personal_history_form(forms.ModelForm):
@@ -165,9 +165,9 @@ class examinations_form(forms.ModelForm):
         'blood_pressure' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'length' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'pulse' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
-        'date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
+        'exa_date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
+        'exa_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'exa_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
         }
 
 class experiments_form(forms.ModelForm):
@@ -208,9 +208,9 @@ class experiments_form(forms.ModelForm):
         'third_date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
         'third_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'third_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
-        'date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
+        'exp_date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
+        'exp_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'exp_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
         }
 
 class para_clinic_form(forms.ModelForm):

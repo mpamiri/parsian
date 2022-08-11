@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <td width=17%>تاریخ</td>
-                    <td>{{ personal_species.date_day }}/{{ personal_species.date_month }}/{{ personal_species.date_year }}</td>
+                    <td>{{ personal_species.species_date_day }}/{{ personal_species.species_date_month }}/{{ personal_species.species_date_year }}</td>
                 </tr>
                 <tr>
                     <td width=17%>شماره پرونده</td>
@@ -442,7 +442,7 @@
                         </div>
                         <div class='row'>
                             <div class='col'>
-                                تاریخ:{{ assessment.date_day }}/{{ assessment.date_month }}/{{ assessment.date_year }}
+                                تاریخ:{{ assessment.ass_date_day }}/{{ assessment.ass_date_month }}/{{ assessment.ass_date_year }}
                             </div>
                             <div class='col'>
                                 مهر و امضا:
@@ -624,7 +624,7 @@
         </div>
         <div class='row text-center'>
             <div class='col'>
-                تاریخ:{{ examinations.date_day }}/{{ examinations.date_month }}/{{ examinations.date_year }}
+                تاریخ:{{ examinations.exa_date_day }}/{{ examinations.exa_date_month }}/{{ examinations.exa_date_year }}
             </div>
             <div class='col'>
                 وزن(kg):{{ examinations.weight }}
@@ -1725,7 +1725,7 @@
         </div>
         <div class='row mt-2'>
             <div class='col'>
-                تاریخ:{{ experiments.date_day }}/{{ experiments.date_month }}/{{ experiments.date_year }}
+                تاریخ:{{ experiments.exp_date_day }}/{{ experiments.exp_date_month }}/{{ experiments.exp_date_year }}
             </div>
         </div> 
         <div class='row mt-3' dir=ltr>
@@ -1829,7 +1829,7 @@
                     <th>1000</th>
                     <th>500</th>
                     <th>فرکانس</th>
-                    <th>{{ para_clinic.audio_date_day }}/{{ para_clinic.audio_date_month }}/{{ para_clinic.audio_date_year }}</th>
+                    <p>تاریخ:{{ para_clinic.audio_date_day }}/{{ para_clinic.audio_date_month }}/{{ para_clinic.audio_date_year }}</p>
                 </tr>
                 <tr>
                     <td rowspan=2>{{ para_clinic.audio_r_tafsir }}</td>
@@ -1888,8 +1888,8 @@
                </tr>
                <tr>
                     <td>{{ para_clinic.espiro_fevvfvc }}</td>
-                    <td>{{ para_clinic.espiro_fev }}</td>
                     <td>{{ para_clinic.espiro_fvc }}</td>
+                    <td>{{ para_clinic.espiro_fev }}</td>
                 </tr>
                 <tr>
                     <td>VEXT(Back Extrapolated Volume)</td>

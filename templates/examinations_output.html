@@ -85,27 +85,19 @@
                 </tr>
                 <tr>
                     <td width=17%>تاریخ</td>
-                    {% if personal_species.date_year == None and personal_species.date_month == None and personal_species.date_day == None %}
+                    {% if personal_species.species_date_year == None and personal_species.species_date_month == None and personal_species.species_date_day == None %}
                     <td class='none'>ذکر نشده</td>
                     {% else %}
-                    <td>{{ personal_species.date_year }}/{{ personal_species.date_month }}/{{ personal_species.date_day }}</td>
+                    <td>{{ personal_species.species_date_year }}/{{ personal_species.species_date_month }}/{{ personal_species.species_date_day }}</td>
                     {% endif %}
                 </tr>
                 <tr>
                     <td width=17%>شماره پرونده</td>
-                    {% if personal_species.profil_number %}
-                    <td>{{ personal_species.profil_number }}</td>
-                    {% else %}
-                    <td class='none'>ذکر نشده</td>
-                    {% endif %}
+                    <td></td>
                 </tr>
                 <tr>
                     <td width=17%>شماره استخدامی شاغل</td>
-                    {% if personal_species.employment_number %}
-                    <td>{{ personal_species.employment_number }}</td>
-                    {% else %}
-                    <td class='none'>ذکر نشده</td>
-                    {% endif %}
+                    <td></td>
                 </tr>
             </table>
         </div>
@@ -255,7 +247,7 @@
                     <td>از</td>
                     <td>تا</td>
                 </tr>
-                <tr>
+                <tr style = 'height : 32.5px'>
                     {% if job_history.current_job == null %}
                     <td class='none'>ذکر نشده</td>
                     {% else %}
@@ -266,15 +258,15 @@
                     {% else %}
                     <td>{{ job_history.current_job_duty }}</td>
                     {% endif %}
-                    {% if job_history.current_job_from_year == null  and job_history.current_job_from_month == null and job_history.current_job_from_day == null %}
+                    {% if job_history.current_job_from_year == null  and job_history.current_job_from_month == null %}
                     <td class='none'>ذکر نشده</td>
                     {% else %}
-                    <td>{{ job_history.current_job_from_year }}/{{ job_history.current_job_from_month }}/{{ job_history.current_job_from_day }}</td>
+                    <td>{{ job_history.current_job_from_year }}/{{ job_history.current_job_from_month }}</td>
                     {% endif %}
-                    {% if job_history.current_job_to_year == null  and job_history.current_job_to_month == null and job_history.current_job_to_day == null %}
+                    {% if job_history.current_job_to_year == null  and job_history.current_job_to_month == null %}
                     <td class='none'>ذکر نشده</td>
                     {% else %}
-                    <td>{{ job_history.current_job_to_year }}/{{ job_history.current_job_to_month }}/{{ job_history.current_job_to_day }}</td>
+                    <td>{{ job_history.current_job_to_year }}/{{ job_history.current_job_to_month }}</td>
                     {% endif %}
                     {% if job_history.current_job_reason == null %}
                     <td class='none'>ذکر نشده</td>
@@ -282,87 +274,27 @@
                     <td>{{ job_history.current_job_reason }}</td>
                     {% endif %}
                 </tr>
-                <tr>
-                    {% if job_history.second_current_job == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.second_current_job }}</td>
-                    {% endif %}
-                    {% if job_history.second_current_job_duty == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.second_current_job_duty }}</td>
-                    {% endif %}
-                    {% if job_history.second_current_job_from == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.second_current_job_from }}</td>
-                    {% endif %}
-                    {% if job_history.second_current_job_to == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.second_current_job_to }}</td>
-                    {% endif %}
-                    {% if job_history.second_current_job_reason == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.second_current_job_reason }}</td>
-                    {% endif %}
+                <tr style = 'height : 32.5px'>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                <tr>
+                <tr style = 'height : 32.5px'>
                     <td rowspan='2'>مشاغل قبلی</td>
-                    {% if job_history.previous_job == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.previous_job }}</td>
-                    {% endif %}
-                    {% if job_history.previous_job_duty == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.previous_job_duty }}</td>
-                    {% endif %}
-                    {% if job_history.previous_job_from == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.previous_job_from }}</td>
-                    {% endif %}
-                    {% if job_history.previous_job_to == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.previous_job_to }}</td>
-                    {% endif %}
-                    {% if job_history.previous_job_reason == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.previous_job_reason }}</td>
-                    {% endif %}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                <tr>
-                    {% if job_history.second_previous_job == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.second_previous_job }}</td>
-                    {% endif %}
-                    {% if job_history.second_previous_job_duty == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.second_previous_job_duty }}</td>
-                    {% endif %}
-                    {% if job_history.second_previous_job_from == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.second_previous_job_from }}</td>
-                    {% endif %}
-                    {% if job_history.second_previous_job_to == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.second_previous_job_to }}</td>
-                    {% endif %}
-                    {% if job_history.second_previous_job_reason == null %}
-                    <td class='none'>ذکر نشده</td>
-                    {% else %}
-                    <td>{{ job_history.second_previous_job_reason }}</td>
-                    {% endif %}
+                <tr style = 'height : 32.5px'>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
         </div>
@@ -839,8 +771,8 @@
                         </div>
                         <div class='row'>
                             <div class='col'>
-                                {% if assessment.date_year and assessment.date_month and assessment.date_day %}
-                                تاریخ:{{ assessment.date_year }}/{{ assessment.date_month }}/{{ assessment.date_day }}
+                                {% if assessment.ass_date_year and assessment.ass_date_month and assessment.ass_date_day %}
+                                تاریخ:{{ assessment.ass_date_year }}/{{ assessment.ass_date_month }}/{{ assessment.ass_date_day }}
                                 {% else %}
                                 <p class='None'>تاریخ:ذکر نشده</p>
                                 {% endif %}
@@ -868,10 +800,10 @@
         <div class='row'>
             <table>
                 <tr class='text-center'>
-                    <th width=7%>ردیف</th>
-                    <th width=45%>سوال</th>
-                    <th width=7%>بلی</th>
-                    <th width=7%>خیر</th>
+                    <th width=3%>ردیف</th>
+                    <th width=35%>سوال</th>
+                    <th width=3%>بلی</th>
+                    <th width=3%>خیر</th>
                     <th>توضیحات</th>
                 </tr>
                 <tr>
@@ -1265,13 +1197,25 @@
         </div>
         <div class='row text-center'>
             <div class='col'>
-                تاریخ:{{ examinations.date_year }}/{{ examinations.date_month }}/{{ examinations.date_day }}
+                {% if examinations.exa_date_year and examinations.exa_date_month and examinations.exa_date_day %}
+                تاریخ:{{ examinations.exa_date_year }}/{{ examinations.exa_date_month }}/{{ examinations.exa_date_day }}
+                {% else %}
+                <p class='none'>تاریخ:ذکر نشده</p>
+                {% endif %}
             </div>
             <div class='col'>
+                {% if examinations.weight %}
                 وزن(kg):{{ examinations.weight }}
+                {% else %}
+                <p class='none'>ذکر نشده</p>
+                {% endif %}        
             </div>
             <div class='col'>
+                {% if examinations.blood_pressure %}
                 فشار خون(mmHg):{{ examinations.blood_pressure }}
+                {% else %}
+                <p class='none'>ذکر نشده</p>
+                {% endif %}                
             </div>
         </div>
         <div class='row text-center'>
@@ -1279,10 +1223,18 @@
                 
             </div>
             <div class='col'>
+                {% if examinations.length %}
                 قد(Cm):{{ examinations.length }}
+                {% else %}
+                <p class='none'>ذکر نشده</p>
+                {% endif %}                
             </div>
             <div class='col'>
+                {% if examinations.pulse %}
                 تعداد نبض(در دقیقه):{{ examinations.pulse }}
+                {% else %}
+                <p class='none'>تعداد نبض(در دقیقه):ذکر نشده</p>
+                {% endif %}     
             </div>
         </div>
         <div class='row text-center mt-1'>
@@ -3208,8 +3160,8 @@
         </div>
         <div class='row mt-2'>
             <div class='col'>
-                {% if experiments.date_year and experiments.date_month and experiments.date_day %}
-                تاریخ:{{ experiments.date_year }}/{{ experiments.date_month }}/{{ experiments.date_day }}
+                {% if experiments.exp_date_year and experiments.exp_date_month and experiments.exp_date_day %}
+                تاریخ:{{ experiments.exp_date_year }}/{{ experiments.exp_date_month }}/{{ experiments.exp_date_day }}
                 {% else %}
                 <p class='none'>تاریخ:ذکر نشده</p>
                 {% endif %}
@@ -3556,7 +3508,7 @@
                     <th>500</th>
                     <th>فرکانس</th>
                     {% if para_clinic.audio_date_year and para_clinic.audio_date_month and para_clinic.audio_date_day  %}
-                    <th>{{ para_clinic.audio_date_year }}/{{ para_clinic.audio_date_month }}/{{ para_clinic.audio_date_day }}</th>
+                    <p>{{ para_clinic.audio_date_year }}/{{ para_clinic.audio_date_month }}/{{ para_clinic.audio_date_day }}</p>
                     {% else %}
                     <p class='None'>ذکر نشده</p>
                     {% endif %}
@@ -3664,7 +3616,7 @@
                         {% if para_clinic.audio_l_tafsir == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
-                        {{ para_clinic.audio_l_tafsirv }}
+                        {{ para_clinic.audio_l_tafsir }}
                         {% endif %}
                     </td>
                     <td>
@@ -3781,17 +3733,17 @@
                         {% endif %}
                     </td>
                     <td>
-                        {% if para_clinic.espiro_fev == null %}
-                        <p class='none'>ذکر نشده</p>
-                        {% else %}
-                        {{ para_clinic.espiro_fev }}
-                        {% endif %}
-                    </td>
-                    <td>
                         {% if para_clinic.espiro_fvc == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
                         {{ para_clinic.espiro_fvc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if para_clinic.espiro_fev == null %}
+                        <p class='none'>ذکر نشده</p>
+                        {% else %}
+                        {{ para_clinic.espiro_fev }}
                         {% endif %}
                     </td>
                 </tr>
@@ -3840,7 +3792,13 @@
         <div class='row mt-3'>
             <table>
                 <tr>
-                    <td><p>یافته های CXR(P-A)</p>تاریخ انجام:{{ para_clinic.other_cxr_year }}/{{ para_clinic.other_cxr_month }}/{{ para_clinic.other_cxr_day }}</td>
+                    <td><p>یافته های CXR(P-A)</p>تاریخ انجام:
+                        {% if para_clinic.other_cxr_year and para_clinic.other_cxr_month and para_clinic.other_cxr_day %}
+                        {{ para_clinic.other_cxr_year }}/{{ para_clinic.other_cxr_month }}/{{ para_clinic.other_cxr_day }}
+                        {% else %}
+                        ذکر نشده
+                        {% endif %}
+                    </td>
                     <td width=75%>
                         {% if para_clinic.other_cxr == null %}
                         <p class='none'>ذکر نشده</p>
@@ -3850,7 +3808,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><p>یافته های ECG</p>تاریخ انجام:{{ para_clinic.other_ecg_year }}/{{ para_clinic.other_ecg_month }}/{{ para_clinic.other_ecg_day }}</td>
+                    <td><p>یافته های ECG</p>تاریخ انجام:
+                        {% if para_clinic.other_ecg_year and para_clinic.other_ecg_month and para_clinic.other_day %}
+                        {{ para_clinic.other_ecg_year }}/{{ para_clinic.other_ecg_month }}/{{ para_clinic.other_ecg_day }}
+                        {% else %}
+                        ذکر نشده
+                        {% endif %}
+                    </td>
                     <td width=75%>
                         {% if para_clinic.other_ecg == null %}
                         <p class='none'>ذکر نشده</p>
@@ -3889,7 +3853,7 @@
                             {% if consulting.first_year and consulting.first_month and consulting.first_day %}
                             تاریخ :{{ consulting.first_year }}/{{ consulting.first_month }}/{{ consulting.first_day }}
                             {% else %}
-                            <p class='None'>ذکر نشده</p>
+                            <p class='None'>تاریخ :ذکر نشده</p>
                             {% endif %}
                         </div>
                         <div class='mt-1'>
@@ -3923,7 +3887,7 @@
                             {% if consulting.second_year and consulting.second_month and consulting.second_day %}
                             تاریخ :{{ consulting.second_year }}/{{ consulting.second_month }}/{{ consulting.second_day }}
                             {% else %}
-                            <p class='None'>ذکر نشده</p>
+                            <p class='None'>تاریخ :ذکر نشده</p>
                             {% endif %}
                         </div>
                         <div class='mt-1'>
