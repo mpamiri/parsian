@@ -80,21 +80,21 @@ xmlns="http://www.w3.org/2000/svg">
                 </tr>
                 <tr>
                     <td class='first'>توده بدنی</td>
-                    {% if item.examnations.all.0.body_mass %}
+                    {% if item.examinations.all.0.body_mass %}
                     <td class='second'>{{ item.examinations.all.0.body_mass }}</td>
                     {% else %}
                     <td class=' none second'>ذکر نشده</td>
                     {% endif %}
                     {% if item.examinations.all.0.body_mass < 20 %}
-                    <td class='third'>کمبود وزن</td>
+                    <td class='third blue'>کمبود وزن</td>
                     {% elif item.examinations.all.0.body_mass < 26 %}
-                    <td class='third'>ایده آل</td>
+                    <td class='third blue'>ایده آل</td>
                     {% elif item.examinations.all.0.body_mass < 31 %}
-                    <td class='third'>اضافه وزن</td>
+                    <td class='third blue'>اضافه وزن</td>
                     {% elif item.examinations.all.0.body_mass < 41 %}
-                    <td class='third'>چاقی</td>
+                    <td class='third blue'>چاقی</td>
                     {% elif item.examinations.all.0.body_mass > 40 %}
-                    <td class='third'>چاقی شدید</td>
+                    <td class='third blue'>چاقی شدید</td>
                     {% else %}
                     <td class='third none'>ذکر نشده</td>
                     {% endif %}
@@ -109,7 +109,7 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.experiment.all.0.fbs < 100 %}
                     <td class='third True'>نرمال</td>
                     {% elif item.experiment.all.0.fbs < 126 %}
-                    <td class='third'>در محدوده احتیاط</td>
+                    <td class='third blue'>در محدوده احتیاط</td>
                     {% elif item.experiment.all.0.fbs == None %}
                     <td class='third none'>ذکر نشده</td>
                     {% else %}
@@ -124,11 +124,11 @@ xmlns="http://www.w3.org/2000/svg">
                     <td class='none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.examinations.all.0.blood_pressure < 9 %}
-                    <td class='third'>پایین</td>
+                    <td class='third blue'>پایین</td>
                     {% elif item.examinations.all.0.blood_pressure >= 9 and item.examinations.all.0.blood_pressure <= 14 %}
                     <td class='third True'>نرمال</td>
                     {% elif item.examinations.all.0.blood_pressure > 9 %}
-                    <td class='third'>بالا</td>
+                    <td class='third blue'>بالا</td>
                     {% else %}
                     <td class='third none'>ذکر نشده/غیر نرمال</td>
                     {% endif %}
@@ -165,7 +165,7 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.experiment.all.0.ua_prot == 0 and item.experiment.all.0.ua_glu == 0 and item.experiment.all.0.ua_rbc < 3 and item.experiment.all.0.ua_wbc < 5  and item.experiment.all.0.ua_bact == 0  %}
                     <td class='third True'>نرمال</td>
                     {% elif item.experiment.all.0.ua_prot == None and item.experiment.all.0.ua_glu == None and item.experiment.all.0.ua_rbc == None and item.experiment.all.0.ua_wbc == None  and item.experiment.all.0.ua_bact == None  %}
-                    <td class='third  none'>ذکر نشده</td>
+                    <td class='third none'>ذکر نشده</td>
                     {% else %}
                     <td class='third false'>غیر نرمال</td>
                     {% endif %}
@@ -176,13 +176,13 @@ xmlns="http://www.w3.org/2000/svg">
                     {% if item.para.all.0.espiro_tafsir == 'normal' %}
                     <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.espiro_tafsir == 'ensedadi' %}
-                    <td class='third'>انسدادی</td>
+                    <td class='third blue'>انسدادی</td>
                     {% elif item.para.all.0.espiro_tafsir == 'tahdidi' %}
-                    <td class='third'>تحدیدی</td>
+                    <td class='third blue'>تحدیدی</td>
                     {% elif item.para.all.0.espiro_tafsir == 'ensedadivtahdidi' %}
-                    <td class='third'>انسدادی و تحدیدی</td>
+                    <td class='third blue'>انسدادی و تحدیدی</td>
                     {% elif item.para.all.0.espiro_tafsir == 'again' %}
-                    <td class='third'>نیاز به تکرار</td>
+                    <td class='third blue'>نیاز به تکرار</td>
                     {% else %}
                     <td class='third none'>ذکر نشده</td>
                     {% endif %}
@@ -217,9 +217,9 @@ xmlns="http://www.w3.org/2000/svg">
                     <td class='second none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.para.all.0.opto_hedat_l_status == 'adam_did' %}
-                    <td class='third'>عدم دید</td>
+                    <td class='third blue'>عدم دید</td>
                     {% elif item.para.all.0.opto_hedat_l_status == 'fc' %}
-                    <td class='third'>FC</td>
+                    <td class='third blue'>FC</td>
                     {% elif item.para.all.0.opto_hedat_l_bi == 10 %}
                     <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.opto_hedat_l_bi == None %}
@@ -236,9 +236,9 @@ xmlns="http://www.w3.org/2000/svg">
                     <td class='second none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.para.all.0.opto_hedat_l_status == 'adam_did' %}
-                    <td class='third'>عدم دید</td>
+                    <td class='third blue'>عدم دید</td>
                     {% elif item.para.all.0.opto_hedat_l_status == 'fc' %}
-                    <td class='third'>FC</td>
+                    <td class='third blue'>FC</td>
                     {% elif item.para.all.0.opto_hedat_l_ba == 10 %}
                     <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.opto_hedat_l_ba == None %}
@@ -255,9 +255,9 @@ xmlns="http://www.w3.org/2000/svg">
                     <td class='second none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.para.all.0.opto_hedat_r_status == 'adam_did' %}
-                    <td class='third'>عدم دید</td>
+                    <td class='third blue'>عدم دید</td>
                     {% elif item.para.all.0.opto_hedat_r_status == 'fc' %}
-                    <td class='third'>FC</td>
+                    <td class='third blue'>FC</td>
                     {% elif item.para.all.0.opto_hedat_r_bi == 10 %}
                     <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.opto_hedat_r_bi == None %}
@@ -274,9 +274,9 @@ xmlns="http://www.w3.org/2000/svg">
                     <td class='second none'>ذکر نشده</td>
                     {% endif %}
                     {% if item.para.all.0.opto_hedat_r_status == 'adam_did' %}
-                    <td class='third'>عدم دید</td>
+                    <td class='third blue'>عدم دید</td>
                     {% elif item.para.all.0.opto_hedat_r_status == 'fc' %}
-                    <td class='third'>FC</td>
+                    <td class='third blue'>FC</td>
                     {% elif item.para.all.0.opto_hedat_r_ba == 10 %}
                     <td class='third True'>نرمال</td>
                     {% elif item.para.all.0.opto_hedat_r_ba == None %}
@@ -288,10 +288,14 @@ xmlns="http://www.w3.org/2000/svg">
                 <tr>
                     <td class='first'>عکس سینه</td>
                     <td class='second'>---</td>
-                    {% if item.para.all.0.other_cxr %}
-                    <td class='third'>{{ item.para.all.0.other_cxr }}</td>
+                    {% if item.para.all.0.other_cxr == None %}
+                    <td class='none'>ذکر نشده</td>
+                    {% elif item.para.all.0.other_cxr == 'normal' %}
+                    <td class='blue'>نرمال</td>
+                    {% elif item.para.all.0.other_cxr == 'not_normal' %}
+                    <td class='blue'>غیر نرمال</td>
                     {% else %}
-                    <td class='third none'>ذکر نشده</td>
+                    <td class='none'>ذکر نشده</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -372,10 +376,16 @@ xmlns="http://www.w3.org/2000/svg">
                 <tr>
                     <td class='first'>نوار قلب</td>
                     <td class='second'>---</td>
-                    {% if item.para.all.0.other_ecg %}
-                    <td class='third'>{{ item.para.all.0.other_ecg }}</td>
+                    {% if item.para.all.0.other_ecg == None %}
+                    <td class='none'>ذکر نشده</td>
+                    {% elif item.para.all.0.other_ecg == 'normal' %}
+                    <td class='blue'>نرمال</td>
+                    {% elif item.para.all.0.other_ecg == 'not_normal' %}
+                    <td class='blue'>غیر نرمال</td>
+                    {% elif item.para.all.0.other_ecg == 'not_ekhtesasi' %}
+                    <td class='blue'>تغییرات غیر اختصاصی</td>
                     {% else %}
-                    <td class='third none'>ذکر نشده</td>    
+                    <td class='none'>ذکر نشده</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -394,7 +404,7 @@ xmlns="http://www.w3.org/2000/svg">
                 <tr>
                     <td class='first'>معاینات غیر نرمال</td>
                     {% if item.examinations.all.0.not_normals %}
-                    <td class='third' colspan=2>{{ item.examinations.all.0.not_normals }}</td>
+                    <td class='third blue' colspan=2>{{ item.examinations.all.0.not_normals }}</td>
                     {% else %}
                     <td class='third none' colspan=2>ذکر نشده</td>    
                     {% endif %}
@@ -402,7 +412,7 @@ xmlns="http://www.w3.org/2000/svg">
                 <tr>
                     <td class='first'>توصیه های پزشکی</td>
                     {% if item.final.all.0.recommendations %}
-                    <td class='third' colspan=2>{{ item.final.all.0.recommendations }}</td>
+                    <td class='third blue' colspan=2>{{ item.final.all.0.recommendations }}</td>
                     {% else %}
                     <td class='third none' colspan=2>ذکر نشده</td>    
                     {% endif %}

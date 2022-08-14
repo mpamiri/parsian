@@ -3320,14 +3320,18 @@
                 <p class='None'>ذکر نشده</p>
                 {% endif %}
                 S/E & OB:
-                {% if experiments.se_status %}
-                <p class='Blue'>{{ experiments.se_status }}</p>
+                {% if experiments.se_status == 'normal' %}
+                <p class='Blue'>نرمال</p>
+                {% elif experiments.se_status == 'not_normal' %}
+                <p class='Blue'>غیر نرمال</p>
                 {% else %}
                 <p class='None'>ذکر نشده</p>
                 {% endif %}
                 PPD:
-                {% if experiments.ppd_status %}
-                <p class='Blue'>{{ experiments.ppd_status }}</p>
+                {% if experiments.ppd_status == 'normal' %}
+                <p class='Blue'>نرمال</p>
+                {% elif experiments.ppd_status == 'not_normal' %}
+                <p class='Blue'>غیر نرمال</p>
                 {% else %}
                 <p class='None'>ذکر نشده</p>
                 {% endif %}
@@ -3418,21 +3422,41 @@
                     <th colspan=4>میدان بینایی</th>
                 </tr>
                 <tr>
-                    <th colspan=2>R</th>
-                    <th colspan=2>L</th>
-                    <td colspan=4 rowspan=3>
-                        {% if para_clinic.opto_rangi %}
-                        {{ para_clinic.opto_rangi }}
+                    <th colspan=2>
+                        {% if para_clinic.opto_hedat_r_status == 'fc' %}
+                        <p class='Blue'>fc چشم راست</p>
+                        {% elif para_clinic.opto_hedat_r_status == 'adam_did' %}
+                        <p class='Blue'>عدم دید چشم راست</p>
                         {% else %}
-                        <p class='None'>ذکر نشده</p>
+                        R
                         {% endif %}
+                    </th>
+                    <th colspan=2>
+                        {% if para_clinic.opto_hedat_l_status == 'fc' %}
+                        <p class='Blue'>fc چشم چپ</p>
+                        {% elif para_clinic.opto_hedat_l_status == 'adam_did' %}
+                        <p class='Blue'>عدم دید چشم چپ</p>
+                        {% else %}
+                        L
+                        {% endif %}
+                    </th>
+                    <td colspan=4 rowspan=3>
+                    {% if para_clinic.opto_rangi == 'normal' %}
+                    <p class='Blue'>نرمال</p>
+                    {% elif para_clinic.opto_rangi == 'not_normal' %}
+                    <p class='Blue'>غیر نرمال</p>
+                    {% else %}
+                    <p class='None'>ذکر نشده</p>
+                    {% endif %}
                     </td>
                     <td colspan=4 rowspan=3>
-                        {% if para_clinic.opto_meidan %}
-                        {{ para_clinic.opto_meidan }}
-                        {% else %}
-                        <p class='None'>ذکر نشده</p>
-                        {% endif %}
+                    {% if para_clinic.opto_meidan == 'normal' %}
+                    <p class='Blue'>نرمال</p>
+                    {% elif para_clinic.opto_meidan == 'not_normal' %}
+                    <p class='Blue'>غیر نرمال</p>
+                    {% else %}
+                    <p class='None'>ذکر نشده</p>
+                    {% endif %}
                     </td>
                 </tr>
                 <tr>
@@ -3443,8 +3467,8 @@
                 </tr>
                 <tr>
                     <td rowspan=3>
-                        {% if para_clinic.opto_date_year %}
-                        {{ para_clinic.opto_date_year }}
+                        {% if para_clinic.opto_date_year and para_clinic.opto_date_month and para_clinic.opto_date_day %}
+                        {{ para_clinic.opto_date_year }}/{{ para_clinic.opto_date_month }}/{{ para_clinic.opto_date_day }}
                         {% else %}
                         <p class='None'>ذکر نشده</p>
                         {% endif %}
@@ -3517,8 +3541,18 @@
                     <td rowspan=2>
                         {% if para_clinic.audio_r_tafsir == None %}
                         <p class='none'>ذکر نشده</p>
+                        {% elif para_clinic.audio_r_tafsir == 'normal' %}
+                        <p class='Blue'>نرمال</p>
+                        {% elif para_clinic.audio_r_tafsir == 'kahesh_shenavai_hedayati' %}
+                        <p class='Blue'>کاهش شنوایی هدایتی</p>
+                        {% elif para_clinic.audio_r_tafsir == 'kahesh_shenavai_hesi_asabi' %}
+                        <p class='Blue'>کاهش شنوایی حسی عصبی</p>
+                        {% elif para_clinic.audio_r_tafsir == 'kahesh_shenavai_nashi_az_seda' %}
+                        <p class='Blue'>کاهش شنوایی ناشی از صدا</p>
+                        {% elif para_clinic.audio_r_tafsir == 'toaman_hedayati_va_hesi_asabi' %}
+                        <p class='Blue'>توامان هدایتی و حسی عصبی</p>
                         {% else %}
-                        {{ para_clinic.audio_r_tafsir }}
+                        <p class='none'>ذکر نشده</p>
                         {% endif %}
                     </td>
                     <td>
@@ -3613,10 +3647,20 @@
                 </tr>
                 <tr>
                     <td rowspan=2>
-                        {% if para_clinic.audio_l_tafsir == null %}
+                        {% if para_clinic.audio_l_tafsir == None %}
                         <p class='none'>ذکر نشده</p>
+                        {% elif para_clinic.audio_l_tafsir == 'normal' %}
+                        <p class='Blue'>نرمال</p>
+                        {% elif para_clinic.audio_l_tafsir == 'kahesh_shenavai_hedayati' %}
+                        <p class='Blue'>کاهش شنوایی هدایتی</p>
+                        {% elif para_clinic.audio_l_tafsir == 'kahesh_shenavai_hesi_asabi' %}
+                        <p class='Blue'>کاهش شنوایی حسی عصبی</p>
+                        {% elif para_clinic.audio_l_tafsir == 'kahesh_shenavai_nashi_az_seda' %}
+                        <p class='Blue'>کاهش شنوایی ناشی از صدا</p>
+                        {% elif para_clinic.audio_l_tafsir == 'toaman_hedayati_va_hesi_asabi' %}
+                        <p class='Blue'>توامان هدایتی و حسی عصبی</p>
                         {% else %}
-                        {{ para_clinic.audio_l_tafsir }}
+                        <p class='none'>ذکر نشده</p>
                         {% endif %}
                     </td>
                     <td>
@@ -3777,11 +3821,21 @@
                     </tr>
                     <tr>
                         <td colspan=3><p>تفسیر:</p>
-                        {% if para_clinic.espiro_tafsir == null %}
-                        <p class='none'>ذکر نشده</p>
-                        {% else %}
-                        {{ para_clinic.espiro_tafsir }}
-                        {% endif %}
+                            {% if para_clinic.espiro_tafsir == None %}
+                            <p class='none'>ذکر نشده</p>
+                            {% elif para_clinic.espiro_tafsir == 'normal' %}
+                            <p class='Blue'>نرمال</p>
+                            {% elif para_clinic.espiro_tafsir == 'ensedadi' %}
+                            <p class='Blue'>انسدادی</p>
+                            {% elif para_clinic.espiro_tafsir == 'tahdidi' %}
+                            <p class='Blue'>تحدیدی</p>
+                            {% elif para_clinic.espiro_tafsir == 'ensedadivtahdidi' %}
+                            <p class='Blue'>انسدادی و تحدیدی</p>
+                            {% elif para_clinic.espiro_tafsir == 'again' %}
+                            <p class='Blue'>نیاز به تکرار</p>
+                            {% else %}
+                            <p class='none'>ذکر نشده</p>
+                            {% endif %}
                         </td>
                     </tr>
             </table>
@@ -3800,10 +3854,14 @@
                         {% endif %}
                     </td>
                     <td width=75%>
-                        {% if para_clinic.other_cxr == null %}
+                        {% if para_clinic.other_cxr == None %}
                         <p class='none'>ذکر نشده</p>
+                        {% elif para_clinic.other_cxr == 'normal' %}
+                        <p class='Blue'>نرمال</p>
+                        {% elif para_clinic.other_cxr == 'not_normal' %}
+                        <p class='Blue'>غیر نرمال</p>
                         {% else %}
-                        {{ para_clinic.other_cxr }}
+                        <p class='none'>ذکر نشده</p>
                         {% endif %}
                     </td>
                 </tr>
@@ -3816,10 +3874,16 @@
                         {% endif %}
                     </td>
                     <td width=75%>
-                        {% if para_clinic.other_ecg == null %}
+                        {% if para_clinic.other_ecg == None %}
                         <p class='none'>ذکر نشده</p>
+                        {% elif para_clinic.other_ecg == 'normal' %}
+                        <p class='Blue'>نرمال</p>
+                        {% elif para_clinic.other_ecg == 'not_normal' %}
+                        <p class='Blue'>غیر نرمال</p>
+                        {% elif para_clinic.other_ecg == 'not_ekhtesasi' %}
+                        <p class='Blue'>تغییرات غیر اختصاصی</p>
                         {% else %}
-                        {{ para_clinic.other_ecg }}
+                        <p class='none'>ذکر نشده</p>
                         {% endif %}
                     </td>
                 </tr>
