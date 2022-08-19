@@ -160,7 +160,6 @@
                         {{ job_history.current_job_to_month }}/
                         {{ job_history.current_job_to_year }}
                     </td>
-                    <td>{{ job_history.current_job_reason }}</td>
                 </tr>
                 <tr style = 'height : 32.5px'>
                     <td></td>
@@ -471,70 +470,70 @@
                     <th width=3%>خیر</th>
                     <th>توضیحات</th>
                 </tr>
-                <tr>
+                <tr id='checkboxes1'>
                     <td class='text-center'>1</td>
                     <td>آیا سابقه بیماری دارید؟ذکر نمایید.</td>
                     <td class='text-center'>{{ personal_history.first_y }}</td>
                     <td class='text-center'>{{ personal_history.first_n }}</td>
                     <td>{{ personal_history.first_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes2'>
                     <td class='text-center'>2</td>
                     <td>در صورت ابتلا به بیماری آیا علایم شما در محیط کار تغییر می کند؟</td>
                     <td class='text-center'>{{ personal_history.second_y }}</td>
                     <td class='text-center'>{{ personal_history.second_n }}</td>
                     <td>{{ personal_history.second_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes3'>
                     <td class='text-center'>3</td>
                     <td>در صورت ابتلا به بیماری آیا همکاران شما علایم مشابه در محل کار دارند؟</td>
                     <td class='text-center'>{{ personal_history.third_y }}</td>
                     <td class='text-center'>{{ personal_history.third_n }}</td>
                     <td>{{ personal_history.third_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes4'>
                     <td class='text-center'>4</td>
                     <td>در صورت ابتلا به بیماری آیا علایم شما در زمان تعطیلات و مرخصی ها تغییر می کند؟</td>
                     <td class='text-center'>{{ personal_history.fourth_y }}</td>
                     <td class='text-center'>{{ personal_history.fourth_n }}</td>
                     <td>{{ personal_history.fourth_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes5'>
                     <td class='text-center'>5</td>
                     <td>آیا به غذا,دارو یا ماده خاصی حساسیت دارید؟</td>
                     <td class='text-center'>{{ personal_history.fifth_y }}</td>
                     <td class='text-center'>{{ personal_history.fifth_n }}</td>
                     <td>{{ personal_history.fifth_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes6'>
                     <td class='text-center'>6</td>
                     <td>آیا سابقه بستری در بیمارستان دارید؟به چه دلیل؟</td>
                     <td class='text-center'>{{ personal_history.sixth_y }}</td>
                     <td class='text-center'>{{ personal_history.sixth_n }}</td>
                     <td>{{ personal_history.sixth_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes7'>
                     <td class='text-center'>7</td>
                     <td>آیا سابقه عمل جراحی دارید؟ذکر نمایید</td>
                     <td class='text-center'>{{ personal_history.seventh_y }}</td>
                     <td class='text-center'>{{ personal_history.seventh_n }}</td>
                     <td>{{ personal_history.seventh_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes8'>
                     <td class='text-center'>8</td>
                     <td>آیا سابقه سرطان یا بیماری مزمن در فامیل دارید؟ذکر نمایید</td>
                     <td class='text-center'>{{ personal_history.eighth_y }}</td>
                     <td class='text-center'>{{ personal_history.eighth_n }}</td>
                     <td>{{ personal_history.eighth_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes9'>
                     <td class='text-center'>9</td>
                     <td>آیا دارو خاصی مصرف می کنید؟ذکر کنید.</td>
                     <td class='text-center'>{{ personal_history.ninth_y }}</td>
                     <td class='text-center'>{{ personal_history.ninth_n }}</td>
                     <td>{{ personal_history.ninth_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes10'>
                     <td class='text-center'>10</td>
                     <td>آیا اکنون سیگار می کشید؟</td>
                     <td class='text-center'>{{ personal_history.tenth_y }}</td>
@@ -550,7 +549,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr id='checkboxes11'>
                     <td class='text-center'>11</td>
                     <td>آیا سابقه قبلی مصرف سیگار دارید؟</td>
                     <td class='text-center'>{{ personal_history.eleventh_y }}</td>
@@ -566,14 +565,14 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr id='checkboxes12'>
                     <td class='text-center'>12</td>
                     <td>آیا در اوقات فراغت به ورزش یا سرگرمی خاصی مشغول هستید؟ذکر کنید.</td>
                     <td class='text-center'>{{ personal_history.twelfth_y }}</td>
                     <td class='text-center'>{{ personal_history.twelfth_n }}</td>
                     <td>{{ personal_history.twelfth_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes13'>
                     <td class='text-center'>13</td>
                     <td>آیا تا کنون به حادثه شغلی دچار شده اید؟</td>
                     <td class='text-center'>{{ personal_history.thirteenth_y }}</td>
@@ -589,21 +588,21 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr id='checkboxes14'>
                     <td class='text-center'>14</td>
                     <td>آیا سابقه غیبت از کار به دلیل بیماری بیش از 3 روز دارید؟</td>
                     <td class='text-center'>{{ personal_history.fourteenth_y }}</td>
                     <td class='text-center'>{{ personal_history.fourteenth_n }}</td>
                     <td>{{ personal_history.fourteenth_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes15'>
                     <td class='text-center'>15</td>
                     <td>آیا منزل شما در مجاورت مرکز صنعتی قرار دارد؟</td>
                     <td class='text-center'>{{ personal_history.fifteenth_y }}</td>
                     <td class='text-center'>{{ personal_history.fifteenth_n }}</td>
                     <td>{{ personal_history.fifteenth_des }}</td>
                 </tr>
-                <tr>
+                <tr id='checkboxes16'>
                     <td class='text-center'>16</td>
                     <td>آیا سابقه معرفی به کمیسیون پزشکی را دارید؟</td>
                     <td class='text-center'>{{ personal_history.sixteenth_y }}</td>
@@ -1976,7 +1975,7 @@
             </div>
         </div>
         <div class='row'>
-            <table>
+            <table id='checkboxes17'>
                 <tr>
                     <td>الف-بلامانع{{ final_theory.belamane }}</td>
                 </tr>
@@ -2067,4 +2066,14 @@ $(function() {
         document.getElementById('id_medical_exemption_reason').disabled = !this.checked;
     };
 </script>
+{% for a in 'aaaaaaaaaaaaaaaaa' %}
+<script>
+    $('#checkboxes{{ forloop.counter }}').on('click', ':checkbox', function(e) {
+        $('#checkboxes{{ forloop.counter }} :checkbox').each(function() {
+          if (this != e.target)
+            $(this).prop('checked', false);
+        });
+      });
+</script>
+{% endfor %}
 {% endblock content %}

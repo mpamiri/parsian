@@ -131,6 +131,10 @@ background-color: chartreuse;
 ul{
   list-style: none;
 }
+li {
+  list-style-type: none
+  ;
+}
 .blue{
   color: blue;
 }

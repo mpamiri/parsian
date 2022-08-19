@@ -359,22 +359,22 @@ xmlns="http://www.w3.org/2000/svg">
                     <td>{{ data.7.0|mul:100|flr:count }}</td>
                 </tr>
                 <tr>
-                    <td style='width : 100px'>تحدیدی</td>
+                    <td style='width : 100px'>کاهش شنوایی هدایتی</td>
                     <td>{{ data.7.1 }}</td>
                     <td>{{ data.7.1|mul:100|flr:count }}</td>
                 </tr>
                 <tr>
-                    <td style='width : 100px'>انسدادی</td>
+                    <td style='width : 100px'>کاهش شنوایی حسی عصبی</td>
                     <td>{{ data.7.2 }}</td>
                     <td>{{ data.7.2|mul:100|flr:count }}</td>
                 </tr>
                 <tr>
-                    <td style='width : 100px'>نیاز به تکرار</td>
+                    <td style='width : 100px'>کاهش شنوایی ناشی از صدا</td>
                     <td>{{ data.7.3 }}</td>
                     <td>{{ data.7.3|mul:100|flr:count }}</td>
                 </tr>
                 <tr>
-                    <td style='width : 100px'>نمای توأمان تحدیدی وانسدادی</td>
+                    <td style='width : 100px'>هدایتی و حسی عصبی</td>
                     <td>{{ data.7.4 }}</td>
                     <td>{{ data.7.4|mul:100|flr:count }}</td>
                 </tr>
@@ -412,22 +412,22 @@ xmlns="http://www.w3.org/2000/svg">
                     <td>{{ data.8.0|mul:100|flr:count }}</td>
                 </tr>
                 <tr>
-                    <td style='width : 100px'>تحدیدی</td>
+                    <td style='width : 100px'>کاهش شنوایی هدایتی</td>
                     <td>{{ data.8.1 }}</td>
                     <td>{{ data.8.1|mul:100|flr:count }}</td>
                 </tr>
                 <tr>
-                    <td style='width : 100px'>انسدادی</td>
+                    <td style='width : 100px'>کاهش شنوایی حسی عصبی</td>
                     <td>{{ data.8.2 }}</td>
                     <td>{{ data.8.2|mul:100|flr:count }}</td>
                 </tr>
                 <tr>
-                    <td style='width : 100px'>نیاز به تکرار</td>
+                    <td style='width : 100px'>کاهش شنوایی ناشی از صدا</td>
                     <td>{{ data.8.3 }}</td>
                     <td>{{ data.8.3|mul:100|flr:count }}</td>
                 </tr>
                 <tr>
-                    <td style='width : 100px'>نمای توأمان تحدیدی وانسدادی</td>
+                    <td style='width : 100px'>هدایتی و حسی عصبی</td>
                     <td>{{ data.8.4 }}</td>
                     <td>{{ data.8.4|mul:100|flr:count }}</td>
                 </tr>
@@ -508,7 +508,7 @@ xmlns="http://www.w3.org/2000/svg">
                     <td>{{ data.10.1|mul:100|flr:count }}</td>
                 </tr>
                 <tr>
-                    <td style='width : 100px'>تغییر شغل</td>
+                    <td style='width : 100px'>رد صلاحیت</td>
                     <td>{{ data.10.2 }}</td>
                     <td>{{ data.10.2|mul:100|flr:count }}</td>
                 </tr>
@@ -724,9 +724,9 @@ const myChart = new Chart(ctx, {
             label: '# of Votes',
             data: {{ data.0 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -746,9 +746,9 @@ const myChart1 = new Chart(ctx1, {
             label: '# of Votes',
             data: {{ data.1 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -764,14 +764,15 @@ const ctx2 = document.getElementById('myChart2').getContext('2d');
 const myChart2 = new Chart(ctx2, {
     type: 'pie',
     data: {
-        labels: ['نرمال', 'غیر نرمال', 'ندارد'],
+        labels: ['نرمال', 'در محدوده احتیاط', 'غیر نرمال', 'ندارد'],
         datasets: [{ 
             label: '# of Votes',
             data: {{ data.2 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(192, 241, 255)',
+                'rgb(255, 141, 142)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -786,14 +787,15 @@ const ctx3 = document.getElementById('myChart3').getContext('2d');
 const myChart3 = new Chart(ctx3, {
     type: 'pie',
     data: {
-        labels: ['نرمال', 'غیر نرمال', 'ندارد'],
+        labels: ['نرمال', 'بالا','پایین', 'ندارد'],
         datasets: [{ 
             label: '# of Votes',
             data: {{ data.3 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(192, 241, 255)',
+                'rgb(255, 141, 142)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -813,9 +815,9 @@ const myChart4 = new Chart(ctx4, {
             label: '# of Votes',
             data: {{ data.4 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -835,9 +837,9 @@ const myChart5 = new Chart(ctx5, {
             label: '# of Votes',
             data: {{ data.5 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -852,14 +854,17 @@ const ctx6 = document.getElementById('myChart6').getContext('2d');
 const myChart6 = new Chart(ctx6, {
     type: 'pie',
     data: {
-        labels: ['نرمال', 'غیر نرمال', 'ندارد'],
+        labels: ['نرمال', 'تحدیدی', 'انسدادی', 'تکرار', 'تحدیدی وانسدادی', 'ندارد'],
         datasets: [{ 
             label: '# of Votes',
             data: {{ data.6 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(219, 204, 156)',
+                'rgb(210, 175, 223)',
+                'rgb(192, 241, 255)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -874,14 +879,17 @@ const ctx7 = document.getElementById('myChart7').getContext('2d');
 const myChart7 = new Chart(ctx7, {
     type: 'pie',
     data: {
-        labels: ['نرمال', 'غیر نرمال', 'ندارد'],
+        labels: ['نرمال', 'کاهش شنوایی هدایتی', 'کاهش شنوایی حسی عصبی', 'کاهش شنوایی ناشی از صدا', 'هدایتی و حسی عصبی', 'ندارد'],
         datasets: [{ 
             label: '# of Votes',
             data: {{ data.7 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(219, 204, 156)',
+                'rgb(210, 175, 223)',
+                'rgb(192, 241, 255)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -896,14 +904,17 @@ const ctx8 = document.getElementById('myChart8').getContext('2d');
 const myChart8 = new Chart(ctx8, {
     type: 'pie',
     data: {
-        labels: ['نرمال', 'غیر نرمال', 'ندارد'],
+        labels: ['نرمال', 'کاهش شنوایی هدایتی', 'کاهش شنوایی حسی عصبی', 'کاهش شنوایی ناشی از صدا', 'هدایتی و حسی عصبی', 'ندارد'],
         datasets: [{ 
             label: '# of Votes',
             data: {{ data.8 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(219, 204, 156)',
+                'rgb(210, 175, 223)',
+                'rgb(192, 241, 255)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -923,9 +934,9 @@ const myChart9 = new Chart(ctx9, {
             label: '# of Votes',
             data: {{ data.9 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -940,14 +951,15 @@ const ctx10 = document.getElementById('myChart10').getContext('2d');
 const myChart10 = new Chart(ctx10, {
     type: 'pie',
     data: {
-        labels: ['نرمال', 'غیر نرمال', 'ندارد'],
+        labels: ['بلامانع', 'مشروط', 'رد صلاحیت', 'نظر نهایی انجام نشده'],
         datasets: [{ 
             label: '# of Votes',
             data: {{ data.10 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(192, 241, 255)',
+                'rgb(255, 141, 142)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -962,14 +974,15 @@ const ctx11 = document.getElementById('myChart11').getContext('2d');
 const myChart11 = new Chart(ctx11, {
     type: 'pie',
     data: {
-        labels: ['نرمال', 'غیر نرمال', 'ندارد'],
+        labels: ['نرمال','در محدوده احتیاط','غیر نرمال','ندارد'],
         datasets: [{ 
             label: '# of Votes',
             data: {{ data.11 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(192, 241, 255)',
+                'rgb(255, 141, 142)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -989,9 +1002,9 @@ const myChart12 = new Chart(ctx12, {
             label: '# of Votes',
             data: {{ data.12 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -1006,14 +1019,16 @@ const ctx13 = document.getElementById('myChart13').getContext('2d');
 const myChart13 = new Chart(ctx13, {
     type: 'pie',
     data: {
-        labels: ['نرمال', 'غیر نرمال', 'ندارد'],
+        labels: ['نرمال', 'وضعیت غیر اختصاصی', 'نیاز به تکرار','غیر نرمال','ندارد'],
         datasets: [{ 
             label: '# of Votes',
             data: {{ data.13 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(219, 204, 156)',
+                'rgb(192, 241, 255)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -1028,14 +1043,16 @@ const ctx14 = document.getElementById('myChart14').getContext('2d');
 const myChart14 = new Chart(ctx14, {
     type: 'pie',
     data: {
-        labels: ['نرمال', 'غیر نرمال', 'ندارد'],
+        labels: ['کمبود', 'عدم کفایت','کافی','مسمومیت','ندارد',],
         datasets: [{ 
             label: '# of Votes',
             data: {{ data.14 }},
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgb(143, 255, 142)',
+                'rgb(255, 141, 142)',
+                'rgb(219, 204, 156)',
+                'rgb(192, 241, 255)',
+                'rgb(255, 255, 117)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',

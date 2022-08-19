@@ -14,7 +14,7 @@ class Company(models.Model):
 class ExaminationsCourse(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     year = models.IntegerField(null=True, blank=True)
-    employer = models.CharField(max_length=250, null=True, blank=True)
+    specialist = models.CharField(max_length=250, null=True, blank=True)
     doctor = models.CharField(max_length=250, null=True, blank=True)
     examinations_code = models.CharField(max_length=250, null=True, blank=True,unique=True)
     def __str__(self):
@@ -35,7 +35,8 @@ class Disease_Model(models.Model):
 class Personal_Species_Model(models.Model):
     examinations_code = models.ForeignKey(ExaminationsCourse, on_delete=models.CASCADE)
     user = models.CharField(max_length=250, null=True, blank=True)
-    examinations_type= models.CharField(max_length=250, null=True, blank=True)
+    examinations_type_CHOICES = [('badv_estekhdam', 'بدو استخدام'), ('dore_e', 'دوره ای'), ('bazgasht_be_kar', 'بازگشت به کار')]
+    examinations_type = models.CharField(choices=examinations_type_CHOICES, max_length=250,blank=True,null=True)
     species_date_year=models.IntegerField( null=True, blank=True)
     species_date_month=models.IntegerField(null=True, blank=True)
     species_date_day=models.IntegerField(null=True, blank=True)
@@ -50,7 +51,7 @@ class Personal_Species_Model(models.Model):
     children = models.IntegerField(null=True, blank=True)
     age = models.IntegerField(default=None)
     personal_code = models.IntegerField(null=True, blank=True)
-    military_status_CHOICES = [('khedmat_karde', 'خدمت کرده'), ('moaf', 'معاف')]
+    military_status_CHOICES = [('khedmat_karde', 'خدمت کرده'), ('moaf', 'معاف'), ('khedmat_nakarde', 'خدمت نکرده')]
     military_status = models.CharField(default='khedmat_karde', choices=military_status_CHOICES, max_length=250)
     raste = models.CharField(max_length=250, null=True, blank=True)
     medical_exemption = models.BooleanField(default=False)
@@ -69,22 +70,6 @@ class Job_History_Model(models.Model):
     current_job_from_month = models.IntegerField(null=True, blank=True)
     current_job_to_year = models.IntegerField(null=True, blank=True)
     current_job_to_month = models.IntegerField(null=True, blank=True)
-    current_job_reason = models.CharField(max_length=250, null=True, blank=True)
-    second_current_job = models.CharField(max_length=250, null=True, blank=True)
-    second_current_job_duty = models.CharField(max_length=250, null=True, blank=True)
-    second_current_job_from = models.CharField(max_length=250, null=True, blank=True)
-    second_current_job_to = models.CharField(max_length=250, null=True, blank=True)
-    second_current_job_reason = models.CharField(max_length=250, null=True, blank=True)
-    previous_job = models.CharField(max_length=250, null=True, blank=True)
-    previous_job_duty = models.CharField(max_length=250, null=True, blank=True)
-    previous_job_from = models.CharField(max_length=250, null=True, blank=True)
-    previous_job_to = models.CharField(max_length=250, null=True, blank=True)
-    previous_job_reason = models.CharField(max_length=250, null=True, blank=True)
-    second_previous_job = models.CharField(max_length=250, null=True, blank=True)
-    second_previous_job_duty = models.CharField(max_length=250, null=True, blank=True)
-    second_previous_job_from = models.CharField(max_length=250, null=True, blank=True)
-    second_previous_job_to = models.CharField(max_length=250, null=True, blank=True)
-    second_previous_job_reason = models.CharField(max_length=250, null=True, blank=True)
     durations = models.IntegerField(null=True, blank=True)
     # assessment = models.ForeignKey(Assessment_Model, on_delete=models.CASECADE)
 

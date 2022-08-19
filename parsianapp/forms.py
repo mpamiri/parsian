@@ -36,7 +36,7 @@ class disease_form(forms.ModelForm):
     class Meta:
         model=Disease_Model
         fields='__all__'
-        widgets={'examinations_code' : forms.TextInput(attrs={'id':'myInput','onkeyup':"filterFunction()",'autocomplete': 'off'})
+        widgets={'examinations_code' : forms.TextInput(attrs={'autocomplete': 'off','list':'examinations_code'})
         ,'order_number' : forms.Select(attrs={'autocomplete': 'off'})
         ,'age' : forms.NumberInput(attrs={'autocomplete': 'off'})
         ,'name' : forms.TextInput(attrs={'autocomplete': 'off'})
@@ -55,7 +55,7 @@ class personal_species_form(forms.ModelForm):
         fields='__all__' 
         widgets={
         'species_date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
-        'examinations_type' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'examinations_type' : forms.Select(attrs={'class':'text','autocomplete': 'off'}),
         'profil_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'employment_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),

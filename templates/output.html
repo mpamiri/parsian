@@ -25,17 +25,13 @@ xmlns="http://www.w3.org/2000/svg">
     <form action='{% url 'adddisease' %}' method='POST'>
     <div class='row text-center mt-4'>
         <div class="col">
-            <div class="dropdown">
+            {{ form.examinations_code }}
+            <datalist id='examinations_code'>
+                {% for item in code_list %}
                 {% csrf_token %}
-                <lable>کد معاینات</lable>
-                {{ form.examinations_code }}
-                <a onclick="myFunction()" class="dropbtn btn btn-success">مشاهده لیست</a>
-                <div id="myDropdown" class="dropdown-content">
-                    {% for code in code_list %}
-                        <a class='option' style='cursor: default'> {{ code.examinations_code }} </a>
-                    {% endfor %}
-                </div>
-            </div>
+                <option value='{{ item.examinations_code }}'></option>
+                {% endfor %}
+            </datalist>
             <input type="submit" value="  ثبت ">
         </div>
     </div>

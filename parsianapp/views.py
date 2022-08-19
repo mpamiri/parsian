@@ -725,9 +725,9 @@ def graph_view(request):
         if final.belamane == True:
             a_p += 1
         elif final.rad == True:
-            b_p += 1
-        elif final.mashrot == True:
             c_p += 1
+        elif final.mashrot == True:
+            b_p += 1
         else:
             e_p += 1
     data_p.append(a_p)
@@ -1651,8 +1651,30 @@ def addexaminations_view(request):
     return redirect('examinations')
 
 
+# @login_required(login_url='login')
+# def examinations_output_course_view(request):
+#     form=disease_form()
+#     model=Disease_Model.objects.last()
+#     if model:
+#         code=model.examinations_code
+#     else:
+#         code=''
+#     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+#     personal_species=Personal_Species_Model.objects.filter(name=model.name,age=1401 - model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
+#     job_history=Job_History_Model.objects.filter(person=personal_species).last()
+#     assessment=Assessment_Model.objects.filter(person=personal_species).last()
+#     personal_history=Personal_History_Model.objects.filter(person=personal_species).last()
+#     examinations=Examinations_Model.objects.filter(person=personal_species).last()
+#     experiments=Experiments_Model.objects.filter(person=personal_species).last()
+#     para_clinic=Para_Clinic_Model.objects.filter(person=personal_species).last()
+#     consulting=Consulting_Model.objects.filter(person=personal_species).last()
+#     final_theory=Final_Theory_Model.objects.filter(person=personal_species).last()
+#     context={'form':form, 'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
+#     return render(request, 'examinations_output_course.html',context)
+
+
 @login_required(login_url='login')
-def examinations_output_view(request):
+def examinations_output_course_view(request):
     form=disease_form()
     model=Disease_Model.objects.last()
     if model:
@@ -1660,20 +1682,20 @@ def examinations_output_view(request):
     else:
         code=''
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
-    personal_species=Personal_Species_Model.objects.filter(name=model.name,age=1401 - model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
-    job_history=Job_History_Model.objects.filter(person=personal_species).last()
-    assessment=Assessment_Model.objects.filter(person=personal_species).last()
-    personal_history=Personal_History_Model.objects.filter(person=personal_species).last()
-    examinations=Examinations_Model.objects.filter(person=personal_species).last()
-    experiments=Experiments_Model.objects.filter(person=personal_species).last()
-    para_clinic=Para_Clinic_Model.objects.filter(person=personal_species).last()
-    consulting=Consulting_Model.objects.filter(person=personal_species).last()
-    final_theory=Final_Theory_Model.objects.filter(person=personal_species).last()
+    personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
+    job_history=Job_History_Model.objects.filter(person=personal_species)
+    assessment=Assessment_Model.objects.filter(person=personal_species)
+    personal_history=Personal_History_Model.objects.filter(person=personal_species)
+    examinations=Examinations_Model.objects.filter(person=personal_species)
+    experiments=Experiments_Model.objects.filter(person=personal_species)
+    para_clinic=Para_Clinic_Model.objects.filter(person=personal_species)
+    consulting=Consulting_Model.objects.filter(person=personal_species)
+    final_theory=Final_Theory_Model.objects.filter(person=personal_species)
     context={'form':form, 'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
-    return render(request, 'examinations_output.html',context)
+    return render(request, 'examinations_output_course.html',context)
 
 
-def examinations_output_pdf_view(request):
+def examinations_output_course_pdf_view(request):
     work=Disease_Model.objects.last()
     if work:
         code=work.examinations_code
@@ -2396,3 +2418,8 @@ def examinations_output_edit_view(request):
         new_final_theory.save() 
     context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
     return render(request, 'edit_examinations.html',context)
+
+
+@login_required(login_url='login')
+def examinations_output_view(request):
+    return render(request, 'examinations_output.html')
