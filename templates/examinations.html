@@ -2075,5 +2075,22 @@ $(function() {
         });
       });
 </script>
+<script>
+    const jsonList = {
+      "badv_estekhdam":["Roham","Ermia"],
+      "dore_e":["",""],
+      "bazgasht_be_kar":["",""],
+      "":["",""],
+    };
+    const e = document.getElementById("id_examinations_type");
+    const inputs = document.getElementsByClassName("inputBox");
+    function autoFill() {
+      const ev = e.value;
+      const list = jsonList[ev];
+      for (let i=0; i<inputs.length; i++) {
+        inputs[i].value = list[i]
+      }
+    }
+    e.addEventListener("change", autoFill) 
 {% endfor %}
 {% endblock content %}

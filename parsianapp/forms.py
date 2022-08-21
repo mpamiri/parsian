@@ -38,10 +38,20 @@ class disease_form(forms.ModelForm):
         fields='__all__'
         widgets={'examinations_code' : forms.TextInput(attrs={'autocomplete': 'off','list':'examinations_code'})
         ,'order_number' : forms.Select(attrs={'autocomplete': 'off'})
-        ,'age' : forms.NumberInput(attrs={'autocomplete': 'off'})
-        ,'name' : forms.TextInput(attrs={'autocomplete': 'off'})
-        ,'fathers_name' : forms.TextInput(attrs={'autocomplete': 'off'})
-        ,'personal_code' : forms.NumberInput(attrs={'autocomplete': 'off'})
+        ,'age' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
+        ,'name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'})
+        ,'fathers_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'})
+        ,'personal_code' : forms.NumberInput(attrs={'class':'personal_w','autocomplete': 'off'})
+        ,'p_age' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
+        ,'p_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'})
+        ,'p_fathers_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'})
+        ,'p_personal_code' : forms.NumberInput(attrs={'class':'personal_w','autocomplete': 'off'})
+        ,'p_examinations_code' : forms.TextInput(attrs={'autocomplete': 'off','list':'examinations_code'})
+        ,'e_age' : forms.NumberInput(attrs={'class':'box','autocomplete': 'off'})
+        ,'e_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'})
+        ,'e_fathers_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'})
+        ,'e_personal_code' : forms.NumberInput(attrs={'class':'personal_w','autocomplete': 'off'})
+        ,'e_examinations_code' : forms.TextInput(attrs={'autocomplete': 'off','list':'examinations_code'})
         }  
 
 class ExaminationsCourseChoiceField(forms.ModelChoiceField):
@@ -58,8 +68,8 @@ class personal_species_form(forms.ModelForm):
         'examinations_type' : forms.Select(attrs={'class':'text','autocomplete': 'off'}),
         'profil_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'employment_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
-        'fathers_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'name' : forms.TextInput(attrs={'class':'text inputBox','autocomplete': 'off'}),
+        'fathers_name' : forms.TextInput(attrs={'class':'text inputBox','autocomplete': 'off'}),
         'gender' : forms.Select(attrs={'class':'s_box','autocomplete': 'off','id':'select'}),
         'marriage_status' : forms.Select(attrs={'class':'box','autocomplete': 'off'}),
         'children' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),

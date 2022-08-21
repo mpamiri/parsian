@@ -27,7 +27,10 @@
             <a class='b-green' href='{% url 'examinations_output_course' %}' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">نتایج دوره</a>
         </div>
         <div class="col">
-            <a class='b-green' href='submit_course' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">ثبت دوره</a>
+            <a class='b-green' href='{% url 'examinations_output_person' %}' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">نتایج فرد</a>
+        </div>
+        <div class="col">
+            <a class='b-green' href='{% url 'examinations_output_edit' %}' style="text-decoration: none;border-radius: 15px;padding: 5px;color:black">,ویرایش</a>
         </div>
     </div>
 </section>

@@ -150,6 +150,37 @@ def adddisease_view(request):
         model.save()
     return redirect('output')
 
+@require_POST
+def addexaminations_output_person_addn_view(request):
+    if Disease_Model:
+        model=Disease_Model.objects.last()
+    else:
+        a = Disease_Model(examinations_code='',order_number=1)
+        a.save()
+        model=Disease_Model.objects.last()
+    form=disease_form(request.POST)
+    if form.is_valid():
+        model.p_name=form.cleaned_data['p_name']
+        model.p_fathers_name=form.cleaned_data['p_fathers_name']
+        model.p_age=form.cleaned_data['p_age']
+        model.p_personal_code=form.cleaned_data['p_personal_code']
+        model.save()
+    return redirect('examinations_output_person')
+
+@require_POST
+def addexaminations_output_person_addex_view(request):
+    if Disease_Model:
+        model=Disease_Model.objects.last()
+    else:
+        a = Disease_Model(examinations_code='',order_number=1)
+        a.save()
+        model=Disease_Model.objects.last()
+    form=disease_form(request.POST)
+    if form.is_valid():
+        model.p_examinations_code=form.cleaned_data['p_examinations_code']
+        model.save()
+    return redirect('examinations_output_person')
+
 
 @login_required(login_url='login')
 def disease_code_view(request):
@@ -1713,32 +1744,121 @@ def examinations_output_course_pdf_view(request):
     username.send_keys('parsa')
     password.send_keys('690088choose')
     login_but.click()
-    driver.get("http://127.0.0.1:8000/output/examinations_output")
+    driver.get("http://127.0.0.1:8000/output/examinations_output/course")
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(1920,S('Height'))
     count = 0
     i = 0
     pdf = FPDF()
-    driver.find_element('id','examinations0').screenshot('images/examinations0.png')
-    pdf.add_page()
-    pdf.image('images/examinations0.png',4,None,200,240)
-    os.remove('images/examinations0.png')
-    driver.find_element('id','examinations1').screenshot('images/examinations1.png')
-    pdf.add_page()
-    pdf.image('images/examinations1.png',4,None,200,180)
-    os.remove('images/examinations1.png')
-    driver.find_element('id','examinations2').screenshot('images/examinations2.png')
-    pdf.add_page()
-    pdf.image('images/examinations2.png',10,None,180,265)
-    os.remove('images/examinations2.png')
-    driver.find_element('id','examinations3').screenshot('images/examinations3.png')
-    pdf.add_page()
-    pdf.image('images/examinations3.png',4,None,200,265)
-    os.remove('images/examinations3.png')
-    driver.find_element('id','examinations4').screenshot('images/examinations4.png')
-    pdf.add_page()
-    pdf.image('images/examinations4.png',4,None,200,140)
-    os.remove('images/examinations4.png')
+    for a in personal_species:
+        i = int(i)
+        i += 1
+        i = str(i)
+        driver.find_element('id','examinations0' + i).screenshot('images/examinations0' + i +'.png')
+        pdf.add_page()
+        pdf.image('images/examinations0' + i +'.png',4,None,200,240)
+        os.remove('images/examinations0' + i +'.png')
+        driver.find_element('id','examinations1' + i).screenshot('images/examinations1' + i +'.png')
+        pdf.add_page()
+        pdf.image('images/examinations1' + i +'.png',4,None,200,180)
+        os.remove('images/examinations1' + i +'.png')
+        driver.find_element('id','examinations2' + i).screenshot('images/examinations2' + i +'.png')
+        pdf.add_page()
+        pdf.image('images/examinations2' + i +'.png',10,None,180,265)
+        os.remove('images/examinations2' + i +'.png')
+        driver.find_element('id','examinations3' + i).screenshot('images/examinations3' + i +'.png')
+        pdf.add_page()
+        pdf.image('images/examinations3' + i +'.png',4,None,200,265)
+        os.remove('images/examinations3' + i +'.png')
+        driver.find_element('id','examinations4' + i).screenshot('images/examinations4' + i +'.png')
+        pdf.add_page()
+        pdf.image('images/examinations4' + i +'.png',4,None,200,140)
+        os.remove('images/examinations4' + i +'.png')
+    pdf.output("pdfs/examinations.pdf", "F")
+    file_path = os.path.join('pdfs/examinations.pdf')
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
+@login_required(login_url='login')
+def examinations_output_person_view(request):
+    form=disease_form()
+    model=Disease_Model.objects.last()
+    if model:
+        code=model.p_examinations_code
+    else:
+        code=''
+    if model.p_age:
+        code_list=Personal_Species_Model.objects.filter(name=model.p_name,age=1401 - model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code)
+    else:
+        code_list=[]
+    if model.p_examinations_code != 'all' and model.p_examinations_code:
+        examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+        personal_species=Personal_Species_Model.objects.filter(name=model.p_name,age=1401 - model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code,examinations_code=examinations_course)
+    elif model.p_age and model.p_examinations_code == 'all':
+        personal_species=Personal_Species_Model.objects.filter(name=model.p_name,age=1401 - model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code)
+    else:
+        personal_species = []
+    context={'form':form, 'personal_species' : personal_species , 'code_list' : code_list }
+    return render(request, 'examinations_output_person.html',context)
+
+
+def examinations_output_person_pdf_view(request):
+    model=Disease_Model.objects.last()
+    if model:
+        code=model.p_examinations_code
+    else:
+        code=''
+    if model.p_examinations_code != 'all' and model.p_examinations_code:
+        examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
+        personal_species=Personal_Species_Model.objects.filter(name=model.p_name,age=1401 - model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code,examinations_code=examinations_course)
+    elif model.p_age and model.p_examinations_code == 'all':
+        personal_species=Personal_Species_Model.objects.filter(name=model.p_name,age=1401 - model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code)
+    else:
+        personal_species = []
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver.get("http://127.0.0.1:8000/login")
+    username = driver.find_element('name',"username")
+    password = driver.find_element('name',"password")
+    login_but = driver.find_element('name',"login")
+    username.send_keys('parsa')
+    password.send_keys('690088choose')
+    login_but.click()
+    driver.get("http://127.0.0.1:8000/output/examinations_output/person")
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(1920,S('Height'))
+    count = 0
+    i = 0
+    pdf = FPDF()
+    for a in personal_species:
+        i = int(i)
+        i += 1
+        i = str(i)
+        driver.find_element('id','examinations0' + i).screenshot('images/examinations0' + i +'.png')
+        pdf.add_page()
+        pdf.image('images/examinations0' + i +'.png',4,None,200,240)
+        os.remove('images/examinations0' + i +'.png')
+        driver.find_element('id','examinations1' + i).screenshot('images/examinations1' + i +'.png')
+        pdf.add_page()
+        pdf.image('images/examinations1' + i +'.png',4,None,200,180)
+        os.remove('images/examinations1' + i +'.png')
+        driver.find_element('id','examinations2' + i).screenshot('images/examinations2' + i +'.png')
+        pdf.add_page()
+        pdf.image('images/examinations2' + i +'.png',10,None,180,265)
+        os.remove('images/examinations2' + i +'.png')
+        driver.find_element('id','examinations3' + i).screenshot('images/examinations3' + i +'.png')
+        pdf.add_page()
+        pdf.image('images/examinations3' + i +'.png',4,None,200,265)
+        os.remove('images/examinations3' + i +'.png')
+        driver.find_element('id','examinations4' + i).screenshot('images/examinations4' + i +'.png')
+        pdf.add_page()
+        pdf.image('images/examinations4' + i +'.png',4,None,200,140)
+        os.remove('images/examinations4' + i +'.png')
     pdf.output("pdfs/examinations.pdf", "F")
     file_path = os.path.join('pdfs/examinations.pdf')
     if os.path.exists(file_path):
@@ -1763,16 +1883,26 @@ def addexaminations_output_view(request):
 
 
 def examinations_output_edit_view(request):
+    form=disease_form()
     username = request.user.username
+    code_list=ExaminationsCourse.objects.order_by('id')
     e_items=''
     items = ''
     model=Disease_Model.objects.last()
-    if model:
-        code=model.examinations_code
+    if model.e_examinations_code and model.e_name and model.e_age and model.e_personal_code and model.e_fathers_name:
+        code=model.e_examinations_code
+        e_name = model.e_name
+        e_age = model.e_age
+        e_personal_code = model.e_personal_code
+        e_fathers_name = model.e_fathers_name
     else:
         code=''
+        e_name = ''
+        e_age = 0
+        e_personal_code = 0
+        e_fathers_name = ''
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
-    personal_species_m=Personal_Species_Model.objects.filter(name=model.name,age=1401 - model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
+    personal_species_m=Personal_Species_Model.objects.filter(name=e_name,age=1401 - e_age,fathers_name=e_fathers_name,personal_code=e_personal_code,examinations_code=examinations_course).last()
     job_history_m=Job_History_Model.objects.filter(person=personal_species_m).last()
     assessment_m=Assessment_Model.objects.filter(person=personal_species_m).last()
     personal_history_m=Personal_History_Model.objects.filter(person=personal_species_m).last()
@@ -1790,6 +1920,7 @@ def examinations_output_edit_view(request):
     para_clinic=para_clinic_form(request.POST or None,instance=para_clinic_m)
     consulting=consulting_form(request.POST or None,instance=consulting_m)
     final_theory=final_theory_form(request.POST or None,instance=final_theory_m)
+
     if personal_species.is_valid():
         new_person = personal_species.save(commit=False)
         new_person.user = username
@@ -2416,10 +2547,29 @@ def examinations_output_edit_view(request):
         new_final_theory = final_theory.save(commit=False)
         new_final_theory.person = new_person
         new_final_theory.save() 
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
+    context={ 'code_list' : code_list ,'form' : form ,'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
     return render(request, 'edit_examinations.html',context)
 
 
 @login_required(login_url='login')
 def examinations_output_view(request):
     return render(request, 'examinations_output.html')
+
+
+@require_POST
+def examinations_output_edit_add_view(request):
+    if Disease_Model:
+        model=Disease_Model.objects.last()
+    else:
+        a = Disease_Model(examinations_code='',order_number=1)
+        a.save()
+        model=Disease_Model.objects.last()
+    form=disease_form(request.POST)
+    if form.is_valid():
+        model.e_examinations_code=form.cleaned_data['e_examinations_code']
+        model.e_name=form.cleaned_data['e_name']
+        model.e_fathers_name=form.cleaned_data['e_fathers_name']
+        model.e_age=form.cleaned_data['e_age']
+        model.e_personal_code=form.cleaned_data['e_personal_code']
+        model.save()
+    return redirect('examinations_output_edit')

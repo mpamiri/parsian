@@ -23,6 +23,16 @@ class ExaminationsCourse(models.Model):
 
 class Disease_Model(models.Model):
     examinations_code=models.CharField(max_length=250, null=True, blank=True)
+    p_examinations_code=models.CharField(max_length=250, null=True, blank=True)
+    p_name = models.CharField(max_length=250,null=True,blank=True)
+    p_personal_code = models.IntegerField(null=True,blank=True)
+    p_fathers_name = models.CharField(max_length=250, null=True, blank=True)
+    p_age = models.IntegerField(null=True,blank=True)
+    e_examinations_code=models.CharField(max_length=250, null=True, blank=True)
+    e_name = models.CharField(max_length=250,null=True,blank=True)
+    e_personal_code = models.IntegerField(null=True,blank=True)
+    e_fathers_name = models.CharField(max_length=250, null=True, blank=True)
+    e_age = models.IntegerField(null=True,blank=True)
     order_CHOICES = [(1, '1'), (10, '10'), (20, '20'), (30, '30'), (40, '40'), (50, '50')]
     order_number = models.IntegerField(default=1, choices=order_CHOICES, null=True,blank=True)
     name = models.CharField(max_length=250,null=True,blank=True)
