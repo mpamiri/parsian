@@ -18,7 +18,6 @@ from selenium.webdriver.chrome.options import Options
 from shutil import move
 import os
 from fpdf import FPDF
-import pyautogui
 from time import sleep
 from PIL import Image
 
