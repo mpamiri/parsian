@@ -9,6 +9,7 @@ from django.contrib.auth import logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login
 from django.views.decorators.http import require_POST
+from webdriver_manager.chrome import ChromeDriverManager
 from django.views import generic
 from . import forms, models
 from django.core.paginator import Paginator
@@ -213,7 +214,7 @@ def disease_pdf_view(request):
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     driver.get("http://127.0.0.1:8000/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
@@ -298,7 +299,7 @@ def open_docs_pdf_view(request):
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course,final__mashrot='False',final__belamane='False',final__rad='False')
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     driver.get("http://127.0.0.1:8000/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
@@ -384,7 +385,7 @@ def summary_of_examinations_pdf_view(request):
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     driver.get("http://127.0.0.1:8000/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
@@ -468,7 +469,7 @@ def problem_pdf_view(request):
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     driver.get("http://127.0.0.1:8000/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
@@ -857,7 +858,7 @@ def graph_view(request):
 def graph_pdf_view(request):
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     driver.get("http://127.0.0.1:8000/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
@@ -946,7 +947,7 @@ def solo_pdf_view(request):
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome('chromedriver',options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     driver.get("http://127.0.0.1:8000/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
@@ -1736,7 +1737,7 @@ def examinations_output_course_pdf_view(request):
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     driver.get("http://127.0.0.1:8000/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
@@ -1821,7 +1822,7 @@ def examinations_output_person_pdf_view(request):
         personal_species = []
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome('F:\parsian\chromedriver',options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     driver.get("http://127.0.0.1:8000/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
