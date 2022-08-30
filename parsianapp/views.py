@@ -1669,6 +1669,11 @@ def addexaminations_view(request):
         new_experiments.save()
     if personal_species.is_valid() and  para_clinic.is_valid():
         new_para_clinic = para_clinic.save(commit=False)
+        if new_person.examinations_type == 'badv_estekhdam':
+            new_para_clinic.opto_hedat_r_ba = 10
+            new_para_clinic.opto_hedat_r_bi = 10
+            new_para_clinic.opto_hedat_l_ba = 10
+            new_para_clinic.opto_hedat_l_bi = 10
         new_para_clinic.person = new_person
         new_para_clinic.save()
     if personal_species.is_valid() and  consulting.is_valid():
@@ -2537,6 +2542,11 @@ def examinations_output_edit_view(request):
         new_experiments.save()
     if personal_species.is_valid() and  para_clinic.is_valid():
         new_para_clinic = para_clinic.save(commit=False)
+        if new_person.examinations_type == 'badv_estekhdam':
+            new_para_clinic.opto_hedat_r_ba = 10
+            new_para_clinic.opto_hedat_r_bi = 10
+            new_para_clinic.opto_hedat_l_ba = 10
+            new_para_clinic.opto_hedat_l_bi = 10
         new_para_clinic.person = new_person
         new_para_clinic.save()
     if personal_species.is_valid() and  consulting.is_valid():

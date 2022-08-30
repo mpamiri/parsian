@@ -3496,9 +3496,9 @@
                     <th>500</th>
                     <th>فرکانس</th>
                     {% if item.para.all.0.audio_date_year and item.para.all.0.audio_date_month and item.para.all.0.audio_date_day  %}
-                    <p>{{ item.para.all.0.audio_date_year }}/{{ item.para.all.0.audio_date_month }}/{{ item.para.all.0.audio_date_day }}</p>
+                    <th>{{ item.para.all.0.audio_date_year }}/{{ item.para.all.0.audio_date_month }}/{{ item.para.all.0.audio_date_day }}</th>
                     {% else %}
-                    <p class='None'>ذکر نشده</p>
+                    <th class='None'>تاریخ:ذکر نشده</th>
                     {% endif %}
                 </tr>
                 <tr>
@@ -3538,6 +3538,13 @@
                         <p class='none'>ذکر نشده</p>
                         {% else %}
                         {{ item.para.all.0.audio_r_four_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if item.para.all.0.audio_r_three_ac == null %}
+                        <p class='none'>ذکر نشده</p>
+                        {% else %}
+                        {{ item.para.all.0.audio_r_three_ac }}
                         {% endif %}
                     </td>
                     <td>
@@ -3584,6 +3591,13 @@
                         <p class='none'>ذکر نشده</p>
                         {% else %}
                         {{ item.para.all.0.audio_r_four_bc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if item.para.all.0.audio_r_three_bc == null %}
+                        <p class='none'>ذکر نشده</p>
+                        {% else %}
+                        {{ item.para.all.0.audio_r_three_bc }}
                         {% endif %}
                     </td>
                     <td>
@@ -3649,6 +3663,13 @@
                         {% endif %}
                     </td>
                     <td>
+                        {% if item.para.all.0.audio_l_three_ac == null %}
+                        <p class='none'>ذکر نشده</p>
+                        {% else %}
+                        {{ item.para.all.0.audio_l_three_ac }}
+                        {% endif %}
+                    </td>
+                    <td>
                         {% if item.para.all.0.audio_l_two_ac == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -3692,6 +3713,13 @@
                         <p class='none'>ذکر نشده</p>
                         {% else %}
                         {{ item.para.all.0.audio_l_four_bc }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if item.para.all.0.audio_l_three_bc == null %}
+                        <p class='none'>ذکر نشده</p>
+                        {% else %}
+                        {{ item.para.all.0.audio_l_three_bc }}
                         {% endif %}
                     </td>
                     <td>

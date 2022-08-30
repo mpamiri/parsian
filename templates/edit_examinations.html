@@ -63,7 +63,9 @@
             </div>
         </div>
     </form>
-    <form action='' method='POST' class='mt-5'>
+</section>
+<section class='container mt-4'>
+    <form action='' method='POST'>
         <div class='row text-center mb-4'>
             <div class='col'>
                 {% csrf_token %}
@@ -199,7 +201,6 @@
                         {{ job_history.current_job_to_month }}/
                         {{ job_history.current_job_to_year }}
                     </td>
-                    <td>{{ job_history.current_job_reason }}</td>
                 </tr>
                 <tr style = 'height : 32.5px'>
                     <td></td>
@@ -1868,13 +1869,14 @@
                     <th>1000</th>
                     <th>500</th>
                     <th>فرکانس</th>
-                    <p>تاریخ:{{ para_clinic.audio_date_day }}/{{ para_clinic.audio_date_month }}/{{ para_clinic.audio_date_year }}</p>
+                    <th>تاریخ:{{ para_clinic.audio_date_day }}/{{ para_clinic.audio_date_month }}/{{ para_clinic.audio_date_year }}</th>
                 </tr>
                 <tr>
                     <td rowspan=2>{{ para_clinic.audio_r_tafsir }}</td>
                     <td>{{ para_clinic.audio_r_eight_ac }}</td>
                     <td>{{ para_clinic.audio_r_six_ac }}</td>
                     <td>{{ para_clinic.audio_r_four_ac }}</td>
+                    <td>{{ para_clinic.audio_r_three_ac }}</td>
                     <td>{{ para_clinic.audio_r_two_ac }}</td>
                     <td>{{ para_clinic.audio_r_one_ac }}</td>
                     <td>{{ para_clinic.audio_r_five_ac }}</td>
@@ -1885,6 +1887,7 @@
                     <td>{{ para_clinic.audio_r_eight_bc }}</td>
                     <td>{{ para_clinic.audio_r_six_bc }}</td>
                     <td>{{ para_clinic.audio_r_four_bc }}</td>
+                    <td>{{ para_clinic.audio_r_three_bc }}</td>
                     <td>{{ para_clinic.audio_r_two_bc }}</td>
                     <td>{{ para_clinic.audio_r_one_ac }}</td>
                     <td>{{ para_clinic.audio_r_five_bc }}</td>
@@ -1895,6 +1898,7 @@
                     <td>{{ para_clinic.audio_l_eight_ac }}</td>
                     <td>{{ para_clinic.audio_l_six_ac }}</td>
                     <td>{{ para_clinic.audio_l_four_ac }}</td>
+                    <td>{{ para_clinic.audio_l_three_ac }}</td>
                     <td>{{ para_clinic.audio_l_two_ac }}</td>
                     <td>{{ para_clinic.audio_l_one_ac }}</td>
                     <td>{{ para_clinic.audio_l_five_ac }}</td>
@@ -1905,6 +1909,7 @@
                     <td>{{ para_clinic.audio_l_eight_bc }}</td>
                     <td>{{ para_clinic.audio_l_six_bc }}</td>
                     <td>{{ para_clinic.audio_l_four_bc }}</td>
+                    <td>{{ para_clinic.audio_l_three_bc }}</td>
                     <td>{{ para_clinic.audio_l_two_bc }}</td>
                     <td>{{ para_clinic.audio_l_one_ac }}</td>
                     <td>{{ para_clinic.audio_l_five_bc }}</td>
@@ -1917,15 +1922,15 @@
         </div>
         <div class='row mt-3'>
             <table class='text-center'>
-               <tr>
-                   <td colspan=3>تاریخ انجام:{{ para_clinic.espiro_date_day }}/{{ para_clinic.espiro_date_month }}/{{ para_clinic.espiro_date_year }}</td>
-               </tr>
-               <tr>
-                   <td>FEV1/FVC%</td>
-                   <td>FVC(درصد/مقدار)</td>
-                   <td>FEV1(درصد/مقدار)</td>
-               </tr>
-               <tr>
+                <tr>
+                    <td colspan=3>تاریخ انجام:{{ para_clinic.espiro_date_day }}/{{ para_clinic.espiro_date_month }}/{{ para_clinic.espiro_date_year }}</td>
+                </tr>
+                <tr>
+                    <td>FEV1/FVC%</td>
+                    <td>FVC(درصد/مقدار)</td>
+                    <td>FEV1(درصد/مقدار)</td>
+                </tr>
+                <tr>
                     <td>{{ para_clinic.espiro_fevvfvc }}</td>
                     <td>{{ para_clinic.espiro_fvc }}</td>
                     <td>{{ para_clinic.espiro_fev }}</td>
@@ -1936,15 +1941,15 @@
                     <td>FEF 25-75%</td>
                 </tr>
                 <tr>
-                     <td>{{ para_clinic.espiro_vext }}</td>
-                     <td>{{ para_clinic.espiro_pef }}</td>
-                     <td>{{ para_clinic.espiro_fef }}</td>
-                 </tr>
-                 <tr>
-                     <td colspan=3><p>تفسیر:</p>
+                        <td>{{ para_clinic.espiro_vext }}</td>
+                        <td>{{ para_clinic.espiro_pef }}</td>
+                        <td>{{ para_clinic.espiro_fef }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan=3><p>تفسیر:</p>
                         {{ para_clinic.espiro_tafsir }}
-                     </td>
-                 </tr>
+                        </td>
+                    </tr>
             </table>
         </div>
         <div class='row mt-2'>
@@ -2075,16 +2080,16 @@
 $(function() {
     $('#id_opto_hedat_r_bi').prop('disabled', true);
     $('#id_opto_hedat_r_ba').prop('disabled', true);
-       $('#id_opto_hedat_r_status').change(function(){
-         if($(this).val() == "daraie_did") {
-       $('#id_opto_hedat_r_bi').prop('disabled', false);
-       $('#id_opto_hedat_r_ba').prop('disabled', false);      
-     } else {
-          $('#id_opto_hedat_r_bi').prop('disabled', true);
-          $('#id_opto_hedat_r_ba').prop('disabled', true);
-      }
-       });
-   });
+        $('#id_opto_hedat_r_status').change(function(){
+            if($(this).val() == "daraie_did") {
+        $('#id_opto_hedat_r_bi').prop('disabled', false);
+        $('#id_opto_hedat_r_ba').prop('disabled', false);      
+        } else {
+            $('#id_opto_hedat_r_bi').prop('disabled', true);
+            $('#id_opto_hedat_r_ba').prop('disabled', true);
+        }
+        });
+    });
 </script>
 <script type="text/javascript">
 $(function() {
@@ -2110,10 +2115,32 @@ $(function() {
 <script>
     $('#checkboxes{{ forloop.counter }}').on('click', ':checkbox', function(e) {
         $('#checkboxes{{ forloop.counter }} :checkbox').each(function() {
-          if (this != e.target)
+            if (this != e.target)
             $(this).prop('checked', false);
         });
-      });
+        });
+</script>
+<script>
+    const jsonList = {
+        "badv_estekhdam":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,'daraie_did','daraie_did',10,10,10,10,'normal',10,10,10,10,10,10,10,10,10,10,10,10,10,10,'normal',10,10,10,10,10,10,10,10,10,10,10,10,10,10],
+        "dore_e":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''],
+        "bazgasht_be_kar":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''],
+        "":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''],
+    };
+    const e = document.getElementById("id_examinations_type");
+    const inputs = document.getElementsByClassName("auto-filler");
+    function autoFill() {
+        const ev = e.value;
+        const list = jsonList[ev];
+        for (let i=0; i<inputs.length; i++) {
+        if (typeof list[i] == "boolean") {
+            inputs[i].checked = list[i];
+        } else {
+            inputs[i].value = list[i];
+        }
+        }
+    }
+    e.addEventListener("change", autoFill)
 </script>
 {% endfor %}
 {% endblock content %}
