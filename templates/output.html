@@ -26,10 +26,10 @@ xmlns="http://www.w3.org/2000/svg">
         <div class='row text-center mt-4'>
             <div class="col">
                 <lable>کد دوره معاینات</lable>
+                {% csrf_token %}
                 {{ form.examinations_code }}
                 <datalist id='examinations_code'>
                     {% for item in code_list %}
-                    {% csrf_token %}
                     <option value='{{ item.examinations_code }}'></option>
                     {% endfor %}
                 </datalist>
