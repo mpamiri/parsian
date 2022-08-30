@@ -468,7 +468,7 @@ def problem_pdf_view(request):
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
+    driver = webdriver.Chrome(executable_path='chromedriver',options=options)
     driver.get("http://127.0.0.1:8000/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
