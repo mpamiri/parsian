@@ -21,7 +21,7 @@ from fpdf import FPDF
 from time import sleep
 from PIL import Image
 
-os.chmod('./chromedriver.exe', 755)
+# os.chmod('./chromedriver.exe', 755)
 
 def home_view(request):
     return render(request, 'home.html')
