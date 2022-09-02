@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w@jwhv09gf3vnk1++s-^p&e*8mc^z1d(^5_ys=tx5j6v*t*qyv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['parsianqom.runflare.run']
+ALLOWED_HOSTS = ['37.32.27.86']
 
 
 # Application definition
@@ -130,7 +130,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URLS = '/images/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
