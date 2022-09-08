@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-w@jwhv09gf3vnk1++s-^p&e*8mc^z1d(^5_ys=tx5j6v*t*qyv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['37.32.27.86']
+ALLOWED_HOSTS = ['37.32.27.86','www.parsianqom.ir','parsianqom.ir']
+
 
 
 # Application definition
@@ -85,8 +86,12 @@ WSGI_APPLICATION = 'parsian.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'database/db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'parsian',
+        'USER': 'parsa',
+        'PASSWORD': '690088parsian',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
