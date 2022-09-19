@@ -15,6 +15,7 @@ from . import forms, models
 from django.core.paginator import Paginator
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from django.templatetags.static import static
 from shutil import move
 import os
 from fpdf import FPDF
@@ -213,14 +214,14 @@ def disease_pdf_view(request):
     options = Options()
     options.headless = True
     driver = webdriver.Chrome(executable_path='./chromedriver',options=options)
-    driver.get("http://127.0.0.1:8000/login")
+    driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
     login_but = driver.find_element('name',"login")
     username.send_keys('bot')
     password.send_keys('botamiri84')
     login_but.click()
-    driver.get("http://127.0.0.1:8000/output/disease_code")
+    driver.get("http://www.parsianqom.ir/output/disease_code")
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(1920,S('Height'))
     count = 0
