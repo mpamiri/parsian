@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w@jwhv09gf3vnk1++s-^p&e*8mc^z1d(^5_ys=tx5j6v*t*qyv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['37.32.24.201','www.parsianqom.ir','parsianqom.ir','']
+ALLOWED_HOSTS = ['37.32.24.201','www.parsianqom.ir','parsianqom.ir','127.0.0.1']
 
 
 
@@ -94,6 +94,12 @@ DATABASES = {
         'PORT': '',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase',
+#     }
+# }
 
 
 # Password validation
