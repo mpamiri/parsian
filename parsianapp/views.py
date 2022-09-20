@@ -239,28 +239,28 @@ def disease_pdf_view(request):
         while i <= count :
             if i == count:
                 height = (n - (count * 20) + 1) * 7.14
-                driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease.png')
-                driver.find_element('id','Head').screenshot('images/Head.png')
+                driver.find_element('id','disease' + str(i)).screenshot('media/images/'+ str(i) +'disease.png')
+                driver.find_element('id','Head').screenshot('media/images/Head.png')
                 pdf.add_page()
-                pdf.image('images/Head.png',-1,None,220,20)
-                pdf.image('images/'+ str(i) +'disease.png',3,None,205,height)
-                os.remove('images/'+ str(i) +'disease.png')
-                os.remove('images/Head.png')
+                pdf.image('media/images/Head.png',-1,None,220,20)
+                pdf.image('media/images/'+ str(i) +'disease.png',3,None,205,height)
+                os.remove('media/images/'+ str(i) +'disease.png')
+                os.remove('media/images/Head.png')
                 i += 1
             else:
-                driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease.png')
-                driver.find_element('id','Head').screenshot('images/Head.png')
+                driver.find_element('id','disease' + str(i)).screenshot('media/images/'+ str(i) +'disease.png')
+                driver.find_element('id','Head').screenshot('media/images/Head.png')
                 pdf.add_page()
-                pdf.image('images/Head.png',-1,None,220,20)
-                pdf.image('images/'+ str(i) +'disease.png',3,None,205,150)
-                os.remove('images/'+ str(i) +'disease.png')
-                os.remove('images/Head.png')
+                pdf.image('media/images/Head.png',-1,None,220,20)
+                pdf.image('media/images/'+ str(i) +'disease.png',3,None,205,150)
+                os.remove('media/images/'+ str(i) +'disease.png')
+                os.remove('media/images/Head.png')
                 i += 1
     else:
         pdf = FPDF()
         pdf.add_page()
-    pdf.output("pdfs/disease.pdf", "F")
-    file_path = os.path.join('pdfs/disease.pdf')
+    pdf.output("media/pdfs/disease.pdf", "F")
+    file_path = os.path.join('media/pdfs/disease.pdf')
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
