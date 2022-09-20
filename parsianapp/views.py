@@ -869,7 +869,7 @@ def graph_pdf_view(request):
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(1920,S('Height'))
     pdf = FPDF()
-    driver.find_element('xpass','//section[@id="Head"]').screenshot('images/Head_img.png')
+    driver.find_element('id','Head').screenshot('images/Head_img.png')
     pdf.add_page()
     pdf.image('images/Head_img.png',-1,None,220,22)
     os.remove('images/Head_img.png')
