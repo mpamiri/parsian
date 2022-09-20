@@ -1747,7 +1747,6 @@ def examinations_output_course_pdf_view(request):
     options.add_argument("--disable-extensions")
     options.add_argument("--dns-prefetch-disable")
     options.add_argument("--disable-gpu")
-    options.setPageLoadStrategy(PageLoadStrategy.NORMAL)
     driver = webdriver.Chrome(options=options)
     driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
