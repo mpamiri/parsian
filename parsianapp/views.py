@@ -212,9 +212,7 @@ def disease_pdf_view(request):
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+    options.headless = True
     driver = webdriver.Chrome(options=options)
     driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
@@ -239,28 +237,28 @@ def disease_pdf_view(request):
         while i <= count :
             if i == count:
                 height = (n - (count * 20) + 1) * 7.14
-                driver.find_element('id','disease' + str(i)).screenshot('media/images/'+ str(i) +'disease.png')
-                driver.find_element('id','Head').screenshot('media/images/Head.png')
+                driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease.png')
+                driver.find_element('id','Head').screenshot('images/Head.png')
                 pdf.add_page()
-                pdf.image('media/images/Head.png',-1,None,220,20)
-                pdf.image('media/images/'+ str(i) +'disease.png',3,None,205,height)
-                os.remove('media/images/'+ str(i) +'disease.png')
-                os.remove('media/images/Head.png')
+                pdf.image('images/Head.png',-1,None,220,20)
+                pdf.image('images/'+ str(i) +'disease.png',3,None,205,height)
+                os.remove('images/'+ str(i) +'disease.png')
+                os.remove('images/Head.png')
                 i += 1
             else:
-                driver.find_element('id','disease' + str(i)).screenshot('media/images/'+ str(i) +'disease.png')
-                driver.find_element('id','Head').screenshot('media/images/Head.png')
+                driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease.png')
+                driver.find_element('id','Head').screenshot('images/Head.png')
                 pdf.add_page()
-                pdf.image('media/images/Head.png',-1,None,220,20)
-                pdf.image('media/images/'+ str(i) +'disease.png',3,None,205,150)
-                os.remove('media/images/'+ str(i) +'disease.png')
-                os.remove('media/images/Head.png')
+                pdf.image('images/Head.png',-1,None,220,20)
+                pdf.image('images/'+ str(i) +'disease.png',3,None,205,150)
+                os.remove('images/'+ str(i) +'disease.png')
+                os.remove('images/Head.png')
                 i += 1
     else:
         pdf = FPDF()
         pdf.add_page()
-    pdf.output("media/pdfs/disease.pdf", "F")
-    file_path = os.path.join('media/pdfs/disease.pdf')
+    pdf.output("pdfs/disease.pdf", "F")
+    file_path = os.path.join('pdfs/disease.pdf')
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
@@ -299,9 +297,7 @@ def open_docs_pdf_view(request):
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course,final__mashrot='False',final__belamane='False',final__rad='False')
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+    options.headless = True
     driver = webdriver.Chrome(options=options)
     driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
@@ -387,9 +383,7 @@ def summary_of_examinations_pdf_view(request):
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+    options.headless = True
     driver = webdriver.Chrome(options=options)
     driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
@@ -473,9 +467,7 @@ def problem_pdf_view(request):
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+    options.headless = True
     driver = webdriver.Chrome(options=options)
     driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
@@ -864,9 +856,7 @@ def graph_view(request):
 
 def graph_pdf_view(request):
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+    options.headless = True
     driver = webdriver.Chrome(options=options)
     driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
@@ -955,9 +945,7 @@ def solo_pdf_view(request):
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+    options.headless = True
     driver = webdriver.Chrome(options=options)
     driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
@@ -1752,9 +1740,7 @@ def examinations_output_course_pdf_view(request):
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+    options.headless = True
     driver = webdriver.Chrome(options=options)
     driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
@@ -1839,9 +1825,7 @@ def examinations_output_person_pdf_view(request):
     else:
         personal_species = []
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+    options.headless = True
     driver = webdriver.Chrome(options=options)
     driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
