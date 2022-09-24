@@ -14,6 +14,9 @@ from django.views import generic
 from . import forms, models
 from django.core.paginator import Paginator
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from django.templatetags.static import static
 from shutil import move
@@ -1776,13 +1779,7 @@ def examinations_output_course_pdf_view(request):
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
-    options.add_argument("enable-automation")
     options.add_argument("--headless")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-extensions")
-    options.add_argument("--dns-prefetch-disable")
-    options.add_argument("--disable-gpu")
     driver = webdriver.Chrome(options=options)
     driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
@@ -1801,28 +1798,34 @@ def examinations_output_course_pdf_view(request):
         i = int(i)
         i += 1
         i = str(i)
+        WebDriverWait(driver, 10000).until(
+        EC.presence_of_element_located((By.ID, "examinations0")).screenshot('images/examinations0' + i +'.png'))
         driver.find_element('id','examinations0' + i).screenshot('images/examinations0' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations0' + i +'.png',4,None,200,240)
         os.remove('images/examinations0' + i +'.png')
-        driver.find_element('id','examinations1' + i).screenshot('images/examinations1' + i +'.png')
+        WebDriverWait(driver, 10000).until(
+        EC.presence_of_element_located((By.ID, "examinations1")).screenshot('images/examinations1' + i +'.png'))
         pdf.add_page()
         pdf.image('images/examinations1' + i +'.png',4,None,200,180)
         os.remove('images/examinations1' + i +'.png')
-        driver.find_element('id','examinations2' + i).screenshot('images/examinations2' + i +'.png')
+        WebDriverWait(driver, 10000).until(
+        EC.presence_of_element_located((By.ID, "examinations2")).screenshot('images/examinations2' + i +'.png'))
         pdf.add_page()
         pdf.image('images/examinations2' + i +'.png',10,None,180,265)
         os.remove('images/examinations2' + i +'.png')
-        driver.find_element('id','examinations3' + i).screenshot('images/examinations3' + i +'.png')
+        WebDriverWait(driver, 10000).until(
+        EC.presence_of_element_located((By.ID, "examinations3")).screenshot('images/examinations3' + i +'.png'))
         pdf.add_page()
         pdf.image('images/examinations3' + i +'.png',4,None,200,265)
         os.remove('images/examinations3' + i +'.png')
-        driver.find_element('id','examinations4' + i).screenshot('images/examinations4' + i +'.png')
+        WebDriverWait(driver, 10000).until(
+        EC.presence_of_element_located((By.ID, "examinations4")).screenshot('images/examinations4' + i +'.png'))
         pdf.add_page()
         pdf.image('images/examinations4' + i +'.png',4,None,200,140)
         os.remove('images/examinations4' + i +'.png')
-    pdf.output("pdfs/examinations.pdf", "F")
-    file_path = os.path.join('pdfs/examinations.pdf')
+    pdf.output("pdfs/examinations_course.pdf", "F")
+    file_path = os.path.join('pdfs/examinations_course.pdf')
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
