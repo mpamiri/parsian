@@ -60,6 +60,9 @@ class ExaminationsCourseChoiceField(forms.ModelChoiceField):
 
 class personal_species_form(forms.ModelForm):
     examinations_code = ExaminationsCourseChoiceField(queryset=ExaminationsCourse.objects.all())
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name','examinations_code','age','marriage_status','military_status','gender'].required = True
     class Meta:
         model=Personal_Species_Model
         fields='__all__' 
