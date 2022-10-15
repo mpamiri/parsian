@@ -62,7 +62,7 @@ class personal_species_form(forms.ModelForm):
     examinations_code = ExaminationsCourseChoiceField(queryset=ExaminationsCourse.objects.all())
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['name','examinations_code','age','marriage_status','military_status','gender'].required = True
+        self.fields['examinations_code'].required = True
     class Meta:
         model=Personal_Species_Model
         fields='__all__' 
@@ -71,7 +71,7 @@ class personal_species_form(forms.ModelForm):
         'examinations_type' : forms.Select(attrs={'class':'text','autocomplete': 'off'}),
         'profil_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'employment_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off',"required": 'True'}),
         'fathers_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
         'gender' : forms.Select(attrs={'class':'s_box','autocomplete': 'off','id':'select'}),
         'marriage_status' : forms.Select(attrs={'class':'box','autocomplete': 'off'}),

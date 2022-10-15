@@ -12,7 +12,7 @@ class Company(models.Model):
         return f'{self.name}'
 
 class ExaminationsCourse(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE,blank=True)
     year = models.IntegerField(null=True, blank=True)
     specialist = models.CharField(max_length=250, null=True, blank=True)
     doctor = models.CharField(max_length=250, null=True, blank=True)
@@ -43,7 +43,7 @@ class Disease_Model(models.Model):
 
 
 class Personal_Species_Model(models.Model):
-    examinations_code = models.ForeignKey(ExaminationsCourse, on_delete=models.CASCADE)
+    examinations_code = models.ForeignKey(ExaminationsCourse, on_delete=models.CASCADE,blank=True)
     user = models.CharField(max_length=250, null=True, blank=True)
     examinations_type_CHOICES = [('badv_estekhdam', 'بدو استخدام'), ('dore_e', 'دوره ای'), ('bazgasht_be_kar', 'بازگشت به کار')]
     examinations_type = models.CharField(choices=examinations_type_CHOICES, max_length=250,blank=True,null=True)
@@ -52,26 +52,26 @@ class Personal_Species_Model(models.Model):
     species_date_day=models.IntegerField(null=True, blank=True)
     profil_number=models.IntegerField(null=True, blank=True)
     employment_number=models.IntegerField(null=True, blank=True)
-    name = models.CharField(max_length=250,default=None)
+    name = models.CharField(max_length=250,default=None, null=True, blank=True)
     fathers_name = models.CharField(max_length=250, null=True, blank=True)
     gender_CHOICES = [('mard', 'مرد'), ('zan', 'زن')]
-    gender = models.CharField(default='mard', choices=gender_CHOICES, max_length=250)
+    gender = models.CharField(default='mard', choices=gender_CHOICES, max_length=250, null=True, blank=True)
     marriage_status_CHOICES = [('mojarad', 'مجرد'), ('motahel', 'متاحل')]
-    marriage_status = models.CharField(default='mojarad', choices=marriage_status_CHOICES,  max_length=250)
+    marriage_status = models.CharField(default='mojarad', choices=marriage_status_CHOICES,  max_length=250, null=True, blank=True)
     children = models.IntegerField(null=True, blank=True)
-    age = models.IntegerField(default=None)
+    age = models.IntegerField(default=None, null=True, blank=True)
     personal_code = models.IntegerField(null=True, blank=True)
     military_status_CHOICES = [('khedmat_karde', 'خدمت کرده'), ('moaf', 'معاف'), ('khedmat_nakarde', 'خدمت نکرده')]
-    military_status = models.CharField(default='khedmat_karde', choices=military_status_CHOICES, max_length=250)
+    military_status = models.CharField(default='khedmat_karde', choices=military_status_CHOICES, max_length=250, null=True, blank=True)
     raste = models.CharField(max_length=250, null=True, blank=True)
-    medical_exemption = models.BooleanField(default=False)
+    medical_exemption = models.BooleanField(default=False, null=True, blank=True)
     medical_exemption_reason = models.CharField(max_length=250, null=True, blank=True)
     job_name = models.CharField(max_length=250, null=True, blank=True)
     employer_name = models.CharField(max_length=250, null=True, blank=True)
     address = models.CharField(max_length=250, null=True, blank=True)
-    class Meta:
-        unique_together = ('examinations_code', 'name','fathers_name','age','personal_code')
 
+
+    
 class Job_History_Model(models.Model):
     person = models.ForeignKey(Personal_Species_Model, on_delete=models.CASCADE,related_name='history',null=True,blank=True)
     current_job = models.CharField(max_length=250, null=True, blank=True)
