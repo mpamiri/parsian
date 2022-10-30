@@ -24,6 +24,9 @@ xmlns="http://www.w3.org/2000/svg">
 <section class='container-fluid' >
     <form action='{% url 'addcourse' %}' method='POST'>
         <div class='row text-center mt-4'>
+            <div class='col-1'>
+                <a href='{% url 'submit_company' %}' class="nav-link text-dark text-center green-page">قبل</a>
+            </div>
             <div class='col'>
                 {% csrf_token %}
                 <lable> کارخانه/کارگاه/شرکت</lable>
@@ -33,11 +36,11 @@ xmlns="http://www.w3.org/2000/svg">
                 <lable>پزشک طب کار</lable>
                 {{ form.doctor }}
             </div>
+            <div class='col-1'>
+                <a href='{% url 'examinations' %}' class="nav-link text-dark text-center green-page">بعد</a>
+            </div>
         </div>
         <div class='row text-center mt-4'>
-            <div class='col-1'>
-                <a href='{% url 'submit_company' %}' class="nav-link text-dark text-center green-page">قبل</a>
-            </div>
             <div class='col'>
                 <lable> تاریخ انجام معاینات دوره ای</lable>
                 {{ form.year }}
@@ -45,9 +48,6 @@ xmlns="http://www.w3.org/2000/svg">
             <div class='col'>
                 <lable>کارشناس بهداشت حرفه ای</lable>
                 {{ form.specialist }}
-            </div>
-            <div class='col-1'>
-                <a href='{% url 'examinations' %}' class="nav-link text-dark text-center green-page">بعد</a>
             </div>
         </div>   
         <div class='row text-center mt-4'>

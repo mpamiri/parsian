@@ -26,10 +26,15 @@
 <section class='container'>
     <form action='{% url 'addexaminations' %}' method='POST'>
         <div class='row text-center mb-4'>
+            <div class='col-1'>
+                <a href='{% url 'submit_course' %}' class="nav-link text-dark text-center green-page">قبل</a>
+            </div>
             <div class='col'>
                 {% csrf_token %}
                 <lable>کد دوره معاینات:</lable>
                 {{ personal_species.examinations_code }}
+            </div>
+            <div class='col-1'>
             </div>
         </div>
         <div class='row text-center mb-4'>
@@ -2064,11 +2069,6 @@ $(function() {
         }
         });
     });
-</script>
-<script>
-    document.getElementById('id_medical_exemption').onchange = function() {
-        document.getElementById('id_medical_exemption_reason').disabled = !this.checked;
-    };
 </script>
 {% for a in 'aaaaaaaaaaaaaaaaa' %}
 <script>

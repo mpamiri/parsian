@@ -24,7 +24,9 @@ xmlns="http://www.w3.org/2000/svg">
 <section class='container-fluid'>
     <form action='{% url 'addcompany' %}' method='POST'>
         <div class='row text-center mt-4'>
-            <div class='col-11'>
+            <div class='col-1'>
+            </div>
+            <div class='col'>
                 {% csrf_token %}
                 <lable> کارخانه/کارگاه/شرکت</lable>
                 {{ form.name }}

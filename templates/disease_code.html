@@ -131,11 +131,16 @@
     </div>
 </section>
 {% else %}
-<section class='container' id='Head'>
+<section class='container-fluid' id='Head'>
     <div class='row text-center rfsize'>
+        <div class='col-1'>
+        </div>
         <div class='col'>
             <lable>کد شرکت:</lable>
             {{ examinations_course.examinations_code }}
+        </div>
+        <div class='col-1'>
+            <a href='{% url 'open_docs' %}' class="nav-link text-dark text-center green-page">بعد</a>
         </div>
     </div>
     <div class='row text-center rfsize'>
@@ -148,6 +153,8 @@
             {{ examinations_course.company }}
         </div>
     </div>
+</section>
+<section class ='container'>
     <div class='row text-center rfsize'>
         <div class='col'>
             <lable>کارشناس بهداشت حرفه ای:مهندس</lable>
@@ -161,7 +168,7 @@
 </section>
 <section class='container'>
     <div class='row text-center'>
-        <table class='parstable'>        
+        <table class='parstable autoContain'>        
             <tr id='disease0'>
                 <th class='disease_age'>ردیف</th>
                 <th class='disease_name'>نام</th>
@@ -174,7 +181,7 @@
             <tr>
                 <td>{{ forloop.counter }}</td>
                 {% if item.name %}
-                <td>{{ item.name }}</td>
+                <td class='disease_name'>{{ item.name }}</td>
                 {% else %}
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
@@ -184,7 +191,7 @@
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.job_name %}
-                <td>{{ item.job_name }}</td>
+                <td class='disease_name'>{{ item.job_name }}</td>
                 {% else %}
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
@@ -210,6 +217,22 @@
         </div>
     </div>
 </section>
+<script>
+    function autoContain(ele, primeValue) {
+        if (!ele.style.fontSize) {
+            ele.style.fontSize = primeValue + "px";
+        }
+        while (ele.scrollHeight > ele.clientHeight) {
+            ele.style.fontSize = ele.style.fontSize.replace("px",'') - 0.5 + "px";
+        }
+    }
+    const nodes = document.querySelectorAll(".autoContain td");
+    for (let x of nodes) {
+      autoContain(x, 20);
+    }
+    
+    
+    </script>
 {% endif %}
 {% endblock content %}
 

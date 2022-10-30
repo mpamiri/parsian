@@ -129,11 +129,17 @@ xmlns="http://www.w3.org/2000/svg">
     </div>
 </section>
 {% else %}
-<section class='container' id='Head'>
-    <div class='row text-center'>
+<section class='container-fluid' id='Head'>
+    <div class='row text-center rfsize'>
+        <div class='col-1'>
+            <a href='{% url 'summary_of_examinations' %}' class="nav-link text-dark text-center green-page">قبل</a>
+        </div>
         <div class='col'>
             <lable>کد شرکت:</lable>
             {{ examinations_course.examinations_code }}
+        </div>
+        <div class='col-1'>
+            <a href='{% url 'graph' %}' class="nav-link text-dark text-center green-page">بعد</a>
         </div>
     </div>
     <div class='row text-center'>
@@ -159,7 +165,7 @@ xmlns="http://www.w3.org/2000/svg">
 </section>
 <section class='container'>
     <div class='row text-center'>
-        <table class='parstable'>  
+        <table class='parstablef'>  
             <thead id='problem0'>      
                 <tr>
                     <th rowspan='2'>ردیف</th>
@@ -195,7 +201,7 @@ xmlns="http://www.w3.org/2000/svg">
                 <td></td>
                 <td></td>
                 {% if item.final.all.0.recommendations %}
-                <td>{{ item.final.all.0.recommendations }}</td>
+                <td class = 'trf'>{{ item.final.all.0.recommendations }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}

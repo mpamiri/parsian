@@ -273,7 +273,10 @@
                     <td></td>
                     <td></td>
                 {% endif %}
-                {% if item.experiment.all.0.cbc_wbc_status == False or item.experiment.all.0.cbc_rbc_status == False or item.experiment.all.0.cbc_hb_status == False or item.experiment.all.0.cbc_htc_status == False or item.experiment.all.0.cbc_plt_status == False or item.experiment.all.0.ua_glu_status == False or item.experiment.all.0.ua_rbc_status == False or item.experiment.all.0.ua_wbc_status == False or item.experiment.all.0.ua_bact_status == False or item.experiment.all.0.fbs_status == False or item.experiment.all.0.chol_status == False or item.experiment.all.0.ldl_status == False or item.experiment.all.0.hdl_status == False or item.experiment.all.0.tg_status == False or item.experiment.all.0.psa_status == False or item.experiment.all.0.cr_status == False or item.experiment.all.0.alt_status == False or item.experiment.all.0.ast_status == False or item.experiment.all.0.alk_status == False or item.experiment.all.0.lead_status == False or item.experiment.all.0.alt_status == False or item.experiment.all.0.se_status == 'not_normal' or item.experiment.all.0.ppd_status == 'not_normal' or item.experiment.all.0.d_status == False or item.experiment.all.0.tsh_status == False %}
+                {% if not item.experiment.all.0.cbc_wbc and not item.experiment.all.0.cbc_rbc and not item.experiment.all.0.cbc_hb and not item.experiment.all.0.cbc_htc and not item.experiment.all.0.cbc_plt and not item.experiment.all.0.ua_prot and not item.experiment.all.0.ua_glu and not item.experiment.all.0.ua_wbc and not item.experiment.all.0.ua_bact and not item.experiment.all.0.fbs and not item.experiment.all.0.chol and not item.experiment.all.0.ldl and not item.experiment.all.0.hdl and not item.experiment.all.0.tg and not item.experiment.all.0.psa and not item.experiment.all.0.cr and not item.experiment.all.0.alt and not item.experiment.all.0.ast and not item.experiment.all.0.alk and not item.experiment.all.0.lead and not item.experiment.all.0.d and not item.experiment.all.0.tsh and not item.experiment.all.0.se_status and not item.experiment.all.0.ppd_status and not item.experiment.all.0.ua_rbc %}
+                    <td></td>
+                    <td></td>
+                {% elif item.experiment.all.0.cbc_wbc_status == False or item.experiment.all.0.cbc_rbc_status == False or item.experiment.all.0.cbc_hb_status == False or item.experiment.all.0.cbc_htc_status == False or item.experiment.all.0.cbc_plt_status == False or item.experiment.all.0.ua_glu_status == False or item.experiment.all.0.ua_rbc_status == False or item.experiment.all.0.ua_wbc_status == False or item.experiment.all.0.ua_bact_status == False or item.experiment.all.0.fbs_status == False or item.experiment.all.0.chol_status == False or item.experiment.all.0.ldl_status == False or item.experiment.all.0.hdl_status == False or item.experiment.all.0.tg_status == False or item.experiment.all.0.psa_status == False or item.experiment.all.0.cr_status == False or item.experiment.all.0.alt_status == False or item.experiment.all.0.ast_status == False or item.experiment.all.0.alk_status == False or item.experiment.all.0.lead_status == False or item.experiment.all.0.alt_status == False or item.experiment.all.0.se_status == 'not_normal' or item.experiment.all.0.ppd_status == 'not_normal' or item.experiment.all.0.d_status == False or item.experiment.all.0.tsh_status == False %}
                     <td></td>
                     <td>*</td>
                 {% else %}
@@ -311,11 +314,17 @@
     </div>
 </section>
 {% else %}
-<section class='container' id='Head'>
+<section class='container-fluid' id='Head'>
     <div class='row text-center rfsize'>
+        <div class='col-1'>
+            <a href='{% url 'open_docs' %}' class="nav-link text-dark text-center green-page">قبل</a>
+        </div>
         <div class='col'>
             <lable>کد شرکت:</lable>
             {{ examinations_course.examinations_code }}
+        </div>
+        <div class='col-1'>
+            <a href='{% url 'problem' %}' class="nav-link text-dark text-center green-page">بعد</a>
         </div>
     </div>
     <div class='row text-center rfsize'>
@@ -340,8 +349,8 @@
     </div>
 </section>
 <section class='container'>
-    <div class='row text-center'>
-        <table class='parstable'> 
+    <div class='row text-center' style = 'width : 1150px'>
+        <table class='parstable' style = 'width : 1150px'> 
             <thead id='summary0'>       
                 <tr>
                     <th colspan='3' rowspan='2' class='summary_age'>ردیف</th>
@@ -452,7 +461,10 @@
                     <td></td>
                     <td></td>
                 {% endif %}
-                {% if item.experiment.all.0.cbc_wbc_status == False or item.experiment.all.0.cbc_rbc_status == False or item.experiment.all.0.cbc_hb_status == False or item.experiment.all.0.cbc_htc_status == False or item.experiment.all.0.cbc_plt_status == False or item.experiment.all.0.ua_glu_status == False or item.experiment.all.0.ua_rbc_status == False or item.experiment.all.0.ua_wbc_status == False or item.experiment.all.0.ua_bact_status == False or item.experiment.all.0.fbs_status == False or item.experiment.all.0.chol_status == False or item.experiment.all.0.ldl_status == False or item.experiment.all.0.hdl_status == False or item.experiment.all.0.tg_status == False or item.experiment.all.0.psa_status == False or item.experiment.all.0.cr_status == False or item.experiment.all.0.alt_status == False or item.experiment.all.0.ast_status == False or item.experiment.all.0.alk_status == False or item.experiment.all.0.lead_status == False or item.experiment.all.0.alt_status == False or item.experiment.all.0.se_status == 'not_normal' or item.experiment.all.0.ppd_status == 'not_normal' or item.experiment.all.0.d_status == False or item.experiment.all.0.tsh_status == False %}
+                {% if not item.experiment.all.0.cbc_wbc and not item.experiment.all.0.cbc_rbc and not item.experiment.all.0.cbc_hb and not item.experiment.all.0.cbc_htc and not item.experiment.all.0.cbc_plt and not item.experiment.all.0.ua_prot and not item.experiment.all.0.ua_glu and not item.experiment.all.0.ua_wbc and not item.experiment.all.0.ua_bact and not item.experiment.all.0.fbs and not item.experiment.all.0.chol and not item.experiment.all.0.ldl and not item.experiment.all.0.hdl and not item.experiment.all.0.tg and not item.experiment.all.0.psa and not item.experiment.all.0.cr and not item.experiment.all.0.alt and not item.experiment.all.0.ast and not item.experiment.all.0.alk and not item.experiment.all.0.lead and not item.experiment.all.0.d and not item.experiment.all.0.tsh and not item.experiment.all.0.se_status and not item.experiment.all.0.ppd_status and not item.experiment.all.0.ua_rbc %}
+                    <td></td>
+                    <td></td>
+                {% elif item.experiment.all.0.cbc_wbc_status == False or item.experiment.all.0.cbc_rbc_status == False or item.experiment.all.0.cbc_hb_status == False or item.experiment.all.0.cbc_htc_status == False or item.experiment.all.0.cbc_plt_status == False or item.experiment.all.0.ua_glu_status == False or item.experiment.all.0.ua_rbc_status == False or item.experiment.all.0.ua_wbc_status == False or item.experiment.all.0.ua_bact_status == False or item.experiment.all.0.fbs_status == False or item.experiment.all.0.chol_status == False or item.experiment.all.0.ldl_status == False or item.experiment.all.0.hdl_status == False or item.experiment.all.0.tg_status == False or item.experiment.all.0.psa_status == False or item.experiment.all.0.cr_status == False or item.experiment.all.0.alt_status == False or item.experiment.all.0.ast_status == False or item.experiment.all.0.alk_status == False or item.experiment.all.0.lead_status == False or item.experiment.all.0.alt_status == False or item.experiment.all.0.se_status == 'not_normal' or item.experiment.all.0.ppd_status == 'not_normal' or item.experiment.all.0.d_status == False or item.experiment.all.0.tsh_status == False %}
                     <td></td>
                     <td>*</td>
                 {% else %}

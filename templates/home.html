@@ -1,5 +1,9 @@
 {% extends 'article/base.html' %}
 {% load static %}
+{% block head %}
+        <meta name="keywords" content="طب کار ,پارسیان ,مرکز تخصصی طب کار پارسیان">
+        <meta name="description" content="مرکز تخصصی طب کار پارسیان قم">
+{% endblock head %}
 {% block content %}
     {% if user.is_authenticated %}
     <div class='user text-center'>

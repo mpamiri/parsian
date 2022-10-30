@@ -64,7 +64,8 @@ class Personal_Species_Model(models.Model):
     military_status_CHOICES = [('khedmat_karde', 'خدمت کرده'), ('moaf', 'معاف'), ('khedmat_nakarde', 'خدمت نکرده')]
     military_status = models.CharField(default='khedmat_karde', choices=military_status_CHOICES, max_length=250, null=True, blank=True)
     raste = models.CharField(max_length=250, null=True, blank=True)
-    medical_exemption = models.BooleanField(default=False, null=True, blank=True)
+    medical_exemption_CHOICES = [('none', 'ندارد'),('pezeshki', 'پزشکی'), ('not_pezeshki', 'غیر پزشکی')]
+    medical_exemption = models.CharField(default='none', choices=medical_exemption_CHOICES, max_length=250, null=True, blank=True)
     medical_exemption_reason = models.CharField(max_length=250, null=True, blank=True)
     job_name = models.CharField(max_length=250, null=True, blank=True)
     employer_name = models.CharField(max_length=250, null=True, blank=True)
@@ -480,9 +481,9 @@ class Experiments_Model(models.Model):
     alk_status=models.BooleanField(default=True)
     lead_status=models.BooleanField(default=True)
     se_status_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
-    se_status = models.CharField(default='normal', choices=se_status_CHOICES, null=True, blank=True,max_length=10)
+    se_status = models.CharField(default=None, choices=se_status_CHOICES, null=True, blank=True,max_length=10)
     ppd_status_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
-    ppd_status = models.CharField(default='normal', choices=ppd_status_CHOICES, null=True, blank=True,max_length=10)
+    ppd_status = models.CharField(default=None, choices=ppd_status_CHOICES, null=True, blank=True,max_length=10)
     d_status=models.BooleanField(default=True)
     tsh_status=models.BooleanField(default=True)
     first_type= models.CharField(max_length=250, null=True, blank=True)

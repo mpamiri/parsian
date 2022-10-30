@@ -114,7 +114,9 @@ def submit_course_view(request):
 def addcourse_view(request):
     form=submit_course_form(request.POST)
     if form.is_valid():
-        new_company=form.save()
+        course_form = form.save(commit=False)
+        course_form.examinations_code = str(course_form.company) + str(course_form.year)
+        course_form.save()
     return redirect('submit_course')
 
 
