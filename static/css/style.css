@@ -316,7 +316,7 @@ border: none;
 padding: 20px;
 }     
 .open_first{
-  width: 7.5%;
+  width: 4%;
 }
 .open_second{
   width: 25%;
@@ -326,6 +326,9 @@ padding: 20px;
 }
 .summary_name{
   width: 15%;
+}
+.summary_n{
+  font-size: 8.5px;
 }
 .disease_name{
   width: 30%;

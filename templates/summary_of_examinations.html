@@ -65,14 +65,15 @@
                     <th colspan='3' rowspan='2' >سن</th>
                     <th colspan='3' rowspan='2' class='summary_name'>شغل</th>
                     <th colspan='3' rowspan='2' class='summary_name'>عوامل زیان اور</th>
-                    <th colspan='2'>ادیومتری گوش راست</th>
-                    <th colspan='2'>ادیومتری گوش چپ</th>
-                    <th colspan='2'>اسپیرومتری</th>
-                    <th colspan='2'>اپتومتری گوش راست</th>
-                    <th colspan='2'>اپتومتری گوش چپ</th>
-                    <th colspan='2'>ازمایشات</th>
-                    <th colspan='2'>ارجاع به متخصص</th>
-                    <th colspan='3'>نظر نهایی پزشک</th>
+                    <th colspan='3' rowspan='2' class='summary_name'>عوامل زیان اور</th>
+                    <th colspan='2' style = 'font-size : 14px'>ادیومتری گوش راست</th>
+                    <th colspan='2' style = 'font-size : 14px'>ادیومتری گوش چپ</th>
+                    <th colspan='2' style = 'font-size : 14px'>اسپیرومتری</th>
+                    <th colspan='2' style = 'font-size : 14px'>اپتومتری گوش راست</th>
+                    <th colspan='2' style = 'font-size : 14px'>اپتومتری گوش چپ</th>
+                    <th colspan='2' style = 'font-size : 14px'>ازمایشات</th>
+                    <th colspan='2' style = 'font-size : 14px'>ارجاع به متخصص</th>
+                    <th colspan='3' style = 'font-size : 14px'>نظر نهایی پزشک</th>
                 </tr>
                 <tr>
                     <th class='summary_n'>نرمال</th>
@@ -107,8 +108,8 @@
                 {% else %}
                 <td class = 'none' colspan='3'>ندارد</td>
                 {% endif %}
-                {% if item.job_name %}
-                <td colspan='3'>{{ item.job_name }}</td>
+                {% if item.history.all.0.current_job %}
+                <td colspan='3'>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class = 'none' colspan='3'>ذکر نشده</td>
                 {% endif %}
@@ -213,8 +214,8 @@
                 {% else %}
                 <td class = 'none' colspan='3'>ندارد</td>
                 {% endif %}
-                {% if item.job_name %}
-                <td colspan='3'>{{ item.job_name }}</td>
+                {% if item.history.all.0.current_job %}
+                <td colspan='3'>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class = 'none' colspan='3'>ذکر نشده</td>
                 {% endif %}
@@ -358,14 +359,14 @@
                     <th colspan='3' rowspan='2' class='summary_age'>سن</th>
                     <th colspan='3' rowspan='2' class='summary_name'>شغل</th>
                     <th colspan='3' rowspan='2' class='summary_name'>عوامل زیان اور</th>
-                    <th colspan='2'>ادیومتری گوش راست</th>
-                    <th colspan='2'>ادیومتری گوش چپ</th>
-                    <th colspan='2'>اسپیرومتری</th>
-                    <th colspan='2'>اپتومتری گوش راست</th>
-                    <th colspan='2'>اپتومتری گوش چپ</th>
-                    <th colspan='2'>ازمایشات</th>
-                    <th colspan='2'>ارجاع به متخصص</th>
-                    <th colspan='3'>نظر نهایی پزشک</th>
+                    <th colspan='2' style = 'font-size : 14px'>ادیومتری گوش راست</th>
+                    <th colspan='2' style = 'font-size : 14px'>ادیومتری گوش چپ</th>
+                    <th colspan='2' style = 'font-size : 14px'>اسپیرومتری</th>
+                    <th colspan='2' style = 'font-size : 14px'>اپتومتری گوش راست</th>
+                    <th colspan='2' style = 'font-size : 14px'>اپتومتری گوش چپ</th>
+                    <th colspan='2' style = 'font-size : 14px'>ازمایشات</th>
+                    <th colspan='2' style = 'font-size : 14px'>ارجاع به متخصص</th>
+                    <th colspan='3' style = 'font-size : 14px'>نظر نهایی پزشک</th>
                 </tr>
                 <tr>
                     <th class='summary_n'>نرمال</th>
@@ -401,8 +402,8 @@
                 {% else %}
                 <td class = 'none' colspan='3'>ندارد</td>
                 {% endif %}
-                {% if item.job_name %}
-                <td colspan='3'>{{ item.job_name }}</td>
+                {% if item.history.all.0.current_job %}
+                <td colspan='3'>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class = 'none' colspan='3'>ذکر نشده</td>
                 {% endif %}

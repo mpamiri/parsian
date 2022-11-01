@@ -61,7 +61,7 @@
         </section>
         <table class='parstable' id = 'open{{ forloop.counter|sub:1|div:20 }}'>
             <tr id='open0'>
-                <th class='open_first'>شماره ارجاع</th>
+                <th class='open_first'>شماره</th>
                 <th class='open_second'>نام</th>
                 <th class='open_third'>شغل</th>
                 <th class='open_fourth'>علت بسته نشدن پرونده</th>
@@ -73,8 +73,8 @@
                 {% else %}
                 <td class='none'>ندارد</td>
                 {% endif %}
-                {% if item.job_name%}
-                <td>{{ item.job_name }}</td>
+                {% if item.history.all.0.current_job%}
+                <td>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class='none'>ندارد</td>
                 {% endif %}
@@ -92,8 +92,8 @@
                 {% else %}
                 <td class='none'>ندارد</td>
                 {% endif %}
-                {% if item.job_name%}
-                <td>{{ item.job_name }}</td>
+                {% if item.history.all.0.current_job%}
+                <td>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class='none'>ندارد</td>
                 {% endif %}
@@ -147,7 +147,7 @@
     <div class='row text-center'>
         <table class='parstable'>        
             <tr id = 'open0'>
-                <th class='open_first'>شماره ارجاع</th>
+                <th class='open_first'>شماره</th>
                 <th class='open_second'>نام</th>
                 <th class='open_third'>شغل</th>
                 <th class='open_fourth'>علت بسته نشدن پرونده</th>
@@ -160,8 +160,8 @@
                 {% else %}
                 <td class='none'>ندارد</td>
                 {% endif %}
-                {% if item.job_name%}
-                <td>{{ item.job_name }}</td>
+                {% if item.history.all.0.current_job%}
+                <td>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class='none'>ندارد</td>
                 {% endif %}

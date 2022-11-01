@@ -66,44 +66,4 @@ xmlns="http://www.w3.org/2000/svg">
         </div>
     </div>
 </section>
-<script>
-    /* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    function filterFunction() {
-        var input, filter, ul, li, a, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        div = document.getElementById("myDropdown");
-        a = div.getElementsByTagName("a");
-        for (i = 0; i < a.length; i++) {
-            txtValue = a[i].textContent || a[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                a[i].style.display = "";
-            } else {
-                a[i].style.display = "none";
-            }
-        }
-    }
-</script>
-<script>
-    function val() {
-      document.getElementById("myInput").value = document.getElementById("selectingPan").value;
-      }
-    function update(entry) {
-      document.getElementById("myInput").value = entry.innerText;
-    }
-    let optionss = document.getElementsByClassName("option");
-</script>
-</script>
-<script>
-    document.getElementById("myInput").addEventListener("focus", function() {document.getElementsByClassName("container")[0].style.display = "block";})
-    document.getElementById("myInput").addEventListener("blur", function() {setTimeout(function(){document.getElementsByClassName("container")[0].style.display = "none";}, 500)})
-    for (let i = 0; i < optionss.length; i++) {
-    optionss[i].addEventListener("click", function() {update(optionss[i])}) ;
-    }
-</script>
 {% endblock content %}

@@ -64,7 +64,7 @@ xmlns="http://www.w3.org/2000/svg">
                     <th rowspan='2' class='problem_name'>نام</th>
                     <th rowspan='2' class='problem_name'>شغل</th>
                     <th rowspan='2' class='problem_pr'>مشکل مشاهده شده</th>
-                    <th colspan='2'>ارتباط احتمالی شغل با فرد</th>
+                    <th colspan='2' style = 'font-size : 15px'>ارتباط احتمالی شغل با فرد</th>
                     <th rowspan='2' class='problem_rec'>توصیه ها</th>
                 </tr>
                 <tr>
@@ -79,8 +79,8 @@ xmlns="http://www.w3.org/2000/svg">
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
-                {% if item.job_name %}
-                <td>{{ item.job_name }}</td>
+                {% if item.history.all.0.current_job %}
+                <td>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
@@ -105,8 +105,8 @@ xmlns="http://www.w3.org/2000/svg">
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
-                {% if item.job_name %}
-                <td>{{ item.job_name }}</td>
+                {% if item.history.all.0.current_job %}
+                <td>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
@@ -165,14 +165,14 @@ xmlns="http://www.w3.org/2000/svg">
 </section>
 <section class='container'>
     <div class='row text-center'>
-        <table class='parstablef'>  
+        <table class='parstable'>  
             <thead id='problem0'>      
                 <tr>
                     <th rowspan='2'>ردیف</th>
                     <th rowspan='2' class='problem_name'>نام</th>
                     <th rowspan='2' class='problem_name'>شغل</th>
                     <th rowspan='2' class='problem_pr'>مشکل مشاهده شده</th>
-                    <th colspan='2'>ارتباط احتمالی شغل با فرد</th>
+                    <th colspan='2' style = 'font-size : 18px'>ارتباط احتمالی شغل با فرد</th>
                     <th rowspan='2' class='problem_rec'>توصیه ها</th>
                 </tr>
                 <tr>
@@ -188,8 +188,8 @@ xmlns="http://www.w3.org/2000/svg">
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
-                {% if item.job_name %}
-                <td>{{ item.job_name }}</td>
+                {% if item.history.all.0.current_job %}
+                <td>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
