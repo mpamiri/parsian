@@ -248,8 +248,10 @@ def disease_pdf_view(request):
         while i <= count :
             if i == count:
                 height = (n - (count * 20) + 1) * 7.14
-                driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease.png')
-                driver.find_element('id','Head').screenshot('images/Head.png')
+                WebDriverWait(driver, 10000).until(
+                EC.presence_of_element_located((By.ID,'disease' + str(i)))).screenshot('images/'+ str(i) +'disease.png')
+                WebDriverWait(driver, 10000).until(
+                EC.presence_of_element_located((By.ID, "Head"))).screenshot('images/Head.png')
                 pdf.add_page()
                 pdf.image('images/Head.png',-1,None,220,20)
                 pdf.image('images/'+ str(i) +'disease.png',3,None,205,height)
@@ -257,8 +259,10 @@ def disease_pdf_view(request):
                 os.remove('images/Head.png')
                 i += 1
             else:
-                driver.find_element('id','disease' + str(i)).screenshot('images/'+ str(i) +'disease.png')
-                driver.find_element('id','Head').screenshot('images/Head.png')
+                WebDriverWait(driver, 10000).until(
+                EC.presence_of_element_located((By.ID,'disease' + str(i)))).screenshot('images/'+ str(i) +'disease.png')
+                WebDriverWait(driver, 10000).until(
+                EC.presence_of_element_located((By.ID, "Head"))).screenshot('images/Head.png')
                 pdf.add_page()
                 pdf.image('images/Head.png',-1,None,220,20)
                 pdf.image('images/'+ str(i) +'disease.png',3,None,205,150)
@@ -1800,27 +1804,27 @@ def examinations_output_course_pdf_view(request):
         i = int(i)
         i += 1
         i = str(i)
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 10000).until(
         EC.presence_of_element_located((By.ID, "examinations0"))).screenshot('images/examinations0' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations0' + i +'.png',4,None,200,240)
         os.remove('images/examinations0' + i +'.png')
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 10000).until(
         EC.presence_of_element_located((By.ID, "examinations1"))).screenshot('images/examinations1' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations1' + i +'.png',4,None,200,180)
         os.remove('images/examinations1' + i +'.png')
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 10000).until(
         EC.presence_of_element_located((By.ID, "examinations2"))).screenshot('images/examinations2' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations2' + i +'.png',10,None,180,265)
         os.remove('images/examinations2' + i +'.png')
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 10000).until(
         EC.presence_of_element_located((By.ID, "examinations3"))).screenshot('images/examinations3' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations3' + i +'.png',4,None,200,265)
         os.remove('images/examinations3' + i +'.png')
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 10000).until(
         EC.presence_of_element_located((By.ID, "examinations4"))).screenshot('images/examinations4' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations4' + i +'.png',4,None,200,140)
