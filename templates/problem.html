@@ -75,24 +75,24 @@ xmlns="http://www.w3.org/2000/svg">
             <tr>
                 <td>{{ forloop.counter }}</td>
                 {% if item.name %}
-                <td>{{ item.name }}</td>
+                <td class = 'textm'>{{ item.name }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.history.all.0.current_job %}
-                <td>{{ item.history.all.0.current_job }}</td>
+                <td class = 'textm'>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.final.all.0.problems %}
-                <td>{{ item.final.all.0.problems }}</td>
+                <td class = 'textr'>{{ item.final.all.0.problems }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
                 <td></td>
                 <td></td>
                 {% if item.final.all.0.recommendations %}
-                <td>{{ item.final.all.0.recommendations }}</td>
+                <td class = 'textr'>{{ item.final.all.0.recommendations }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
@@ -101,24 +101,24 @@ xmlns="http://www.w3.org/2000/svg">
             <tr>
                 <td>{{ forloop.counter }}</td>
                 {% if item.name %}
-                <td>{{ item.name }}</td>
+                <td class = 'textm'>{{ item.name }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.history.all.0.current_job %}
-                <td>{{ item.history.all.0.current_job }}</td>
+                <td class = 'textm'>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.final.all.0.problems %}
-                <td>{{ item.final.all.0.problems }}</td>
+                <td class = 'textr'>{{ item.final.all.0.problems }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
                 <td></td>
                 <td></td>
                 {% if item.final.all.0.recommendations %}
-                <td>{{ item.final.all.0.recommendations }}</td>
+                <td class = 'textr'>{{ item.final.all.0.recommendations }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
