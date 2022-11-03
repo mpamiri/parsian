@@ -156,17 +156,17 @@
             <tr id='open{{ forloop.counter }}'>
                 <td>{{ forloop.counter }}</td>
                 {% if item.name %}
-                <td>{{ item.name}}</td>
+                <td class='textm'>{{ item.name}}</td>
                 {% else %}
                 <td class='none'>ندارد</td>
                 {% endif %}
                 {% if item.history.all.0.current_job%}
-                <td>{{ item.history.all.0.current_job }}</td>
+                <td class='textm'>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class='none'>ندارد</td>
                 {% endif %}
                 {% if item.final.all.0.reason %}
-                <td>{{ item.final.all.0.reason }}</td>
+                <td class='textr'>{{ item.final.all.0.reason }}</td>
                 {% else %}
                 <td class='none'>ندارد</td>
                 {% endif %}
@@ -182,5 +182,26 @@
         </div>
     </div>
 </div>
+<script>
+    $('.textm').each(function(){
+        var el= $(this);
+          var textLength = el.html().length;
+            if (textLength > 18) {
+                el.css('font-size', '15px');
+            }
+       });
+</script>
+<script>
+    $('.textr').each(function(){
+        var el= $(this);
+          var textLength = el.html().length;
+            if (textLength > 69) {
+                el.css('font-size', '9px');
+            }
+            else if (textLength > 35) {
+                el.css('font-size', '12px');
+            }
+       });
+</script>
 {% endif %}
 {% endblock content %}

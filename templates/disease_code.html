@@ -181,7 +181,7 @@
             <tr>
                 <td>{{ forloop.counter }}</td>
                 {% if item.name %}
-                <td class='disease_name text'>{{ item.name }}</td>
+                <td class='disease_name textm'>{{ item.name }}</td>
                 {% else %}
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
@@ -191,7 +191,7 @@
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.history.all.0.current_job %}
-                <td class='disease_name'>{{ item.history.all.0.current_job }}</td>
+                <td class='disease_name textm'>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
@@ -218,16 +218,13 @@
     </div>
 </section>
 <script>
-    $('.text').each(function(){
+    $('.textm').each(function(){
         var el= $(this);
           var textLength = el.html().length;
-           if (textLength > 20) {
-               el.css('font-size', '22px');
+           if (textLength > 19) {
+               el.css('font-size', '15px');
            }
-           if (textLength > 30) {
-               el.css('font-size', '10px');
-           }
-   });
+       });
 </script>
 {% endif %}
 {% endblock content %}

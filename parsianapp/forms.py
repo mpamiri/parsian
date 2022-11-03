@@ -80,6 +80,7 @@ class personal_species_form(forms.ModelForm):
         'personal_code' : forms.NumberInput(attrs={'class':'personal_w','autocomplete': 'off'}),
         'military_status' : forms.Select(attrs={'class':'text','autocomplete': 'off'}),
         'raste' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
+        'medical_exemption' : forms.Select(attrs={'class':'text','autocomplete': 'off'}),
         'medical_exemption_reason' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
         'job_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),
         'employer_name' : forms.TextInput(attrs={'class':'text','autocomplete': 'off'}),

@@ -261,6 +261,7 @@ border: 1px solid black;
   font-size: 20px;
 }
 .parstable td {
+  height: 40px;
   word-wrap:break-word;
   }
 .parstable th {

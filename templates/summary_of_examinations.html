@@ -393,7 +393,7 @@
                 {% load django_template_maths %}
                 <td colspan='3'>{{ forloop.counter }}</td>
                 {% if item.name %}
-                <td colspan='3'>{{ item.name }}</td>
+                <td colspan='3' class='textr'>{{ item.name }}</td>
                 {% else %}
                 <td class='none' colspan='3'>ذکر نشده</td>
                 {% endif %}
@@ -403,12 +403,12 @@
                 <td class = 'none' colspan='3'>ندارد</td>
                 {% endif %}
                 {% if item.history.all.0.current_job %}
-                <td colspan='3'>{{ item.history.all.0.current_job }}</td>
+                <td colspan='3' class='textr'>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class = 'none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 {% if item.assessment.all.0.assessments %}
-                <td colspan='3' colspan='3'>{{ item.assessment.all.0.assessments }}</td>
+                <td colspan='3' colspan='3' class='textr'>{{ item.assessment.all.0.assessments }}</td>
                 {% else %}
                 <td colspan='3' colspan='3' class='none'>ذکر نشده</td>
                 {% endif %}
@@ -508,5 +508,23 @@
         </div>
     </div>
 </div>
+<script>
+    $('.textr').each(function(){
+        var el= $(this);
+          var textLength = el.html().length;
+            if (textLength > 60) {
+                el.css('font-size', '6px');
+            }
+            else if (textLength > 40) {
+                el.css('font-size', '9px');
+            }
+            else if (textLength > 30) {
+                el.css('font-size', '11px');
+            }
+            else if (textLength > 10) {
+                el.css('font-size', '13px');
+            }
+       });
+</script>
 {% endif %}
 {% endblock content %}

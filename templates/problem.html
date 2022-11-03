@@ -184,24 +184,24 @@ xmlns="http://www.w3.org/2000/svg">
             <tr id='problem{{ forloop.counter }}'>
                 <td>{{ forloop.counter }}</td>
                 {% if item.name %}
-                <td>{{ item.name }}</td>
+                <td class = 'textm'>{{ item.name }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.history.all.0.current_job %}
-                <td>{{ item.history.all.0.current_job }}</td>
+                <td class = 'textm'>{{ item.history.all.0.current_job }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.final.all.0.problems %}
-                <td>{{ item.final.all.0.problems }}</td>
+                <td class = 'textr'>{{ item.final.all.0.problems }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
                 <td></td>
                 <td></td>
                 {% if item.final.all.0.recommendations %}
-                <td class = 'trf'>{{ item.final.all.0.recommendations }}</td>
+                <td class = 'textr'>{{ item.final.all.0.recommendations }}</td>
                 {% else %}
                 <td class='none'>ذکر نشده</td>
                 {% endif %}
@@ -218,4 +218,28 @@ xmlns="http://www.w3.org/2000/svg">
     </div>
 </div>
 {% endif %}
+<script>
+    $('.textm').each(function(){
+        var el= $(this);
+          var textLength = el.html().length;
+            if (textLength > 18) {
+                el.css('font-size', '13px');
+            }
+       });
+</script>
+<script>
+    $('.textr').each(function(){
+        var el= $(this);
+          var textLength = el.html().length;
+            if (textLength > 80) {
+                el.css('font-size', '9px');
+            }
+            else if (textLength > 45) {
+                el.css('font-size', '11px');
+            }
+            else if (textLength > 20) {
+                el.css('font-size', '13px');
+            }
+       });
+</script>
 {% endblock content %}
