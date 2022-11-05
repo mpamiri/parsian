@@ -1949,21 +1949,15 @@ def examinations_output_edit_view(request):
     code_list=ExaminationsCourse.objects.order_by('id')
     e_items=''
     items = ''
+    
     model=Disease_Model.objects.last()
-    if model.e_examinations_code and model.e_name and model.e_age and model.e_personal_code and model.e_fathers_name:
-        code=model.e_examinations_code
-        e_name = model.e_name
-        e_age = model.e_age
-        e_personal_code = model.e_personal_code
-        e_fathers_name = model.e_fathers_name
+    if model:
+        code=model.p_examinations_code
     else:
         code=''
-        e_name = ''
-        e_age = 0
-        e_personal_code = 0
-        e_fathers_name = ''
-    examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
-    personal_species_m=Personal_Species_Model.objects.filter(name=e_name,age=1401 - e_age,fathers_name=e_fathers_name,personal_code=e_personal_code,examinations_code=examinations_course).last()
+        
+    examinations_course = ExaminationsCourse.objects.filter(examinations_code=model.examinations_code).last()
+    personal_species_m=Personal_Species_Model.objects.filter(name=model.p_name,age=1401 - model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code,examinations_code=examinations_course).last()
     job_history_m=Job_History_Model.objects.filter(person=personal_species_m).last()
     assessment_m=Assessment_Model.objects.filter(person=personal_species_m).last()
     personal_history_m=Personal_History_Model.objects.filter(person=personal_species_m).last()
