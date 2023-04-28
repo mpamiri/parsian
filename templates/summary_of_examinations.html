@@ -57,7 +57,7 @@
                 </div>
             </div>
         </section>
-        <table class='parstable' id = 'summary{{ forloop.counter|sub:1|div:20 }}'>
+        <table class='parstable'  id = 'summary{{ forloop.counter|sub:1|div:20 }}'>
             <thead>       
                 <tr>
                     <th colspan='3' rowspan='2'>ردیف</th>
@@ -104,7 +104,7 @@
                 <td class='none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
-                <td colspan='3'>{{ item.age }}</td>
+                <td colspan='3'>{{ 1402|sub:item.age }}</td>
                 {% else %}
                 <td class = 'none' colspan='3'>ندارد</td>
                 {% endif %}
@@ -210,7 +210,7 @@
                 <td class='none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
-                <td colspan='3'>{{ item.age }}</td>
+                <td colspan='3'>{{ 1402|sub:item.age }}</td>
                 {% else %}
                 <td class = 'none' colspan='3'>ندارد</td>
                 {% endif %}
@@ -351,7 +351,7 @@
 </section>
 <section class='container'>
     <div class='row text-center' style = 'width : 1150px'>
-        <table class='parstable' style = 'width : 1150px'> 
+        <table class='parstable' style = 'width : 1150px ;margin-right : 90px'> 
             <thead id='summary0'>       
                 <tr>
                     <th colspan='3' rowspan='2' class='summary_age'>ردیف</th>
@@ -398,7 +398,7 @@
                 <td class='none' colspan='3'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
-                <td colspan='3'>{{ item.age }}</td>
+                <td colspan='3'>{{ 1402|sub:item.age }}</td>
                 {% else %}
                 <td class = 'none' colspan='3'>ندارد</td>
                 {% endif %}

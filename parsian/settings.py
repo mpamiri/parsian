@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w@jwhv09gf3vnk1++s-^p&e*8mc^z1d(^5_ys=tx5j6v*t*qyv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['94.101.187.219','www.parsianqom.ir','parsianqom.ir','127.0.0.1']
+ALLOWED_HOSTS = ['94.101.187.219','www.parsianqom.ir','parsianqom.ir','127.0.0.1','']
 
 
 
@@ -77,28 +77,28 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'parsian.wsgi.application'
+# WSGI_APPLICATION = 'parsian.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'parsian',
-        'USER': 'parsian',
-        'PASSWORD': '690088parsian',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'mydatabase',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'parsian',
+#         'USER': 'parsian',
+#         'PASSWORD': '690088parsian',
+#         'HOST': 'localhost',
+#         'PORT': '',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+    }
+}
 
 
 # Password validation
@@ -140,8 +140,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URLS = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

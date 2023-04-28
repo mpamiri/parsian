@@ -6,7 +6,7 @@ from django.utils.timezone import timezone
 from django.core.exceptions import NON_FIELD_ERRORS
 
 class Company(models.Model):
-    name = models.CharField(max_length=250, null=True, blank=True,unique=True)
+    name = models.CharField(max_length=250, null=True, blank=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -16,7 +16,7 @@ class ExaminationsCourse(models.Model):
     year = models.IntegerField(null=True, blank=True)
     specialist = models.CharField(max_length=250, null=True, blank=True)
     doctor = models.CharField(max_length=250, null=True, blank=True)
-    examinations_code = models.CharField(max_length=250, null=True, blank=True,unique=True)
+    examinations_code = models.CharField(max_length=250, null=True, blank=True)
     def __str__(self):
         return f'{self.examinations_code}'
 
@@ -58,9 +58,9 @@ class Personal_Species_Model(models.Model):
     gender = models.CharField(default='mard', choices=gender_CHOICES, max_length=250, null=True, blank=True)
     marriage_status_CHOICES = [('mojarad', 'مجرد'), ('motahel', 'متاهل')]
     marriage_status = models.CharField(default='mojarad', choices=marriage_status_CHOICES,  max_length=250, null=True, blank=True)
-    children = models.IntegerField(null=True, blank=True)
+    children = models.IntegerField(default=None, null=True, blank=True)
     age = models.IntegerField(default=None, null=True, blank=True)
-    personal_code = models.BigIntegerField(null=True, blank=True,validators=[MinValueValidator(1), MaxValueValidator(100)])
+    personal_code = models.CharField(null=True, blank=True,max_length=250)
     military_status_CHOICES = [('khedmat_karde', 'خدمت کرده'), ('moaf', 'معاف'), ('khedmat_nakarde', 'خدمت نکرده')]
     military_status = models.CharField(default='khedmat_karde', choices=military_status_CHOICES, max_length=250, null=True, blank=True)
     raste = models.CharField(max_length=250, null=True, blank=True)

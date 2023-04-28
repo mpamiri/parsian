@@ -3,7 +3,7 @@ from django.db.models import sql
 from django.conf import settings
 from django.http import HttpResponse , Http404
 from django.contrib.auth.forms import UserCreationForm
-from .models import Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,ExaminationsCourse
+from .models import Company,Disease_Model,Personal_Species_Model,Job_History_Model,Assessment_Model,Personal_History_Model,Examinations_Model,Experiments_Model,Para_Clinic_Model,Consulting_Model,Final_Theory_Model,ExaminationsCourse
 from .forms import submit_company_form,registration,disease_form,personal_species_form,job_history_form,assessment_form,personal_history_form,examinations_form,experiments_form,para_clinic_form,consulting_form,final_theory_form,submit_course_form
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate
@@ -106,7 +106,8 @@ def logoutuser_view(request):
 @login_required(login_url='login')
 def submit_course_view(request):
     form=submit_course_form()
-    context={'form':form}
+    code_list=Company.objects.order_by('id')
+    context={'form':form , 'code_list' : code_list}
     return render(request, 'submit_course.html',context)
 
 
@@ -221,22 +222,16 @@ def disease_pdf_view(request):
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
-    options.add_argument("enable-automation")
-    options.add_argument("--headless")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-extensions")
-    options.add_argument("--dns-prefetch-disable")
-    options.add_argument("--disable-gpu")
     driver = webdriver.Chrome(options=options)
-    driver.get("http://www.parsianqom.ir/login")
-    username = driver.find_element('name',"username")
-    password = driver.find_element('name',"password")
-    login_but = driver.find_element('name',"login")
+    driver.get("http://127.0.0.1:8000/login")
+    username = driver.find_element(By.NAME, 'username')
+    password = driver.find_element(By.NAME , "password")
+    login_but = driver.find_element(By.NAME , "login")
     username.send_keys('bot')
     password.send_keys('botamiri84')
     login_but.click()
-    driver.get("http://www.parsianqom.ir/output/disease_code")
+    driver.get("http://127.0.0.1:8000/output/disease_code")
+    sleep(5)
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(1920,S('Height'))
     count = 0
@@ -259,8 +254,8 @@ def disease_pdf_view(request):
                 pdf.add_page()
                 pdf.image('images/Head.png',-1,None,220,20)
                 pdf.image('images/'+ str(i) +'disease.png',3,None,205,height)
-                os.remove('images/'+ str(i) +'disease.png')
-                os.remove('images/Head.png')
+                # os.remove('images/'+ str(i) +'disease.png')
+                # os.remove('images/Head.png')
                 i += 1
             else:
                 WebDriverWait(driver, 10000).until(
@@ -270,8 +265,8 @@ def disease_pdf_view(request):
                 pdf.add_page()
                 pdf.image('images/Head.png',-1,None,220,20)
                 pdf.image('images/'+ str(i) +'disease.png',3,None,205,150)
-                os.remove('images/'+ str(i) +'disease.png')
-                os.remove('images/Head.png')
+                # os.remove('images/'+ str(i) +'disease.png')
+                # os.remove('images/Head.png')
                 i += 1
     else:
         pdf = FPDF()
@@ -996,14 +991,15 @@ def solo_pdf_view(request):
     options.add_argument("--dns-prefetch-disable")
     options.add_argument("--disable-gpu")
     driver = webdriver.Chrome(options=options)
-    driver.get("http://www.parsianqom.ir/login")
+    driver.get("http://127.0.0.1:8000/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
     login_but = driver.find_element('name',"login")
     username.send_keys('parsa')
     password.send_keys('690088parsian')
     login_but.click()
-    driver.get("http://www.parsianqom.ir"+solo_output_view.current_path)
+    driver.get("http://127.0.0.1:8000/"+solo_output_view.current_path)
+    sleep(4)
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(S('Width'),S('Height'))
     i = 0
@@ -1017,11 +1013,13 @@ def solo_pdf_view(request):
             last_count = count
         elif count % work.order_number == 0:
             count = count // work.order_number
-            last_count = 0
+            last_count = 1
         else:
             count = (count // work.order_number) + 1
             last_count = n - ((count - 1) * work.order_number)
+        print(last_count,i,work.order_number,n,count)
         if n < work.order_number:
+            print('im if')
             while i < last_count :
                 i += 1    
                 driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
@@ -1031,6 +1029,7 @@ def solo_pdf_view(request):
             pdf.output("pdfs/solo.pdf", "F")
             driver.quit()
         elif solo_output_view.current_path == ('/output/solo_output?page=' + str(count)):
+            print('im elif')
             while i < last_count :
                 i += 1    
                 driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
@@ -1040,6 +1039,7 @@ def solo_pdf_view(request):
             pdf.output("pdfs/solo.pdf", "F")
             driver.quit()
         else:
+            print('im else')
             while i < work.order_number :
                 i += 1    
                 driver.find_element('id','print' + str(i)).screenshot('images/'+ str(i) +'solo_img.png')
@@ -1103,8 +1103,6 @@ def addexaminations_view(request):
     if personal_species.is_valid():
         new_person = personal_species.save(commit=False)
         new_person.user = username
-        if new_person.age:
-            new_person.age = 1401 - new_person.age
         if not new_person.fathers_name:
             new_person.fathers_name = 'None'
         if not new_person.personal_code:
@@ -1809,34 +1807,32 @@ def examinations_output_course_pdf_view(request):
     i = 0
     pdf = FPDF()
     for a in personal_species:
+        print('im inside')
         i = int(i)
         i += 1
         i = str(i)
-        WebDriverWait(driver, 10000).until(
-        EC.presence_of_element_located((By.ID, "examinations0"))).screenshot('images/examinations0' + i +'.png')
+        driver.find_element('id','examinations0' + i).screenshot('images/examinations0' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations0' + i +'.png',4,None,200,240)
         os.remove('images/examinations0' + i +'.png')
-        WebDriverWait(driver, 10000).until(
-        EC.presence_of_element_located((By.ID, "examinations1"))).screenshot('images/examinations1' + i +'.png')
+        driver.find_element('id','examinations1' + i).screenshot('images/examinations1' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations1' + i +'.png',4,None,200,180)
         os.remove('images/examinations1' + i +'.png')
-        WebDriverWait(driver, 10000).until(
-        EC.presence_of_element_located((By.ID, "examinations2"))).screenshot('images/examinations2' + i +'.png')
+        driver.find_element('id','examinations2' + i).screenshot('images/examinations2' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations2' + i +'.png',10,None,180,265)
         os.remove('images/examinations2' + i +'.png')
-        WebDriverWait(driver, 10000).until(
-        EC.presence_of_element_located((By.ID, "examinations3"))).screenshot('images/examinations3' + i +'.png')
+        driver.find_element('id','examinations3' + i).screenshot('images/examinations3' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations3' + i +'.png',4,None,200,265)
         os.remove('images/examinations3' + i +'.png')
-        WebDriverWait(driver, 10000).until(
-        EC.presence_of_element_located((By.ID, "examinations4"))).screenshot('images/examinations4' + i +'.png')
+        driver.find_element('id','examinations4' + i).screenshot('images/examinations4' + i +'.png')
         pdf.add_page()
         pdf.image('images/examinations4' + i +'.png',4,None,200,140)
         os.remove('images/examinations4' + i +'.png')
+    print('done')
+    driver.quit()
     pdf.output("pdfs/examinations_course.pdf", "F")
     file_path = os.path.join('pdfs/examinations_course.pdf')
     if os.path.exists(file_path):
@@ -1897,6 +1893,7 @@ def examinations_output_person_pdf_view(request):
     i = 0
     pdf = FPDF()
     for a in personal_species:
+        print('im inside')
         i = int(i)
         i += 1
         i = str(i)
@@ -1920,6 +1917,8 @@ def examinations_output_person_pdf_view(request):
         pdf.add_page()
         pdf.image('images/examinations4' + i +'.png',4,None,200,140)
         os.remove('images/examinations4' + i +'.png')
+    print('done')
+    driver.quit()
     pdf.output("pdfs/examinations.pdf", "F")
     file_path = os.path.join('pdfs/examinations.pdf')
     if os.path.exists(file_path):

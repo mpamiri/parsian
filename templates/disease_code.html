@@ -76,7 +76,7 @@
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
-                <td>{{ item.age }}</td>
+                <td>{{ 1402|sub:item.age }}</td>
                 {% else %}
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
@@ -105,7 +105,7 @@
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
-                <td>{{ item.age }}</td>
+                <td>{{ 1402|sub:item.age }}</td>
                 {% else %}
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
@@ -168,8 +168,8 @@
 </section>
 <section class='container'>
     <div class='row text-center'>
-        <table class='parstable autoContain'>        
-            <tr id='disease0'>
+        <table class='parstable autoContain' id='disease0'>        
+            <tr >
                 <th class='disease_age'>ردیف</th>
                 <th class='disease_name'>نام</th>
                 <th class='disease_age'>سن</th>
@@ -186,7 +186,7 @@
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
                 {% if item.age %}
-                <td>{{ item.age }}</td>
+                <td>{{ 1402|sub:item.age }}</td>
                 {% else %}
                 <td class = 'none'>ذکر نشده</td>
                 {% endif %}
