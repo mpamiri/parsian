@@ -91,7 +91,7 @@
                 {{ form.e_age }}
                 <datalist id='age'>
                     {% for item in inputlist %}
-                    <option value='{{ 1401|sub:item.age }}'><o/ption>
+                    <option value='{{ item.age }}'><o/ption>
                     {% endfor %}
                 </datalist>
             </div>
@@ -116,7 +116,7 @@
             <div class="col">
                 <lable>کد دوره معاینات</lable>
                 {% csrf_token %}
-                {{ personal_species.examinations_code }}
+                {{ personal_species.ExaminationsCode }}
                 <datalist id='examinations_code'>
                     {% for item in code_list %}
                     <option value='{{ item.examinations_code }}'></option>
@@ -721,7 +721,7 @@
                 وزن(kg):{{ examinations.weight }}
             </div>
             <div class='col'>
-                فشار خون(mmHg):{{ examinations.blood_pressure }}
+                فشار خون(mmHg):{{ examinations.blood_pressure_bot }}/{{ examinations.blood_pressure_top }}
             </div>
         </div>
         <div class='row text-center'>
@@ -1194,7 +1194,7 @@
                                 {{ examinations.sar_sign_other }}
                             </div>
                             <div class='col'>
-                                <lable>بدون علامت</lable>
+                                <lable>بدون نشانه</lable>
                                 {{ examinations.sar_sign_without_sign }}
                             </div>
                         </div>
@@ -1881,8 +1881,10 @@
                 <tr>
                     <th colspan=2>R{{ para_clinic.opto_hedat_r_status }}</th>
                     <th colspan=2>L{{ para_clinic.opto_hedat_l_status }}</th>
-                    <td colspan=4 rowspan=3>{{ para_clinic.opto_rangi }}</td>
-                    <td colspan=4 rowspan=3>{{ para_clinic.opto_meidan }}</td>
+                    <td colspan=2 rowspan=3>R{{ para_clinic.opto_rangi_r }}</td>
+                    <td colspan=2 rowspan=3>L{{ para_clinic.opto_rangi_l }}</td>
+                    <td colspan=2 rowspan=3>R{{ para_clinic.opto_meidan_r }}</td>
+                    <td colspan=2 rowspan=3>L{{ para_clinic.opto_meidan_l }}</td>
                 </tr>
                 <tr>
                     <th>با اصلاح</th>
@@ -1954,7 +1956,7 @@
                     <td>{{ para_clinic.audio_l_one_ac }}</td>
                     <td>{{ para_clinic.audio_l_five_ac }}</td>
                     <td>AC</td>
-                    <td rowspan=2>گوش راست</td>
+                    <td rowspan=2>گوش چپ</td>
                 </tr>
                 <tr>
                     <td>{{ para_clinic.audio_l_eight_bc }}</td>
@@ -2121,6 +2123,14 @@
         </div>
         <div class='row text-center mt-4'>
             <div class='col'>
+                تاریخ :{{ final_theory.final_day }}/{{ final_theory.final_month }}/{{ final_theory.final_year }}
+            </div>
+            <div class='col box'>
+                مهر و امضا:
+            </div>
+        </div>
+        <div class='row text-center mt-4'>
+            <div class='col'>
                 <input type="submit" value="ذخیره و ثبت جدید">
             </div>
         </div>
@@ -2135,36 +2145,6 @@
     </form>
 </section>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript">
-$(function() {
-    $('#id_opto_hedat_r_bi').prop('disabled', true);
-    $('#id_opto_hedat_r_ba').prop('disabled', true);
-        $('#id_opto_hedat_r_status').change(function(){
-            if($(this).val() == "daraie_did") {
-        $('#id_opto_hedat_r_bi').prop('disabled', false);
-        $('#id_opto_hedat_r_ba').prop('disabled', false);      
-        } else {
-            $('#id_opto_hedat_r_bi').prop('disabled', true);
-            $('#id_opto_hedat_r_ba').prop('disabled', true);
-        }
-        });
-    });
-</script>
-<script type="text/javascript">
-$(function() {
-    $('#id_opto_hedat_l_bi').prop('disabled', true);
-    $('#id_opto_hedat_l_ba').prop('disabled', true);
-        $('#id_opto_hedat_l_status').change(function(){
-            if($(this).val() == "daraie_did") {
-        $('#id_opto_hedat_l_bi').prop('disabled', false);
-        $('#id_opto_hedat_l_ba').prop('disabled', false);      
-        } else {
-            $('#id_opto_hedat_l_bi').prop('disabled', true);
-            $('#id_opto_hedat_l_ba').prop('disabled', true);
-        }
-        });
-    });
-</script>
 <script>
     document.getElementById('id_medical_exemption').onchange = function() {
         document.getElementById('id_medical_exemption_reason').disabled = !this.checked;

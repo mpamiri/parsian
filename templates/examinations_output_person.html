@@ -63,7 +63,7 @@
                 {{ form.p_age }}
                 <datalist id='age'>
                     {% for item in inputlist %}
-                    <option value='{{ 1401|sub:item.age }}'><option>
+                    <option value='{{ item.age }}'><option>
                     {% endfor %}
                 </datalist>
             </div>
@@ -161,7 +161,7 @@
                 {% if item.children %}
                 <td>{{ item.children }}</td>
                 {% else %}
-                <td class='none'>ذکر نشده</td>
+                <p class='None'>ذکر نشده</p>
                 {% endif %}
             </div>
             <div class='col'>
@@ -783,7 +783,7 @@
                                 {% if item.assessment.all.0.ass_date_year and item.assessment.all.0.ass_date_month and item.assessment.all.0.ass_date_day %}
                                 تاریخ:{{ item.assessment.all.0.ass_date_year }}/{{ item.assessment.all.0.ass_date_month }}/{{ item.assessment.all.0.ass_date_day }}
                                 {% else %}
-                                <p class='None'>تاریخ:ذکر نشده</p>
+                                <lable>تاریخ:</lable><p class='None'>ذکر نشده</p>
                                 {% endif %}
                             </div>
                             <div class='col'>
@@ -818,17 +818,17 @@
                 <tr>
                     <td>1</td>
                     <td>آیا سابقه بیماری دارید؟ذکر نمایید.</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.first_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.first_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.first_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.first_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -839,17 +839,17 @@
                 <tr>
                     <td>2</td>
                     <td>در صورت ابتلا به بیماری آیا علایم شما در محیط کار تغییر می کند؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.second_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.second_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.second_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.second_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -860,17 +860,17 @@
                 <tr>
                     <td>3</td>
                     <td>در صورت ابتلا به بیماری آیا همکاران شما علایم مشابه در محل کار دارند؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.third_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.third_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.third_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.third_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -881,17 +881,17 @@
                 <tr>
                     <td>4</td>
                     <td>در صورت ابتلا به بیماری آیا علایم شما در زمان تعطیلات و مرخصی ها تغییر می کند؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.fourth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.fourth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.fourth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.fourth_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -902,17 +902,17 @@
                 <tr>
                     <td>5</td>
                     <td>آیا به غذا,دارو یا ماده خاصی حساسیت دارید؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.fifth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.fifth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.fifth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.fifth_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -923,17 +923,17 @@
                 <tr>
                     <td>6</td>
                     <td>آیا سابقه بستری در بیمارستان دارید؟به چه دلیل؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.sixth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.sixth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.sixth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.sixth_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -944,17 +944,17 @@
                 <tr>
                     <td>7</td>
                     <td>آیا سابقه عمل جراحی دارید؟ذکر نمایید</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.seventh_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.seventh_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.seventh_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.seventh_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -965,17 +965,17 @@
                 <tr>
                     <td>8</td>
                     <td>آیا سابقه سرطان یا بیماری مزمن در فامیل دارید؟ذکر نمایید</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.eighth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.eighth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.eighth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.eighth_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -986,17 +986,17 @@
                 <tr>
                     <td>9</td>
                     <td>آیا دارو خاصی مصرف می کنید؟ذکر کنید.</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.ninth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.ninth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.ninth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.ninth_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -1007,17 +1007,17 @@
                 <tr>
                     <td>10</td>
                     <td>آیا اکنون سیگار می کشید؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.tenth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.tenth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.tenth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         <div class='row'>
                             <div class='col'>
                                 تعداد نخ روزانه:
@@ -1041,17 +1041,17 @@
                 <tr>
                     <td>11</td>
                     <td>آیا سابقه قبلی مصرف سیگار دارید؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.eleventh_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.eleventh_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.eleventh_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         <div class='row'>
                             <div class='col'>
                                 تعداد نخ روزانه:
@@ -1075,17 +1075,17 @@
                 <tr>
                     <td>12</td>
                     <td>آیا در اوقات فراغت به ورزش یا سرگرمی خاصی مشغول هستید؟ذکر کنید.</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.twelfth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.twelfth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.twelfth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.twelfth_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -1096,17 +1096,17 @@
                 <tr>
                     <td></td>
                     <td>آیا تا کنون به حادثه شغلی دچار شده اید؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.thirteenth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.thirteenth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.thirteenth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         <div class='row'>
                             <div class='col'>
                                 نوع آسیب:
@@ -1130,17 +1130,17 @@
                 <tr>
                     <td>14</td>
                     <td>آیا سابقه غیبت از کار به دلیل بیماری بیش از 3 روز دارید؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.fourteenth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.fourteenth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.fourteenth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.fourteenth_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -1151,17 +1151,17 @@
                 <tr>
                     <td>15</td>
                     <td>آیا منزل شما در مجاورت مرکز صنعتی قرار دارد؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.fifteenth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.fifteenth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.fifteenth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.fifteenth_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -1172,17 +1172,17 @@
                 <tr>
                     <td>16</td>
                     <td>آیا سابقه معرفی به کمیسیون پزشکی را دارید؟</td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.sixteenth_y == True %}
                         <i class="fa-solid fa-check True"></i>
                         {% endif %}
                     </td>
-                    <td>
-                        {% if item.personalhistory.all.0.sixteenth_n == False %}
-                        <i class="fa-solid fa-x False"></i>
+                    <td class = 'text-center'>
+                        {% if item.personalhistory.all.0.sixteenth_n == True %}
+                        <i class="fa-solid fa-x True"></i>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class = 'text-center'>
                         {% if item.personalhistory.all.0.sixteenth_des == null %}
                         <p class='none'>ذکر نشده</p>
                         {% else %}
@@ -1209,21 +1209,21 @@
                 {% if item.examinations.all.0.exa_date_year and item.examinations.all.0.exa_date_month and item.examinations.all.0.exa_date_day %}
                 تاریخ:{{ item.examinations.all.0.exa_date_year }}/{{ item.examinations.all.0.exa_date_month }}/{{ item.examinations.all.0.exa_date_day }}
                 {% else %}
-                <p class='none'>تاریخ:ذکر نشده</p>
+                <lable>تاریخ:</lable><p class='None'>ذکر نشده</p>
                 {% endif %}
             </div>
             <div class='col'>
                 {% if item.examinations.all.0.weight %}
                 وزن(kg):{{ item.examinations.all.0.weight }}
                 {% else %}
-                <p class='none'>ذکر نشده</p>
+                <lable>وزن(kg):</lable><p class='None'>ذکر نشده</p>
                 {% endif %}        
             </div>
             <div class='col'>
                 {% if item.examinations.all.0.blood_pressure %}
                 فشار خون(mmHg):{{ item.examinations.all.0.blood_pressure }}
                 {% else %}
-                <p class='none'>ذکر نشده</p>
+                <lable>فشار خون(mmHg):</lable><p class='None'>ذکر نشده</p>
                 {% endif %}                
             </div>
         </div>
@@ -1235,14 +1235,14 @@
                 {% if item.examinations.all.0.length %}
                 قد(Cm):{{ item.examinations.all.0.length }}
                 {% else %}
-                <p class='none'>ذکر نشده</p>
+                <lable>قد(Cm)</lable><p class='None'>ذکر نشده</p>
                 {% endif %}                
             </div>
             <div class='col'>
                 {% if item.examinations.all.0.pulse %}
                 تعداد نبض(در دقیقه):{{ item.examinations.all.0.pulse }}
                 {% else %}
-                <p class='none'>تعداد نبض(در دقیقه):ذکر نشده</p>
+                <lable>تعداد نبض(در دقیقه):</lable><p class='None'>ذکر نشده</p>
                 {% endif %}     
             </div>
         </div>
@@ -3172,7 +3172,7 @@
                 {% if item.experiment.all.0.exp_date_year and item.experiment.all.0.exp_date_month and item.experiment.all.0.exp_date_day %}
                 تاریخ:{{ item.experiment.all.0.exp_date_year }}/{{ item.experiment.all.0.exp_date_month }}/{{ item.experiment.all.0.exp_date_day }}
                 {% else %}
-                <p class='none'>تاریخ:ذکر نشده</p>
+                <lable>تاریخ:</lable><p class='None'>ذکر نشده</p>
                 {% endif %}
             </div>
         </div> 
@@ -3213,13 +3213,17 @@
         <div class='row mt-3' dir=ltr>
             <div class='col'>
                 U/A:Prot:
-                {% if item.experiment.all.0.ua_prot %}
+                {% if item.experiment.all.0.ua_prot == 0 %}
+                <p class='Blue'>neg</p>
+                {% elif item.experiment.all.0.ua_prot %}
                 <p class='Blue'>{{ item.experiment.all.0.ua_prot }}</p>
                 {% else %}
                 <p class='None'>ذکر نشده</p>
                 {% endif %}
                 Glu:
-                {% if item.experiment.all.0.ua_glu %}
+                {% if item.experiment.all.0.ua_glu == 0 %}
+                <p class='Blue'>neg</p>
+                {% elif item.experiment.all.0.ua_glu %}
                 <p class='Blue'>{{ item.experiment.all.0.ua_glu }}</p>
                 {% else %}
                 <p class='None'>ذکر نشده</p>
@@ -3237,7 +3241,9 @@
                 <p class='None'>ذکر نشده</p>
                 {% endif %}
                 Bact:
-                {% if item.experiment.all.0.ua_bact %}
+                {% if item.experiment.all.0.ua_bact == 0 %}
+                <p class='Blue'>neg</p>
+                {% elif item.experiment.all.0.ua_bact %}
                 <p class='Blue'>{{ item.experiment.all.0.ua_bact }}</p>
                 {% else %}
                 <p class='None'>ذکر نشده</p>
@@ -3368,7 +3374,7 @@
                 {% if item.experiment.all.0.first_date_year and item.experiment.all.0.first_date_month and item.experiment.all.0.first_date_day %}
                 تاریخ:{{ item.experiment.all.0.first_date_year }}/{{ item.experiment.all.0.first_date_month }}/{{ item.experiment.all.0.first_date_day }}
                 {% else %}
-                <p class='None'>تاریخ:ذکر نشده</p>
+                <lable>تاریخ:</lable><p class='None'>ذکر نشده</p>
                 {% endif %}
             </div>
         </div>
@@ -3389,7 +3395,7 @@
                 {% if item.experiment.all.0.second_date_year and item.experiment.all.0.second_date_month and item.experiment.all.0.second_date_day %}
                 تاریخ:{{ item.experiment.all.0.second_date_year }}/{{ item.experiment.all.0.second_date_month }}/{{ item.experiment.all.0.second_date_day }}
                 {% else %}
-                <p class='None'>تاریخ:ذکر نشده</p>
+                <lable>تاریخ:</lable><p class='None'>ذکر نشده</p>
                 {% endif %}
             </div>
         </div>
@@ -3410,7 +3416,7 @@
                 {% if item.experiment.all.0.third_date_year and item.experiment.all.0.third_date_month and item.experiment.all.0.third_date_day %}
                 تاریخ:{{ item.experiment.all.0.third_date_year }}/{{ item.experiment.all.0.third_date_month }}/{{ item.experiment.all.0.third_date_day }}
                 {% else %}
-                <p class='None'>تاریخ:ذکر نشده</p>
+                <lable>تاریخ:</lable><p class='None'>ذکر نشده</p>
                 {% endif %}
             </div>
         </div>
@@ -3431,41 +3437,59 @@
                     <th colspan=4>میدان بینایی</th>
                 </tr>
                 <tr>
-                    <th colspan=2>
+                    <th colspan=2>R
                         {% if item.para.all.0.opto_hedat_r_status == 'fc' %}
                         <p class='Blue'>fc چشم راست</p>
                         {% elif item.para.all.0.opto_hedat_r_status == 'adam_did' %}
                         <p class='Blue'>عدم دید چشم راست</p>
                         {% else %}
-                        R
+                        <p class='Blue'>دارای دید</p>
                         {% endif %}
                     </th>
-                    <th colspan=2>
+                    <th colspan=2>L
                         {% if item.para.all.0.opto_hedat_l_status == 'fc' %}
                         <p class='Blue'>fc چشم چپ</p>
                         {% elif item.para.all.0.opto_hedat_l_status == 'adam_did' %}
                         <p class='Blue'>عدم دید چشم چپ</p>
                         {% else %}
-                        L
+                        <p class='Blue'>دارای دید</p>
                         {% endif %}
                     </th>
-                    <td colspan=4 rowspan=3>
-                    {% if item.para.all.0.opto_rangi == 'normal' %}
+                    <td colspan=2 rowspan=3>R
+                        {% if item.para.all.0.opto_rangi_r == 'normal' %}
+                        <p class='Blue'>نرمال</p>
+                        {% elif item.para.all.0.opto_rangi_r == 'not_normal' %}
+                        <p class='Blue'>غیر نرمال</p>
+                        {% else %}
+                        <p class='None'>ذکر نشده</p>
+                        {% endif %}
+                    </td>
+                    <td colspan=2 rowspan=3>L
+                        {% if item.para.all.0.opto_rangi_l == 'normal' %}
+                        <p class='Blue'>نرمال</p>
+                        {% elif item.para.all.0.opto_rangi_l == 'not_normal' %}
+                        <p class='Blue'>غیر نرمال</p>
+                        {% else %}
+                        <p class='None'>ذکر نشده</p>
+                        {% endif %}
+                    </td>
+                    <td colspan=2 rowspan=3>R
+                    {% if item.para.all.0.opto_meidan_r == 'normal' %}
                     <p class='Blue'>نرمال</p>
-                    {% elif item.para.all.0.opto_rangi == 'not_normal' %}
+                    {% elif item.para.all.0.opto_meidan_r == 'not_normal' %}
                     <p class='Blue'>غیر نرمال</p>
                     {% else %}
                     <p class='None'>ذکر نشده</p>
                     {% endif %}
                     </td>
-                    <td colspan=4 rowspan=3>
-                    {% if item.para.all.0.opto_meidan == 'normal' %}
-                    <p class='Blue'>نرمال</p>
-                    {% elif item.para.all.0.opto_meidan == 'not_normal' %}
-                    <p class='Blue'>غیر نرمال</p>
-                    {% else %}
-                    <p class='None'>ذکر نشده</p>
-                    {% endif %}
+                    <td colspan=2 rowspan=3>L
+                        {% if item.para.all.0.opto_meidan_l == 'normal' %}
+                        <p class='Blue'>نرمال</p>
+                        {% elif item.para.all.0.opto_meidan_l == 'not_normal' %}
+                        <p class='Blue'>غیر نرمال</p>
+                        {% else %}
+                        <p class='None'>ذکر نشده</p>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr>
@@ -3543,7 +3567,7 @@
                     {% if item.para.all.0.audio_date_year and item.para.all.0.audio_date_month and item.para.all.0.audio_date_day  %}
                     <th>{{ item.para.all.0.audio_date_year }}/{{ item.para.all.0.audio_date_month }}/{{ item.para.all.0.audio_date_day }}</th>
                     {% else %}
-                    <th class='None'>تاریخ:ذکر نشده</th>
+                    <lable>تاریخ:</lable><p class='None'>ذکر نشده</p>
                     {% endif %}
                 </tr>
                 <tr>
@@ -3798,7 +3822,11 @@
         <div class='row mt-3'>
             <table class='text-center'>
                 <tr>
+                    {% if item.para.all.0.espiro_date_year and item.para.all.0.espiro_date_month and item.para.all.0.espiro_date_day %}
                     <td colspan=3>تاریخ انجام:{{ item.para.all.0.espiro_date_year }}/{{ item.para.all.0.espiro_date_month }}/{{ item.para.all.0.espiro_date_day }}</td>
+                    {% else %}
+                    <td colspan=3><lable>تاریخ:</lable><p class='None'>ذکر نشده</p></td>
+                    {% endif %}
                 </tr>
                 <tr>
                     <td>FEV1/FVC%</td>
@@ -3871,7 +3899,7 @@
                             {% elif item.para.all.0.espiro_tafsir == 'again' %}
                             <p class='Blue'>نیاز به تکرار</p>
                             {% else %}
-                            <p class='none'>ذکر نشده</p>
+                            <p class='None'>ذکر نشده</p>
                             {% endif %}
                         </td>
                     </tr>
@@ -3954,7 +3982,7 @@
                             {% if item.consulting.all.0.first_year and item.consulting.all.0.first_month and item.consulting.all.0.first_day %}
                             تاریخ :{{ item.consulting.all.0.first_year }}/{{ item.consulting.all.0.first_month }}/{{ item.consulting.all.0.first_day }}
                             {% else %}
-                            <p class='None'>تاریخ :ذکر نشده</p>
+                            <lable>تاریخ:</lable><p class='None'>ذکر نشده</p>
                             {% endif %}
                         </div>
                         <div class='mt-1'>
@@ -3988,7 +4016,7 @@
                             {% if item.consulting.all.0.second_year and item.consulting.all.0.second_month and item.consulting.all.0.second_day %}
                             تاریخ :{{ item.consulting.all.0.second_year }}/{{ item.consulting.all.0.second_month }}/{{ item.consulting.all.0.second_day }}
                             {% else %}
-                            <p class='None'>تاریخ :ذکر نشده</p>
+                            <lable>تاریخ:</lable><p class='None'>ذکر نشده</p>
                             {% endif %}
                         </div>
                         <div class='mt-1'>
@@ -4088,17 +4116,29 @@
         <div class='row text-center mt-4'>
             <div class='col'>
                 {% if item.final.all.0.problems == null %}
-                <p class='None'>مشکلات مشاهده شده:ذکر نشده</p>
+                <lable>مشکلات مشاهده شده:</lable><p class='None'>ذکر نشده</p>
                 {% else %}
                 مشکلات مشاهده شده:{{ item.final.all.0.problems }}
                 {% endif %}
             </div>
             <div class='col box'>
                 {% if item.final.all.0.d_code == null %}
-                <p class='None'>کد بیماری شغلی:ذکر نشده</p>
+                <lable>کد بیماری شغلی:</lable><p class='None'>ذکر نشده</p>
                 {% else %}
                 کد بیماری شغلی:{{ item.final.all.0.d_code }}
                 {% endif %}
+            </div>
+        </div>
+        <div class='row text-center mt-4'>
+            <div class='col'>
+                {% if item.final_date_year == None and item.final_date_month == None and item.final_date_day == None %}
+                <lable>تاریخ:</lable><p class='None'>ذکر نشده</p>
+                {% else %}
+                <td>تاریخ:{{ item.final_date_year }}/{{ item.final_date_month }}/{{ item.final_date_day }}</td>
+                {% endif %}
+            </div>
+            <div class='col box'>
+                مهر و امضا:
             </div>
         </div>
     </div>

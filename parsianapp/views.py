@@ -116,6 +116,7 @@ def addcourse_view(request):
     form=submit_course_form(request.POST)
     if form.is_valid():
         course_form = form.save(commit=False)
+        course_form.company = Company.objects.filter( name = course_form.CompanyName ).last()
         course_form.examinations_code = str(course_form.company) + str(course_form.year)
         course_form.save()
     return redirect('submit_course')
@@ -223,14 +224,14 @@ def disease_pdf_view(request):
     personal_species=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     options = Options()
     driver = webdriver.Chrome(options=options)
-    driver.get("http://127.0.0.1:8000/login")
+    driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element(By.NAME, 'username')
     password = driver.find_element(By.NAME , "password")
     login_but = driver.find_element(By.NAME , "login")
     username.send_keys('bot')
     password.send_keys('botamiri84')
     login_but.click()
-    driver.get("http://127.0.0.1:8000/output/disease_code")
+    driver.get("http://www.parsianqom.ir/output/disease_code")
     sleep(5)
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(1920,S('Height'))
@@ -656,13 +657,13 @@ def graph_view(request):
 
     for summary in personal_species:
         examinations=Examinations_Model.objects.filter(person=summary).last()
-        if examinations.blood_pressure == None:
+        if examinations.blood_pressure_top == None:
             d_pre += 1
-        elif examinations.blood_pressure < 90:
+        elif examinations.blood_pressure_top < 90:
             c_pre += 1
-        elif examinations.blood_pressure >= 90 and examinations.blood_pressure <= 140:
+        elif examinations.blood_pressure_top >= 90 and examinations.blood_pressure_top <= 140:
             a_pre += 1
-        elif examinations.blood_pressure > 140:
+        elif examinations.blood_pressure_top > 140:
             b_pre += 1
     data_pre.append(a_pre)
     data_pre.append(b_pre)
@@ -991,14 +992,14 @@ def solo_pdf_view(request):
     options.add_argument("--dns-prefetch-disable")
     options.add_argument("--disable-gpu")
     driver = webdriver.Chrome(options=options)
-    driver.get("http://127.0.0.1:8000/login")
+    driver.get("http://www.parsianqom.ir/login")
     username = driver.find_element('name',"username")
     password = driver.find_element('name',"password")
     login_but = driver.find_element('name',"login")
     username.send_keys('parsa')
     password.send_keys('690088parsian')
     login_but.click()
-    driver.get("http://127.0.0.1:8000/"+solo_output_view.current_path)
+    driver.get("http://www.parsianqom.ir/"+solo_output_view.current_path)
     sleep(4)
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
     driver.set_window_size(S('Width'),S('Height'))
@@ -1083,7 +1084,8 @@ def examinations_view(request):
     para_clinic=para_clinic_form()
     consulting=consulting_form()
     final_theory=final_theory_form()
-    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory }
+    code_list=ExaminationsCourse.objects.order_by('id')
+    context={'personal_species' : personal_species , 'job_history' : job_history , 'assessment' : assessment, 'personal_history' : personal_history, 'examinations' : examinations, 'experiments' : experiments, 'para_clinic' : para_clinic, 'consulting' : consulting , 'final_theory' : final_theory , 'code_list' : code_list  }
     return render(request, 'examinations.html',context)
 
 @require_POST
@@ -1107,6 +1109,8 @@ def addexaminations_view(request):
             new_person.fathers_name = 'None'
         if not new_person.personal_code:
             new_person.personal_code = 0
+        age = 1402 - new_person.age
+        new_person.examinations_code = ExaminationsCourse.objects.filter( examinations_code = new_person.ExaminationsCode ).last()
         new_person.save()
     if personal_species.is_valid() and  job_history.is_valid():
         new_job_history = job_history.save(commit=False)
@@ -1630,27 +1634,27 @@ def addexaminations_view(request):
         else:
             new_experiments.d_status = True
         if new_experiments.psa:
-            if new_person.age < 40:
+            if age < 40:
                 if new_experiments.psa >= 1.7:
                     new_experiments.psa_status = False
                 else:
                     new_experiments.psa_status = True
-            if new_person.age < 50 or new_person.age >= 40 :
+            if age < 50 or age >= 40 :
                 if new_experiments.psa >= 2.2:
                     new_experiments.psa_status = False
                 else:
                     new_experiments.psa_status = True
-            if new_person.age < 60 or new_person.age >= 50:
+            if age < 60 or age >= 50:
                 if new_experiments.psa >= 3.4:
                     new_experiments.psa_status = False
                 else:
                     new_experiments.psa_status = True
-            if new_person.age < 70 or new_person.age >= 60:
+            if age < 70 or nage >= 60:
                 if new_experiments.psa >= 6.16:
                     new_experiments.psa_status = False
                 else:
                     new_experiments.psa_status = True
-            if new_person.age > 70:
+            if age > 70:
                 if new_experiments.psa >= 6.77:
                     new_experiments.psa_status = False
                 else:
@@ -1747,7 +1751,7 @@ def addexaminations_view(request):
 #     else:
 #         code=''
 #     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
-#     personal_species=Personal_Species_Model.objects.filter(name=model.name,age=1401 - model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
+#     personal_species=Personal_Species_Model.objects.filter(name=model.name,age=model.age,fathers_name=model.fathers_name,personal_code=model.personal_code,examinations_code=examinations_course).last()
 #     job_history=Job_History_Model.objects.filter(person=personal_species).last()
 #     assessment=Assessment_Model.objects.filter(person=personal_species).last()
 #     personal_history=Personal_History_Model.objects.filter(person=personal_species).last()
@@ -1851,7 +1855,7 @@ def examinations_output_person_view(request):
     else:
         code=''
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
-    personal_species=Personal_Species_Model.objects.filter(name=model.p_name,age=1401 - model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code,examinations_code=examinations_course)
+    personal_species=Personal_Species_Model.objects.filter(name=model.p_name,age=model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code,examinations_code=examinations_course)
     inputlist=Personal_Species_Model.objects.filter(examinations_code=examinations_course)
     context={'form':form, 'personal_species' : personal_species ,'inputlist' : inputlist}
     return render(request, 'examinations_output_person.html',context)
@@ -1865,9 +1869,9 @@ def examinations_output_person_pdf_view(request):
         code=''
     if model.p_examinations_code != 'all' and model.p_examinations_code:
         examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
-        personal_species=Personal_Species_Model.objects.filter(name=model.p_name,age=1401 - model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code,examinations_code=examinations_course)
+        personal_species=Personal_Species_Model.objects.filter(name=model.p_name,age=model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code,examinations_code=examinations_course)
     elif model.p_age and model.p_examinations_code == 'all':
-        personal_species=Personal_Species_Model.objects.filter(name=model.p_name,age=1401 - model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code)
+        personal_species=Personal_Species_Model.objects.filter(name=model.p_name,age=model.p_age,fathers_name=model.p_fathers_name,personal_code=model.p_personal_code)
     else:
         personal_species = []
     options = Options()
@@ -1956,7 +1960,7 @@ def examinations_output_edit_view(request):
         code=''
         
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=model.examinations_code).last()
-    personal_species_m=Personal_Species_Model.objects.filter(name=model.e_name,age=1401 - model.e_age,fathers_name=model.e_fathers_name,personal_code=model.e_personal_code,examinations_code=examinations_course).last()
+    personal_species_m=Personal_Species_Model.objects.filter(name=model.e_name,age=model.e_age,fathers_name=model.e_fathers_name,personal_code=model.e_personal_code,examinations_code=examinations_course).last()
     job_history_m=Job_History_Model.objects.filter(person=personal_species_m).last()
     assessment_m=Assessment_Model.objects.filter(person=personal_species_m).last()
     personal_history_m=Personal_History_Model.objects.filter(person=personal_species_m).last()
@@ -1982,6 +1986,8 @@ def examinations_output_edit_view(request):
             new_person.fathers_name = 'None'
         if not new_person.personal_code:
             new_person.personal_code = 0
+        age = 1402 - new_person.age
+        new_person.examinations_code = ExaminationsCourse.objects.filter( examinations_code = new_person.ExaminationsCode ).last()
         new_person.save()
     if personal_species.is_valid() and  job_history.is_valid():
         new_job_history = job_history.save(commit=False)
@@ -2505,27 +2511,27 @@ def examinations_output_edit_view(request):
         else:
             new_experiments.d_status = True
         if new_experiments.psa:
-            if new_person.age < 40:
+            if age < 40:
                 if new_experiments.psa >= 1.7:
                     new_experiments.psa_status = False
                 else:
                     new_experiments.psa_status = True
-            if new_person.age < 50 or new_person.age >= 40 :
+            if age < 50 or age >= 40 :
                 if new_experiments.psa >= 2.2:
                     new_experiments.psa_status = False
                 else:
                     new_experiments.psa_status = True
-            if new_person.age < 60 or new_person.age >= 50:
+            if age < 60 or age >= 50:
                 if new_experiments.psa >= 3.4:
                     new_experiments.psa_status = False
                 else:
                     new_experiments.psa_status = True
-            if new_person.age < 70 or new_person.age >= 60:
+            if age < 70 or age >= 60:
                 if new_experiments.psa >= 6.16:
                     new_experiments.psa_status = False
                 else:
                     new_experiments.psa_status = True
-            if new_person.age > 70:
+            if age > 70:
                 if new_experiments.psa >= 6.77:
                     new_experiments.psa_status = False
                 else:
@@ -2647,6 +2653,6 @@ def examinations_output_edit_delete_view(request):
     model=Disease_Model.objects.last()
     code=model.examinations_code
     examinations_course = ExaminationsCourse.objects.filter(examinations_code=code).last()
-    qs=Personal_Species_Model.objects.filter(name=model.e_name,age=1401 - model.e_age,fathers_name=model.e_fathers_name,personal_code=model.e_personal_code,examinations_code=examinations_course).last()
+    qs=Personal_Species_Model.objects.filter(name=model.e_name,age=model.e_age,fathers_name=model.e_fathers_name,personal_code=model.e_personal_code,examinations_code=examinations_course).last()
     qs.delete()
     return redirect('examinations_output_edit')

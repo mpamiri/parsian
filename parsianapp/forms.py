@@ -28,6 +28,7 @@ class submit_course_form(forms.ModelForm):
         widgets={
         'year' : forms.NumberInput(attrs={'autocomplete': 'off','min'  : '1300','max' : '1500'}),
         'company' : forms.TextInput(attrs={'autocomplete': 'off' , 'list' : 'company'}),
+        'CompanyName' : forms.TextInput(attrs={'autocomplete': 'off' , 'list' : 'company'}),
         'doctor' : forms.TextInput(attrs={'autocomplete': 'off' }),
         'employer' : forms.TextInput(attrs={'autocomplete': 'off' }),
         'examinations_code' : forms.TextInput(attrs={'autocomplete': 'off' })}
@@ -61,7 +62,7 @@ class personal_species_form(forms.ModelForm):
         fields='__all__' 
         widgets={
         'species_date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
-        'examinations_code' : forms.TextInput(attrs={'class':'text','autocomplete': 'off',"required": 'True','list':'examinations_code'}),
+        'ExaminationsCode' : forms.TextInput(attrs={'class':'text','autocomplete': 'off',"required": 'True','list':'examinations_code'}),
         'examinations_type' : forms.Select(attrs={'class':'text','autocomplete': 'off'}),
         'profil_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'employment_number' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
@@ -207,7 +208,8 @@ class examinations_form(forms.ModelForm):
         'ravan_des' : forms.TextInput(attrs={'class':'des','autocomplete': 'off'}),
         'weight' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'other' : forms.TextInput(attrs={'autocomplete': 'off','style':'width:100%'}),
-        'blood_pressure' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'blood_pressure_top' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'blood_pressure_bot' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'length' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'pulse' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'exa_date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
@@ -266,20 +268,16 @@ class para_clinic_form(forms.ModelForm):
         'opto_date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
         'opto_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'opto_date_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'opto_hedat_r_ba' : forms.NumberInput(attrs={'class':'s_box auto-filler','autocomplete': 'off','disabled':'disabled'}),
-        'opto_hedat_r_bi' : forms.NumberInput(attrs={'class':'s_box auto-filler','autocomplete': 'off','disabled':'disabled'}),
+        'opto_hedat_r_ba' : forms.NumberInput(attrs={'class':'s_box auto-filler','autocomplete': 'off'}),
+        'opto_hedat_r_bi' : forms.NumberInput(attrs={'class':'s_box auto-filler','autocomplete': 'off'}),
         'opto_hedat_r_status' : forms.Select(attrs={'autocomplete': 'off', 'class':'auto-filler','onchange':"toggleInput();"}),
-        'opto_hedat_l_ba' : forms.NumberInput(attrs={'class':'s_box auto-filler','autocomplete': 'off','disabled':'disabled'}),
-        'opto_hedat_l_bi' : forms.NumberInput(attrs={'class':'s_box auto-filler','autocomplete': 'off','disabled':'disabled'}),
+        'opto_hedat_l_ba' : forms.NumberInput(attrs={'class':'s_box auto-filler','autocomplete': 'off'}),
+        'opto_hedat_l_bi' : forms.NumberInput(attrs={'class':'s_box auto-filler','autocomplete': 'off'}),
         'opto_hedat_l_status' : forms.Select(attrs={'class':'auto-filler','autocomplete': 'off','onchange':"toggleInput();"}),
-        'opto_rangi_hedat_r_ba' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'opto_rangi_hedat_r_bi' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'opto_rangi_hedat_l_ba' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'opto_rangi_hedat_l_bi' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'opto_meidan_hedat_r_ba' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'opto_meidan_hedat_r_bi' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'opto_meidan_hedat_l_ba' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
-        'opto_meidan_hedat_l_bi' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_rangi_hedat_r' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_rangi_hedat_l' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_meidan_hedat_r' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'opto_meidan_hedat_l' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'opto_omgh' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
         'audio_date_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
         'audio_date_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
@@ -358,7 +356,10 @@ class final_theory_form(forms.ModelForm):
         'recommendations' : forms.TextInput(attrs={'autocomplete': 'off','style':'width : 95%'}),
         'reason' : forms.TextInput(attrs={'autocomplete': 'off','style':'width : 95%'}),
         'problems' : forms.TextInput(attrs={'autocomplete': 'off','style':'width : 70%'}),
-        'd_code' : forms.NumberInput(attrs={'autocomplete': 'off','class':'box'})
+        'd_code' : forms.TextInput(attrs={'autocomplete': 'off','class':'box'}),
+        'final_year' : forms.NumberInput(attrs={'class':'date_year','autocomplete': 'off'}),
+        'final_month' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'}),
+        'final_day' : forms.NumberInput(attrs={'class':'s_box','autocomplete': 'off'})
         }
 
 

@@ -30,7 +30,7 @@ xmlns="http://www.w3.org/2000/svg">
             <div class='col'>
                 {% csrf_token %}
                 <lable> کارخانه/کارگاه/شرکت</lable>
-                {{ form.company }}
+                {{ form.CompanyName }}
                 <datalist id='company'>
                     {% for item in code_list %}
                     <option value='{{ item.name }}'>{{ item.name }}</option>

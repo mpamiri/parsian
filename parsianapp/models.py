@@ -13,6 +13,7 @@ class Company(models.Model):
 
 class ExaminationsCourse(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE,blank=True)
+    CompanyName = models.CharField(max_length=250, null=True, blank=True)
     year = models.IntegerField(null=True, blank=True)
     specialist = models.CharField(max_length=250, null=True, blank=True)
     doctor = models.CharField(max_length=250, null=True, blank=True)
@@ -44,6 +45,7 @@ class Disease_Model(models.Model):
 
 class Personal_Species_Model(models.Model):
     examinations_code = models.ForeignKey(ExaminationsCourse, on_delete=models.CASCADE,blank=True)
+    ExaminationsCode = models.CharField(max_length=250, null=True, blank=True)
     user = models.CharField(max_length=250, null=True, blank=True)
     examinations_type_CHOICES = [('badv_estekhdam', 'بدو استخدام'), ('dore_e', 'دوره ای'), ('bazgasht_be_kar', 'بازگشت به کار')]
     examinations_type = models.CharField(choices=examinations_type_CHOICES, max_length=250,blank=True,null=True)
@@ -205,7 +207,8 @@ class Examinations_Model(models.Model):
     exa_date_month=models.IntegerField(null=True, blank=True)
     exa_date_day=models.IntegerField(null=True, blank=True)
     weight = models.IntegerField(null=True, blank=True)
-    blood_pressure = models.IntegerField(null=True, blank=True)
+    blood_pressure_top = models.IntegerField(null=True, blank=True)
+    blood_pressure_bot = models.IntegerField(null=True, blank=True)
     length = models.IntegerField(null=True, blank=True)
     pulse = models.IntegerField(null=True, blank=True)
     local_sym_kahesh_vazn = models.BooleanField(default=False)
@@ -516,9 +519,11 @@ class Para_Clinic_Model(models.Model):
     hedat_l_status_CHOICES = [('adam_did', 'عدم دید'), ('fc', 'FC'), ('daraie_did', 'دارای دید')]
     opto_hedat_l_status=models.CharField(null=True, blank=True,max_length=250,choices=hedat_l_status_CHOICES) 
     rangi_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
-    opto_rangi=models.CharField(null=True, blank=True,max_length=250,choices=rangi_CHOICES)
+    opto_rangi_r=models.CharField(null=True, blank=True,max_length=250,choices=rangi_CHOICES)
+    opto_rangi_l=models.CharField(null=True, blank=True,max_length=250,choices=rangi_CHOICES)
     meidan_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
-    opto_meidan=models.CharField(null=True, blank=True,max_length=250,choices=meidan_CHOICES)
+    opto_meidan_r=models.CharField(null=True, blank=True,max_length=250,choices=meidan_CHOICES)
+    opto_meidan_l=models.CharField(null=True, blank=True,max_length=250,choices=meidan_CHOICES)
     opto_omgh = models.IntegerField(null=True, blank=True)
     opto_r_CHOICES = [('normal', 'نرمال'), ('not_normal', 'غیر نرمال')]
     opto_r=models.CharField(null=True, blank=True,max_length=250,choices=opto_r_CHOICES)
@@ -614,4 +619,7 @@ class Final_Theory_Model(models.Model):
     recommendations = models.CharField(max_length=250, null=True, blank=True)
     reason = models.CharField(max_length=250, null=True, blank=True)
     problems = models.CharField(max_length=250, null=True, blank=True)
-    d_code = models.IntegerField(null=True, blank=True)
+    d_code = models.CharField(max_length=250, null=True, blank=True)
+    final_year=models.IntegerField(null=True, blank=True)
+    final_month=models.IntegerField(null=True, blank=True)
+    final_day=models.IntegerField(null=True, blank=True)
